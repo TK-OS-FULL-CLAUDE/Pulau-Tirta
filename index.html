@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1f6f8b" />
+    <meta name="description" content="Petualangan Pulau Tirta: pulihkan pulau yang kekeringan sambil belajar siklus air bersama Tiko." />
+    <link rel="icon" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <title>Petualangan Pulau Tirta</title>
+  </head>
+  <body>
+    <main class="tata">
+      <section id="game" aria-label="Layar game"></section>
+
+      <aside id="tiko" class="tiko" aria-label="Tiko, teman belajar AI">
+        <header class="tiko-kepala">
+          <span class="tiko-wajah" aria-hidden="true">💧</span>
+          <div>
+            <strong>Tiko</strong>
+            <small>teman belajar AI</small>
+          </div>
+          <button id="tentang-tiko" class="tombol-kecil" type="button">Tentang Tiko</button>
+        </header>
+        <ol id="tiko-pesan" class="tiko-pesan" aria-live="polite"></ol>
+        <p id="tiko-mengetik" class="tiko-mengetik" hidden>Tiko sedang mengetik…</p>
+        <div class="tiko-cepat" role="group" aria-label="Pertanyaan cepat">
+          <button type="button" data-cepat="bingung">Aku bingung</button>
+          <button type="button" data-cepat="ke-mana">Aku harus ke mana?</button>
+          <button type="button" data-cepat="apa-itu">Apa itu …?</button>
+        </div>
+        <form id="tiko-form" class="tiko-form">
+          <label for="tiko-input" class="sr">Tulis pertanyaan untuk Tiko</label>
+          <input id="tiko-input" maxlength="200" autocomplete="off" placeholder="Tanya Tiko soal air…" />
+          <button type="submit">Kirim</button>
+        </form>
+      </aside>
+    </main>
+
+    <dialog id="dialog-misi" class="dialog"></dialog>
+    <dialog id="dialog-tentang" class="dialog">
+      <h2>Tentang Tiko</h2>
+      <ul>
+        <li>Tiko adalah AI, bukan manusia. Tiko bisa salah.</li>
+        <li>Tiko bertanya dan memberi petunjuk, tidak memberi jawaban.</li>
+        <li>Percakapan tidak disimpan. Namamu tidak diminta.</li>
+        <li>Fakta Tiko hanya dari kartu materi yang dicek tim.</li>
+        <li>Kalau AI lambat atau internet mati, Tiko memakai jawaban cadangan yang sudah ditulis tim.</li>
+      </ul>
+      <form method="dialog"><button>Tutup</button></form>
+    </dialog>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

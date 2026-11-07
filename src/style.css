@@ -1,0 +1,53 @@
+:root {
+  --laut: #1f6f8b;
+  --pasir: #f2e3b3;
+  --tinta: #1c2a33;
+  --pucat: #5b6b75;
+  --kertas: #fffaf0;
+  --aksen: #f08a2c;
+  --hijau: #3c9a5f;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 18px;
+  color: var(--tinta);
+  background: #0f2a36;
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; }
+.tata { display: grid; grid-template-columns: 1fr 340px; gap: 12px; padding: 12px; height: 100vh; }
+#game { border-radius: 12px; overflow: hidden; background: var(--laut); }
+#game canvas { width: 100% !important; height: 100% !important; object-fit: contain; display: block; }
+
+.tiko { display: flex; flex-direction: column; background: var(--kertas); border-radius: 12px; padding: 12px; min-height: 0; }
+.tiko-kepala { display: flex; align-items: center; gap: 8px; }
+.tiko-kepala small { display: block; color: var(--pucat); font-size: 14px; }
+.tiko-kepala .tombol-kecil { margin-left: auto; }
+.tiko-wajah { font-size: 32px; }
+.tiko-pesan { list-style: none; margin: 12px 0; padding: 0; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.tiko-pesan li { padding: 8px 12px; border-radius: 12px; max-width: 90%; line-height: 1.4; }
+.tiko-pesan li.tiko { background: #e3f1f6; align-self: flex-start; }
+.tiko-pesan li.anak { background: #fde7cf; align-self: flex-end; }
+.tiko-pesan li small { display: block; color: var(--pucat); font-size: 12px; margin-top: 4px; }
+.tiko-mengetik { color: var(--pucat); font-size: 14px; margin: 0 0 8px; }
+.tiko-cepat { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.tiko-form { display: flex; gap: 6px; }
+.tiko-form input { flex: 1; min-width: 0; min-height: 48px; font-size: 18px; padding: 0 12px; border-radius: 10px; border: 2px solid #c9d6dc; }
+button { min-height: 48px; font-size: 16px; padding: 0 14px; border-radius: 10px; border: 0; background: var(--laut); color: white; cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); outline-offset: 2px; }
+.tiko-cepat button { background: #d7ebf2; color: var(--tinta); min-height: 44px; }
+.tombol-kecil { min-height: 40px; font-size: 14px; background: #d7ebf2; color: var(--tinta); }
+
+.dialog { border: 0; border-radius: 16px; max-width: 560px; width: 92vw; padding: 20px; background: var(--kertas); color: var(--tinta); }
+.dialog::backdrop { background: rgb(0 0 0 / 45%); }
+.dialog h2 { margin-top: 0; }
+.pilihan { display: grid; gap: 8px; margin: 12px 0; }
+.pilihan button { text-align: left; background: white; color: var(--tinta); border: 2px solid #c9d6dc; padding: 10px 14px; height: auto; }
+.pilihan button[data-salah] { border-color: #d9534f; }
+.pilihan select { min-height: 48px; font-size: 16px; }
+.catatan { color: var(--pucat); font-size: 14px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+@media (max-width: 900px) {
+  .tata { grid-template-columns: 1fr; height: auto; }
+  #game { aspect-ratio: 16 / 9; }
+  .tiko { min-height: 360px; }
+}

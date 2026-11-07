@@ -1,0 +1,257 @@
+{
+  "_catatan": "Isi konten [USULAN]. Wajib dicek ke Buku Siswa IPAS Kelas V Bab 4 sebelum dipakai di playtest.",
+  "misi": [
+    {
+      "id": "misi-0",
+      "judul": "Tetes yang tersesat",
+      "lokasi": "desa",
+      "konsep": "Air di bumi terus berpindah dan berubah wujud",
+      "kartuMateri": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "misi-1",
+      "judul": "Laut yang malas",
+      "lokasi": "pantai",
+      "konsep": "Penguapan",
+      "kartuMateri": [
+        3
+      ],
+      "pertanyaan": "Kenapa air kolam yang kena sinar lebih cepat berkurang?",
+      "pilihan": [
+        {
+          "id": "a",
+          "teks": "Panas matahari mengubah air menjadi uap air yang naik ke udara",
+          "benar": true
+        },
+        {
+          "id": "b",
+          "teks": "Airnya meresap ke pasir",
+          "miskonsepsi": "meresap"
+        },
+        {
+          "id": "c",
+          "teks": "Airnya diminum burung",
+          "miskonsepsi": "diminum"
+        },
+        {
+          "id": "d",
+          "teks": "Air baru menguap kalau mendidih",
+          "miskonsepsi": "mendidih"
+        }
+      ],
+      "kataTerlarang": {
+        "1": [
+          "uap",
+          "menguap",
+          "penguapan",
+          "berubah wujud"
+        ],
+        "2": [
+          "uap",
+          "menguap",
+          "penguapan",
+          "berubah wujud"
+        ],
+        "3": []
+      },
+      "kutipanTerlarang": [
+        "Panas matahari mengubah air menjadi uap air yang naik ke udara"
+      ],
+      "petunjukCadangan": {
+        "1": "Coba lihat dasar kolamnya. Terbuat dari apa? Bisakah air keluar lewat situ?",
+        "2": "Dasar kolamnya batu, jadi air tidak bisa keluar lewat bawah. Perhatikan kolam yang kena sinar. Apa yang terlihat di atas airnya?",
+        "3": "Langkahnya: lihat kolam mana yang kena sinar, lalu bandingkan garis airnya. Helai tipis di atas kolam itu gambaran uap air, aslinya tidak terlihat. Sekarang, apa yang dilakukan panas matahari pada air kolam itu?"
+      }
+    },
+    {
+      "id": "misi-2",
+      "judul": "Awan yang tak jadi",
+      "lokasi": "puncak",
+      "konsep": "Pengembunan",
+      "kartuMateri": [
+        5,
+        6,
+        7
+      ],
+      "pertanyaan": "Kenapa awan terbentuk di atas puncak, bukan di pantai?",
+      "pilihan": [
+        {
+          "id": "a",
+          "teks": "Udara di atas lebih dingin, jadi uap air mengembun menjadi titik air",
+          "benar": true
+        },
+        {
+          "id": "b",
+          "teks": "Awan berasal dari asap",
+          "miskonsepsi": "asap"
+        },
+        {
+          "id": "c",
+          "teks": "Udara di atas lebih panas",
+          "miskonsepsi": "panas"
+        },
+        {
+          "id": "d",
+          "teks": "Angin membawa awan dari tempat lain",
+          "miskonsepsi": "dibawa"
+        }
+      ],
+      "kataTerlarang": {
+        "1": [
+          "mengembun",
+          "pengembunan",
+          "dingin"
+        ],
+        "2": [
+          "mengembun",
+          "pengembunan"
+        ],
+        "3": []
+      },
+      "kutipanTerlarang": [
+        "Udara di atas lebih dingin, jadi uap air mengembun menjadi titik air"
+      ],
+      "petunjukCadangan": {
+        "1": "Bandingkan puncak dan pantai. Kalau kamu naik gunung, udaranya terasa bagaimana?",
+        "2": "Lihat termometer di puncak dan di pantai. Di mana titik-titik air kecil mulai muncul?",
+        "3": "Makin tinggi, udara makin dingin. Ingat juga: awan bukan asap. Coba pikirkan, apa yang terjadi pada uap air saat masuk ke udara yang dingin?"
+      }
+    },
+    {
+      "id": "misi-3",
+      "judul": "Awan yang tak mau hujan",
+      "lokasi": "lembah",
+      "konsep": "Presipitasi",
+      "kartuMateri": [
+        8
+      ],
+      "pertanyaan": "Kenapa akhirnya hujan turun?",
+      "pilihan": [
+        {
+          "id": "a",
+          "teks": "Titik-titik air bergabung menjadi besar dan berat",
+          "benar": true
+        },
+        {
+          "id": "b",
+          "teks": "Awannya pecah",
+          "miskonsepsi": "pecah"
+        },
+        {
+          "id": "c",
+          "teks": "Matahari mendorong awan ke bawah",
+          "miskonsepsi": "didorong"
+        },
+        {
+          "id": "d",
+          "teks": "Awan menabrak gunung",
+          "miskonsepsi": "menabrak"
+        }
+      ],
+      "kataTerlarang": {
+        "1": [
+          "bergabung",
+          "berat"
+        ],
+        "2": [
+          "berat"
+        ],
+        "3": []
+      },
+      "kutipanTerlarang": [
+        "Titik-titik air bergabung menjadi besar dan berat"
+      ],
+      "petunjukCadangan": {
+        "1": "Perhatikan ukuran titik air di awan sebelum dan sesudah kamu menggerakkan angin. Apa yang berubah?",
+        "2": "Lihat titik-titik yang saling bertemu. Kapan mereka mulai jatuh?",
+        "3": "Lihat lagi: setiap titik air kecil bertemu titik air lain. Ukurannya jadi bagaimana? Lalu, apa yang terjadi pada benda yang makin berat di udara?"
+      }
+    },
+    {
+      "id": "misi-4",
+      "judul": "Air yang hilang",
+      "lokasi": "hutan",
+      "konsep": "Peresapan dan aliran",
+      "kartuMateri": [
+        9,
+        10,
+        11
+      ],
+      "pertanyaan": "Kenapa lereng berpohon menyimpan air lebih lama?",
+      "pilihan": [
+        {
+          "id": "a",
+          "teks": "Akar dan tanah gembur membantu air hujan meresap ke tanah",
+          "benar": true
+        },
+        {
+          "id": "b",
+          "teks": "Daun menyerap air dari udara",
+          "miskonsepsi": "daun"
+        },
+        {
+          "id": "c",
+          "teks": "Pohon membuat hujan turun setiap hari",
+          "miskonsepsi": "hujan"
+        },
+        {
+          "id": "d",
+          "teks": "Pohon menghalangi sinar matahari sepanjang tahun",
+          "miskonsepsi": "teduh"
+        }
+      ],
+      "kataTerlarang": {
+        "1": [
+          "meresap",
+          "akar",
+          "gembur"
+        ],
+        "2": [
+          "meresap"
+        ],
+        "3": []
+      },
+      "kutipanTerlarang": [
+        "Akar dan tanah gembur membantu air hujan meresap ke tanah"
+      ],
+      "petunjukCadangan": {
+        "1": "Bandingkan air hujan di lereng gundul dan lereng berpohon. Ke mana air di masing-masing lereng pergi?",
+        "2": "Perhatikan bagian bawah pohon dan tanah di sekitarnya. Di lereng mana airnya tidak langsung mengalir pergi?",
+        "3": "Langkahnya: siram lereng gundul, lalu lereng berpohon. Di lereng gundul air langsung mengalir ke bawah. Di lereng berpohon, coba lihat bagian akar. Air hujan pergi ke mana?"
+      }
+    }
+  ],
+  "festival": {
+    "tahap": [
+      "penguapan",
+      "pengembunan",
+      "hujan",
+      "peresapan"
+    ],
+    "peristiwa": [
+      {
+        "id": "f1",
+        "teks": "Baju jemuran kering di siang hari",
+        "tahap": "penguapan"
+      },
+      {
+        "id": "f2",
+        "teks": "Rumput basah oleh embun di pagi hari",
+        "tahap": "pengembunan"
+      },
+      {
+        "id": "f3",
+        "teks": "Langit mendung tebal, lalu turun hujan",
+        "tahap": "hujan"
+      },
+      {
+        "id": "f4",
+        "teks": "Air hujan di kebun hilang ke tanah, lalu muncul lagi di mata air",
+        "tahap": "peresapan"
+      }
+    ]
+  }
+}
