@@ -1,0 +1,127 @@
+{
+  "type": "tileset",
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "name": "tirta_props",
+  "tilewidth": 16,
+  "tileheight": 16,
+  "tilecount": 160,
+  "columns": 16,
+  "margin": 0,
+  "spacing": 0,
+  "image": "../../assets/tirta_props/tileset.svg",
+  "imagewidth": 256,
+  "imageheight": 160,
+  "tiles": [
+    {
+      "id": 16,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "properties": [
+        {
+          "name": "bridge",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "properties": [
+        {
+          "name": "bridge",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "type": "tileset",
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "name": "tiny_battle",
+  "tilewidth": 16,
+  "tileheight": 16,
+  "tilecount": 198,
+  "columns": 18,
+  "margin": 0,
+  "spacing": 0,
+  "image": "../../assets/kenney_tiny_battle/tilemap_packed.png",
+  "imagewidth": 288,
+  "imageheight": 176,
+  "tiles": [
+    {
+      "id": 18,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

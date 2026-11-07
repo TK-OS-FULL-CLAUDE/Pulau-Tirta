@@ -29,6 +29,11 @@ npm run typecheck
 
 ## Struktur
 
+World aktif adalah **V3.1 (192 × 144 tile)**. Buka `world/maps/pulau_tirta_v3_1.tmj`
+di Tiled, lalu jalankan `npm run world:export` setelah menyimpan edit.
+Map V1 tetap disimpan. Panduan koordinat, aset, layer, pengujian dan screenshot:
+[World V3.1 — Aufa](world/ART_PASS_V31.md).
+
 ```
 content/        Konten: misi, pertanyaan alasan, petunjuk cadangan, kartu materi (JSON)
 shared/         Logika tanpa UI yang dipakai game dan server: konten, guardrail, misi

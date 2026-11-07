@@ -1,0 +1,27 @@
+{
+  "type": "tileset",
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "name": "tiny_city",
+  "tilewidth": 16,
+  "tileheight": 16,
+  "tilecount": 132,
+  "columns": 12,
+  "margin": 0,
+  "spacing": 0,
+  "image": "../../assets/tiny_town/tilemap_packed.png",
+  "imagewidth": 192,
+  "imageheight": 176,
+  "tiles": [
+    {
+      "id": 13,
+      "properties": [
+        {
+          "name": "bridge",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
