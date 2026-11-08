@@ -1,3 +1,4 @@
+import { villageActivity } from './village-activity';
 import Phaser from 'phaser';
 import buildings from '../../world/buildings-v34-a1.json';
 import { properti, type DataDunia } from './map-data';
@@ -27,7 +28,7 @@ export class LivingWorld {
     const markers = world.peta.layers.find(l => l.name === 'NPCSpawns')?.objects ?? [];
     for (const marker of markers) {
       if (properti(marker, 'decorative') !== true) continue;
-      const plan = NPC_PLANS.find(p => p.id === marker.name);
+      const plan = villageActivity(marker, NPC_PLANS.find(p => p.id === marker.name));
       if (!plan || this.npcs.length >= LIVING.npcLimit || !validateNpcPlan(world, plan)) continue;
       const x = Math.floor(marker.x / 16), y = Math.floor(marker.y / 16);
       if ([121, 122].includes(objects.getTileAt(x, y)?.index ?? 0)) {

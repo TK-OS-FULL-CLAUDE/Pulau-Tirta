@@ -7,13 +7,19 @@ import { tmpdir } from 'node:os';
 import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { createServer } from 'node:net';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const reference = process.argv.includes('--capture-reference');
-const stage = process.argv.includes('--v33') ? 'v33' : process.argv.includes('--a1') ? 'v34-a1' : 'v34-a11';
-const mapFile = reference || stage==='v34-a1' ? 'pulau-tirta-v34-a1.json' : stage==='v34-a11' ? 'pulau-tirta-v34-a11.json' : 'pulau-tirta-v3-2.json';
-const runtime = JSON.parse(readFileSync(resolve(root, 'public/maps', mapFile), 'utf8'));
+const villageReference = process.argv.includes('--capture-village-reference');
+const a4Reference = process.argv.includes('--capture-a3-reference');
+const stage = process.argv.includes('--v33') ? 'v33' : process.argv.includes('--a1') ? 'v34-a1' : process.argv.includes('--a11') ? 'v34-a11' : process.argv.includes('--a3') ? 'v34-a3' : 'v34-a4';
+const mapFile = villageReference ? 'pulau-tirta-v34-a11.json' : reference || stage==='v34-a1' ? 'pulau-tirta-v34-a1.json' : stage==='v34-a11' ? 'pulau-tirta-v34-a11.json' : stage==='v34-a4' ? 'pulau-tirta-v34-a4.json' : stage==='v34-a3' ? 'pulau-tirta-v34-a3.json' : 'pulau-tirta-v3-2.json';
+const activeMapFile = a4Reference ? 'pulau-tirta-v34-a3.json' : mapFile;
+const runtime = JSON.parse(readFileSync(resolve(root, 'public/maps', activeMapFile), 'utf8'));
+const phase = stage==='v34-a4'?'a4':'a3';
+const currentVillage = ['v34-a3','v34-a4'].includes(stage);
 const previewDir = resolve(root, 'world/previews', stage);
 const url = process.env.WORLD_URL ?? (process.argv.includes('--review') ? `http://localhost:5173/world/previews/${stage}/review.html` : 'http://localhost:5173/');
 const chrome = process.env.CHROME_PATH ?? [
@@ -51,14 +57,14 @@ try {
     } else if (message.method === 'Runtime.exceptionThrown') errors.push(message.params.exceptionDetails);
     else if (message.method === 'Network.responseReceived' && message.params.response.status >= 400) badResponses.push(message.params.response.url);
   };
-  const call = (method, params = {}) => new Promise((resolveCall, reject) => {
+  const call = (method, params = {}, timeoutMs = 20000) => new Promise((resolveCall, reject) => {
     const id = ++nextId;
-    const timer = setTimeout(() => { pending.delete(id); reject(new Error(`CDP timeout: ${method}`)); }, 20000);
+    const timer = setTimeout(() => { pending.delete(id); reject(new Error(`CDP timeout: ${method}`)); }, timeoutMs);
     pending.set(id, { resolve: resolveCall, reject, timer });
     ws.send(JSON.stringify({ id, method, params }));
   });
-  const evaluate = async (expression) => {
-    const r = await call('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true });
+  const evaluate = async (expression, timeoutMs = 20000) => {
+    const r = await call('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true }, timeoutMs);
     assert(!r.exceptionDetails, JSON.stringify(r.exceptionDetails)); return r.result.value;
   };
   const until = async (expression, description) => {
@@ -67,9 +73,7 @@ try {
   };
   const attach = async () => {
     // Hanya instrumentasi profil pengujian; tidak menambahkan global debug ke app.
-    await until(`performance.getEntriesByType('resource').some(e=>/\\/src\\/game\\/world\\.ts(?:\\?|$)/.test(e.name))`, 'module world dev');
-    await evaluate(`(async()=>{const u=performance.getEntriesByType('resource').find(e=>/\\/src\\/game\\/world\\.ts(?:\\?|$)/.test(e.name)).name;const {DuniaScene}=await import(u);const original=DuniaScene.prototype.inputTerhalang;DuniaScene.prototype.inputTerhalang=function(...args){window.__worldCheck=this;DuniaScene.prototype.inputTerhalang=original;return original.apply(this,args)};})()`);
-    await until('!!window.__worldCheck?.pemain', 'scene siap');
+    await until(`(async()=>{const entry=performance.getEntriesByType('resource').find(e=>/\\/src\\/game\\/world\\.ts(?:\\?|$)/.test(e.name));if(!entry)return false;if(!window.__worldAttachStarted){const {DuniaScene}=await import(entry.name);const original=DuniaScene.prototype.inputTerhalang;DuniaScene.prototype.inputTerhalang=function(...args){window.__worldCheck=this;DuniaScene.prototype.inputTerhalang=original;return original.apply(this,args)};window.__worldAttachStarted=true}return !!window.__worldCheck?.pemain})()`, 'scene siap');
   };
   const key = async (key, code, vk, duration = 100, text) => {
     await call('Input.dispatchKeyEvent', { type: 'keyDown', key, code, windowsVirtualKeyCode: vk, nativeVirtualKeyCode: vk, ...(text ? { text } : {}) });
@@ -94,7 +98,7 @@ try {
     mkdirSync(previewDir, { recursive: true });
     writeFileSync(resolve(previewDir, name.replace('v33', stage) + '.webm'), Buffer.from(data, 'base64'));
   };
-  const worldPreview = async (after, previewMap = mapFile, filename, crop) => {
+  const worldPreview = async (after, previewMap = activeMapFile, filename, crop) => {
     const png = await evaluate(`(async()=>{
       const map=await(await fetch('/maps/${previewMap}')).json();
       const sheets=await Promise.all(map.tilesets.map(s=>new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve({s,image});image.onerror=reject;image.src=new URL(s.image,new URL('/maps/${previewMap}',location.href)).href})));
@@ -122,11 +126,42 @@ try {
     await snap(restored?'centre-a11-festival-zoomout':'centre-a11-zoomout',93,76,2);
     await evaluate('(()=>{const s=window.__worldCheck;s.terkunci=false;s.judulWilayah.setVisible(true);s.cameras.main.setZoom(3).startFollow(s.pemain,true,.14,.14);})()');
   };
+  const captureVillage = async (restored=false) => {
+    await evaluate('window.__worldCheck.terkunci=true');
+    const snap=async(name,cx,cy,zoom=3)=>{
+      await place(1544,1272);
+      await evaluate(`(()=>{const s=window.__worldCheck;s.judulWilayah.setVisible(${zoom===3});s.cameras.main.stopFollow().setZoom(${zoom}).centerOn(${cx*16},${cy*16});})()`);await wait(180);await screenshot(name);
+    };
+    await snap(restored?'village-festival':`village-after-${phase}`,95.5,76.5,1);
+    const camera=await evaluate('({x:window.__worldCheck.cameras.main.scrollX,y:window.__worldCheck.cameras.main.scrollY,zoom:window.__worldCheck.cameras.main.zoom,width:window.__worldCheck.cameras.main.width,height:window.__worldCheck.cameras.main.height})');
+    assert.deepEqual(camera,JSON.parse(readFileSync(resolve(previewDir,`camera-before-${phase==='a4'?'a4':'a2'}.json`),'utf8')));
+    writeFileSync(resolve(previewDir,restored?'camera-festival.json':`camera-after-${phase}.json`),JSON.stringify(camera,null,2)+'\n');
+    if(!restored){
+      for(const[name,x,y,z]of[['plaza-market',93.5,76.5,2],['homes-north',96,64.5,2],['homes-south',97,90,2],['farming',89,91,3],['road-spine',101,86,3],['road-north-east',115,63,3]])await snap(name,x,y,z);
+    }
+    await evaluate('(()=>{const s=window.__worldCheck;s.terkunci=false;s.judulWilayah.setVisible(true);s.cameras.main.setZoom(3).startFollow(s.pemain,true,.14,.14);})()');
+  };
   await call('Runtime.enable'); await call('Network.enable'); await call('Page.enable');
   await call('Emulation.setFocusEmulationEnabled', { enabled: true });
   await call('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
   await call('Page.navigate', { url });
-  if(reference){
+  if(a4Reference){
+    await attach();
+    assert.equal(await evaluate("window.__worldCheck.cache.tilemap.get('pulau-tirta').data.properties.find(p=>p.name==='worldVersion').value"),'3.4-A3');
+    await evaluate('(()=>{const s=window.__worldCheck;s.terkunci=true;s.judulWilayah.setVisible(false);s.cameras.main.stopFollow().setZoom(1).centerOn(95.5*16,76.5*16);})()');await wait(200);
+    await screenshot('village-before-a4');
+    writeFileSync(resolve(previewDir,'camera-before-a4.json'),JSON.stringify(await evaluate('({x:window.__worldCheck.cameras.main.scrollX,y:window.__worldCheck.cameras.main.scrollY,zoom:window.__worldCheck.cameras.main.zoom,width:window.__worldCheck.cameras.main.width,height:window.__worldCheck.cameras.main.height})'),null,2)+'\n');
+    await worldPreview(false,activeMapFile,'village-before-a4-tiles.png',{x:70,y:55,width:51,height:43});
+    console.log('PASS A3 reference: source version verified, fixed-camera overview and village crop saved');
+  } else if(villageReference){
+    await attach();
+    assert.equal(await evaluate("window.__worldCheck.cache.tilemap.get('pulau-tirta').data.properties.find(p=>p.name==='worldVersion').value"),'3.4-A1.1');
+    await evaluate('(()=>{const s=window.__worldCheck;s.terkunci=true;s.judulWilayah.setVisible(false);s.cameras.main.stopFollow().setZoom(1).centerOn(95.5*16,76.5*16);})()');await wait(200);
+    await screenshot('village-before-a2');
+    writeFileSync(resolve(previewDir,`camera-before-${phase==='a4'?'a4':'a2'}.json`),JSON.stringify(await evaluate('({x:window.__worldCheck.cameras.main.scrollX,y:window.__worldCheck.cameras.main.scrollY,zoom:window.__worldCheck.cameras.main.zoom,width:window.__worldCheck.cameras.main.width,height:window.__worldCheck.cameras.main.height})'),null,2)+'\n');
+    await worldPreview(false,'pulau-tirta-v34-a11.json','village-before-a2-tiles.png',{x:70,y:55,width:51,height:43});
+    console.log('PASS before A2: A1.1 source verified, entire village fixed-camera screenshot and tile crop saved');
+  } else if(reference){
     await attach();
     assert.equal(await evaluate("window.__worldCheck.cache.tilemap.get('pulau-tirta').data.properties.find(p=>p.name==='worldVersion').value"),'3.4-A1','reference must render the old A1 source');
     await evaluate('window.__worldCheck.terkunci=true');
@@ -137,15 +172,30 @@ try {
     writeFileSync(resolve(previewDir,'camera-reference.json'),JSON.stringify(camera,null,2)+'\n');
     await worldPreview(false,'pulau-tirta-v34-a1.json','centre-a1-reference.png',{x:79,y:71,width:29,height:14});
     console.log('PASS reference A1: actual Phaser screenshot at fixed camera; source version verified');
+  } else if (process.argv.includes('--capture-village')) {
+    await attach();await captureVillage();
+    await worldPreview(false,activeMapFile,`village-after-${phase}-tiles.png`,{x:70,y:55,width:51,height:43});
+    console.log('PASS village render: whole village and housing/farm/path compositions captured');
   } else if (process.argv.includes('--capture-centre')) {
     await attach();
     assert.equal(await evaluate("window.__worldCheck.cache.tilemap.get('pulau-tirta').data.properties.find(p=>p.name==='worldVersion').value"),'3.4-A1.1');
     await captureCentre();
-    await worldPreview(false,mapFile,'centre-a11.png',{x:79,y:71,width:29,height:14});
+    await worldPreview(false,activeMapFile,'centre-a11.png',{x:79,y:71,width:29,height:14});
     console.log('PASS A1.1 render: fixed-camera plaza, market, well, zoom-out and crop');
   } else if (process.argv.includes('--review')) {
-    await until(`document.querySelectorAll('video').length===${stage.startsWith('v34-a1') ? 1 : 4}`, 'video review');
+    if(stage==='v34-a4'){
+      const recorded=JSON.parse(readFileSync(resolve(previewDir,'walkthrough-source.json'),'utf8'));
+      assert.equal(recorded.sha256,createHash('sha256').update(readFileSync(resolve(root,'public/maps',activeMapFile))).digest('hex'),'walkthrough must match the final map');
+      const png=await evaluate(`(async()=>{const imgs=await Promise.all(['village-before-a4-tiles.png','village-after-a4-tiles.png'].map(file=>new Promise((yes,no)=>{const i=new Image();i.onload=()=>yes(i);i.onerror=no;i.src=file})));const c=document.createElement('canvas');c.width=1632;c.height=730;const x=c.getContext('2d');x.fillStyle='#20382e';x.fillRect(0,0,c.width,c.height);x.fillStyle='#fff0d4';x.font='22px sans-serif';x.fillText('A3 · sebelum',16,29);x.fillText('A4 · final Desa Tirta',832,29);x.imageSmoothingEnabled=false;imgs.forEach((i,n)=>x.drawImage(i,n*816,42));return c.toDataURL('image/png').split(',')[1]})()`);
+      writeFileSync(resolve(previewDir,'comparison-a3-a4.png'),Buffer.from(png,'base64'));
+    }
+    await until(`document.querySelectorAll('video').length===${stage.startsWith('v34-a') ? 1 : 4}`, 'video review');
     const evidence = await evaluate(`(async()=>{const result=[];for(const video of document.querySelectorAll('video')){video.muted=true;video.scrollIntoView({block:'center'});await new Promise((resolve,reject)=>{video.requestVideoFrameCallback(resolve);video.play().catch(reject)});video.pause();const canvas=document.createElement('canvas');canvas.width=320;canvas.height=180;const ctx=canvas.getContext('2d');const sample=()=>{ctx.drawImage(video,0,0,320,180);const p=ctx.getImageData(0,0,320,180).data;let hash=2166136261,lit=0;for(let i=0;i<p.length;i+=4){hash=Math.imul(hash^p[i],16777619);hash=Math.imul(hash^p[i+1],16777619);hash=Math.imul(hash^p[i+2],16777619);if(p[i]+p[i+1]+p[i+2]>60)lit++}return {hash:hash>>>0,lit}};const a=sample();await new Promise((resolve,reject)=>{video.onseeked=resolve;video.onerror=reject;video.currentTime=1});const b=sample();result.push({file:video.querySelector('source').getAttribute('src'),width:video.videoWidth,height:video.videoHeight,first:a,second:b})}return result})()`);
+    if(currentVillage){
+      const seconds=JSON.parse(readFileSync(resolve(previewDir,'walkthrough-evidence.json'),'utf8')).elapsedMs/1000-3;
+      const nearEnd=await evaluate(`(async()=>{const v=document.querySelector('video');await new Promise((resolve,reject)=>{v.onseeked=resolve;v.onerror=reject;v.currentTime=${seconds}});const c=document.createElement('canvas');c.width=160;c.height=90;const x=c.getContext('2d');x.drawImage(v,0,0,160,90);const p=x.getImageData(0,0,160,90).data;let lit=0;for(let i=0;i<p.length;i+=4)if(p[i]+p[i+1]+p[i+2]>60)lit++;return {seconds:v.currentTime,lit}})()`);
+      assert(nearEnd.seconds>=seconds-.5&&nearEnd.lit>5000,'end of walkthrough must remain playable');evidence[0].nearEnd=nearEnd;
+    }
     writeFileSync(resolve(previewDir, 'video-evidence.json'), JSON.stringify(evidence, null, 2) + '\n');
     for (const v of evidence) { assert(v.width>0&&v.height>0); assert(v.first.lit>10000,'rekaman harus berisi gameplay'); assert.notEqual(v.first.hash,v.second.hash,'frame rekaman harus berubah'); }
     assert.deepEqual(errors, []); assert.deepEqual(badResponses, []);
@@ -166,6 +216,7 @@ try {
     await call('Network.emulateNetworkConditions', { offline: false, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
   } else {
     await attach();
+    assert.equal(await evaluate("window.__worldCheck.cache.tilemap.get('pulau-tirta').data.properties.find(p=>p.name==='worldVersion').value"),runtime.properties.find(p=>p.name==='worldVersion').value);
     assert.deepEqual(await position(), { x: 1544, y: 1272 });
     assert.equal(await evaluate('window.__worldCheck.textures.list.tiny_city.frameTotal > 108'), true);
     assert.equal(await evaluate('window.__worldCheck.children.list.filter(c=>c.type==="TilemapLayer").length'), runtime.layers.filter((l) => l.type === 'tilelayer').length);
@@ -181,6 +232,17 @@ try {
     await evaluate(`document.getElementById('tiko-input').blur()`);
     await key('d', 'KeyD', 68, 100); assert((await position()).x > before.x);
     console.log('PASS render atlas, spawn, gerak, kamera, input chat');
+
+    if(currentVillage&&process.argv.includes('--walkthrough')){
+      const tour=JSON.parse(readFileSync(resolve(root,`world/village-${phase}.json`),'utf8')).tour;
+      writeFileSync(resolve(previewDir,'walkthrough-source.json'),JSON.stringify({file:activeMapFile,sha256:createHash('sha256').update(readFileSync(resolve(root,'public/maps',activeMapFile))).digest('hex'),version:runtime.properties.find(p=>p.name==='worldVersion').value,initialVisibleLayers:await evaluate("window.__worldCheck.children.list.filter(c=>c.type==='TilemapLayer'&&c.visible).map(c=>c.layer.name)")},null,2)+'\n');
+      await record(`village-${phase}-walkthrough`,async()=>{
+        const evidence=await evaluate('('+walkVillageRoute.toString()+')('+JSON.stringify({tour:true,goals:tour})+')',300000);
+        assert.equal(evidence.visited.length,tour.length);assert(evidence.elapsedMs>=60000,'walkthrough must be at least one minute');assert(evidence.travelledPx>=2500,'walkthrough must show substantial travel');
+        writeFileSync(resolve(previewDir,'walkthrough-evidence.json'),JSON.stringify(evidence,null,2)+'\n');
+      });
+      console.log('PASS long village walkthrough: all homes, gardens, market and gateways reached through existing movement; no teleport');
+    }
 
     if(stage.startsWith('v34-a1')){await record('village-a1-navigation',async()=>{const evidence=await evaluate('('+walkVillageRoute.toString()+')()');writeFileSync(resolve(previewDir,'route-evidence.json'),JSON.stringify(evidence,null,2)+'\n');});}
     assert.equal(await evaluate('window.__worldCheck.living.npcs.length'), 4);
@@ -253,8 +315,13 @@ try {
     console.log('PASS V3.3: pose jalan/idle/flip, patroli NPC, pause dialog, culling, kabut/angin/air bergerak, pool tetap, prompt hysteresis; empat rekaman WebM tersimpan');
 
     await worldPreview(false); await worldPreview(true);
-    if(stage.startsWith('v34-a1')){const crop={x:78,y:65,width:38,height:20};await worldPreview(false,'pulau-tirta-v3-2.json','centre-v33.png',crop);await worldPreview(false,mapFile,'centre-a1.png',crop);await worldPreview(true,mapFile,'centre-festival.png',crop);}
-    if(stage==='v34-a11'){await captureCentre();await worldPreview(false,mapFile,'centre-a11.png',{x:79,y:71,width:29,height:14});await worldPreview(true,mapFile,'centre-a11-restored.png',{x:79,y:71,width:29,height:14});}
+    if(currentVillage){
+      await captureVillage();
+      await worldPreview(false,activeMapFile,`village-after-${phase}-tiles.png`,{x:70,y:55,width:51,height:43});
+      await worldPreview(true,activeMapFile,'village-festival-tiles.png',{x:70,y:55,width:51,height:43});
+    }
+    if(stage.startsWith('v34-a1')){const crop={x:78,y:65,width:38,height:20};await worldPreview(false,'pulau-tirta-v3-2.json','centre-v33.png',crop);await worldPreview(false,activeMapFile,'centre-a1.png',crop);await worldPreview(true,activeMapFile,'centre-festival.png',crop);}
+    if(stage==='v34-a11'){await captureCentre();await worldPreview(false,activeMapFile,'centre-a11.png',{x:79,y:71,width:29,height:14});await worldPreview(true,activeMapFile,'centre-a11-restored.png',{x:79,y:71,width:29,height:14});}
     const shots = [['desa', 97, 79], ['desa-plaza-before', 97, 76], ['desa-rumah', 96, 70], ['desa-pasar', 86, 76], ['desa-pekarangan', 96, 71], ['pantai', 57, 104], ['pantai-pesisir', 39, 115], ['puncak', 60, 43], ['puncak-kaki', 58, 60], ['puncak-jalur', 43, 49], ['puncak-pandang', 56, 36], ['lembah', 146, 46], ['hutan', 147, 106]];
     for (const [name, x, y] of shots) { await place(x * 16 + 8, y * 16 + 8); await screenshot(`gameplay-v33-${name}`); }
     await place(2216, 728); // M3, tanpa menekan interaksi: konteks harus berubah.
@@ -281,7 +348,7 @@ try {
     }
     for(const [name,x,y] of [['puncak-after',60,43],['lembah-after',146,46],['pantai-after',57,104],['hutan-after',147,106]]){await place(x*16+8,y*16+8);await screenshot('gameplay-v33-'+name);}
     console.log('PASS konteks Tiko, empat dialog misi, lock input, empat grup recovery');
-    await call('Page.reload'); await attach();
+    await call('Page.reload'); await wait(500); await attach();
     assert.equal(await evaluate('Array.from(window.__worldCheck.pemulihan.values()).flat().filter(l=>l.visible).length'), 16);
     assert.equal(await evaluate('window.__worldCheck.perayaan.some(l=>l.visible)'), false);
     await place(1576, 1272); await key(' ', 'Space', 32);
@@ -293,6 +360,7 @@ try {
     await place(97 * 16 + 8, 76 * 16 + 8); await screenshot('gameplay-v33-desa-plaza-after');
     await place(96 * 16 + 8, 70 * 16 + 8); await screenshot('gameplay-v33-desa-rumah-after');
     if(stage==='v34-a11') await captureCentre(true);
+    if(currentVillage) await captureVillage(true);
     await place(968, 696); await key('Enter', 'Enter', 13);
     assert.equal(await evaluate(`document.querySelector('#dialog-misi h2')?.textContent`), content.misi.find((m) => m.id === 'misi-2').judul);
     await evaluate(`document.getElementById('dialog-misi').close()`);

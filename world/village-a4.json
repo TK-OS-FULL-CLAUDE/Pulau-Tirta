@@ -1,0 +1,327 @@
+{
+  "stage": "a4",
+  "bounds": {
+    "x": 70,
+    "y": 55,
+    "width": 51,
+    "height": 43
+  },
+  "houses": [
+    {
+      "name": "Rumah Kebun",
+      "door": [
+        87,
+        71
+      ]
+    },
+    {
+      "name": "Balai Desa",
+      "door": [
+        104,
+        70
+      ]
+    },
+    {
+      "name": "Rumah Barat",
+      "door": [
+        81,
+        81
+      ]
+    },
+    {
+      "name": "Rumah Timur",
+      "door": [
+        111,
+        80
+      ]
+    },
+    {
+      "name": "Rumah Petani",
+      "door": [
+        88,
+        91
+      ]
+    },
+    {
+      "name": "Rumah Sungai",
+      "door": [
+        104,
+        92
+      ]
+    },
+    {
+      "name": "Rumah Utara",
+      "door": [
+        95,
+        65
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "label": "Spawn",
+      "tile": [
+        96,
+        79
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Plaza Festival",
+      "tile": [
+        98,
+        79
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Sumur",
+      "tile": [
+        91,
+        77
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Pasar",
+      "tile": [
+        84,
+        74
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Rumah Barat",
+      "tile": [
+        81,
+        81
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Kebun sayur barat",
+      "tile": [
+        80,
+        90
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Bed bibit",
+      "tile": [
+        80,
+        96
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Gerbang pesisir",
+      "tile": [
+        76,
+        94
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Penyimpanan panen",
+      "tile": [
+        86,
+        94
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Rumah Petani",
+      "tile": [
+        88,
+        91
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Rumah Sungai",
+      "tile": [
+        104,
+        92
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Kebun keluarga",
+      "tile": [
+        111,
+        94
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Gerbang hutan",
+      "tile": [
+        117,
+        96
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Rumah Timur",
+      "tile": [
+        111,
+        80
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Pekarangan herbal",
+      "tile": [
+        116,
+        78
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Gerbang timur desa",
+      "tile": [
+        119,
+        84
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Balai Desa",
+      "tile": [
+        104,
+        70
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Kebun dapur",
+      "tile": [
+        111,
+        70
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Gerbang lembah",
+      "tile": [
+        119,
+        60
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Rumah Utara",
+      "tile": [
+        95,
+        65
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Kebun kecil utara",
+      "tile": [
+        89,
+        65
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Gerbang puncak",
+      "tile": [
+        82,
+        64
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Rumah Kebun",
+      "tile": [
+        87,
+        71
+      ],
+      "pauseMs": 1300
+    },
+    {
+      "label": "Kembali ke plaza",
+      "tile": [
+        96,
+        79
+      ],
+      "pauseMs": 1300
+    }
+  ],
+  "checkpoint": "0ecc0fb",
+  "activities": {
+    "village_npc_1": {
+      "activity": "Menata sayur di pasar",
+      "tiles": [
+        [
+          86,
+          74
+        ],
+        [
+          87,
+          74
+        ],
+        [
+          87,
+          76
+        ]
+      ],
+      "pauseMs": 2800
+    },
+    "village_npc_2": {
+      "activity": "Mengawasi pekarangan herbal",
+      "tiles": [
+        [
+          116,
+          78
+        ]
+      ],
+      "pauseMs": 3000
+    },
+    "village_npc_3": {
+      "activity": "Memeriksa bibit dan panen",
+      "tiles": [
+        [
+          86,
+          94
+        ],
+        [
+          86,
+          92
+        ],
+        [
+          88,
+          91
+        ]
+      ],
+      "pauseMs": 3000
+    },
+    "village_npc_4": {
+      "activity": "Menyiapkan area sumur dan Festival",
+      "tiles": [
+        [
+          94,
+          78
+        ],
+        [
+          94,
+          80
+        ],
+        [
+          93,
+          81
+        ]
+      ],
+      "pauseMs": 2300
+    }
+  },
+  "notes": [
+    "No northern perimeter ring",
+    "East and southeast are independent destination branches",
+    "Well and Festival coordinates unchanged",
+    "Open-sided gardens preserve a 1-tile service aisle"
+  ]
+}

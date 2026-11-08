@@ -16,3 +16,7 @@ Setiap aset pihak ketiga yang dipakai dicatat di sini: nama, pembuat, tautan, li
 | Village Centre A1 pixel-grid | Dibuat lokal melalui `scripts/design-village-a1.mjs` | `world/assets/village_a1/tileset.svg` | Buatan proyek; bukan Kenney; tanpa aset eksternal baru | Paving cobble, lantai pasar dan bed pusat desa. Kios memakai placeholder V3.2 existing. Detail di `world/VILLAGE_A1.md` |
 
 Sebelum menambah aset baru: pastikan lisensinya mengizinkan dipakai dan dibagikan di repo publik, lalu tambahkan barisnya di tabel ini.
+
+## Desa Tirta A4
+
+`world/assets/village_a4/paths.svg` adalah tekstur jalan tanah SVG pixel-grid lokal, dibuat melalui `scripts/design-village-a4.mjs` dengan palet tanah A1. Bukan aset Kenney dan tidak mengambil gambar eksternal. Enam belas varian tepian berbasis tetangga cardinal; ekspor runtime di `public/assets/world/village_a4/`. Seluruh atlas A3 tetap utuh.
