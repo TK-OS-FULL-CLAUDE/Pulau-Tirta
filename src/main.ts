@@ -73,7 +73,9 @@ function interaksi(lokasi: Lokasi): void {
 const dunia = new DuniaScene({
   statusMisi: (id) => progres.status[id] ?? 'belum',
   persenPulih,
+  festivalSelesai: () => progres.festivalSelesai,
   bergerak: () => undefined,
+  pindahWilayah: (lokasi) => { lokasiSekarang = lokasi; },
   interaksi,
 });
 
@@ -83,6 +85,9 @@ new Phaser.Game({
   width: LEBAR,
   height: TINGGI,
   backgroundColor: '#1f6f8b',
+  pixelArt: true,
+  roundPixels: true,
+  antialias: false,
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
   scene: [dunia],
 });

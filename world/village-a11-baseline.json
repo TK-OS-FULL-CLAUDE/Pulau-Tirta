@@ -1,0 +1,12 @@
+{
+  "world/maps/pulau_tirta_v34_a1.tmj": "d9f63d76c2dbf0a2385aca4468d75a20908eb49ed0342c33a996c4a3fa2e6995",
+  "public/maps/pulau-tirta-v34-a1.json": "e705e93131fc25e284f2cad01a01f9652435b6b655b128511a1c0abee498f64b",
+  "world/buildings-v34-a1.json": "29a1bbf8f40bc692f65e36856231d871f23018e0d0bac277191c9fa5f063e2f8",
+  "scripts/design-village-a1.mjs": "d2b9299b313b91c8ccca4bd94ad12cff4b15533ba39b027282f680370b683386",
+  "src/game/living-model.ts": "d5b8ba58338f8df7d76d4994405bf48086d7d20c85c3b20ec69465fab7b0ef2a",
+  "src/game/map-data.ts": "c0c7585cfb6e79ac9cd2f23b7380b9bf521137565c04c18d07963c146c3bb6e3",
+  "src/game/world.ts": "7dbb1fc008f91a71f046ba2426629babdc957a884d2cadf84265c2b4cad555c7",
+  "world/world-contract-v3.json": "6e2b6da1d490716c6b7a66ad2ec3efb0c652a0889e346f5fdc3cbd945c84e7c2",
+  "world/assets/village_a1/tileset.svg": "e142b799ae93da2f6043bb2cc02ea54030fba7e7362fa419566b06d6dbafcf56",
+  "world/archives/living-world-through-a3.ts.txt": "65e1a1912e1f5937f951198ff87d509092d9c012cf37c9b1262009cd5a7206f4"
+}

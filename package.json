@@ -8,7 +8,12 @@
     "node": ">=20"
   },
   "scripts": {
+    "world:browser": "node scripts/check-world-browser.mjs",
+    "world:export": "node scripts/export-world.mjs",
+    "world:check": "node scripts/export-world.mjs --check",
+    "predev": "npm run world:export",
     "dev": "concurrently -k -n web,api -c cyan,magenta \"vite\" \"tsx watch server/index.ts\"",
+    "prebuild": "npm run world:export",
     "build": "vite build",
     "start": "npm run build && tsx server/index.ts",
     "serve": "tsx server/index.ts",

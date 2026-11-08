@@ -1,0 +1,15 @@
+{
+  "type": "tileset",
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "name": "tirta_environment",
+  "tilewidth": 16,
+  "tileheight": 16,
+  "tilecount": 128,
+  "columns": 16,
+  "margin": 0,
+  "spacing": 0,
+  "image": "../../assets/tirta_environment/tileset.svg",
+  "imagewidth": 256,
+  "imageheight": 128
+}

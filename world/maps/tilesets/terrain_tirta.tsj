@@ -1,0 +1,57 @@
+{
+  "type": "tileset",
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "name": "terrain_tirta_placeholder",
+  "tilewidth": 16,
+  "tileheight": 16,
+  "tilecount": 24,
+  "columns": 8,
+  "margin": 0,
+  "spacing": 0,
+  "image": "../../assets/terrain/terrain_tirta_placeholder.png",
+  "imagewidth": 128,
+  "imageheight": 48,
+  "tiles": [
+    {
+      "id": 0,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "properties": [
+        {
+          "name": "collides",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

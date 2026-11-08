@@ -1,0 +1,230 @@
+{
+  "version": 3,
+  "tileSize": 16,
+  "width": 192,
+  "height": 144,
+  "spawn": {
+    "x": 1544,
+    "y": 1272
+  },
+  "interactions": [
+    {
+      "id": 1689,
+      "name": "mission_beach",
+      "type": "interaction",
+      "x": 912,
+      "y": 1664,
+      "width": 16,
+      "height": 16,
+      "rotation": 0,
+      "visible": true,
+      "properties": [
+        {
+          "name": "region",
+          "type": "string",
+          "value": "Pantai Biru"
+        },
+        {
+          "name": "missionId",
+          "type": "string",
+          "value": "misi-1"
+        },
+        {
+          "name": "mechanic",
+          "type": "string",
+          "value": "mirror"
+        },
+        {
+          "name": "radiusPx",
+          "type": "int",
+          "value": 36
+        }
+      ]
+    },
+    {
+      "id": 1691,
+      "name": "mission_mountain",
+      "type": "interaction",
+      "x": 960,
+      "y": 688,
+      "width": 16,
+      "height": 16,
+      "rotation": 0,
+      "visible": true,
+      "properties": [
+        {
+          "name": "region",
+          "type": "string",
+          "value": "Puncak Kabut"
+        },
+        {
+          "name": "missionId",
+          "type": "string",
+          "value": "misi-2"
+        },
+        {
+          "name": "mechanic",
+          "type": "string",
+          "value": "wind"
+        },
+        {
+          "name": "radiusPx",
+          "type": "int",
+          "value": 36
+        }
+      ]
+    },
+    {
+      "id": 1693,
+      "name": "mission_valley",
+      "type": "interaction",
+      "x": 2208,
+      "y": 720,
+      "width": 16,
+      "height": 16,
+      "rotation": 0,
+      "visible": true,
+      "properties": [
+        {
+          "name": "region",
+          "type": "string",
+          "value": "Lembah Hujan"
+        },
+        {
+          "name": "missionId",
+          "type": "string",
+          "value": "misi-3"
+        },
+        {
+          "name": "mechanic",
+          "type": "string",
+          "value": "droplets"
+        },
+        {
+          "name": "radiusPx",
+          "type": "int",
+          "value": 36
+        }
+      ]
+    },
+    {
+      "id": 1695,
+      "name": "mission_forest",
+      "type": "interaction",
+      "x": 2256,
+      "y": 1696,
+      "width": 16,
+      "height": 16,
+      "rotation": 0,
+      "visible": true,
+      "properties": [
+        {
+          "name": "region",
+          "type": "string",
+          "value": "Hutan & Sungai"
+        },
+        {
+          "name": "missionId",
+          "type": "string",
+          "value": "misi-4"
+        },
+        {
+          "name": "mechanic",
+          "type": "string",
+          "value": "plant"
+        },
+        {
+          "name": "radiusPx",
+          "type": "int",
+          "value": 36
+        }
+      ]
+    },
+    {
+      "id": 1696,
+      "name": "festival",
+      "type": "interaction",
+      "x": 1568,
+      "y": 1264,
+      "width": 16,
+      "height": 16,
+      "rotation": 0,
+      "visible": true,
+      "properties": [
+        {
+          "name": "region",
+          "type": "string",
+          "value": "Desa Tirta"
+        },
+        {
+          "name": "missionId",
+          "type": "string",
+          "value": "M5"
+        },
+        {
+          "name": "mechanic",
+          "type": "string",
+          "value": "matching"
+        },
+        {
+          "name": "radiusPx",
+          "type": "int",
+          "value": 36
+        }
+      ]
+    }
+  ],
+  "reservedCorridors": [
+    {
+      "id": 1,
+      "name": "Corridor nord réservé",
+      "type": "reserved",
+      "x": 1168,
+      "y": 400,
+      "width": 800,
+      "height": 96,
+      "rotation": 0,
+      "visible": true,
+      "properties": [
+        {
+          "name": "connects",
+          "type": "string",
+          "value": "puncak-lembah"
+        },
+        {
+          "name": "implemented",
+          "type": "bool",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Corridor sud réservé",
+      "type": "reserved",
+      "x": 1200,
+      "y": 1968,
+      "width": 784,
+      "height": 112,
+      "rotation": 0,
+      "visible": true,
+      "properties": [
+        {
+          "name": "connects",
+          "type": "string",
+          "value": "pantai-hutan"
+        },
+        {
+          "name": "implemented",
+          "type": "bool",
+          "value": false
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Sources editable in Tiled; generator is manual only.",
+    "NPCs decorative; no additional quests.",
+    "Before/after changes visual only; collider remains stable."
+  ]
+}

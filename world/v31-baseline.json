@@ -1,0 +1,9 @@
+{
+  "world/maps/pulau_tirta_v3.tmj": "b84901fde9888104013964c824bc501bdc19efd42f8aaaa4e44146561dfb522e",
+  "public/maps/pulau-tirta-v3.json": "a70c98da53ddaf3ea9b764b774d6dd3ac84fd07b5131f09269f4614130f2ea98",
+  "scripts/create-world-v3.mjs": "08720634f54e54caddaedaa2c6022e904af1bbc0440980bc1689c533d53c74dc",
+  "world/maps/tilesets/v3_tiny_battle.tsj": "e03979059166226bb5e7588a153090f75a43625f48d57f27cc9ee9478f066310",
+  "world/maps/tilesets/v3_tiny_city.tsj": "6e59e70ec88c91b7011c7fed42a17926bbe2f3f461e3539524bc83d8d1e5d655",
+  "world/maps/tilesets/v3_tiny_farm.tsj": "fbe28ad7a12967f3520ad7066d0cccec89bcf5d357415046947d8562d4daf76d",
+  "world/maps/tilesets/v3_tiny_town.tsj": "6c1c19aa52e6a80358eec56d8fc600ca03e87bd13abbc22c25d3c83d6392a2a4"
+}

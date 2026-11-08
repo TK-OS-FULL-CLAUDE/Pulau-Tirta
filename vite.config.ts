@@ -6,7 +6,17 @@ export default defineConfig({
     port: 5173,
     proxy: { '/api': 'http://localhost:3000' },
   },
-  build: { chunkSizeWarningLimit: 2000 },
+  build: {
+    chunkSizeWarningLimit: 2000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('/node_modules/phaser/')) return 'phaser';
+          if (id.endsWith('/public/maps/pulau-tirta-v34-a4.json')) return 'world-v34-a4';
+        },
+      },
+    },
+  },
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',

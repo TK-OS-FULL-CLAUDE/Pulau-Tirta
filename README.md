@@ -29,6 +29,11 @@ npm run typecheck
 
 ## Struktur
 
+World aktif adalah **V3.4-A4, Desa Tirta (192 x 144 tile)**. Buka `world/maps/pulau_tirta_v34_a4.tmj`
+di Tiled, lalu jalankan `npm run world:export` setelah menyimpan edit.
+Map V1 tetap disimpan. Panduan koordinat, aset, layer, pengujian dan screenshot:
+[World V3.4-A4 — Aufa](world/VILLAGE_A4.md).
+
 ```
 content/        Konten: misi, pertanyaan alasan, petunjuk cadangan, kartu materi (JSON)
 shared/         Logika tanpa UI yang dipakai game dan server: konten, guardrail, misi

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="id"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,">
+<title>Desa Tirta · A1.1 Composition Review</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#1d332d;color:#f9eed8;font:16px/1.65 system-ui,sans-serif}main{max-width:1160px;margin:auto;padding:32px 24px}h1{font-size:32px;line-height:1.25}p{max-width:880px;color:#d0d9c8}label{display:block;margin-top:20px}select{padding:8px;font:inherit;background:#304c3e;color:#f9eed8;border:1px solid #829c7b;border-radius:4px}input{width:100%;accent-color:#e8c184}.compare{position:relative;aspect-ratio:1064/599;background:#11251e;overflow:hidden;border:1px solid #829c7b}.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;image-rendering:pixelated}.old{clip-path:inset(0 50% 0 0)}.line{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#f7d28e}.tag{position:absolute;top:10px;background:#1d332de8;padding:4px 12px}.left{left:10px}.right{right:10px}a{color:#f7d28e}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}.grid a{text-decoration:none}img,video{display:block;width:100%;image-rendering:pixelated}video{max-width:900px;background:#12251f}h2{font-size:23px;margin-top:32px}footer{font-size:14px;margin-top:32px}
+</style><main>
+<h1>Desa Tirta · A1.1</h1>
+<p>Pasar dengan dua kios berdampingan di barat, pelataran sumur sebagai penghubung, dan plaza festival kecil di timur. Rumah dan waypoint NPC tidak dipindah. Fokus perbaikan pada komposisi dan ruang kosong yang disengaja.</p>
+<label for="view">Perbandingan</label><select id="view"><option value="plaza">Kamera plaza identik · A1 / A1.1</option><option value="crop">Crop pusat yang sama · A1 / A1.1</option><option value="festival">Kamera plaza identik · awal / festival</option><option value="zoom">Zoom-out · awal / festival</option></select>
+<label for="slider">Geser pembatas gambar</label><input id="slider" type="range" min="0" max="100" value="50">
+<div class="compare" id="compare"><img id="after" alt="A1.1"><img class="old" id="before" alt="A1"><span class="line" id="line"></span><span class="tag left" id="left">A1</span><span class="tag right" id="right">A1.1</span></div>
+<p>Screenshot A1 diambil dari game sebelum perubahan, dengan versi sumber diverifikasi. Kamera dilepas dari follow untuk capture: tile (97,76), zoom 3, viewport 1440 × 900. Metadata kamera A1, A1.1 dan festival diperiksa identik. Crop tile berukuran 464 × 224 px pada x79–107, y71–84; crop tidak menggambar sprite runtime.</p>
+<h2>Tiga ruang yang tersambung</h2><div class="grid">
+<a href="market-a11.png"><img src="market-a11.png" alt="Dua kios berdampingan dengan pelataran bersama">Pasar: dua counter, satu pelataran</a>
+<a href="well-a11.png"><img src="well-a11.png" alt="Sumur sebagai penghubung pasar dan plaza">Sumur: landmark di tengah komposisi</a>
+<a href="centre-a11-zoomout.png"><img src="centre-a11-zoomout.png" alt="Pusat desa pada zoom dua">Zoom-out pusat desa</a>
+<a href="plaza-a11-festival.png"><img src="plaza-a11-festival.png" alt="Plaza setelah festival">Festival: air sumur, bunga dan panji</a></div>
+<h2>Uji jalur pemain</h2><video controls loop playsinline preload="metadata" poster="plaza-a11-current.png"><source src="village-a1-navigation.webm" type="video/webm"></video>
+<p>Spawn → plaza → pelataran sumur → pasar → rumah. Instrumen menekan state WASD melalui update dan collision existing, tanpa setPosition selama perjalanan. Teleport hanya dipakai terpisah untuk framing screenshot.</p>
+<footer><a href="../../VILLAGE_A11.md">Laporan perubahan, hasil inspeksi dan pengujian</a> · <a href="../../VILLAGE_A11_LAYOUT.md">Layout sebelum tile pass</a> · <a href="../v34-a1/review.html">Arsip A1</a><p>Tidak ada aset baru, commit, push atau merge. Kios, sumur dan paving tetap memakai placeholder lokal existing. Area di luar plaza/pasar/sumur dan koneksi terdekat tetap dipertahankan.</p></footer>
+</main><script>
+const $=id=>document.getElementById(id),views={plaza:['plaza-a1-reference.png','plaza-a11-current.png','A1','A1.1'],crop:['centre-a1-reference.png','centre-a11.png','A1','A1.1'],festival:['plaza-a11-current.png','plaza-a11-festival.png','Awal','Festival'],zoom:['centre-a11-zoomout.png','centre-a11-festival-zoomout.png','Awal','Festival']};
+function update(){const[a,b,l,r]=views[$('view').value];$('before').src=a;$('after').src=b;$('before').alt=l;$('after').alt=r;$('left').textContent=l;$('right').textContent=r;$('compare').style.aspectRatio=$('view').value==='crop'?'464/224':'1064/599'}
+$('view').onchange=update;$('slider').oninput=()=>{$('before').style.clipPath=`inset(0 ${100-$('slider').value}% 0 0)`;$('line').style.left=$('slider').value+'%'};update();
+</script></html>
