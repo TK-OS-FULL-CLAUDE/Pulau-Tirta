@@ -98,6 +98,19 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
   .aktivitas.sorot .termometer .kotak { animation: none; }
 }
 
+/* Misi 3 · Lembah Hujan */
+.tetes-awan { fill: #7cbde3; stroke: #2f6f96; stroke-width: 1; }
+.tetes-awan.baru { animation: tetes-muncul 0.5s ease-out both; transform-box: fill-box; transform-origin: center; }
+.tetes-awan.hujan { fill: #3d8fc4; }
+.cincin { fill: none; stroke: #2f6f96; stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: cincin 0.5s ease-out forwards; }
+@keyframes cincin { from { opacity: 0.9; transform: scale(0.6); } to { opacity: 0; transform: scale(1.8); } }
+.cipratan { fill: none; stroke: #3d8fc4; stroke-width: 2.5; transform-box: fill-box; transform-origin: center; animation: cincin 0.5s ease-out forwards; }
+.aktivitas.sorot .tetes-awan.besar { stroke: #b85c00; stroke-width: 2.5; }
+.aktivitas.sorot .cincin { stroke: var(--aksen); stroke-width: 3.5; }
+@media (prefers-reduced-motion: reduce) {
+  .tetes-awan.baru, .cincin, .cipratan { animation: none; }
+}
+
 /* Pertanyaan alasan dan layar pulih */
 .tanya h3 { margin: 4px 0 0; font-size: 20px; }
 .pilihan-alasan { grid-template-columns: 1fr 1fr; }

@@ -176,6 +176,12 @@
       "kutipanTerlarang": [
         "Titik-titik air bergabung menjadi besar dan berat"
       ],
+      "aktivitas": {
+        "arahan": "Gerakkan angin di dalam awan: geser slider, atau seret di dalam awan. Perhatikan ukuran titik-titik air di awan.",
+        "siap": "Lihat! Hujan mulai turun ke sawah. Titik air mana yang jatuh?",
+        "sorot": "Lihat titik-titik yang saling bertemu. Perhatikan ukurannya sebelum jatuh.",
+        "catatanSesudah": "Titik air di awan aslinya sangat kecil, jauh lebih kecil dari butiran pasir. Di sini digambar besar supaya kamu bisa melihatnya."
+      },
       "petunjukCadangan": {
         "1": "Perhatikan ukuran titik air di awan sebelum dan sesudah kamu menggerakkan angin. Apa yang berubah?",
         "2": "Lihat titik-titik yang saling bertemu. Kapan mereka mulai jatuh?",
