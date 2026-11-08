@@ -98,7 +98,6 @@ export class DuniaScene extends Phaser.Scene {
     };
     this.aksi = [kb.addKey(K.E, false), kb.addKey(K.SPACE, false), kb.addKey(K.ENTER, false)];
     kb.disableGlobalCapture();
-<<<<<<< Updated upstream
     const hanyaGame = (event: KeyboardEvent) => {
       if (!this.inputTerhalang() && [...Object.values(this.tombol).flat(), ...this.aksi].some((k) => k.keyCode === event.keyCode)) event.preventDefault();
     };
@@ -130,13 +129,6 @@ export class DuniaScene extends Phaser.Scene {
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => promptObserver.disconnect());
     this.living = new LivingWorld(this, DUNIA, map, id => this.kait.statusMisi(id) === 'selesai', () => this.kait.festivalSelesai?.() === true);
     this.perbaruiWilayah();
-=======
-    // Phaser menahan fokus saat canvas diklik; lepas fokus dari kotak ketik Tiko supaya WASD kembali menggerakkan pemain.
-    this.input.on('pointerdown', () => {
-      const a = document.activeElement;
-      if (a instanceof HTMLElement) a.blur();
-    });
->>>>>>> Stashed changes
     this.segarkan();
   }
 
@@ -168,63 +160,12 @@ export class DuniaScene extends Phaser.Scene {
     return this.pemain ? interaksiTerdekat(DUNIA, this.pemain.x, this.pemain.y) : undefined;
   }
 
-<<<<<<< Updated upstream
   update(time: number, dtMs: number): void {
     if (!this.pemain) return;
     const blocked = this.inputTerhalang();
     this.living.update(time, dtMs, blocked, this.pemain);
     if (blocked) {
       this.input.keyboard?.resetKeys();
-=======
-  /** Warga bersorak di lokasi yang baru pulih. */
-  rayakan(lokasiId: string, teks: string): void {
-    const l = LOKASI.find((x) => x.id === lokasiId);
-    const t = this.tanda.get(lokasiId);
-    if (!l || !t) return;
-    this.tweens.add({ targets: t, scale: 1.3, duration: 220, yoyo: true, repeat: 2 });
-    const sorak = this.add
-      .text(l.x, l.y - 110, `Hore! ${teks}`, {
-        fontFamily: 'system-ui, sans-serif',
-        fontSize: '26px',
-        fontStyle: 'bold',
-        color: '#ffffff',
-        backgroundColor: '#3c9a5f',
-        padding: { x: 12, y: 6 },
-      })
-      .setOrigin(0.5);
-    this.tweens.add({ targets: sorak, y: l.y - 150, alpha: 0, delay: 1600, duration: 900, onComplete: () => sorak.destroy() });
-  }
-
-  update(_t: number, dtMs: number): void {
-    const a = document.activeElement;
-    const mengetik = a instanceof HTMLInputElement || a instanceof HTMLTextAreaElement || a instanceof HTMLSelectElement;
-    if (this.terkunci || mengetik) {
-      // Buang tekanan E/Spasi/Enter selama dialog terbuka atau anak mengetik ke Tiko,
-      // supaya tidak membuka misi tanpa sengaja (mis. huruf "e" saat menulis pesan).
-      this.aksi.forEach((k) => Phaser.Input.Keyboard.JustDown(k));
-      return;
-    }
-    const tekan = (ks: Phaser.Input.Keyboard.Key[]) => ks.some((k) => k.isDown);
-    const dx = (tekan(this.tombol.kanan) ? 1 : 0) - (tekan(this.tombol.kiri) ? 1 : 0);
-    const dy = (tekan(this.tombol.bawah) ? 1 : 0) - (tekan(this.tombol.atas) ? 1 : 0);
-    if (dx || dy) {
-      const pjg = Math.hypot(dx, dy);
-      const langkah = (KECEPATAN * dtMs) / 1000;
-      const nx = this.pemain.x + (dx / pjg) * langkah;
-      const ny = this.pemain.y + (dy / pjg) * langkah;
-      // Tidak bisa menembus air: tetap di dalam pulau.
-      if (PULAU.contains(nx, ny)) this.pemain.setPosition(nx, ny);
-      else if (PULAU.contains(nx, this.pemain.y)) this.pemain.x = nx;
-      else if (PULAU.contains(this.pemain.x, ny)) this.pemain.y = ny;
-      this.kait.bergerak();
-    }
-
-    const dekat = this.lokasiTerdekat();
-    if (dekat) {
-      this.label.setText(`E · ${dekat.nama}`).setPosition(dekat.x, dekat.y - 70).setVisible(true);
-      if (this.aksi.some((k) => Phaser.Input.Keyboard.JustDown(k))) this.kait.interaksi(dekat);
-    } else {
->>>>>>> Stashed changes
       this.label.setVisible(false);
       this.visualPemain.setPosition(this.pemain.x, this.pemain.y).setScale(1).setData('motion', 'paused');
       return;

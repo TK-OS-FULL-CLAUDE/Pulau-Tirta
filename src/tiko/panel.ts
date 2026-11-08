@@ -27,6 +27,8 @@ export class PanelTiko {
   constructor(
     private konteks: () => KonteksGame,
     private keMana: () => string,
+    /** Tingkat petunjuk untuk "Aku bingung" di sebuah misi; dari sistem misi supaya naik bertahap (1 → 2 → 3). */
+    private tingkatBingung: (misiId: string) => Tingkat = () => 1,
   ) {
     document.getElementById('tiko-form')!.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -56,7 +58,7 @@ export class PanelTiko {
     }
     if (jenis === 'bingung') {
       const k = this.konteks();
-      if (k.misiId) void this.petunjuk(k.misiId, 1, 'Aku bingung');
+      if (k.misiId) void this.petunjuk(k.misiId, this.tingkatBingung(k.misiId), 'Aku bingung');
       else void this.tanya('Aku bingung');
       return;
     }

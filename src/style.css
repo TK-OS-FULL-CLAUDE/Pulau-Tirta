@@ -97,6 +97,17 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .kartu-ilmu p { margin: 0; line-height: 1.5; }
 .catatan-sains { max-width: 560px; margin: 0; color: var(--pucat); }
 @media (max-width: 700px) { .pilihan-alasan { grid-template-columns: 1fr; } }
+
+/* Sorakan saat tempat pulih */
+.sorak { position: absolute; top: 18px; left: 50%; z-index: 3; padding: 10px 22px; border-radius: 999px; background: var(--hijau); color: white; font-size: 22px; font-weight: 800; white-space: nowrap; box-shadow: 0 6px 18px rgb(0 0 0 / 30%); pointer-events: none; transform: translateX(-50%); animation: sorak 3.2s ease forwards; }
+@keyframes sorak {
+  0% { opacity: 0; transform: translate(-50%, -12px) scale(0.9); }
+  12% { opacity: 1; transform: translate(-50%, 0) scale(1.06); }
+  20% { transform: translate(-50%, 0) scale(1); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -8px); }
+}
+@media (prefers-reduced-motion: reduce) { .sorak { animation: none; } }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
 @media (max-width: 900px) {

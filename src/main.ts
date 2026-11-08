@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
 import './style.css';
 import { MISI_UTAMA, cariMisi } from '../shared/content';
-import { festivalTerbuka, jawab, mulaiMisi, muat, periksaFestival, simpan, type Progres } from '../shared/missions';
+import { festivalTerbuka, jawab, mintaPetunjuk, mulaiMisi, muat, periksaFestival, simpan, type Progres } from '../shared/missions';
 import { DuniaScene, LEBAR, LOKASI, TINGGI, type Lokasi } from './game/world';
 import { PanelTiko } from './tiko/panel';
-import { bukaFestival, bukaMisi } from './ui/dialog-misi';
+import { bukaFestival, bukaMisi, sorotMisiAktif } from './ui/dialog-misi';
 
 let progres: Progres = muat();
 let lokasiSekarang: Lokasi = LOKASI[0];
@@ -36,7 +36,31 @@ const panel = new PanelTiko(
     if (!sisa) return festivalTerbuka(progres) && !progres.festivalSelesai ? 'Semua tempat sudah pulih! Ayo ke Desa Tirta untuk Festival Hujan.' : 'Kamu sudah menyelesaikan semuanya. Hebat!';
     return `Coba ke ${sisa.nama}. Kayaknya ada yang aneh di sana.`;
   },
+  // "Aku bingung" di misi yang sedang berjalan menaikkan tingkat petunjuk; tingkat 2 juga menyorot bukti di aktivitas.
+  (misiId) => {
+    const h = mintaPetunjuk(progres, misiId);
+    if (h.progres !== progres) perbarui(h.progres);
+    sorotMisiAktif(h.tingkat);
+    return h.tingkat;
+  },
 );
+
+/** Sorakan singkat di atas area game saat sebuah tempat pulih (peta sendiri berubah lewat dunia.segarkan()). */
+function sorak(teks: string): void {
+  const el = document.createElement('div');
+  el.className = 'sorak';
+  el.setAttribute('role', 'status');
+  el.textContent = `Hore! ${teks}`;
+  document.getElementById('game')!.append(el);
+  setTimeout(() => el.remove(), 3200);
+}
+
+// Phaser menahan fokus saat canvas diklik, sehingga fokus tertinggal di tombol atau kotak ketik Tiko dan WASD
+// tidak jalan. Lepas fokus saat anak mengklik pulau (bukan dialog misi).
+document.getElementById('game')!.addEventListener('pointerdown', (e) => {
+  if (e.target instanceof Element && e.target.closest('dialog')) return;
+  if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+});
 
 function interaksi(lokasi: Lokasi): void {
     lokasiSekarang = lokasi;
@@ -67,7 +91,7 @@ function interaksi(lokasi: Lokasi): void {
         },
         tutup: () => {
           lepas();
-          if (!sudahSelesai && progres.status[misi.id] === 'selesai') dunia.rayakan(lokasi.id, `${lokasi.nama} pulih!`);
+          if (!sudahSelesai && progres.status[misi.id] === 'selesai') sorak(`${lokasi.nama} pulih!`);
         },
       });
     } else if (festivalTerbuka(progres) && !progres.festivalSelesai) {

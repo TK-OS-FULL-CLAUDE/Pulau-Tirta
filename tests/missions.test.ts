@@ -5,6 +5,7 @@ import {
   dibantuPenuh,
   festivalTerbuka,
   jawab,
+  mintaPetunjuk,
   mulaiMisi,
   muat,
   periksaFestival,
@@ -56,6 +57,34 @@ describe('status misi', () => {
       p = jawab(p, m.id, pilihanBenar(m)!.id).progres;
     }
     expect(festivalTerbuka(p)).toBe(true);
+  });
+});
+
+describe('Aku bingung', () => {
+  it('menaikkan tingkat petunjuk misi yang sedang berjalan sampai 3, berbagi hitungan dengan jawaban keliru', () => {
+    let p = mulaiMisi(progresAwal(), 'misi-1');
+    const tingkat: number[] = [];
+    let h = mintaPetunjuk(p, 'misi-1');
+    tingkat.push(h.tingkat);
+    p = h.progres;
+    const salah = MISI_UTAMA[0].pilihan!.find((x) => !x.benar)!.id;
+    const j = jawab(p, 'misi-1', salah);
+    tingkat.push(j.tingkatPetunjuk!);
+    p = j.progres;
+    for (let i = 0; i < 2; i++) {
+      h = mintaPetunjuk(p, 'misi-1');
+      tingkat.push(h.tingkat);
+      p = h.progres;
+    }
+    expect(tingkat).toEqual([1, 2, 3, 3]);
+    expect(p.petunjuk['misi-1']).toBe(3);
+  });
+
+  it('di luar misi yang sedang berjalan memberi tingkat 1 tanpa mengubah progres', () => {
+    const p = progresAwal();
+    const h = mintaPetunjuk(p, 'misi-1');
+    expect(h.tingkat).toBe(1);
+    expect(h.progres).toBe(p);
   });
 });
 

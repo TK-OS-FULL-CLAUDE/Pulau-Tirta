@@ -58,6 +58,17 @@ export function jawab(p: Progres, id: string, pilihanId: string): HasilJawab {
 }
 
 /**
+ * "Aku bingung" saat misi sedang berjalan: naikkan tingkat petunjuk (maksimal 3) dan catat di progres,
+ * sama seperti jawaban keliru, supaya anak bisa sampai ke petunjuk tingkat 2 (bukti di layar) tanpa harus salah dulu.
+ * Di luar misi yang sedang berjalan: tingkat 1, progres tidak berubah.
+ */
+export function mintaPetunjuk(p: Progres, id: string): { progres: Progres; tingkat: Tingkat } {
+  if (p.status[id] !== 'sedang') return { progres: p, tingkat: 1 };
+  const tingkat = Math.min(3, (p.petunjuk[id] ?? 0) + 1) as Tingkat;
+  return { progres: { ...p, petunjuk: { ...p.petunjuk, [id]: tingkat } }, tingkat };
+}
+
+/**
  * Acak urutan (Fisher–Yates) tanpa mengubah daftar asli.
  * Dipakai untuk pilihan alasan: di konten, pilihan benar selalu ditulis pertama.
  */

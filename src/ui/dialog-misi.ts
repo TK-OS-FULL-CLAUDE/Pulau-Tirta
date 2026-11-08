@@ -1,9 +1,17 @@
 import { FESTIVAL, kartuUntuk, type Misi, type Tingkat } from '../../shared/content';
 import { acak } from '../../shared/missions';
-import { buatAktivitas } from './aktivitas';
+import { buatAktivitas, type Aktivitas } from './aktivitas';
 import { el, tunggu } from './dom';
 
 const dialog = () => document.getElementById('dialog-misi') as HTMLDialogElement;
+
+/** Aktivitas di dialog misi yang sedang terbuka, supaya petunjuk dari "Aku bingung" juga bisa menyorot bukti. */
+let aktivitasAktif: Aktivitas | null = null;
+
+/** Sorot bukti di aktivitas yang sedang terbuka (tidak melakukan apa-apa kalau tidak ada misi terbuka). */
+export function sorotMisiAktif(tingkat: Tingkat): void {
+  aktivitasAktif?.sorot(tingkat);
+}
 
 /** Pilihan ditahan paling lama selama ini kalau petunjuk Tiko tidak kunjung muncul. */
 const BATAS_TAHAN_MS = 10_000;
@@ -90,6 +98,7 @@ export function bukaMisi(misi: Misi, opsi: OpsiMisi): void {
   const tanya = el('section', undefined, { class: 'tanya', hidden: '' });
   let pertanyaanTampil = false;
   const aktivitas = buatAktivitas(misi, () => tampilkanPertanyaan());
+  aktivitasAktif = aktivitas;
   d.append(aktivitas.el, tanya);
 
   function tampilkanPertanyaan(): void {
@@ -106,6 +115,7 @@ export function bukaMisi(misi: Misi, opsi: OpsiMisi): void {
         const hasil = opsi.pilih(p.id);
         if (hasil.benar) {
           aktivitas.hentikan();
+          aktivitasAktif = null;
           aktivitas.el.remove();
           const pulih = layarPulih(misi, opsi.namaLokasi, false);
           tanya.replaceWith(pulih);
@@ -130,7 +140,10 @@ export function bukaMisi(misi: Misi, opsi: OpsiMisi): void {
     tanya.scrollIntoView({ block: 'nearest' });
   }
 
-  buka(d, opsi.tutup, () => aktivitas.hentikan());
+  buka(d, opsi.tutup, () => {
+    aktivitas.hentikan();
+    if (aktivitasAktif === aktivitas) aktivitasAktif = null;
+  });
 }
 
 /** Festival Hujan: cocokkan peristiwa dengan tahap. `periksa` mengembalikan id yang salah. */
