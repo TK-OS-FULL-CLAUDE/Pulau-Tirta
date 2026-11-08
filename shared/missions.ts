@@ -57,6 +57,19 @@ export function jawab(p: Progres, id: string, pilihanId: string): HasilJawab {
   };
 }
 
+/**
+ * Acak urutan (Fisher–Yates) tanpa mengubah daftar asli.
+ * Dipakai untuk pilihan alasan: di konten, pilihan benar selalu ditulis pertama.
+ */
+export function acak<T>(daftar: readonly T[], rng: () => number = Math.random): T[] {
+  const hasil = [...daftar];
+  for (let i = hasil.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [hasil[i], hasil[j]] = [hasil[j], hasil[i]];
+  }
+  return hasil;
+}
+
 /** Anak yang baru benar setelah petunjuk tingkat 3 dicatat "dibantu penuh". */
 export function dibantuPenuh(p: Progres, id: string): boolean {
   return p.status[id] === 'selesai' && (p.petunjuk[id] ?? 0) >= 3;

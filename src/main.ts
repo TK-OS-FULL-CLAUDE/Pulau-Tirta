@@ -41,27 +41,35 @@ const panel = new PanelTiko(
 function interaksi(lokasi: Lokasi): void {
     lokasiSekarang = lokasi;
     dunia.terkunci = true;
+    // Jeda singkat sebelum dunia aktif lagi, supaya Enter/Spasi yang menutup dialog tidak langsung membukanya lagi.
     const lepas = () => {
-      dunia.terkunci = false;
+      setTimeout(() => (dunia.terkunci = false), 150);
     };
     if (lokasi.misiId) {
       const misi = cariMisi(lokasi.misiId)!;
-      perbarui(mulaiMisi(progres, misi.id));
-      bukaMisi(
-        misi,
-        (pilihanId) => {
+      const sudahSelesai = progres.status[misi.id] === 'selesai';
+      if (!sudahSelesai) perbarui(mulaiMisi(progres, misi.id));
+      bukaMisi(misi, {
+        namaLokasi: lokasi.nama,
+        sudahSelesai,
+        pilih: (pilihanId) => {
           const hasil = jawab(progres, misi.id, pilihanId);
           perbarui(hasil.progres);
           if (hasil.benar) {
-            panel.sapa(`Kamu berhasil! ${lokasi.nama} pulih. Kartu Ilmu baru masuk ke Jurnal.`);
-          } else if (hasil.tingkatPetunjuk) {
-            const teks = misi.pilihan?.find((x) => x.id === pilihanId)?.teks ?? '';
-            void panel.petunjuk(misi.id, hasil.tingkatPetunjuk, `Aku memilih: ${teks}`, pilihanId);
+            panel.sapa(`Kamu berhasil! ${lokasi.nama} pulih. Kamu dapat Kartu Ilmu baru.`);
+            return { benar: true };
           }
-          return hasil.benar;
+          const teks = misi.pilihan?.find((x) => x.id === pilihanId)?.teks ?? '';
+          const petunjukTiba = hasil.tingkatPetunjuk
+            ? panel.petunjuk(misi.id, hasil.tingkatPetunjuk, `Aku memilih: ${teks}`, pilihanId)
+            : undefined;
+          return { benar: false, tingkatPetunjuk: hasil.tingkatPetunjuk, petunjukTiba };
         },
-        lepas,
-      );
+        tutup: () => {
+          lepas();
+          if (!sudahSelesai && progres.status[misi.id] === 'selesai') dunia.rayakan(lokasi.id, `${lokasi.nama} pulih!`);
+        },
+      });
     } else if (festivalTerbuka(progres) && !progres.festivalSelesai) {
       bukaFestival(periksaFestival, () => perbarui({ ...progres, festivalSelesai: true }), lepas);
     } else {

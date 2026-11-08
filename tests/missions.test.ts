@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { FESTIVAL, MISI_UTAMA, pilihanBenar } from '../shared/content';
 import {
+  acak,
   dibantuPenuh,
   festivalTerbuka,
   jawab,
@@ -55,6 +56,25 @@ describe('status misi', () => {
       p = jawab(p, m.id, pilihanBenar(m)!.id).progres;
     }
     expect(festivalTerbuka(p)).toBe(true);
+  });
+});
+
+describe('acak pilihan', () => {
+  it('mengembalikan isi yang sama tanpa mengubah daftar asli', () => {
+    const asli = MISI_UTAMA[0].pilihan!;
+    const salinan = [...asli];
+    const hasil = acak(asli);
+    expect(asli).toEqual(salinan);
+    expect([...hasil].sort((a, b) => a.id.localeCompare(b.id))).toEqual([...asli].sort((a, b) => a.id.localeCompare(b.id)));
+  });
+
+  it('pilihan benar tidak selalu berada di posisi pertama', () => {
+    // Di konten, pilihan benar selalu ditulis pertama; urutan tampil harus berubah.
+    let n = 0;
+    const rng = () => ((n = (n * 9301 + 49297) % 233280) / 233280);
+    const posisi = new Set<number>();
+    for (let i = 0; i < 40; i++) posisi.add(acak(MISI_UTAMA[0].pilihan!, rng).findIndex((p) => p.benar));
+    expect(posisi.size).toBeGreaterThan(1);
   });
 });
 

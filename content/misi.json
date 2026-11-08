@@ -60,6 +60,12 @@
       "kutipanTerlarang": [
         "Panas matahari mengubah air menjadi uap air yang naik ke udara"
       ],
+      "aktivitas": {
+        "arahan": "Geser cermin supaya sinar matahari jatuh ke salah satu kolam. Lalu bandingkan garis air kedua kolam.",
+        "siap": "Lihat! Air kolam yang kena sinar turun lebih jauh dari garis awal.",
+        "sorot": "Perhatikan dasar kolam dan garis-garis tipis di atas air.",
+        "catatanSesudah": "Uap air sebenarnya tidak kelihatan. Garis-garis tadi cuma gambaran supaya kamu bisa membayangkannya."
+      },
       "petunjukCadangan": {
         "1": "Coba lihat dasar kolamnya. Terbuat dari apa? Bisakah air keluar lewat situ?",
         "2": "Dasar kolamnya batu, jadi air tidak bisa keluar lewat bawah. Perhatikan kolam yang kena sinar. Apa yang terlihat di atas airnya?",

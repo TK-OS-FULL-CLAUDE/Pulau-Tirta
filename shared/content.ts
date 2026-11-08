@@ -10,6 +10,17 @@ export interface Pilihan {
   miskonsepsi?: string;
 }
 
+/**
+ * Teks yang tampil di aktivitas misi. `arahan`, `siap`, dan `sorot` tampil SEBELUM anak menjawab,
+ * jadi wajib lolos aturan kebocoran tingkat 1 (diuji). `catatanSesudah` tampil setelah jawaban benar.
+ */
+export interface TeksAktivitas {
+  arahan: string;
+  siap: string;
+  sorot?: string;
+  catatanSesudah?: string;
+}
+
 export interface Misi {
   id: string;
   judul: string;
@@ -21,6 +32,7 @@ export interface Misi {
   kataTerlarang?: Record<string, string[]>;
   kutipanTerlarang?: string[];
   petunjukCadangan?: Record<string, string>;
+  aktivitas?: TeksAktivitas;
 }
 
 export interface Peristiwa {
