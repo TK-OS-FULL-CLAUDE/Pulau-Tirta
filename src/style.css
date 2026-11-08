@@ -85,6 +85,19 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
   .aktivitas.sorot .dasar .batas { animation: none; }
 }
 
+/* Misi 2 · Puncak Kabut */
+.kendali .ujung { font-size: 16px; color: var(--pucat); white-space: nowrap; }
+.label-suhu { font-size: 18px; font-weight: 800; fill: var(--tinta); }
+.udara path { fill: none; stroke: #4f97b8; stroke-width: 2.5; stroke-linecap: round; }
+.awan .tetes { fill: #ffffff; stroke: #8fb3c4; stroke-width: 1.2; transform-box: fill-box; transform-origin: center; animation: tetes-muncul 0.45s ease-out both; }
+@keyframes tetes-muncul { from { transform: scale(0); opacity: 0; } }
+.aktivitas.sorot .termometer .kotak { stroke: var(--aksen); stroke-width: 4; animation: kedip 0.9s ease-in-out infinite alternate; }
+.aktivitas.sorot .awan .tetes { stroke: #b85c00; stroke-width: 1.6; }
+@media (prefers-reduced-motion: reduce) {
+  .awan .tetes { animation: none; }
+  .aktivitas.sorot .termometer .kotak { animation: none; }
+}
+
 /* Pertanyaan alasan dan layar pulih */
 .tanya h3 { margin: 4px 0 0; font-size: 20px; }
 .pilihan-alasan { grid-template-columns: 1fr 1fr; }
@@ -95,6 +108,7 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .kartu-ilmu { max-width: 560px; padding: 12px 18px; text-align: left; background: white; border: 3px solid var(--hijau); border-radius: 14px; }
 .kartu-ilmu h3 { margin: 0 0 6px; font-size: 16px; color: var(--hijau); text-transform: uppercase; letter-spacing: 0.04em; }
 .kartu-ilmu p { margin: 0; line-height: 1.5; }
+.kartu-ilmu p + p { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #b9d9c4; }
 .catatan-sains { max-width: 560px; margin: 0; color: var(--pucat); }
 @media (max-width: 700px) { .pilihan-alasan { grid-template-columns: 1fr; } }
 

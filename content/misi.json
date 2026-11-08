@@ -120,6 +120,12 @@
       "kutipanTerlarang": [
         "Udara di atas lebih dingin, jadi uap air mengembun menjadi titik air"
       ],
+      "aktivitas": {
+        "arahan": "Geser arah angin supaya udara lembap dari laut tertiup ke gunung. Perhatikan termometer dan langit di atas puncak.",
+        "siap": "Lihat! Awan muncul di atas puncak. Di atas pantai juga ada udara lembap, tapi tidak jadi awan.",
+        "sorot": "Bandingkan angka termometer di pantai, di lereng, dan di puncak.",
+        "catatanSesudah": "Garis-garis tipis tadi cuma gambaran udara lembap. Uap air sebenarnya tidak kelihatan. Yang terlihat sebagai awan adalah titik-titik air yang sangat kecil."
+      },
       "petunjukCadangan": {
         "1": "Bandingkan puncak dan pantai. Kalau kamu naik gunung, udaranya terasa bagaimana?",
         "2": "Lihat termometer di puncak dan di pantai. Di mana titik-titik air kecil mulai muncul?",

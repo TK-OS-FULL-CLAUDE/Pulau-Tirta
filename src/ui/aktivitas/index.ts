@@ -1,6 +1,7 @@
 import type { Misi } from '../../../shared/content';
 import { el } from '../dom';
 import { buatPantai } from './pantai';
+import { buatPuncak } from './puncak';
 import type { Aktivitas, PembuatAktivitas } from './tipe';
 
 export type { Aktivitas } from './tipe';
@@ -8,6 +9,7 @@ export type { Aktivitas } from './tipe';
 /** Aktivitas per misi. Misi yang belum punya aktivitas memakai tombol sementara supaya alur tetap bisa tamat. */
 const DAFTAR: Record<string, PembuatAktivitas> = {
   'misi-1': buatPantai,
+  'misi-2': buatPuncak,
 };
 
 function sementara(_misi: Misi, siap: () => void): Aktivitas {

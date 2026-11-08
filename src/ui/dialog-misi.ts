@@ -64,7 +64,12 @@ function buka(d: HTMLDialogElement, tutup: () => void, bersihkan?: () => void): 
   );
   d.show();
   d.scrollTop = 0;
-  (d.querySelector<HTMLElement>('[autofocus]') ?? d.querySelector<HTMLElement>('input, button'))?.focus();
+  // Fokus ke kendali aktivitas (bukan tombol "Kembali ke pulau"), supaya Spasi/Enter tidak langsung menutup misi.
+  (
+    d.querySelector<HTMLElement>('[autofocus]') ??
+    d.querySelector<HTMLElement>('.aktivitas input, .aktivitas button') ??
+    d.querySelector<HTMLElement>('input, button')
+  )?.focus();
 }
 
 function layarPulih(misi: Misi, namaLokasi: string, sudahDulu: boolean): HTMLElement {
