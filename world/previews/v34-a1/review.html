@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="id"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Desa Tirta · V3.4-A1 Review</title><link rel="icon" href="data:,">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#18322e;color:#fbf1d9;font:16px/1.65 system-ui,sans-serif}main{max-width:1160px;margin:auto;padding:32px 24px}h1{font-size:32px;line-height:1.2}p{max-width:850px;color:#cfdbcc}label{display:block;margin-top:20px}select{font:inherit;padding:8px;background:#29473d;color:#fbf1d9;border:1px solid #8caa8e;border-radius:5px}input{width:100%;accent-color:#eac47f}.comparison{position:relative;aspect-ratio:1064/599;border:1px solid #8caa8e;overflow:hidden}.comparison img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;image-rendering:pixelated}.top{clip-path:inset(0 50% 0 0)}.line{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#f3d494}.tag{position:absolute;top:10px;padding:3px 10px;background:#18322eea}.left{left:10px}.right{right:10px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}a{color:#f3d494}.grid a{text-decoration:none}img,video{width:100%;display:block;image-rendering:pixelated}video{max-width:900px;background:#10241f}h2{margin-top:30px;font-size:23px}footer{margin-top:30px;font-size:14px}
+</style><main>
+<h1>Desa Tirta · Pusat desa V3.4-A1</h1>
+<p>Fokus hanya area 38 × 20 tile di sekitar plaza, sumur, pasar dan rumah terdekat. Empat wilayah misi dan permukiman jauh tidak didesain ulang. Geser pembatas untuk membandingkan kamera plaza yang sama atau preview tile area dengan batas yang sama.</p>
+<label for="view">Perbandingan</label><select id="view"><option value="plaza">Plaza · V3.3 / A1</option><option value="centre">Preview pusat desa · V3.3 / A1</option><option value="festival">Plaza A1 · sebelum / sesudah Festival</option><option value="recovery">Preview pusat A1 · sebelum / sesudah Festival</option></select>
+<label for="slider">Geser pembatas gambar</label><input id="slider" type="range" min="0" max="100" value="50">
+<div class="comparison" id="comparison"><img id="after" alt="Desa setelah redesign"><img class="top" id="before" alt="Desa sebelum redesign"><span class="line" id="line"></span><span class="tag left" id="left">V3.3</span><span class="tag right" id="right">A1</span></div>
+<p>Kamera plaza: tile (97,76) pada kedua screenshot. Preview tile: x78–115, y65–84; tidak memuat pose/gerak sprite runtime. Posisi NPC pada screenshot dapat berbeda karena mereka berpatroli.</p>
+<h2>Pasar, rumah dan perayaan</h2><div class="grid">
+<a href="gameplay-v34-a1-desa-pasar.png"><img src="gameplay-v34-a1-desa-pasar.png" alt="Dua kios dekat sumur">Pasar Tirta dan sumur</a>
+<a href="gameplay-v34-a1-desa-pekarangan.png"><img src="gameplay-v34-a1-desa-pekarangan.png" alt="Rumah, kebun dan akses plaza">Rumah dan pekarangan</a>
+<a href="gameplay-v34-a1-desa-plaza-after.png"><img src="gameplay-v34-a1-desa-plaza-after.png" alt="Pusat desa setelah festival">Sesudah Festival Hujan</a></div>
+<h2>Uji perjalanan di game</h2><video controls loop playsinline preload="metadata" poster="gameplay-v34-a1-desa-plaza-before.png"><source src="village-a1-navigation.webm" type="video/webm"></video>
+<p>Spawn → plaza → pelataran sumur → pasar → pintu Rumah Kebun. Alat uji menggerakkan state tombol WASD melalui update game dan collision existing; tidak memindahkan posisi pemain langsung selama perjalanan.</p>
+<footer><a href="../../VILLAGE_A1.md">Laporan perubahan, pengujian, aset dan batasan</a> · <a href="../v33/review.html">Arsip V3.3</a><p>Belum commit, push atau merge. Paving dan kios lokal masih merupakan placeholder art yang perlu direview tim. Tahap ini berhenti di pusat desa.</p></footer>
+</main><script>
+const $=id=>document.getElementById(id),views={plaza:['../v33/gameplay-v33-desa-plaza-before.png','gameplay-v34-a1-desa-plaza-before.png','V3.3','A1'],centre:['centre-v33.png','centre-a1.png','V3.3','A1'],festival:['gameplay-v34-a1-desa-plaza-before.png','gameplay-v34-a1-desa-plaza-after.png','Awal','Festival'],recovery:['centre-a1.png','centre-festival.png','Awal','Festival']};
+function update(){const[a,b,l,r]=views[$('view').value];$('before').src=a;$('after').src=b;$('before').alt=l;$('after').alt=r;$('left').textContent=l;$('right').textContent=r;$('comparison').style.aspectRatio=['centre','recovery'].includes($('view').value)?'608/320':'1064/599'}
+$('view').onchange=update;$('slider').oninput=()=>{$('before').style.clipPath=`inset(0 ${100-$('slider').value}% 0 0)`;$('line').style.left=$('slider').value+'%'};update();
+</script></html>

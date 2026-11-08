@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="id"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Review World V3.2 — Aufa</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#152c2b;color:#f4efde;font:16px/1.6 system-ui,sans-serif}main{max-width:1160px;margin:auto;padding:36px 24px}h1{font-size:32px;line-height:1.2;margin-bottom:12px}p{max-width:850px;color:#c7d3c7}label{display:block;margin:20px 0 8px}select,input{font:inherit;accent-color:#e9c77e}select{padding:10px;background:#29443e;color:#f4efde;border:1px solid #6f897b;border-radius:6px}input{width:100%;cursor:ew-resize}.compare{position:relative;aspect-ratio:1064/599;background:#0c1e1d;overflow:hidden;border:1px solid #6f897b}.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;image-rendering:pixelated}.compare .top{clip-path:inset(0 50% 0 0)}.tag{position:absolute;top:12px;padding:4px 12px;background:#142725df;border-radius:4px}.left{left:12px}.right{right:12px}.line{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#f2d397;pointer-events:none}a{color:#f2d397}ul{padding-left:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.grid img{width:100%;image-rendering:pixelated;border:1px solid #6f897b}.grid a{text-decoration:none}footer{margin-top:32px;color:#c7d3c7;font-size:14px}
+</style>
+<main><h1>World V3.2 · Review lingkungan</h1>
+<p>Puncak Kabut memiliki tiga teras visual dan jalur pendakian. Desa mendapat kelompok rumah, pekarangan dan pasar. Geser pembatas untuk menilai perubahan dari V3.1, lalu periksa pemulihan pada V3.2. Gambar merupakan hasil render lokal; kualitas art masih memerlukan review Aufa.</p>
+<label for="view">Perbandingan</label><select id="view">
+<option value="puncak">Puncak Kabut · V3.1 / V3.2</option><option value="desa">Desa Tirta · V3.1 / V3.2</option><option value="pantai">Pantai Biru · V3.1 / V3.2</option><option value="lembah">Lembah Hujan · V3.1 / V3.2</option><option value="hutan">Hutan & Sungai · V3.1 / V3.2</option><option value="map">Seluruh map · V3.1 / V3.2</option><option value="recovery">Seluruh map V3.2 · sebelum / sesudah pemulihan</option><option value="festival">Plaza V3.2 · sebelum / sesudah Festival Hujan</option><option value="valley">Lembah V3.2 · sebelum / sesudah pemulihan</option></select>
+<label for="slider">Geser pembatas gambar</label><input id="slider" type="range" min="0" max="100" value="50">
+<div class="compare" id="compare"><img id="second" alt="World V3.2"><img class="top" id="first" alt="World V3.1"><span class="line" id="line"></span><span class="tag left" id="left">V3.1</span><span class="tag right" id="right">V3.2</span></div>
+<p>Screenshot gameplay mengandung karakter dan UI. Preview seluruh map menampilkan tile layer saja. Semua gambar dapat dibuka langsung untuk inspeksi ukuran asli.</p>
+<h2>Sudut Puncak Kabut</h2><div class="grid">
+<a href="gameplay-v32-puncak-kaki.png"><img src="gameplay-v32-puncak-kaki.png" alt="Kaki gunung">Kaki gunung</a>
+<a href="gameplay-v32-puncak-jalur.png"><img src="gameplay-v32-puncak-jalur.png" alt="Jalur pendakian">Jalur berkelok</a>
+<a href="gameplay-v32-puncak.png"><img src="gameplay-v32-puncak.png" alt="Pos pengembunan">Pos pengembunan</a>
+<a href="gameplay-v32-puncak-pandang.png"><img src="gameplay-v32-puncak-pandang.png" alt="Teras pengamatan">Teras pengamatan</a></div>
+<h2>Wilayah lainnya</h2><div class="grid">
+<a href="gameplay-v32-desa-rumah.png"><img src="gameplay-v32-desa-rumah.png" alt="Permukiman">Permukiman desa</a>
+<a href="gameplay-v32-desa-plaza-before.png"><img src="gameplay-v32-desa-plaza-before.png" alt="Plaza dan sumur">Plaza dan sumur</a>
+<a href="gameplay-v32-pantai-pesisir.png"><img src="gameplay-v32-pantai-pesisir.png" alt="Dermaga dan pesisir">Dermaga pesisir</a>
+<a href="gameplay-v32-lembah.png"><img src="gameplay-v32-lembah.png" alt="Cekungan lembah">Lembah kering</a>
+<a href="gameplay-v32-hutan.png"><img src="gameplay-v32-hutan.png" alt="Hutan sungai dan jembatan">Hutan & sungai</a></div>
+<footer>Buka lokal tanpa dependency. <a href="../../ENVIRONMENT_V32.md">Laporan implementasi dan batasan aset</a>. Belum commit/push/merge.</footer></main>
+<script>
+const $=id=>document.getElementById(id), views={};
+for(const region of ['puncak','desa','pantai','lembah','hutan'])views[region]=[`../v31/gameplay-v31-${region}.png`,`gameplay-v32-${region}.png`,'V3.1','V3.2'];
+views.map=['../v31/world-before.png','world-before.png','V3.1','V3.2'];views.recovery=['world-before.png','world-after.png','Sebelum','Pulih'];views.festival=['gameplay-v32-desa-plaza-before.png','gameplay-v32-desa-plaza-after.png','Sebelum','Festival'];views.valley=['gameplay-v32-lembah.png','gameplay-v32-lembah-after.png','Sebelum','Pulih'];
+function change(){const [a,b,l,r]=views[$('view').value];$('first').src=a;$('second').src=b;$('first').alt=l;$('second').alt=r;$('left').textContent=l;$('right').textContent=r;$('compare').style.aspectRatio=['map','recovery'].includes($('view').value)?'4/3':'1064/599';}
+$('view').onchange=change;$('slider').oninput=()=>{$('first').style.clipPath=`inset(0 ${100-$('slider').value}% 0 0)`;$('line').style.left=$('slider').value+'%';};change();
+</script></html>

@@ -1,0 +1,14 @@
+{
+  "type": "tileset",
+  "version": "1.10",
+  "name": "village_a1",
+  "tilewidth": 16,
+  "tileheight": 16,
+  "tilecount": 16,
+  "columns": 8,
+  "margin": 0,
+  "spacing": 0,
+  "image": "../../assets/village_a1/tileset.svg",
+  "imagewidth": 128,
+  "imageheight": 32
+}

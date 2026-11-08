@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="id"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>World V3.3 · Living World</title><link rel="icon" href="data:,">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#142c2c;color:#f6efdb;font:16px/1.6 system-ui,sans-serif}main{max-width:1180px;margin:auto;padding:32px 24px}h1{font-size:34px;line-height:1.2}p{max-width:850px;color:#cbd8ce}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:24px}article{background:#203d38;border:1px solid #58786b;border-radius:10px;padding:18px}h2{font-size:21px;margin-top:0}video,img{display:block;width:100%;background:#0d201f;image-rendering:pixelated;border-radius:4px}video{aspect-ratio:16/9}a{color:#f1cf8a}.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}.gallery a{text-decoration:none}.gallery img{margin-bottom:8px}small{color:#cbd8ce}footer{margin-top:32px}details{margin-top:24px}summary{cursor:pointer;color:#f1cf8a}
+</style><main>
+<h1>World V3.3 · Living World</h1>
+<p>Putar rekaman berikut untuk menilai gerak. Ini rekaman canvas game lokal, bukan animasi dari screenshot. Sprite pemain tetap satu pose: langkah menggunakan bobbing maksimum 0,55 px, idle memakai perubahan skala yang sangat kecil, dan arah horizontal memakai flip. Belum ada spritesheet jalan empat arah.</p>
+<div class="grid">
+<article><h2>Desa · pemain dan warga</h2><video controls loop playsinline preload="metadata" poster="gameplay-v33-desa.png"><source src="living-v33-desa-walk-npc.webm" type="video/webm"></video><p>Berjalan kanan/kiri, berhenti idle, dan patroli warga plaza. Warga lain berjalan di waypoint rumah/pasar; satu warga tetap diam dekat kebun.</p></article>
+<article><h2>Puncak · kabut dan windsock</h2><video controls loop playsinline preload="metadata" poster="gameplay-v33-puncak.png"><source src="living-v33-puncak-fog-wind.webm" type="video/webm"></video><p>Kabut pixel tipis bergerak perlahan di bawah karakter. Hanya kain windsock berubah; tiang dan kaki tetap diam. Efek dibatasi sekitar kamera.</p></article>
+<article><h2>Pantai · air kolam</h2><video controls loop playsinline preload="metadata" poster="gameplay-v33-pantai.png"><source src="living-v33-pantai-water.webm" type="video/webm"></video><p>Riak kecil di permukaan kolam. Dasar batu, air dangkal, collision dan mekanik eksperimen tetap milik sistem sebelumnya.</p></article>
+<article><h2>Hutan · aliran sungai</h2><video controls loop playsinline preload="metadata" poster="gameplay-v33-hutan.png"><source src="living-v33-river.webm" type="video/webm"></video><p>Overlay riak terbatas pada air terbuka. Tidak membuat sprite untuk setiap tile air. Deck jembatan tetap utuh; aliran sedikit lebih aktif setelah M4.</p></article>
+</div>
+<h2 style="margin-top:32px">Screenshot gameplay</h2><div class="gallery">
+<a href="gameplay-v33-desa-plaza-before.png"><img src="gameplay-v33-desa-plaza-before.png" alt="Warga dan plaza desa">Desa sebelum festival</a>
+<a href="gameplay-v33-desa-plaza-after.png"><img src="gameplay-v33-desa-plaza-after.png" alt="Plaza sesudah festival">Desa sesudah festival</a>
+<a href="gameplay-v33-puncak.png"><img src="gameplay-v33-puncak.png" alt="Pos Kabut dengan prompt ringkas">Puncak dan prompt baru</a>
+<a href="gameplay-v33-pantai.png"><img src="gameplay-v33-pantai.png" alt="Kolam Pantai Biru">Kolam Pantai Biru</a>
+<a href="gameplay-v33-hutan.png"><img src="gameplay-v33-hutan.png" alt="Hutan dan sungai">Hutan & sungai</a>
+<a href="gameplay-v33-mobile-prompt.png"><img src="gameplay-v33-mobile-prompt.png" alt="Prompt pada viewport 390 piksel">Prompt pada viewport 390 px</a></div>
+<details><summary>Bandingkan indikator interaksi V3.2 dan V3.3</summary><div class="grid"><article><h2>V3.2</h2><img src="../v32/gameplay-v32-pantai.png" alt="Label lama di dekat karakter"></article><article><h2>V3.3</h2><img src="gameplay-v33-pantai.png" alt="Prompt baru di bawah viewport"></article></div></details>
+<footer><a href="../../LIVING_WORLD_V33.md">Laporan fitur, file, pengujian dan batasan</a> · <a href="../v32/review.html">Arsip review V3.2</a><p><small>Belum commit, push atau merge. Rekaman headless tidak membuktikan performa 60 FPS pada laptop fisik. Kontrol game tetap keyboard; pemeriksaan layar sempit menguji keterbacaan prompt.</small></p></footer>
+</main></html>

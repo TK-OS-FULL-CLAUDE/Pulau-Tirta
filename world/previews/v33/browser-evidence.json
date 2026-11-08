@@ -1,0 +1,24 @@
+{
+  "npcBefore": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "npcAfter": [
+    32,
+    0,
+    0,
+    54.40522000000184
+  ],
+  "pools": {
+    "npcs": 4,
+    "fog": 5,
+    "water": 36,
+    "plants": 10,
+    "sceneObjects": 98
+  },
+  "fogMoved": true,
+  "pausedAndCulled": true,
+  "clipsRecorded": 4
+}

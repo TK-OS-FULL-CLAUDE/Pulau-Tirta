@@ -15,7 +15,7 @@ function publish(path, data) {
   writeFileSync(path, bytes);
 }
 
-for (const [editor, runtime] of [['pulau_tirta.tmj', 'pulau-tirta.json'], ['pulau_tirta_v3.tmj', 'pulau-tirta-v3.json'], ['pulau_tirta_v3_1.tmj', 'pulau-tirta-v3-1.json']]) {
+for (const [editor, runtime] of [['pulau_tirta.tmj', 'pulau-tirta.json'], ['pulau_tirta_v3.tmj', 'pulau-tirta-v3.json'], ['pulau_tirta_v3_1.tmj', 'pulau-tirta-v3-1.json'], ['pulau_tirta_v3_2.tmj', 'pulau-tirta-v3-2.json'], ['pulau_tirta_v34_a1.tmj', 'pulau-tirta-v34-a1.json'], ['pulau_tirta_v34_a11.tmj', 'pulau-tirta-v34-a11.json']]) {
   const source = resolve(sourceRoot, 'maps', editor);
   const output = resolve(root, 'public/maps', runtime);
   const map = JSON.parse(readFileSync(source, 'utf8'));
@@ -34,4 +34,4 @@ for (const [editor, runtime] of [['pulau_tirta.tmj', 'pulau-tirta.json'], ['pula
 
   publish(output, `${JSON.stringify(map)}\n`);
 }
-console.log(check ? 'Ekspor V1, V3 dan V3.1 sesuai sumber Tiled.' : 'V1, V3 dan V3.1 diekspor (tileset embedded).');
+console.log(check ? 'Ekspor V1–V3.4-A1.1 sesuai sumber Tiled.' : 'V1–V3.4-A1.1 diekspor (tileset embedded).');

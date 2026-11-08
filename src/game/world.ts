@@ -2,11 +2,15 @@ import Phaser from 'phaser';
 import type { StatusMisi } from '../../shared/missions';
 import { interaksiTerdekat, langkahGerak, lokasiPada, kedalamanLayer, misiPemulihan, properti, type Lokasi } from './map-data';
 import { DUNIA, PETA_RUNTIME } from './world-map';
+import { LivingWorld } from './living-world';
+import { actorPose, facingFor, promptTarget, type Facing } from './living-model';
+import type { InteraksiDunia } from './map-data';
 
 export type { Lokasi } from './map-data';
 export const LEBAR = 1280;
 export const TINGGI = 720;
 export const LOKASI: Lokasi[] = DUNIA.lokasi;
+const NAMA_OBJEK: Record<string, string> = { pantai: 'Kolam Pantai', puncak: 'Pos Kabut', lembah: 'Cekungan Hujan', hutan: 'Bibit & Sungai', desa: 'Festival Hujan' };
 
 export interface PengaitDunia {
   statusMisi: (misiId: string) => StatusMisi;
@@ -21,6 +25,11 @@ export interface PengaitDunia {
 
 export class DuniaScene extends Phaser.Scene {
   private pemain!: Phaser.GameObjects.Sprite;
+  private visualPemain!: Phaser.GameObjects.Sprite;
+  private living!: LivingWorld;
+  private facing: Facing = 'down';
+  private walkDistance = 0;
+  private prompt?: InteraksiDunia;
   private bayangan!: Phaser.GameObjects.Ellipse;
   private tanda = new Map<string, Phaser.GameObjects.Arc>();
   private pemulihan = new Map<string, Phaser.Tilemaps.TilemapLayer[]>();
@@ -68,9 +77,12 @@ export class DuniaScene extends Phaser.Scene {
     const { x, y } = DUNIA.spawn;
     this.bayangan = this.add.ellipse(x, y + 2, 9, 4, 0x130f16, 0.35).setDepth(19);
     this.pemain = this.add.sprite(x, y, DUNIA.pemainTileset, DUNIA.pemainFrame).setOrigin(0.5, 0.75).setDepth(20);
+    // Logical feet/camera target never bob. Only this separate visual is animated.
+    this.pemain.setVisible(false);
+    this.visualPemain = this.add.sprite(x, y, DUNIA.pemainTileset, DUNIA.pemainFrame).setOrigin(0.5, 0.75).setDepth(20);
     this.label = this.add.text(0, 0, '', {
-      fontFamily: 'system-ui, sans-serif', fontSize: '9px', color: '#ffffff', backgroundColor: '#1c2a33', padding: { x: 4, y: 3 },
-    }).setOrigin(0.5, 1).setDepth(40).setVisible(false);
+      fontFamily: 'system-ui, sans-serif', fontSize: '7px', color: '#fff8dd', backgroundColor: '#1c2a33', padding: { x: 5, y: 3 },
+    }).setOrigin(0.5, 1).setScrollFactor(0).setDepth(40).setVisible(false);
     this.judulWilayah = this.add.text(20, 16, '', {
       fontFamily: 'system-ui, sans-serif', fontSize: '9px', color: '#ffffff', backgroundColor: '#1c2a33', padding: { x: 4, y: 3 },
     }).setScrollFactor(0).setDepth(50);
@@ -104,6 +116,18 @@ export class DuniaScene extends Phaser.Scene {
     camera.startFollow(this.pemain, true, 0.14, 0.14);
     // scrollFactor(0) tetap terkena zoom; letakkan HUD pada sudut viewport.
     this.judulWilayah.setPosition((LEBAR - LEBAR / camera.zoom) / 2 + 8, (TINGGI - TINGGI / camera.zoom) / 2 + 8);
+    this.label.setPosition(LEBAR / 2, (TINGGI + TINGGI / camera.zoom) / 2 - 8);
+    const resizePrompt = () => {
+      const rect = this.game.canvas.getBoundingClientRect();
+      const cssScale = Math.max(0.05, Math.min(rect.width / LEBAR, rect.height / TINGGI));
+      // Keep at least 13 CSS pixels after canvas FIT scaling on narrow screens.
+      this.label.setFontSize(Math.max(7, Math.ceil(13 / (camera.zoom * cssScale))));
+      this.label.setWordWrapWidth(LEBAR / camera.zoom - 24);
+    };
+    const promptObserver = new ResizeObserver(resizePrompt);
+    promptObserver.observe(this.game.canvas); resizePrompt();
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => promptObserver.disconnect());
+    this.living = new LivingWorld(this, DUNIA, map, id => this.kait.statusMisi(id) === 'selesai', () => this.kait.festivalSelesai?.() === true);
     this.perbaruiWilayah();
     this.segarkan();
   }
@@ -124,6 +148,7 @@ export class DuniaScene extends Phaser.Scene {
   segarkan(): void {
     for (const [misi, layers] of this.pemulihan) for (const layer of layers) layer.setVisible(this.kait.statusMisi(misi) === 'selesai');
     for (const layer of this.perayaan) layer.setVisible(this.kait.festivalSelesai?.() === true);
+    this.living?.refresh();
     for (const l of LOKASI) {
       const status = l.misiId ? this.kait.statusMisi(l.misiId) : undefined;
       const warna = status ? { belum: 0x9aa5a8, sedang: 0xf0b45c, selesai: 0x3c9a5f }[status] : 0x5b8fb0;
@@ -135,29 +160,40 @@ export class DuniaScene extends Phaser.Scene {
     return this.pemain ? interaksiTerdekat(DUNIA, this.pemain.x, this.pemain.y) : undefined;
   }
 
-  update(_t: number, dtMs: number): void {
+  update(time: number, dtMs: number): void {
     if (!this.pemain) return;
-    if (this.inputTerhalang()) {
+    const blocked = this.inputTerhalang();
+    this.living.update(time, dtMs, blocked, this.pemain);
+    if (blocked) {
       this.input.keyboard?.resetKeys();
       this.label.setVisible(false);
+      this.visualPemain.setPosition(this.pemain.x, this.pemain.y).setScale(1).setData('motion', 'paused');
       return;
     }
     const tekan = (ks: Phaser.Input.Keyboard.Key[]) => ks.some((k) => k.isDown);
     const dx = Number(tekan(this.tombol.kanan)) - Number(tekan(this.tombol.kiri));
     const dy = Number(tekan(this.tombol.bawah)) - Number(tekan(this.tombol.atas));
     const posisi = langkahGerak(DUNIA, this.pemain, dx, dy, dtMs);
-    if (posisi.x !== this.pemain.x || posisi.y !== this.pemain.y) {
+    const moved = Math.hypot(posisi.x - this.pemain.x, posisi.y - this.pemain.y);
+    this.facing = facingFor(dx, dy, this.facing);
+    if (moved > 0) {
+      this.walkDistance += moved;
       this.pemain.setPosition(posisi.x, posisi.y);
       this.bayangan.setPosition(posisi.x, posisi.y + 2);
       if (dx) this.pemain.setFlipX(dx < 0);
       this.kait.bergerak();
       this.perbaruiWilayah();
     }
+    const pose = actorPose(this.walkDistance, time, moved > 0);
+    this.visualPemain.setPosition(posisi.x, posisi.y + pose.y).setScale(1, pose.scaleY).setData('motion', moved > 0 ? 'walking' : 'idle').setData('facing', this.facing);
+    if (this.facing === 'left' || this.facing === 'right') this.visualPemain.setFlipX(this.facing === 'left');
     const dekat = this.lokasiTerdekat();
+    this.prompt = promptTarget(DUNIA, this.pemain, this.prompt);
     const penanda = DUNIA.penanda.filter((p) => Math.hypot(p.x - this.pemain.x, p.y - this.pemain.y) < Number(properti(p, 'radiusPx') ?? 40)).sort((a, b) => Math.hypot(a.x - this.pemain.x, a.y - this.pemain.y) - Math.hypot(b.x - this.pemain.x, b.y - this.pemain.y))[0];
-    this.label.setVisible(Boolean(dekat || penanda));
-    if (dekat) this.label.setText(`E · ${dekat.nama}`).setPosition(dekat.x, dekat.y - 13);
-    else if (penanda) this.label.setText(String(properti(penanda, 'label') ?? penanda.name)).setPosition(penanda.x, penanda.y - 13);
+    this.label.setVisible(Boolean(this.prompt || penanda));
+    if (this.prompt) {
+      this.label.setText(`${dekat?.id === this.prompt.id ? 'E' : 'Dekati'} · ${NAMA_OBJEK[this.prompt.id]}`);
+    } else if (penanda) this.label.setText(String(properti(penanda, 'label') ?? penanda.name));
     const aksi = this.aksi.map((k) => Phaser.Input.Keyboard.JustDown(k)).some(Boolean);
     if (dekat && aksi) this.kait.interaksi(dekat);
   }

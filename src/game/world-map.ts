@@ -1,4 +1,4 @@
-import peta from '../../public/maps/pulau-tirta-v3-1.json';
+import peta from '../../public/maps/pulau-tirta-v34-a11.json';
 import { bacaPeta } from './map-data';
 
 // Satu hasil ekspor dipakai untuk render Phaser, collision, dan metadata misi.

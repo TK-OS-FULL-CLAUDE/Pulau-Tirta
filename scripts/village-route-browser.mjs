@@ -1,0 +1,33 @@
+/** Serialized into the isolated test browser, never bundled into the game. */
+export async function walkVillageRoute() {
+  const scene=window.__worldCheck;
+  const {DUNIA:world}=await import('/src/game/world-map.ts');
+  const {bisaBerdiri,langkahGerak}=await import('/src/game/map-data.ts');
+  const goals=[[96,79],[98,79],[91,77],[87,76],[87,71]],visited=[];
+  document.activeElement?.blur();
+  const keys=(dx,dy)=>{for(const k of scene.tombol.kiri)k.isDown=dx<0;for(const k of scene.tombol.kanan)k.isDown=dx>0;for(const k of scene.tombol.atas)k.isDown=dy<0;for(const k of scene.tombol.bawah)k.isDown=dy>0;};
+  const go=(x,y)=>new Promise((resolve,reject)=>{
+    const deadline=performance.now()+2500;
+    const frame=()=>{const dx=x-scene.pemain.x,dy=y-scene.pemain.y;if(Math.hypot(dx,dy)<1.9){keys(0,0);resolve();return;}if(performance.now()>deadline){keys(0,0);reject(Error(`Route blocked at ${x},${y}`));return;}keys(Math.abs(dx)>1.2?Math.sign(dx):0,Math.abs(dy)>1.2?Math.sign(dy):0);requestAnimationFrame(frame);};frame();
+  });
+  try {
+    for(const goal of goals){
+      const start=[Math.floor(scene.pemain.x/16),Math.floor(scene.pemain.y/16)],queue=[start],parent=new Map([[start.join(','),null]]);
+      for(let i=0;i<queue.length&&!parent.has(goal.join(','));i++){
+        const[x,y]=queue[i];
+        for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){
+          const nx=x+dx,ny=y+dy,key=`${nx},${ny}`;
+          if(nx<78||nx>=116||ny<65||ny>=85||parent.has(key)||!bisaBerdiri(world,nx*16+8,ny*16+8))continue;
+          let p={x:x*16+8,y:y*16+8};for(let n=0;n<8;n++)p=langkahGerak(world,p,dx,dy,2000/86);
+          if(Math.hypot(p.x-(nx*16+8),p.y-(ny*16+8))>.001)continue;
+          parent.set(key,`${x},${y}`);queue.push([nx,ny]);
+        }
+      }
+      if(!parent.has(goal.join(',')))throw Error(`No route to ${goal}`);
+      const path=[];let key=goal.join(',');while(key!==null){path.push(key.split(',').map(Number));key=parent.get(key);}
+      for(const[x,y]of path.reverse())await go(x*16+8,y*16+8);
+      visited.push({target:goal,x:scene.pemain.x,y:scene.pemain.y});
+    }
+    return {method:'WASD state → Scene.update → original movement; no setPosition',visited};
+  } finally {keys(0,0);}
+}

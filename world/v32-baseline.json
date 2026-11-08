@@ -1,0 +1,8 @@
+{
+  "world/maps/pulau_tirta_v3_1.tmj": "3d63914f6f449b5d9efd902cd8df01f41b93ce6b7b809248da576fdcaf8423d7",
+  "public/maps/pulau-tirta-v3-1.json": "8c0b0955dabc015f82a906b403a3a119d6c3dc2b8dfb02557ed486c59af1fd95",
+  "world/assets/tirta_props/tileset.svg": "9729a133c2437ed65f0b872c3f8ead4523ff884b35aba2259b9663f5f73a2d13",
+  "world/maps/tilesets/v31_tirta_props.tsj": "8a39bd78409e598c8f0d6910e896bbcb647c04e9852adcbaf1e00e7f0d5c3438",
+  "scripts/polish-world-v31.mjs": "1cf8f4545e0396b7bb9ad59cbd5a61dfc7ccb03dde33372c194c1704607e90e2",
+  "world/world-contract-v3.json": "6e2b6da1d490716c6b7a66ad2ec3efb0c652a0889e346f5fdc3cbd945c84e7c2"
+}

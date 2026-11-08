@@ -1,0 +1,54 @@
+[
+  {
+    "file": "living-v33-desa-walk-npc.webm",
+    "width": 1280,
+    "height": 720,
+    "first": {
+      "hash": 1263517745,
+      "lit": 57592
+    },
+    "second": {
+      "hash": 3700504868,
+      "lit": 57594
+    }
+  },
+  {
+    "file": "living-v33-puncak-fog-wind.webm",
+    "width": 1280,
+    "height": 720,
+    "first": {
+      "hash": 3701511250,
+      "lit": 57589
+    },
+    "second": {
+      "hash": 3766500235,
+      "lit": 57600
+    }
+  },
+  {
+    "file": "living-v33-pantai-water.webm",
+    "width": 1280,
+    "height": 720,
+    "first": {
+      "hash": 1268093185,
+      "lit": 57598
+    },
+    "second": {
+      "hash": 1711313678,
+      "lit": 57599
+    }
+  },
+  {
+    "file": "living-v33-river.webm",
+    "width": 1280,
+    "height": 720,
+    "first": {
+      "hash": 1227525490,
+      "lit": 57577
+    },
+    "second": {
+      "hash": 3047598246,
+      "lit": 57589
+    }
+  }
+]
