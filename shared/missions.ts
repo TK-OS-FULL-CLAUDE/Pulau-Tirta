@@ -90,6 +90,22 @@ export function festivalTerbuka(p: Progres): boolean {
   return MISI_UTAMA.every((m) => p.status[m.id] === 'selesai');
 }
 
+/**
+ * Petunjuk Festival Hujan untuk peristiwa pertama di `ids` (yang masih salah, atau yang sedang dipilih saat
+ * anak menekan "Aku bingung"). Tingkatnya naik per peristiwa (maksimal 3) dan dicatat di progres dengan kunci
+ * `festival:<id>`, supaya playtest bisa melihat tingkat tertinggi yang dipakai.
+ */
+export function petunjukFestival(
+  p: Progres,
+  ids: string[],
+): { progres: Progres; peristiwaId: string; tingkat: Tingkat } | null {
+  const id = ids[0];
+  if (!id) return null;
+  const kunci = `festival:${id}`;
+  const tingkat = Math.min(3, (p.petunjuk[kunci] ?? 0) + 1) as Tingkat;
+  return { progres: { ...p, petunjuk: { ...p.petunjuk, [kunci]: tingkat } }, peristiwaId: id, tingkat };
+}
+
 /** Cocokkan peristiwa → tahap. Mengembalikan id peristiwa yang salah (kosong = semua benar). */
 export function periksaFestival(jawaban: Record<string, string>): string[] {
   return FESTIVAL.peristiwa.filter((e) => jawaban[e.id] !== e.tahap).map((e) => e.id);

@@ -1,4 +1,4 @@
-import { FESTIVAL, kartuUntuk, type Misi, type Tingkat } from '../../shared/content';
+import { FESTIVAL, KARTU_MATERI, kartuUntuk, type Misi, type Tingkat } from '../../shared/content';
 import { acak } from '../../shared/missions';
 import { buatAktivitas, type Aktivitas } from './aktivitas';
 import { el, tunggu } from './dom';
@@ -151,34 +151,178 @@ export function bukaMisi(misi: Misi, opsi: OpsiMisi): void {
   });
 }
 
-/** Festival Hujan: cocokkan peristiwa dengan tahap. `periksa` mengembalikan id yang salah. */
-export function bukaFestival(periksa: (jawaban: Record<string, string>) => string[], selesai: () => void, tutup: () => void): void {
+export interface OpsiFestival {
+  /** Mengembalikan id peristiwa yang salah (kosong = semua benar). */
+  periksa: (jawaban: Record<string, string>) => string[];
+  /** Minta petunjuk Tiko untuk peristiwa pertama di `salah`; mengembalikan id peristiwa yang dibantu. */
+  petunjuk: (salah: string[]) => string | undefined;
+  selesai: () => void;
+  tutup: () => void;
+}
+
+const kapital = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+
+/** Festival yang sedang terbuka, supaya "Aku bingung" di panel Tiko bisa membantu peristiwa yang sedang dipilih. */
+let festivalAktif: { pilihan: () => string | null; tandai: (id: string) => void } | null = null;
+
+/** Peristiwa Festival yang sedang dipilih anak, kalau dialog Festival terbuka dan belum selesai. */
+export function peristiwaFestivalAktif(): string | null {
+  return festivalAktif?.pilihan() ?? null;
+}
+
+/** Tandai kartu peristiwa yang sedang dibantu petunjuk Tiko. */
+export function tandaiPetunjukFestival(id: string): void {
+  festivalAktif?.tandai(id);
+}
+
+/**
+ * Festival Hujan: anak memilih satu kartu peristiwa, lalu memilih tahap siklus airnya.
+ * "Periksa" aktif kalau keempatnya terisi dan yang ditandai salah sudah diganti. Yang benar dikunci,
+ * yang salah ditandai dan Tiko memberi petunjuk untuk salah satunya. Semua cocok → hujan turun, Tiko pulang.
+ */
+export function bukaFestival(opsi: OpsiFestival): void {
   const d = dialog();
-  d.replaceChildren(kepala('Festival Hujan', 'Desa Tirta'), el('p', 'Cocokkan setiap peristiwa dengan tahap siklus airnya.'));
-  const kotak = el('div', undefined, { class: 'pilihan' });
-  const pilihan: Record<string, HTMLSelectElement> = {};
+  d.replaceChildren(kepala('Festival Hujan', 'Desa Tirta'));
+  const arahan = el('p', 'Pilih satu peristiwa, lalu pilih tahap siklus airnya. Cocokkan keempatnya.', { class: 'arahan' });
+  const wadah = el('div', undefined, { class: 'festival' });
+  const kolomPeristiwa = el('div', undefined, { class: 'festival-peristiwa', role: 'group', 'aria-label': 'Peristiwa' });
+  const kolomTahap = el('div', undefined, { class: 'festival-tahap', role: 'group', 'aria-label': 'Tahap siklus air' });
+  const periksa = el('button', 'Periksa', { type: 'button', class: 'tombol-periksa' });
+  const umpan = el('p', '', { class: 'umpan', 'aria-live': 'polite' });
+
+  const jawaban: Record<string, string> = {};
+  const benar = new Set<string>();
+  let aktif: string | null = FESTIVAL.peristiwa[0]?.id ?? null;
+  const kartu = new Map<string, { tombol: HTMLButtonElement; slot: HTMLElement }>();
+
   for (const e of FESTIVAL.peristiwa) {
-    const label = el('label', e.teks);
-    const s = el('select', undefined, { 'aria-label': e.teks });
-    s.append(el('option', 'Pilih tahap…', { value: '' }));
-    for (const t of FESTIVAL.tahap) s.append(el('option', t, { value: t }));
-    pilihan[e.id] = s;
-    label.append(s);
-    kotak.append(label);
+    const tombol = el('button', undefined, { type: 'button', class: 'kartu-peristiwa' });
+    if (e === FESTIVAL.peristiwa[0]) tombol.setAttribute('autofocus', '');
+    const slot = el('span', '?', { class: 'slot' });
+    tombol.append(
+      el('span', e.ikon ?? '', { class: 'ikon', 'aria-hidden': 'true' }),
+      el('span', e.teks, { class: 'teks' }),
+      slot,
+      el('span', '💧 Lihat petunjuk Tiko', { class: 'tanda-tiko' }),
+    );
+    tombol.addEventListener('click', () => {
+      aktif = e.id;
+      segarkan();
+    });
+    kartu.set(e.id, { tombol, slot });
+    kolomPeristiwa.append(tombol);
   }
-  const cek = el('button', 'Periksa', { type: 'button' });
-  const pesan = el('p', '', { class: 'umpan', 'aria-live': 'polite' });
-  cek.addEventListener('click', () => {
-    const jawaban = Object.fromEntries(Object.entries(pilihan).map(([id, s]) => [id, s.value]));
-    const salah = periksa(jawaban);
-    Object.entries(pilihan).forEach(([id, s]) => s.toggleAttribute('data-salah', salah.includes(id)));
-    if (salah.length === 0) {
-      pesan.textContent = 'Semua cocok! Hujan turun di Pulau Tirta.';
-      selesai();
-    } else {
-      pesan.textContent = `${salah.length} peristiwa belum cocok. Tanya Tiko kalau bingung.`;
+
+  kolomTahap.append(el('p', 'Tahap siklus air', { class: 'judul-kolom' }));
+  for (const t of FESTIVAL.tahap) {
+    const tombol = el('button', kapital(t), { type: 'button', class: 'tombol-tahap' });
+    tombol.addEventListener('click', () => pilihTahap(t));
+    kolomTahap.append(tombol);
+  }
+  kolomTahap.append(periksa);
+
+  function berikutnya(dari: string | null): string | null {
+    const ids = FESTIVAL.peristiwa.map((e) => e.id);
+    const mulai = dari ? ids.indexOf(dari) + 1 : 0;
+    for (let i = 0; i < ids.length; i++) {
+      const id = ids[(mulai + i) % ids.length];
+      if (!benar.has(id) && (!jawaban[id] || kartu.get(id)!.tombol.hasAttribute('data-salah'))) return id;
     }
+    return null;
+  }
+
+  function segarkan(): void {
+    for (const e of FESTIVAL.peristiwa) {
+      const { tombol, slot } = kartu.get(e.id)!;
+      const t = jawaban[e.id];
+      slot.textContent = t ? kapital(t) : '?';
+      tombol.toggleAttribute('data-terisi', Boolean(t));
+      tombol.toggleAttribute('data-benar', benar.has(e.id));
+      tombol.disabled = benar.has(e.id);
+      tombol.setAttribute('aria-pressed', String(aktif === e.id));
+      tombol.setAttribute('aria-label', `${e.teks}. Tahap: ${t ?? 'belum dipilih'}${benar.has(e.id) ? ', sudah cocok' : ''}`);
+    }
+    const adaSalah = [...kartu.values()].some((k) => k.tombol.hasAttribute('data-salah'));
+    periksa.disabled = FESTIVAL.peristiwa.some((e) => !jawaban[e.id]) || adaSalah;
+  }
+
+  function pilihTahap(t: string): void {
+    if (!aktif) {
+      umpan.textContent = 'Pilih peristiwanya dulu, ya.';
+      return;
+    }
+    const dipilih = aktif;
+    jawaban[dipilih] = t;
+    const k = kartu.get(dipilih)!;
+    k.tombol.removeAttribute('data-salah');
+    k.tombol.removeAttribute('data-petunjuk');
+    aktif = berikutnya(dipilih);
+    umpan.textContent = '';
+    segarkan();
+    (aktif ? kartu.get(aktif)!.tombol : periksa.disabled ? null : periksa)?.focus();
+  }
+
+  function tandai(id: string): void {
+    for (const [kid, k] of kartu) k.tombol.toggleAttribute('data-petunjuk', kid === id);
+  }
+
+  periksa.addEventListener('click', () => {
+    const salah = opsi.periksa(jawaban);
+    for (const e of FESTIVAL.peristiwa) {
+      if (!salah.includes(e.id)) benar.add(e.id);
+      kartu.get(e.id)!.tombol.toggleAttribute('data-salah', salah.includes(e.id));
+    }
+    if (salah.length === 0) {
+      tampilkanPerayaan();
+      return;
+    }
+    const dibantu = opsi.petunjuk(salah);
+    if (dibantu) tandai(dibantu);
+    aktif = salah[0];
+    umpan.textContent = `${salah.length} peristiwa belum cocok. Lihat petunjuk Tiko, lalu ganti tahapnya.`;
+    segarkan();
+    kartu.get(aktif)!.tombol.focus();
   });
-  d.append(kotak, cek, pesan);
-  buka(d, tutup);
+
+  function tampilkanPerayaan(): void {
+    festivalAktif = null;
+    opsi.selesai();
+    const s = el('section', undefined, { class: 'pulih festival-selesai' });
+    const langit = el('div', undefined, { class: 'langit-hujan', 'aria-hidden': 'true' });
+    for (let i = 0; i < 40; i++) {
+      const r = el('span', undefined, { class: 'rintik' });
+      r.style.left = `${(i * 97) % 100}%`;
+      r.style.animationDelay = `${((i * 37) % 120) / 100}s`;
+      r.style.animationDuration = `${0.7 + ((i * 13) % 50) / 100}s`;
+      langit.append(r);
+    }
+    langit.append(el('span', '☁️', { class: 'awan-rumah' }), el('span', '💧', { class: 'tiko-pulang' }));
+    s.append(
+      langit,
+      el('p', 'Semua cocok! Hujan turun di Pulau Tirta.', { class: 'pulih-judul' }),
+      el('p', 'Siklus airnya jalan lagi, jadi Tiko bisa pulang ke awan.', { class: 'catatan-sains' }),
+    );
+    const kartuIlmu = KARTU_MATERI.filter((k) => FESTIVAL.kartuMateri.includes(k.no));
+    if (kartuIlmu.length) {
+      const daftar = el('div', undefined, { class: 'kartu-ilmu' });
+      daftar.append(el('h3', 'Kartu Ilmu baru'));
+      for (const k of kartuIlmu) daftar.append(el('p', k.fakta));
+      s.append(daftar);
+    }
+    const kembali = el('button', 'Kembali ke pulau', { type: 'button' });
+    kembali.addEventListener('click', () => d.close());
+    s.append(kembali);
+    arahan.remove();
+    wadah.replaceWith(s);
+    d.scrollTop = 0;
+    kembali.focus();
+  }
+
+  wadah.append(kolomPeristiwa, kolomTahap);
+  d.append(arahan, wadah, umpan);
+  festivalAktif = { pilihan: () => aktif, tandai };
+  segarkan();
+  buka(d, opsi.tutup, () => {
+    festivalAktif = null;
+  });
 }

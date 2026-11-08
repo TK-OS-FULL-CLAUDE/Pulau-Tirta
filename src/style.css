@@ -111,6 +111,44 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
   .tetes-awan.baru, .cincin, .cipratan { animation: none; }
 }
 
+/* Festival Hujan */
+.festival { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(220px, 1fr); gap: 16px; align-items: start; }
+.festival-peristiwa, .festival-tahap { display: grid; gap: 10px; }
+.kartu-peristiwa {
+  display: grid; grid-template-columns: 44px 1fr auto; grid-template-areas: 'ikon teks slot' 'ikon tiko tiko';
+  align-items: center; column-gap: 12px; min-height: 64px; padding: 10px 14px; text-align: left; font-size: 18px;
+  background: white; color: var(--tinta); border: 3px solid #d5dee2; border-radius: 14px;
+}
+.kartu-peristiwa .ikon { grid-area: ikon; font-size: 30px; line-height: 1; }
+.kartu-peristiwa .teks { grid-area: teks; }
+.kartu-peristiwa .slot { grid-area: slot; min-width: 128px; padding: 6px 10px; border: 2px dashed #9aa5a8; border-radius: 10px; text-align: center; font-weight: 700; color: var(--pucat); }
+.kartu-peristiwa[data-terisi] .slot { border-style: solid; border-color: var(--aksen); background: #fff4e5; color: var(--tinta); }
+.kartu-peristiwa[aria-pressed='true'] { border-color: var(--aksen); box-shadow: 0 0 0 3px rgb(240 138 44 / 30%); }
+.kartu-peristiwa[data-salah] { border-color: #d9534f; background: #fdecea; }
+.kartu-peristiwa[data-salah] .slot { border-color: #d9534f; background: #fdecea; text-decoration: line-through; }
+.kartu-peristiwa[data-benar] { border-color: var(--hijau); background: #eaf7ef; cursor: default; }
+.kartu-peristiwa[data-benar] .slot { border-color: var(--hijau); background: #d7f0e0; color: #2c7a4b; }
+.kartu-peristiwa[data-benar] .slot::after { content: ' ✓'; }
+.kartu-peristiwa .tanda-tiko { grid-area: tiko; display: none; margin-top: 6px; font-size: 16px; font-weight: 700; color: var(--laut); }
+.kartu-peristiwa[data-petunjuk] .tanda-tiko { display: block; }
+.judul-kolom { margin: 0; font-weight: 700; }
+.tombol-tahap { min-height: 52px; font-size: 18px; font-weight: 700; background: #d7ebf2; color: var(--tinta); }
+.tombol-periksa { min-height: 52px; margin-top: 6px; font-size: 18px; font-weight: 700; background: var(--hijau); }
+.tombol-periksa:disabled { opacity: 0.45; cursor: default; }
+@media (max-width: 800px) { .festival { grid-template-columns: 1fr; } }
+
+/* Perayaan: hujan turun, Tiko pulang ke awan */
+.langit-hujan { position: relative; width: min(100%, 520px); height: 150px; overflow: hidden; border-radius: 16px; background: linear-gradient(#8fa9b8, #cfe2ea); }
+.rintik { position: absolute; top: -20px; width: 3px; height: 16px; border-radius: 2px; background: #2f8fb5; opacity: 0.8; animation: rintik 1s linear infinite; }
+@keyframes rintik { to { transform: translateY(190px); } }
+.awan-rumah { position: absolute; top: 2px; left: 50%; transform: translateX(-50%); font-size: 56px; }
+.tiko-pulang { position: absolute; left: 50%; bottom: 8px; font-size: 34px; transform: translateX(-50%); animation: tiko-pulang 3s ease-in-out 0.4s forwards; }
+@keyframes tiko-pulang {
+  80% { opacity: 1; }
+  100% { transform: translate(-50%, -88px) scale(0.5); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .rintik, .tiko-pulang { animation: none; } }
+
 /* Pertanyaan alasan dan layar pulih */
 .tanya h3 { margin: 4px 0 0; font-size: 20px; }
 .pilihan-alasan { grid-template-columns: 1fr 1fr; }

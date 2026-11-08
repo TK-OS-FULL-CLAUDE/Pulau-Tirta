@@ -1,10 +1,20 @@
 import Phaser from 'phaser';
 import './style.css';
-import { MISI_UTAMA, cariMisi } from '../shared/content';
-import { festivalTerbuka, jawab, mintaPetunjuk, mulaiMisi, muat, periksaFestival, simpan, type Progres } from '../shared/missions';
+import { FESTIVAL, MISI_UTAMA, cariMisi } from '../shared/content';
+import {
+  festivalTerbuka,
+  jawab,
+  mintaPetunjuk,
+  mulaiMisi,
+  muat,
+  periksaFestival,
+  petunjukFestival,
+  simpan,
+  type Progres,
+} from '../shared/missions';
 import { DuniaScene, LEBAR, LOKASI, TINGGI, type Lokasi } from './game/world';
 import { PanelTiko } from './tiko/panel';
-import { bukaFestival, bukaMisi, sorotMisiAktif } from './ui/dialog-misi';
+import { bukaFestival, bukaMisi, peristiwaFestivalAktif, sorotMisiAktif, tandaiPetunjukFestival } from './ui/dialog-misi';
 
 let progres: Progres = muat();
 let lokasiSekarang: Lokasi = LOKASI[0];
@@ -43,7 +53,28 @@ const panel = new PanelTiko(
     sorotMisiAktif(h.tingkat);
     return h.tingkat;
   },
+  // Di Festival Hujan, "Aku bingung" membantu peristiwa yang sedang dipilih anak.
+  () => {
+    const id = peristiwaFestivalAktif();
+    if (!id) return false;
+    const dibantu = beriPetunjukFestival([id]);
+    if (dibantu) tandaiPetunjukFestival(dibantu);
+    return true;
+  },
 );
+
+/**
+ * Petunjuk Festival dari template per peristiwa (tanpa memanggil model): spesifik ke peristiwanya,
+ * selalu jalan saat offline, dan kebocorannya diuji otomatis.
+ */
+function beriPetunjukFestival(ids: string[]): string | undefined {
+  const h = petunjukFestival(progres, ids);
+  if (!h) return undefined;
+  perbarui(h.progres);
+  const teks = FESTIVAL.peristiwa.find((e) => e.id === h.peristiwaId)?.petunjuk?.[String(h.tingkat)];
+  if (teks) panel.sapa(teks);
+  return h.peristiwaId;
+}
 
 /** Sorakan singkat di atas area game saat sebuah tempat pulih (peta sendiri berubah lewat dunia.segarkan()). */
 function sorak(teks: string): void {
@@ -95,7 +126,18 @@ function interaksi(lokasi: Lokasi): void {
         },
       });
     } else if (festivalTerbuka(progres) && !progres.festivalSelesai) {
-      bukaFestival(periksaFestival, () => perbarui({ ...progres, festivalSelesai: true }), lepas);
+      bukaFestival({
+        periksa: periksaFestival,
+        petunjuk: beriPetunjukFestival,
+        selesai: () => {
+          perbarui({ ...progres, festivalSelesai: true });
+          panel.sapa('Hujan turun! Terima kasih sudah memulihkan Pulau Tirta. Aku pulang ke awan dulu, ya. Sampai jumpa!');
+        },
+        tutup: () => {
+          lepas();
+          if (progres.festivalSelesai) sorak('Hujan turun di Pulau Tirta!');
+        },
+      });
     } else {
       panel.sapa(progres.festivalSelesai ? 'Hujan sudah turun. Terima kasih sudah memulihkan Pulau Tirta!' : 'Warga cemas. Perbaiki empat tempat yang rusak dulu, ya.');
       lepas();

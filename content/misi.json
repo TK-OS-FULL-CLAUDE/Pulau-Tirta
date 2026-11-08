@@ -249,26 +249,71 @@
       "hujan",
       "peresapan"
     ],
+    "kartuMateri": [
+      1,
+      12
+    ],
+    "kataTerlarang": {
+      "penguapan": [
+        "uap",
+        "menguap",
+        "penguapan"
+      ],
+      "pengembunan": [
+        "mengembun",
+        "pengembunan"
+      ],
+      "hujan": [],
+      "peresapan": [
+        "resap",
+        "meresap",
+        "peresapan"
+      ]
+    },
     "peristiwa": [
       {
         "id": "f1",
         "teks": "Baju jemuran kering di siang hari",
-        "tahap": "penguapan"
+        "ikon": "👕",
+        "tahap": "penguapan",
+        "petunjuk": {
+          "1": "Ke mana perginya air dari baju yang basah itu? Coba ingat kolam yang kena sinar di Pantai Biru.",
+          "2": "Lihat Kartu Ilmu dari Pantai Biru. Apa yang dilakukan panas matahari pada air di kolam?",
+          "3": "Panas matahari mengubah air di baju menjadi uap air yang naik ke udara. Sama seperti kolam di Pantai Biru."
+        }
       },
       {
         "id": "f2",
         "teks": "Rumput basah oleh embun di pagi hari",
-        "tahap": "pengembunan"
+        "ikon": "🌱",
+        "tahap": "pengembunan",
+        "petunjuk": {
+          "1": "Dari mana air di rumput itu datang? Padahal semalam langit cerah.",
+          "2": "Ingat awan yang terbentuk di Puncak Kabut. Apa yang terjadi pada udara lembap di tempat yang suhunya rendah?",
+          "3": "Uap air di udara mendingin saat menyentuh rumput, lalu berubah menjadi titik-titik air. Sama seperti awan di Puncak Kabut."
+        }
       },
       {
         "id": "f3",
         "teks": "Langit mendung tebal, lalu turun hujan",
-        "tahap": "hujan"
+        "ikon": "🌧️",
+        "tahap": "hujan",
+        "petunjuk": {
+          "1": "Awan mendung itu berisi apa? Apa yang terjadi kalau isinya makin banyak?",
+          "2": "Ingat titik-titik air di awan Lembah Hujan. Kapan mereka mulai jatuh?",
+          "3": "Titik-titik air di awan saling bertemu sampai besar dan berat, lalu jatuh. Itu yang terjadi saat turun hujan."
+        }
       },
       {
         "id": "f4",
         "teks": "Air hujan di kebun hilang ke tanah, lalu muncul lagi di mata air",
-        "tahap": "peresapan"
+        "ikon": "⛲",
+        "tahap": "peresapan",
+        "petunjuk": {
+          "1": "Sebelum muncul di mata air, air hujan itu masuk ke mana dulu?",
+          "2": "Ingat lereng berpohon di Hutan & Sungai. Ke mana air hujan pergi di tanah yang gembur?",
+          "3": "Air hujan masuk ke dalam tanah dan menjadi air tanah. Air tanah itulah yang mengisi sumur dan mata air."
+        }
       }
     ]
   }

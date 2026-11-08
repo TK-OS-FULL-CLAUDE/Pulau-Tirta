@@ -9,6 +9,7 @@ import {
   mulaiMisi,
   muat,
   periksaFestival,
+  petunjukFestival,
   progresAwal,
   simpan,
 } from '../shared/missions';
@@ -117,6 +118,34 @@ describe('Festival Hujan', () => {
     const jawaban = Object.fromEntries(FESTIVAL.peristiwa.map((e) => [e.id, e.tahap]));
     jawaban.f2 = 'penguapan';
     expect(periksaFestival(jawaban)).toEqual(['f2']);
+  });
+
+  it('petunjuk naik bertingkat per peristiwa, sampai 3, dan dicatat di progres', () => {
+    let p = progresAwal();
+    const tingkat: number[] = [];
+    for (let i = 0; i < 4; i++) {
+      const h = petunjukFestival(p, ['f1', 'f3'])!;
+      expect(h.peristiwaId).toBe('f1');
+      tingkat.push(h.tingkat);
+      p = h.progres;
+    }
+    expect(tingkat).toEqual([1, 2, 3, 3]);
+    expect(petunjukFestival(p, ['f3'])!.tingkat).toBe(1);
+    expect(p.petunjuk['festival:f1']).toBe(3);
+    expect(petunjukFestival(p, [])).toBeNull();
+  });
+
+  it('setiap peristiwa punya petunjuk tingkat 1–3, dan tingkat 1–2 tidak menyebut tahapnya', () => {
+    const kata = (s: string) => s.toLowerCase().split(/[^a-z]+/).filter(Boolean);
+    for (const e of FESTIVAL.peristiwa) {
+      expect(Object.keys(e.petunjuk ?? {}).sort(), e.id).toEqual(['1', '2', '3']);
+      // Label tahap boleh muncul kalau sudah ada di teks peristiwanya sendiri (mis. "turun hujan").
+      const terlarang = [...FESTIVAL.kataTerlarang[e.tahap], ...(kata(e.teks).includes(e.tahap) ? [] : [e.tahap])];
+      for (const t of ['1', '2']) {
+        const bocor = kata(e.petunjuk![t]).filter((k) => terlarang.includes(k));
+        expect(bocor, `${e.id} tingkat ${t}: ${e.petunjuk![t]}`).toEqual([]);
+      }
+    }
   });
 });
 

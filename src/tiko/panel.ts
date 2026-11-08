@@ -29,6 +29,8 @@ export class PanelTiko {
     private keMana: () => string,
     /** Tingkat petunjuk untuk "Aku bingung" di sebuah misi; dari sistem misi supaya naik bertahap (1 → 2 → 3). */
     private tingkatBingung: (misiId: string) => Tingkat = () => 1,
+    /** Penanganan khusus "Aku bingung" (mis. di Festival Hujan). Kembalikan true kalau sudah ditangani. */
+    private bingungKhusus: () => boolean = () => false,
   ) {
     document.getElementById('tiko-form')!.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -57,6 +59,7 @@ export class PanelTiko {
       return;
     }
     if (jenis === 'bingung') {
+      if (this.bingungKhusus()) return;
       const k = this.konteks();
       if (k.misiId) void this.petunjuk(k.misiId, this.tingkatBingung(k.misiId), 'Aku bingung');
       else void this.tanya('Aku bingung');
