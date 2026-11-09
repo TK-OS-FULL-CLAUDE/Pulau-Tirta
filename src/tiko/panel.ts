@@ -1,5 +1,18 @@
-import type { Tingkat } from '../../shared/content';
-import { BATAS_PANJANG_PESAN } from '../../shared/guardrail';
+import { cariMisi, type Tingkat } from '../../shared/content';
+import { BATAS_PANJANG_PESAN, petunjukCadangan } from '../../shared/guardrail';
+
+const TIDAK_TERHUBUNG = 'Aku sedang tidak bisa terhubung. Coba lihat lagi apa yang berubah di layar, ya.';
+
+/**
+ * Jawaban saat server tidak bisa dihubungi atau membalas error.
+ * Petunjuk misi tetap memakai petunjuk cadangan tim untuk misi dan tingkat itu, jadi game tetap jalan offline.
+ */
+export function jawabanCadangan(isi: { mode?: unknown; misiId?: unknown; tingkat?: unknown }): string {
+  const misi = isi.mode === 'petunjuk' && typeof isi.misiId === 'string' ? cariMisi(isi.misiId) : undefined;
+  const t = isi.tingkat;
+  if (misi && (t === 1 || t === 2 || t === 3)) return petunjukCadangan(misi, t);
+  return TIDAK_TERHUBUNG;
+}
 
 export interface KonteksGame {
   lokasi: string;
@@ -91,9 +104,11 @@ export class PanelTiko {
         body: JSON.stringify({ ...k, ...isi, riwayat: this.riwayat.slice(-6) }),
         signal: AbortSignal.timeout(9000),
       });
-      jawaban = (await res.json()) as Jawaban;
+      const data = (await res.json()) as Partial<Jawaban>;
+      if (!res.ok || typeof data.teks !== 'string' || !data.teks) throw new Error(`balasan tidak dipakai (${res.status})`);
+      jawaban = data as Jawaban;
     } catch {
-      jawaban = { teks: 'Aku sedang tidak bisa terhubung. Coba lihat lagi apa yang berubah di layar, ya.', sumber: 'cadangan' };
+      jawaban = { teks: jawabanCadangan(isi), sumber: 'cadangan' };
     } finally {
       this.mengetik.hidden = true;
     }

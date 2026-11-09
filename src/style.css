@@ -14,10 +14,12 @@
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; }
 .tata { display: grid; grid-template-columns: 1fr 340px; gap: 12px; padding: 12px; height: 100vh; }
-#game { border-radius: 12px; overflow: hidden; background: var(--laut); }
-#game canvas { width: 100% !important; height: 100% !important; object-fit: contain; display: block; }
+#game { min-width: 0; min-height: 0; border-radius: 12px; overflow: hidden; background: var(--laut); }
+/* Ukuran canvas diatur Phaser (Scale.FIT). Jangan dipaksa lewat CSS: posisi klik/sentuh jadi meleset. */
+#game canvas { display: block; }
 
-.tiko { display: flex; flex-direction: column; background: var(--kertas); border-radius: 12px; padding: 12px; min-height: 0; }
+/* Hanya panel Tiko; balon pesan Tiko juga punya class "tiko". */
+.tata > .tiko { display: flex; flex-direction: column; background: var(--kertas); border-radius: 12px; padding: 12px; min-height: 0; }
 .tiko-kepala { display: flex; align-items: center; gap: 8px; }
 .tiko-kepala small { display: block; color: var(--pucat); font-size: 14px; }
 .tiko-kepala .tombol-kecil { margin-left: auto; }
@@ -195,7 +197,11 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 @media (max-width: 900px) {
   .tata { grid-template-columns: 1fr; height: auto; }
   #game { aspect-ratio: 16 / 9; }
-  .tiko { min-height: 360px; }
+  .tata > .tiko { min-height: 360px; }
+  /* Layar kecil: area game terlalu pendek untuk misi. Selama misi, dialog mengambil lebar penuh dan peta disembunyikan. */
+  #game:has(> .dialog-misi[open]) { aspect-ratio: auto; overflow: visible; background: none; }
+  #game:has(> .dialog-misi[open]) > canvas { display: none; }
+  .dialog-misi { position: relative; inset: auto; }
 }
 
 /* Layar judul, menu jeda, layar tamat */
