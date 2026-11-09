@@ -15,9 +15,11 @@ import {
 } from '../shared/missions';
 import { DuniaScene, LEBAR, LOKASI, TINGGI, type Lokasi } from './game/world';
 import { PanelTiko } from './tiko/panel';
+import { isiJurnal } from '../shared/jurnal';
 import { WARGA, naskahDesa } from '../shared/warga';
 import { pasangDemo, tujuanDariUrl } from './ui/demo';
 import { bukaFestival, bukaMisi, peristiwaFestivalAktif, sorotMisiAktif, tandaiPetunjukFestival } from './ui/dialog-misi';
+import { ID_JURNAL, bukaJurnal } from './ui/jurnal';
 import { bukaPercakapan } from './ui/kotak-dialog';
 import { bukaJeda, bukaJudul, bukaTamat } from './ui/layar';
 
@@ -39,6 +41,7 @@ function perbarui(p: Progres): void {
   if (!DEMO) simpan(progres);
   terakhirMaju = Date.now();
   dunia.segarkan();
+  perbaruiLencana();
 }
 
 const panel = new PanelTiko(
@@ -122,7 +125,7 @@ function interaksi(lokasi: Lokasi): void {
           const hasil = jawab(progres, misi.id, pilihanId);
           perbarui(hasil.progres);
           if (hasil.benar) {
-            panel.sapa(`Kamu berhasil! ${lokasi.nama} pulih. Kamu dapat Kartu Ilmu baru.`);
+            panel.sapa(`Kamu berhasil! ${lokasi.nama} pulih. Kartu Ilmu baru masuk ke Jurnal.`);
             return { benar: true };
           }
           const teks = misi.pilihan?.find((x) => x.id === pilihanId)?.teks ?? '';
@@ -246,7 +249,55 @@ tombolJeda.type = 'button';
 tombolJeda.className = 'tombol-jeda';
 tombolJeda.textContent = 'Jeda';
 tombolJeda.addEventListener('click', bukaMenuJeda);
-document.getElementById('game')!.append(tombolJeda);
+
+// ---- Jurnal Petualangan ----
+
+const NAMA_TEMPAT = Object.fromEntries(LOKASI.map((l) => [l.id, l.nama]));
+/** Kartu yang sudah dilihat di Jurnal; kartu yang didapat sesudahnya ditandai angka di tombol Jurnal. */
+let kartuTerlihat = progres.kartuDidapat.length;
+const lencana = document.createElement('span');
+lencana.className = 'lencana';
+lencana.hidden = true;
+const tombolJurnal = document.createElement('button');
+tombolJurnal.type = 'button';
+tombolJurnal.className = 'tombol-jurnal';
+tombolJurnal.append('Jurnal', lencana);
+
+function perbaruiLencana(): void {
+  const baru = progres.kartuDidapat.length - kartuTerlihat;
+  lencana.hidden = baru <= 0;
+  lencana.textContent = String(baru);
+  tombolJurnal.setAttribute('aria-label', baru > 0 ? `Jurnal, ${baru} Kartu Ilmu baru` : 'Jurnal');
+}
+
+function bukaJurnalDunia(): void {
+  if (document.querySelector('dialog[open]')) return;
+  kunci();
+  kartuTerlihat = progres.kartuDidapat.length;
+  perbaruiLencana();
+  bukaJurnal(isiJurnal(progres, NAMA_TEMPAT), lepasKunci);
+}
+tombolJurnal.addEventListener('click', bukaJurnalDunia);
+
+const tombolAtas = document.createElement('div');
+tombolAtas.className = 'tombol-atas';
+tombolAtas.append(tombolJurnal, tombolJeda);
+document.getElementById('game')!.append(tombolAtas);
+
+// J membuka atau menutup Jurnal (kecuali sedang mengetik atau ada dialog lain).
+document.addEventListener('keydown', (e) => {
+  if ((e.key !== 'j' && e.key !== 'J') || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+  const a = document.activeElement;
+  if (a instanceof HTMLInputElement || a instanceof HTMLTextAreaElement) return;
+  const jurnal = document.getElementById(ID_JURNAL) as HTMLDialogElement | null;
+  if (jurnal?.open) {
+    e.preventDefault();
+    jurnal.close();
+  } else if (!document.querySelector('dialog[open]')) {
+    e.preventDefault();
+    bukaJurnalDunia();
+  }
+});
 
 // Esc membuka menu jeda, kecuali sedang ada dialog (dialog misi menangani Esc-nya sendiri) atau sedang mengetik.
 document.addEventListener('keydown', (e) => {
