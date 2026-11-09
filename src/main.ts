@@ -9,14 +9,21 @@ import {
   muat,
   periksaFestival,
   petunjukFestival,
+  progresAwal,
   simpan,
   type Progres,
 } from '../shared/missions';
 import { DuniaScene, LEBAR, LOKASI, TINGGI, type Lokasi } from './game/world';
 import { PanelTiko } from './tiko/panel';
+import { pasangDemo, tujuanDariUrl } from './ui/demo';
 import { bukaFestival, bukaMisi, peristiwaFestivalAktif, sorotMisiAktif, tandaiPetunjukFestival } from './ui/dialog-misi';
+import { bukaJeda, bukaJudul, bukaTamat } from './ui/layar';
 
-let progres: Progres = muat();
+const q = new URLSearchParams(location.search);
+/** Mode demo untuk presentasi: mulai dari awal setiap kali, dan progres tidak disimpan (lihat src/ui/demo.ts). */
+const DEMO = q.has('demo');
+
+let progres: Progres = DEMO ? progresAwal() : muat();
 let lokasiSekarang: Lokasi = LOKASI[0];
 let terakhirMaju = Date.now();
 let terakhirSapa = 0;
@@ -25,7 +32,7 @@ const persenPulih = () => MISI_UTAMA.filter((m) => progres.status[m.id] === 'sel
 
 function perbarui(p: Progres): void {
   progres = p;
-  simpan(progres);
+  if (!DEMO) simpan(progres);
   terakhirMaju = Date.now();
   dunia.segarkan();
 }
@@ -130,12 +137,16 @@ function interaksi(lokasi: Lokasi): void {
         periksa: periksaFestival,
         petunjuk: beriPetunjukFestival,
         selesai: () => {
-          perbarui({ ...progres, festivalSelesai: true });
+          const kartuDidapat = [...new Set([...progres.kartuDidapat, ...FESTIVAL.kartuMateri])].sort((a, b) => a - b);
+          perbarui({ ...progres, festivalSelesai: true, kartuDidapat });
           panel.sapa('Hujan turun! Terima kasih sudah memulihkan Pulau Tirta. Aku pulang ke awan dulu, ya. Sampai jumpa!');
         },
         tutup: () => {
           lepas();
-          if (progres.festivalSelesai) sorak('Hujan turun di Pulau Tirta!');
+          if (progres.festivalSelesai) {
+            sorak('Hujan turun di Pulau Tirta!');
+            setTimeout(tampilkanTamat, 2200);
+          }
         },
       });
     } else {
@@ -166,7 +177,7 @@ new Phaser.Game({
   scene: [dunia],
 });
 
-panel.sapa('Halo, aku Tiko! Aku tetes air yang tersesat. Pulau ini kekeringan. Jalan pakai WASD, tekan E di dekat tempat yang rusak.');
+const SALAM = 'Halo, aku Tiko! Aku tetes air yang tersesat. Pulau ini kekeringan. Jalan pakai WASD, tekan E di dekat tempat yang rusak.';
 
 // Sapaan proaktif dari template: maksimal sekali dalam 3 menit, setelah ±90 detik tanpa kemajuan.
 setInterval(() => {
@@ -178,10 +189,103 @@ setInterval(() => {
   panel.sapa(`Mau coba lihat ke ${sisa.nama}? Kayaknya ada yang aneh di sana.`);
 }, 5_000);
 
-// Mode demo: ?demo=1&misi=misi-1 membuka misi langsung saat presentasi.
-const q = new URLSearchParams(location.search);
-const misiDemo = q.get('misi');
-if (q.has('demo') && misiDemo) {
-  const l = LOKASI.find((x) => x.misiId === misiDemo);
-  if (l) setTimeout(() => interaksi(l), 800);
+// ---- Layar judul, menu jeda, layar tamat ----
+
+const kunci = () => (dunia.terkunci = true);
+const lepasKunci = () => setTimeout(() => (dunia.terkunci = false), 150);
+const tutupSemuaDialog = () => document.querySelectorAll<HTMLDialogElement>('dialog[open]').forEach((d) => d.close());
+
+/** Mulai dari awal. Di mode demo cukup di memori; selain itu progres dihapus lalu halaman dimuat ulang. */
+function ulang(): void {
+  if (DEMO) {
+    tutupSemuaDialog();
+    perbarui(progresAwal());
+    return;
+  }
+  simpan(progresAwal());
+  location.reload();
+}
+
+function tampilkanTamat(): void {
+  tutupSemuaDialog();
+  kunci();
+  bukaTamat({ jumlahKartu: progres.kartuDidapat.length, ulang, tutup: lepasKunci });
+}
+
+function bukaMenuJeda(): void {
+  if (document.querySelector('dialog[open]')) return;
+  kunci();
+  bukaJeda({ ulang, tutup: lepasKunci });
+}
+
+const tombolJeda = document.createElement('button');
+tombolJeda.type = 'button';
+tombolJeda.className = 'tombol-jeda';
+tombolJeda.textContent = 'Jeda';
+tombolJeda.addEventListener('click', bukaMenuJeda);
+document.getElementById('game')!.append(tombolJeda);
+
+// Esc membuka menu jeda, kecuali sedang ada dialog (dialog misi menangani Esc-nya sendiri) atau sedang mengetik.
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape' || e.defaultPrevented || e.repeat) return;
+  const a = document.activeElement;
+  if (a instanceof HTMLInputElement || a instanceof HTMLTextAreaElement) {
+    a.blur();
+    return;
+  }
+  if (document.querySelector('dialog[open]')) return;
+  e.preventDefault();
+  bukaMenuJeda();
+});
+
+// ---- Mode demo ----
+
+function semuaMisiSelesai(p: Progres): Progres {
+  const status = { ...p.status };
+  for (const m of MISI_UTAMA) status[m.id] = 'selesai';
+  const kartuDidapat = [...new Set([...p.kartuDidapat, ...MISI_UTAMA.flatMap((m) => m.kartuMateri)])].sort((a, b) => a - b);
+  return { ...p, status, kartuDidapat };
+}
+
+function keDemo(tujuan: string): void {
+  tutupSemuaDialog();
+  setTimeout(() => {
+    if (tujuan === 'festival') {
+      const petunjuk = Object.fromEntries(Object.entries(progres.petunjuk).filter(([k]) => !k.startsWith('festival:')));
+      perbarui({ ...semuaMisiSelesai(progres), petunjuk, festivalSelesai: false });
+      interaksi(LOKASI.find((l) => l.id === 'desa') ?? LOKASI[0]);
+    } else if (tujuan === 'tamat') {
+      const p = semuaMisiSelesai(progres);
+      perbarui({ ...p, festivalSelesai: true, kartuDidapat: [...new Set([...p.kartuDidapat, ...FESTIVAL.kartuMateri])].sort((a, b) => a - b) });
+      tampilkanTamat();
+    } else {
+      const l = LOKASI.find((x) => x.misiId === tujuan);
+      if (!l) return;
+      // Misi yang diulang di demo dimulai bersih: status dan hitungan petunjuknya dikosongkan.
+      perbarui({ ...progres, status: { ...progres.status, [tujuan]: 'belum' }, petunjuk: { ...progres.petunjuk, [tujuan]: 0 } });
+      interaksi(l);
+    }
+  }, 200);
+}
+
+if (DEMO) {
+  panel.sapa(SALAM);
+  pasangDemo({ ke: keDemo, selesaikanMisi: () => perbarui(semuaMisiSelesai(progres)), reset: ulang });
+  const tujuan = tujuanDariUrl(q);
+  if (tujuan) setTimeout(() => keDemo(tujuan), 800);
+} else {
+  const adaProgres = Object.values(progres.status).some((s) => s !== 'belum') || progres.festivalSelesai;
+  const sisaTempat = MISI_UTAMA.filter((m) => progres.status[m.id] !== 'selesai').length;
+  kunci();
+  bukaJudul({
+    adaProgres,
+    sisaTempat,
+    ulang,
+    mulai: (baru) => {
+      lepasKunci();
+      if (baru) panel.sapa(SALAM);
+      else if (sisaTempat) panel.sapa(`Selamat datang kembali! Masih ada ${sisaTempat} tempat yang perlu dipulihkan.`);
+      else panel.sapa('Selamat datang kembali! Pulau Tirta sudah pulih. Jelajahi saja sesukamu.');
+    },
+  });
 }

@@ -197,3 +197,32 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
   #game { aspect-ratio: 16 / 9; }
   .tiko { min-height: 360px; }
 }
+
+/* Layar judul, menu jeda, layar tamat */
+.layar { border: 0; border-radius: 20px; padding: 28px 32px; width: min(92vw, 620px); max-height: 92vh; overflow-y: auto; background: var(--kertas); color: var(--tinta); text-align: center; }
+.layar[open] { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.layar::backdrop { background: rgb(13 43 56 / 72%); }
+.layar h1 { margin: 0; font-size: 34px; color: var(--laut); }
+.layar h2 { margin: 0; }
+.layar-judul::backdrop { background: linear-gradient(#7fc4dd, #1f6f8b 70%, #e8d29a 70%); }
+.judul-tiko { font-size: 72px; line-height: 1; animation: melayang 2.4s ease-in-out infinite alternate; }
+@keyframes melayang { to { transform: translateY(-8px); } }
+.judul-sub { margin: 0; max-width: 480px; }
+.judul-kecil { margin: 0; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--hijau); }
+.judul-bawah { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.tombol-besar { min-height: 56px; min-width: 260px; font-size: 20px; font-weight: 800; background: var(--hijau); }
+.tombol-bahaya { background: #c0392b; }
+.yakin { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.peringatan { margin: 0; width: 100%; font-weight: 700; color: #c0392b; }
+.layar-jeda { width: min(92vw, 420px); }
+.siklus { width: min(100%, 440px); height: auto; }
+.siklus-nama { font-size: 17px; font-weight: 800; fill: var(--tinta); }
+.siklus-tempat { font-size: 13px; fill: var(--pucat); }
+@media (prefers-reduced-motion: reduce) { .judul-tiko { animation: none; } }
+
+/* Tombol jeda dan panel demo di atas area game */
+.tombol-jeda { position: absolute; top: 12px; right: 12px; z-index: 1; min-height: 44px; background: rgb(255 255 255 / 92%); color: var(--tinta); font-weight: 700; box-shadow: 0 2px 8px rgb(0 0 0 / 25%); }
+.tombol-demo { position: absolute; bottom: 12px; left: 12px; z-index: 3; min-height: 36px; padding: 0 10px; font-size: 13px; background: #6b3fa0; }
+.panel-demo { position: absolute; bottom: 56px; left: 12px; z-index: 3; display: grid; gap: 6px; padding: 12px; width: 220px; background: white; border-radius: 12px; box-shadow: 0 6px 20px rgb(0 0 0 / 35%); }
+.panel-demo[hidden] { display: none; }
+.panel-demo .catatan { margin: 0 0 4px; }
