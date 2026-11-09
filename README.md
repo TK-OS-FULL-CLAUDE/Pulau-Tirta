@@ -29,10 +29,10 @@ npm run typecheck
 
 ## Struktur
 
-World aktif adalah **V3.4-A5, Desa Tirta (192 x 144 tile)**. Buka `world/maps/pulau_tirta_v34_a5.tmj`
+World aktif adalah **V3.7, Rainfall Basin Lembah Hujan (192 x 144 tile)**. Desa Tirta A5, Pantai Biru V3.5.1 dan Puncak Kabut V3.6 tetap dipertahankan. Buka `world/maps/pulau_tirta_v37.tmj`
 di Tiled, lalu jalankan `npm run world:export` setelah menyimpan edit.
 Map V1 tetap disimpan. Panduan koordinat, aset, layer, pengujian dan screenshot:
-[World V3.4-A5 — Aufa](world/VILLAGE_A5.md).
+[Panduan sumber world](world/README.md). Arsip Pantai: [V3.5.1](world/PANTAI_V351_POOL_POLISH.md), [V3.5](world/PANTAI_V35.md).
 
 ```
 content/        Konten: misi, pertanyaan alasan, petunjuk cadangan, kartu materi (JSON)

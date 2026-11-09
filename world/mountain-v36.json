@@ -1,0 +1,569 @@
+{
+  "version": "3.6-Puncak-Visual",
+  "source": "world/maps/pulau_tirta_v351.tmj",
+  "visualElevationOnly": true,
+  "collisionChanged": false,
+  "routeFootprintChanged": false,
+  "observation": {
+    "mission": "misi-2",
+    "location": "puncak",
+    "interaction": [
+      968,
+      696
+    ],
+    "deck": {
+      "x": 55,
+      "y": 37,
+      "width": 7,
+      "height": 5
+    }
+  },
+  "terraces": [
+    "green-foothills",
+    "scree-slope",
+    "cool-observation-summit"
+  ],
+  "trees": [
+    {
+      "x": 30,
+      "y": 54,
+      "style": "tall",
+      "width": 3,
+      "height": 4,
+      "existingCollider": true
+    },
+    {
+      "x": 34,
+      "y": 57,
+      "style": "tall",
+      "width": 3,
+      "height": 4,
+      "existingCollider": true
+    },
+    {
+      "x": 32,
+      "y": 60,
+      "style": "short",
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 36,
+      "y": 47,
+      "style": "short",
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 67,
+      "y": 54,
+      "style": "tall",
+      "width": 3,
+      "height": 4,
+      "existingCollider": true
+    },
+    {
+      "x": 44,
+      "y": 36,
+      "style": "short",
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 70,
+      "y": 39,
+      "style": "short",
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 72,
+      "y": 42,
+      "style": "short",
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 71,
+      "y": 32,
+      "style": "blue",
+      "width": 3,
+      "height": 4,
+      "existingCollider": true
+    },
+    {
+      "x": 49,
+      "y": 31,
+      "style": "short",
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    }
+  ],
+  "features": [
+    {
+      "kind": "open-observation-deck",
+      "x": 55,
+      "y": 37,
+      "width": 7,
+      "height": 5,
+      "walkable": true
+    },
+    {
+      "kind": "low-scree",
+      "x": 31,
+      "y": 57,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-scree",
+      "x": 36,
+      "y": 59,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "fern",
+      "x": 37,
+      "y": 57,
+      "width": 2,
+      "height": 2,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 36,
+      "y": 58,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-scree",
+      "x": 64,
+      "y": 56,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-scree",
+      "x": 61,
+      "y": 58,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "fern",
+      "x": 64,
+      "y": 54,
+      "width": 2,
+      "height": 2,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 63,
+      "y": 57,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 65,
+      "y": 58,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 66,
+      "y": 56,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-scree",
+      "x": 32,
+      "y": 49,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 32,
+      "y": 51,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 33,
+      "y": 50,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 34,
+      "y": 52,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "fern",
+      "x": 46,
+      "y": 52,
+      "width": 2,
+      "height": 2,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 44,
+      "y": 53,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 45,
+      "y": 53,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wildflowers",
+      "x": 44,
+      "y": 51,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-scree",
+      "x": 51,
+      "y": 54,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 50,
+      "y": 55,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 57,
+      "y": 54,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wildflowers",
+      "x": 55,
+      "y": 54,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-scree",
+      "x": 40,
+      "y": 40,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 41,
+      "y": 42,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 39,
+      "y": 40,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wildflowers",
+      "x": 38,
+      "y": 44,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-scree",
+      "x": 65,
+      "y": 36,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 50,
+      "y": 34,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 64,
+      "y": 36,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 65,
+      "y": 37,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wildflowers",
+      "x": 63,
+      "y": 35,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-scree",
+      "x": 57,
+      "y": 31,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-scree",
+      "x": 65,
+      "y": 32,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 55,
+      "y": 32,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 59,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "short-grass",
+      "x": 67,
+      "y": 34,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wildflowers",
+      "x": 61,
+      "y": 32,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "scree-bed",
+      "x": 53,
+      "y": 56,
+      "width": 3,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "scree-bed",
+      "x": 62,
+      "y": 34,
+      "width": 3,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "rock-crack",
+      "x": 55,
+      "y": 49,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "rock-crack",
+      "x": 58,
+      "y": 35,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "moss",
+      "x": 31,
+      "y": 55,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "moss",
+      "x": 52,
+      "y": 53,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    }
+  ],
+  "pockets": [
+    {
+      "name": "kaki-barat",
+      "details": 4
+    },
+    {
+      "name": "kaki-timur",
+      "details": 6
+    },
+    {
+      "name": "hutan-lereng-barat",
+      "details": 4
+    },
+    {
+      "name": "tikungan-batu",
+      "details": 4
+    },
+    {
+      "name": "tebing-tengah",
+      "details": 4
+    },
+    {
+      "name": "pandang-barat",
+      "details": 4
+    },
+    {
+      "name": "bahu-puncak",
+      "details": 5
+    },
+    {
+      "name": "punggung-dingin",
+      "details": 6
+    }
+  ],
+  "placementsSkipped": 36,
+  "protectedLivingAnchors": [
+    [
+      35,
+      51
+    ],
+    [
+      47,
+      44
+    ],
+    [
+      69,
+      40
+    ]
+  ],
+  "validationTargets": [
+    [
+      74,
+      61
+    ],
+    [
+      68,
+      61
+    ],
+    [
+      58,
+      60
+    ],
+    [
+      47,
+      59
+    ],
+    [
+      39,
+      55
+    ],
+    [
+      39,
+      51
+    ],
+    [
+      45,
+      49
+    ],
+    [
+      55,
+      51
+    ],
+    [
+      63,
+      51
+    ],
+    [
+      65,
+      47
+    ],
+    [
+      65,
+      43
+    ],
+    [
+      60,
+      43
+    ],
+    [
+      56,
+      36
+    ],
+    [
+      38,
+      42
+    ]
+  ]
+}

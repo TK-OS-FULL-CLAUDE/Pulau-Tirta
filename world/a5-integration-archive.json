@@ -1,0 +1,6 @@
+{
+  "src/main.ts": "world/archives/a5-before-playtest/src/main.ts.txt",
+  "src/style.css": "world/archives/a5-before-playtest/src/style.css.txt",
+  "src/ui/layar.ts": "world/archives/a5-before-playtest/src/ui/layar.ts.txt",
+  "public/maps/README.md": "world/archives/a5-before-playtest/public/maps/README.md.txt"
+}

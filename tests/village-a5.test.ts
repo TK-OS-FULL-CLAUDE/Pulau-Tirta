@@ -7,6 +7,7 @@ import buildings from '../world/buildings-v34-a1.json';
 import baseline from '../world/village-a5-baseline.json';
 import colorBaseline from '../world/village-a5-color-baseline.json';
 import colorLayout from '../world/village-a5-color.json';
+import integrationArchive from '../world/a5-integration-archive.json';
 import {bacaPeta,bisaBerdiri,langkahGerak,interaksiTerdekat,properti,type PetaTiled,type ObjekTiled} from '../src/game/map-data';
 import {NPC_PLANS,validateNpcPlan,makeNpc,tickNpc} from '../src/game/living-model';
 import {villageActivity} from '../src/game/village-activity';
@@ -31,7 +32,9 @@ describe('A5 density on integrated team code',()=>{
  });
  it('freezes integrated UI, mission activities, hooks, Tiko/backend, old maps and assets',()=>{
   expect(baseline.commit).toBe('d4d7d63cd56e09ff9ee670de1190dfbb1c6647e9');
-  for(const[file,hash]of Object.entries(baseline.hashes))expect(createHash('sha256').update(readFileSync(file)).digest('hex'),file).toBe(hash);
+  // UI evolved in main after A5, and runtime docs now describe V3.5; verify historical A5 bytes.
+  // Current integrated UI is independently frozen by coast-v35-baseline and its regression test.
+  for(const[file,hash]of Object.entries(baseline.hashes))expect(createHash('sha256').update(readFileSync(integrationArchive[file as keyof typeof integrationArchive]??file)).digest('hex'),file).toBe(hash);
   expect([raw.width,raw.height,raw.tilewidth,raw.tileheight]).toEqual([192,144,16,16]);expect(raw.layers).toHaveLength(before.layers.length);expect(raw.tilesets.slice(0,8)).toEqual(before.tilesets);
   for(const name of ['Spawn','Interactions','Regions','FuturePaths','DevelopmentAreas'])expect(raw.layers.find(l=>l.name===name)).toEqual(before.layers.find(l=>l.name===name));
  });

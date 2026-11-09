@@ -1,0 +1,1010 @@
+{
+  "version": "3.7-Rainfall-Basin",
+  "source": "world/maps/pulau_tirta_v36.tmj",
+  "visualElevationOnly": true,
+  "collisionChanged": false,
+  "interaction": {
+    "location": "lembah",
+    "mission": "misi-3",
+    "x": 2216,
+    "y": 728
+  },
+  "patch": {
+    "x": 128,
+    "y": 32,
+    "width": 42,
+    "height": 32
+  },
+  "shapes": {
+    "rim": [
+      [
+        134,
+        34
+      ],
+      [
+        141,
+        33
+      ],
+      [
+        148,
+        34
+      ],
+      [
+        152,
+        35
+      ],
+      [
+        160,
+        34
+      ],
+      [
+        165,
+        38
+      ],
+      [
+        168,
+        42
+      ],
+      [
+        166,
+        46
+      ],
+      [
+        169,
+        51
+      ],
+      [
+        166,
+        57
+      ],
+      [
+        162,
+        60
+      ],
+      [
+        157,
+        61
+      ],
+      [
+        153,
+        63.5
+      ],
+      [
+        145,
+        63
+      ],
+      [
+        140,
+        61
+      ],
+      [
+        134,
+        61
+      ],
+      [
+        130,
+        57
+      ],
+      [
+        129,
+        52
+      ],
+      [
+        131,
+        47
+      ],
+      [
+        129,
+        43
+      ],
+      [
+        132,
+        38
+      ]
+    ],
+    "slope": [
+      [
+        136,
+        38
+      ],
+      [
+        141,
+        36
+      ],
+      [
+        149,
+        37
+      ],
+      [
+        154,
+        38
+      ],
+      [
+        160,
+        38
+      ],
+      [
+        163,
+        41
+      ],
+      [
+        164,
+        45
+      ],
+      [
+        163,
+        49
+      ],
+      [
+        165,
+        53
+      ],
+      [
+        162,
+        57
+      ],
+      [
+        157,
+        59
+      ],
+      [
+        150,
+        60
+      ],
+      [
+        144,
+        59
+      ],
+      [
+        138,
+        59
+      ],
+      [
+        134,
+        56
+      ],
+      [
+        133,
+        52
+      ],
+      [
+        134,
+        48
+      ],
+      [
+        132,
+        45
+      ],
+      [
+        134,
+        41
+      ]
+    ],
+    "floor": [
+      [
+        140,
+        42
+      ],
+      [
+        145,
+        40
+      ],
+      [
+        151,
+        41
+      ],
+      [
+        156,
+        43
+      ],
+      [
+        160,
+        46
+      ],
+      [
+        159,
+        49
+      ],
+      [
+        162,
+        53
+      ],
+      [
+        159,
+        57
+      ],
+      [
+        154,
+        58
+      ],
+      [
+        151,
+        57
+      ],
+      [
+        147,
+        59
+      ],
+      [
+        143,
+        57
+      ],
+      [
+        138,
+        56
+      ],
+      [
+        136,
+        53
+      ],
+      [
+        137,
+        50
+      ],
+      [
+        135,
+        47
+      ],
+      [
+        137,
+        44
+      ]
+    ],
+    "lowBed": [
+      [
+        144,
+        46
+      ],
+      [
+        149,
+        44
+      ],
+      [
+        153,
+        45
+      ],
+      [
+        155,
+        48
+      ],
+      [
+        154,
+        51
+      ],
+      [
+        157,
+        54
+      ],
+      [
+        152,
+        56
+      ],
+      [
+        147,
+        55
+      ],
+      [
+        143,
+        56
+      ],
+      [
+        139,
+        53
+      ],
+      [
+        140,
+        50
+      ],
+      [
+        141,
+        48
+      ]
+    ]
+  },
+  "basins": [
+    {
+      "id": "main",
+      "x": 145,
+      "y": 49,
+      "width": 7,
+      "height": 5,
+      "dry": 1536,
+      "wet": 1776,
+      "waterCenter": [
+        56,
+        40
+      ]
+    },
+    {
+      "id": "west",
+      "x": 137,
+      "y": 48,
+      "width": 5,
+      "height": 3,
+      "dry": 1544,
+      "wet": 1784,
+      "waterCenter": [
+        40,
+        24
+      ]
+    },
+    {
+      "id": "north",
+      "x": 150,
+      "y": 45,
+      "width": 5,
+      "height": 3,
+      "dry": 1550,
+      "wet": 1790,
+      "waterCenter": [
+        40,
+        24
+      ]
+    }
+  ],
+  "channels": [
+    [
+      [
+        155,
+        42
+      ],
+      [
+        153,
+        43
+      ],
+      [
+        152,
+        44
+      ],
+      [
+        152,
+        45
+      ]
+    ],
+    [
+      [
+        152,
+        47
+      ],
+      [
+        152,
+        48
+      ],
+      [
+        151,
+        48
+      ],
+      [
+        150,
+        49
+      ]
+    ],
+    [
+      [
+        141,
+        49
+      ],
+      [
+        142,
+        49
+      ],
+      [
+        142,
+        50
+      ],
+      [
+        143,
+        50
+      ],
+      [
+        144,
+        50
+      ],
+      [
+        145,
+        50
+      ]
+    ],
+    [
+      [
+        141,
+        41
+      ],
+      [
+        141,
+        43
+      ],
+      [
+        142,
+        44
+      ],
+      [
+        144,
+        45
+      ],
+      [
+        145,
+        47
+      ],
+      [
+        146,
+        48
+      ],
+      [
+        147,
+        49
+      ]
+    ]
+  ],
+  "trees": [
+    {
+      "x": 131,
+      "y": 42,
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 133,
+      "y": 39,
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 137,
+      "y": 39,
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 136,
+      "y": 33,
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 161,
+      "y": 45,
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 163,
+      "y": 52,
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 162,
+      "y": 55,
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 140,
+      "y": 59,
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 146,
+      "y": 60,
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    },
+    {
+      "x": 156,
+      "y": 63,
+      "width": 3,
+      "height": 3,
+      "existingCollider": true
+    }
+  ],
+  "features": [
+    {
+      "kind": "rim-shrub",
+      "x": 130,
+      "y": 46,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-west"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 132,
+      "y": 47,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false,
+      "zone": "rim-west"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 130,
+      "y": 47,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-west"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 132,
+      "y": 46,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-west"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 135,
+      "y": 38,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-west"
+    },
+    {
+      "kind": "flower-bed",
+      "x": 132,
+      "y": 45,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-west"
+    },
+    {
+      "kind": "rim-shrub",
+      "x": 141,
+      "y": 37,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-north"
+    },
+    {
+      "kind": "rim-shrub",
+      "x": 150,
+      "y": 36,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-north"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 143,
+      "y": 38,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false,
+      "zone": "rim-north"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 140,
+      "y": 38,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-north"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 150,
+      "y": 37,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-north"
+    },
+    {
+      "kind": "rim-shrub",
+      "x": 165,
+      "y": 49,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-east"
+    },
+    {
+      "kind": "rim-shrub",
+      "x": 162,
+      "y": 56,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-east"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 164,
+      "y": 44,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-east"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 164,
+      "y": 49,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-east"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 164,
+      "y": 55,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "rim-east"
+    },
+    {
+      "kind": "rim-shrub",
+      "x": 154,
+      "y": 58,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "slope-south"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 153,
+      "y": 57,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false,
+      "zone": "slope-south"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 151,
+      "y": 58,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "slope-south"
+    },
+    {
+      "kind": "dormant-reeds",
+      "x": 135,
+      "y": 51,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-west-bank"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 135,
+      "y": 50,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-west-bank"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 138,
+      "y": 52,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-west-bank"
+    },
+    {
+      "kind": "flower-bed",
+      "x": 140,
+      "y": 51,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-west-bank"
+    },
+    {
+      "kind": "dormant-reeds",
+      "x": 143,
+      "y": 54,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-main-bank"
+    },
+    {
+      "kind": "dormant-reeds",
+      "x": 149,
+      "y": 55,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-main-bank"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 145,
+      "y": 55,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false,
+      "zone": "basin-main-bank"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 153,
+      "y": 54,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false,
+      "zone": "basin-main-bank"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 143,
+      "y": 55,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-main-bank"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 148,
+      "y": 55,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-main-bank"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 152,
+      "y": 54,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-main-bank"
+    },
+    {
+      "kind": "flower-bed",
+      "x": 153,
+      "y": 53,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-main-bank"
+    },
+    {
+      "kind": "dormant-reeds",
+      "x": 148,
+      "y": 44,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-north-bank"
+    },
+    {
+      "kind": "dormant-reeds",
+      "x": 154,
+      "y": 44,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-north-bank"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 156,
+      "y": 46,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false,
+      "zone": "basin-north-bank"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 148,
+      "y": 45,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-north-bank"
+    },
+    {
+      "kind": "dry-tuft",
+      "x": 156,
+      "y": 47,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-north-bank"
+    },
+    {
+      "kind": "flower-bed",
+      "x": 153,
+      "y": 44,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": true,
+      "zone": "basin-north-bank"
+    },
+    {
+      "kind": "gravel-fan",
+      "x": 133,
+      "y": 49,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false
+    },
+    {
+      "kind": "gravel-fan",
+      "x": 143,
+      "y": 41,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false
+    },
+    {
+      "kind": "gravel-fan",
+      "x": 146,
+      "y": 43,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false
+    },
+    {
+      "kind": "gravel-fan",
+      "x": 156,
+      "y": 41,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false
+    },
+    {
+      "kind": "gravel-fan",
+      "x": 160,
+      "y": 46,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false
+    },
+    {
+      "kind": "gravel-fan",
+      "x": 147,
+      "y": 57,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "recovers": false
+    }
+  ],
+  "recovery": {
+    "mission": "misi-3",
+    "dampTiles": 62,
+    "greenTiles": 11,
+    "channelTiles": 33,
+    "deepWaterStaysInsideOriginalBasins": true,
+    "channelsWalkable": true
+  },
+  "protectedLivingAnchors": [
+    [
+      135,
+      47
+    ],
+    [
+      152,
+      43
+    ]
+  ],
+  "placementsSkipped": 32,
+  "validationTargets": [
+    [
+      124,
+      57
+    ],
+    [
+      130,
+      57
+    ],
+    [
+      136,
+      55
+    ],
+    [
+      141,
+      52
+    ],
+    [
+      145,
+      48
+    ],
+    [
+      142,
+      45
+    ],
+    [
+      138,
+      45
+    ],
+    [
+      143,
+      50
+    ],
+    [
+      152,
+      49
+    ],
+    [
+      157,
+      53
+    ],
+    [
+      161,
+      58
+    ],
+    [
+      144,
+      51
+    ],
+    [
+      152,
+      52
+    ]
+  ]
+}

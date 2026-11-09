@@ -26,3 +26,17 @@ Sebelum menambah aset baru: pastikan lisensinya mengizinkan dipakai dan dibagika
 `world/assets/village_a5/props.svg` adalah properti SVG pixel-grid buatan lokal melalui `scripts/village-a5-props.mjs`: pohon peneduh, pergola, gerobak, rak panen beratap, meja kerja, planter dan jemuran. Palet kayu/hijau mengikuti atlas existing; tidak menyalin atau mengunduh gambar eksternal. Bukan aset resmi Kenney. Salinan runtime di `public/assets/world/village_a5/`. Atlas Kenney serta properti tahap sebelumnya tetap utuh. Detail komposisi dan batas penggunaan ada di `world/VILLAGE_A5.md`.
 
 Finishing warna A5 menggunakan slot kosong atlas yang sama: bunga kuning/putih/pink/ungu/merah, tuft rumput dan dua keluarga tint rumput bertepian tersambung. Geometri ditulis lokal pada `scripts/village-a5-color.mjs`; tidak mengambil gambar luar atau mengubah atlas Kenney. Palet native rumput #84c669 dipertahankan.
+
+## Pantai Biru V3.5
+
+Polish V3.5.1 memakai atlas terpisah `world/assets/coast_v351/tileset.svg`, ditulis lokal melalui `scripts/pantai-pool-polish-art.mjs`: pasangan kolam batu sebelum/pulih, batu hangat, palem rendah, semak, bunga, kerang dan tekstur pasir. Atlas V3.5, bangunan dan dermaga tidak digambar ulang. Semua geometri memakai grid pixel 16 dan warna lokal; tidak ada aset/dependency eksternal baru. Laporan: `world/PANTAI_V351_POOL_POLISH.md`.
+
+`world/assets/coast_v35/tileset.svg` dibuat lokal melalui `scripts/coast-v35-art.mjs`: material pasir/air dangkal/kayu, palem, perahu, jaring, naungan nelayan, perlengkapan eksperimen dan detail pesisir. Bukan aset resmi Kenney, tidak mengambil gambar eksternal atau memakai emoji. Gaya pixel-grid16 dan palet mengikuti lingkungan existing. Source Kenney serta atlas A5 tetap utuh. Salinan runtime di `public/assets/world/coast_v35/`. Keterbatasan placeholder ada di `world/PANTAI_V35.md`.
+
+## Puncak Kabut V3.6
+
+`world/assets/mountain_v36/tileset.svg` dibuat lokal melalui `scripts/puncak-v36-art.mjs`: material tiga teras, muka batu retak, tangga, konifer, platform terbuka dan perlengkapan observasi serta vegetasi rendah. Geometri pixel-grid16 mengikuti lingkungan Kenney; bukan aset resmi Kenney. Tidak mengunduh aset atau menambah dependency. Atlas wilayah lain tetap utuh. Komposisi disimpan di `world/mountain-v36.json`.
+
+## Lembah Hujan V3.7
+
+`world/assets/valley_v37/tileset.svg` adalah komposisi pixel-grid lokal melalui `scripts/valley-v37-art.mjs`: kontur lembah asimetris yang dipotong menjadi tile16, tiga cekungan kering/pulih, vegetasi, batu dan tanah lembap. Bukan screenshot atau aset resmi Kenney; tidak mengunduh gambar atau memakai dependency baru. Generator dan geometri komposisi berada di `scripts/design-lembah-v37.mjs` dan `world/valley-v37.json`. Semua atlas tahap sebelumnya dipertahankan.

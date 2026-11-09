@@ -1,8 +1,12 @@
 # Gameplay & World Aufa
 
-**Peta aktif V3.4-A5, seluruh Desa Tirta:** `world/maps/pulau_tirta_v34_a5.tmj`.
-Panduan art pass, properti lokal, screenshot dan pengujian:
-[VILLAGE_A5.md](VILLAGE_A5.md). Living system V3.3: [LIVING_WORLD_V33.md](LIVING_WORLD_V33.md). Arsip desain V3.2: [ENVIRONMENT_V32.md](ENVIRONMENT_V32.md). V3.1 tetap menjadi pembanding. Ukuran, spawn, dan koordinat misi V3 dipertahankan.
+**Peta aktif V3.7, Rainfall Basin Lembah Hujan; wilayah lainnya dipertahankan:** `world/maps/pulau_tirta_v37.tmj`.
+Komposisi tepian, lereng dan dasar cekungan ditulis pada `scripts/valley-v37-art.mjs`; generator manual: `scripts/design-lembah-v37.mjs`; manifest: `world/valley-v37.json`. Air pulih dan vegetasi memakai empat layer recovery misi-3 existing. Elevasi hanya visual; air dalam tetap di dalam collider lama, saluran dangkal dapat dilalui. Setelah edit Tiled jalankan `npm run world:export`. Dev/build hanya mengekspor map tersimpan. Generator menolak overwrite tanpa `--force`; gunakan `node scripts/design-lembah-v37.mjs --check` untuk verifikasi tanpa menulis. Tidak ada preview otomatis V3.7.
+
+Arsip V3.6: `world/maps/pulau_tirta_v36.tmj`, `scripts/design-puncak-v36.mjs`, `scripts/puncak-v36-art.mjs` dan `world/mountain-v36.json` tetap utuh.
+
+Arsip panduan art pass, properti lokal, screenshot dan pengujian:
+[PANTAI_V351_POOL_POLISH.md](PANTAI_V351_POOL_POLISH.md). Arsip V3.5: [PANTAI_V35.md](PANTAI_V35.md). Living system V3.3: [LIVING_WORLD_V33.md](LIVING_WORLD_V33.md). Arsip desain V3.2: [ENVIRONMENT_V32.md](ENVIRONMENT_V32.md). V3.1 tetap menjadi pembanding. Ukuran, spawn, dan koordinat misi V3 dipertahankan.
 
 Bagian berikut mendokumentasikan V3 dan arsip V1; keduanya tetap tersimpan.
 
