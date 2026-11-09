@@ -267,3 +267,48 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .kartu-jurnal[data-terkunci] .nomor { color: var(--pucat); }
 .kartu-jurnal .fakta { margin: 4px 0 0; font-size: 17px; line-height: 1.45; }
 .kartu-jurnal .sumber { display: block; margin-top: 6px; font-size: 13px; color: var(--pucat); }
+
+/* Panel pendamping playtest (?playtest=1, Ctrl+Shift+P). Untuk orang dewasa, tidak pernah tampil ke anak. */
+.layar-playtest { width: min(96vw, 960px); text-align: left; }
+.layar-playtest[open] { align-items: stretch; gap: 10px; }
+.layar-playtest h3 { margin: 6px 0 0; font-size: 18px; color: var(--laut); }
+.layar-playtest .catatan { margin: 0; }
+.pt-tabel { width: 100%; border-collapse: collapse; font-size: 16px; background: white; }
+.pt-tabel th, .pt-tabel td { padding: 6px 8px; border: 1px solid #d5dee2; text-align: center; }
+.pt-tabel thead th { background: #eef2f4; font-size: 14px; }
+.pt-tabel tbody th { text-align: left; white-space: nowrap; }
+.pt-total { margin: 0; font-weight: 700; }
+.pt-skor { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.pt-isian { display: flex; align-items: center; gap: 10px; }
+.pt-isian label { font-weight: 700; }
+.pt-isian input { width: 80px; min-height: 48px; font-size: 18px; padding: 0 10px; border-radius: 10px; border: 2px solid #c9d6dc; }
+.pt-isian input[aria-invalid='true'] { border-color: #d9534f; background: #fdecea; }
+.layar-playtest .tombol-besar { align-self: flex-start; }
+.pt-kabar { margin: 0; min-height: 1.4em; font-weight: 700; color: #2c7a4b; }
+.pt-aksi { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.pt-aksi .yakin { justify-content: flex-start; }
+@media (max-width: 700px) { .pt-tabel { font-size: 14px; } .layar-playtest { padding: 18px 14px; } }
+
+/* Panel pendamping playtest (?playtest=1, Ctrl+Shift+P). Hanya untuk orang dewasa, tidak pernah terlihat oleh anak. */
+.layar-playtest { width: min(96vw, 980px); text-align: left; }
+.layar-playtest[open] { align-items: stretch; gap: 10px; }
+.layar-playtest h3 { margin: 6px 0 0; font-size: 18px; color: var(--laut); }
+.pt-tabel { width: 100%; border-collapse: collapse; font-size: 16px; background: white; }
+.pt-tabel th, .pt-tabel td { padding: 6px 8px; border: 1px solid #d5dee2; text-align: left; vertical-align: top; }
+.pt-tabel thead th { background: #eef2f4; font-size: 14px; }
+.pt-tabel tbody th { font-weight: 700; white-space: nowrap; }
+.layar-playtest .pt-anak, .layar-playtest .pt-hasil { display: block; overflow-x: auto; }
+.pt-total { margin: 0; font-weight: 700; }
+.pt-skor { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.pt-isian { display: flex; align-items: center; gap: 10px; }
+.pt-isian label { font-weight: 700; }
+.pt-isian input { width: 84px; min-height: 48px; font-size: 18px; padding: 0 10px; border-radius: 10px; border: 2px solid #c9d6dc; }
+.pt-isian input[aria-invalid='true'] { border-color: #c0392b; }
+.pt-kabar { margin: 0; min-height: 1.4em; font-weight: 700; color: #2c7a4b; }
+.pt-aksi { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.pt-aksi .yakin { justify-content: flex-start; }
+.layar-playtest .tombol-besar { align-self: flex-start; }
+
+/* Tombol suara di menu jeda */
+.tombol-suara { min-height: 52px; min-width: 260px; font-size: 18px; font-weight: 700; background: #d7ebf2; color: var(--tinta); }
+.tombol-suara[aria-pressed='false'] { background: #eef2f4; color: var(--pucat); }
