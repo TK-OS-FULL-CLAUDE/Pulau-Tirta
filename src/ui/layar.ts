@@ -19,12 +19,12 @@ export function bukaTentang(): void {
   (document.getElementById('dialog-tentang') as HTMLDialogElement).showModal();
 }
 
-/** Tombol dengan konfirmasi dua langkah, untuk aksi yang menghapus progres. */
-function tombolYakin(teks: string, peringatan: string, aksi: () => void): HTMLElement {
+/** Tombol dengan konfirmasi dua langkah, untuk aksi yang menghapus progres atau data. */
+export function tombolYakin(teks: string, peringatan: string, aksi: () => void, teksYa = 'Ya, mulai dari awal'): HTMLElement {
   const wadah = el('div', undefined, { class: 'yakin' });
   const awal = el('button', teks, { type: 'button', class: 'tombol-kecil' });
   awal.addEventListener('click', () => {
-    const ya = el('button', 'Ya, mulai dari awal', { type: 'button', class: 'tombol-bahaya' });
+    const ya = el('button', teksYa, { type: 'button', class: 'tombol-bahaya' });
     const batal = el('button', 'Batal', { type: 'button', class: 'tombol-kecil' });
     ya.addEventListener('click', aksi);
     batal.addEventListener('click', () => {
@@ -91,13 +91,34 @@ export function bukaJudul(o: OpsiJudul): void {
 export interface OpsiJeda {
   ulang: () => void;
   tutup: () => void;
+  /** Tombol "Suara: Nyala/Mati" (PRD F-12). */
+  suara?: { nyala: boolean; ubah: (nyala: boolean) => void };
+}
+
+/** Tombol sakelar suara; teksnya selalu menyebut keadaan sekarang. */
+function tombolSuara(awal: boolean, ubah: (nyala: boolean) => void): HTMLButtonElement {
+  let nyala = awal;
+  const t = el('button', '', { type: 'button', class: 'tombol-suara' });
+  const tampil = () => {
+    t.textContent = nyala ? '🔊 Suara: Nyala' : '🔇 Suara: Mati';
+    t.setAttribute('aria-pressed', String(nyala));
+  };
+  t.addEventListener('click', () => {
+    nyala = !nyala;
+    ubah(nyala);
+    tampil();
+  });
+  tampil();
+  return t;
 }
 
 export function bukaJeda(o: OpsiJeda): void {
   const d = layar('menu-jeda', 'layar-jeda');
   const lanjut = el('button', 'Lanjutkan', { type: 'button', class: 'tombol-besar', autofocus: '' });
   lanjut.addEventListener('click', () => d.close());
-  d.append(el('h2', 'Jeda'), lanjut, tombolTentang(), tombolYakin('Mulai dari awal', 'Semua progres akan hilang.', o.ulang));
+  d.append(el('h2', 'Jeda'), lanjut);
+  if (o.suara) d.append(tombolSuara(o.suara.nyala, o.suara.ubah));
+  d.append(tombolTentang(), tombolYakin('Mulai dari awal', 'Semua progres akan hilang.', o.ulang));
   buka(d, o.tutup);
 }
 

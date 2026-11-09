@@ -22,12 +22,33 @@ import { bukaFestival, bukaMisi, peristiwaFestivalAktif, sorotMisiAktif, tandaiP
 import { ID_JURNAL, bukaJurnal } from './ui/jurnal';
 import { bukaPercakapan } from './ui/kotak-dialog';
 import { bukaJeda, bukaJudul, bukaTamat } from './ui/layar';
+import { pasangPlaytest } from './ui/playtest';
+import { Suara } from './ui/suara';
 
 const q = new URLSearchParams(location.search);
+/** Mode playtest untuk pendamping (lihat src/ui/playtest.ts). Mengalahkan mode demo. */
+const PLAYTEST = q.has('playtest');
+if (PLAYTEST && q.has('demo')) {
+  // Panel Tiko menampilkan label sumber jawaban kalau URL berisi `demo`; saat playtest anak tidak boleh melihatnya.
+  q.delete('demo');
+  history.replaceState(history.state, '', `${location.pathname}?${q}${location.hash}`);
+}
 /** Mode demo untuk presentasi: mulai dari awal setiap kali, dan progres tidak disimpan (lihat src/ui/demo.ts). */
 const DEMO = q.has('demo');
 
-let progres: Progres = DEMO ? progresAwal() : muat();
+const playtest = PLAYTEST
+  ? pasangPlaytest({
+      namaTempat: Object.fromEntries(LOKASI.filter((l) => l.misiId).map((l) => [l.misiId!, l.nama])),
+      muatUlang: () => location.reload(),
+    })
+  : null;
+
+let progres: Progres = playtest ? playtest.progres : DEMO ? progresAwal() : muat();
+
+/** Efek suara dan musik pelan (Web Audio). Baru berbunyi setelah interaksi pertama. */
+const suara = new Suara();
+suara.pasang();
+
 let lokasiSekarang: Lokasi = LOKASI[0];
 let terakhirMaju = Date.now();
 let terakhirSapa = 0;
@@ -37,8 +58,11 @@ let sudahDiajakFestival = false;
 const persenPulih = () => MISI_UTAMA.filter((m) => progres.status[m.id] === 'selesai').length / MISI_UTAMA.length;
 
 function perbarui(p: Progres): void {
+  const lama = progres;
   progres = p;
-  if (!DEMO) simpan(progres);
+  // Playtest menyimpan progres di kuncinya sendiri (bersama catatan waktu), demo tidak menyimpan sama sekali.
+  if (playtest) playtest.catatPerubahan(lama, p);
+  else if (!DEMO) simpan(progres);
   terakhirMaju = Date.now();
   dunia.segarkan();
   perbaruiLencana();
@@ -62,6 +86,7 @@ const panel = new PanelTiko(
   },
   // "Aku bingung" di misi yang sedang berjalan menaikkan tingkat petunjuk; tingkat 2 juga menyorot bukti di aktivitas.
   (misiId) => {
+    playtest?.catatBingung(progres, misiId);
     const h = mintaPetunjuk(progres, misiId);
     if (h.progres !== progres) perbarui(h.progres);
     sorotMisiAktif(h.tingkat);
@@ -124,6 +149,7 @@ function interaksi(lokasi: Lokasi): void {
         pilih: (pilihanId) => {
           const hasil = jawab(progres, misi.id, pilihanId);
           perbarui(hasil.progres);
+          suara.main(hasil.benar ? 'benar' : 'keliru');
           if (hasil.benar) {
             panel.sapa(`Kamu berhasil! ${lokasi.nama} pulih. Kartu Ilmu baru masuk ke Jurnal.`);
             return { benar: true };
@@ -136,7 +162,10 @@ function interaksi(lokasi: Lokasi): void {
         },
         tutup: () => {
           lepas();
-          if (!sudahSelesai && progres.status[misi.id] === 'selesai') sorak(`${lokasi.nama} pulih!`);
+          if (!sudahSelesai && progres.status[misi.id] === 'selesai') {
+            sorak(`${lokasi.nama} pulih!`);
+            suara.main('pulih');
+          }
         },
       });
     } else {
@@ -164,11 +193,16 @@ function interaksi(lokasi: Lokasi): void {
 
 function bukaFestivalDesa(lepas: () => void): void {
   bukaFestival({
-    periksa: periksaFestival,
+    periksa: (jawaban) => {
+      const salah = periksaFestival(jawaban);
+      if (salah.length) suara.main('keliru');
+      return salah;
+    },
     petunjuk: beriPetunjukFestival,
     selesai: () => {
       const kartuDidapat = [...new Set([...progres.kartuDidapat, ...FESTIVAL.kartuMateri])].sort((a, b) => a - b);
       perbarui({ ...progres, festivalSelesai: true, kartuDidapat });
+      suara.main('hujan');
       panel.sapa('Hujan turun! Terima kasih sudah memulihkan Pulau Tirta. Aku pulang ke awan dulu, ya. Sampai jumpa!');
     },
     tutup: () => {
@@ -200,6 +234,9 @@ new Phaser.Game({
   roundPixels: true,
   antialias: false,
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
+  // Suara game dibuat sendiri di src/ui/suara.ts. Tanpa ini Phaser membuat AudioContext saat dimuat (sebelum
+  // interaksi), dan browser menulis peringatan autoplay di console. Kalau dunia nanti butuh audio Phaser, hapus baris ini.
+  audio: { noAudio: true },
   scene: [dunia],
 });
 
@@ -221,14 +258,18 @@ const kunci = () => (dunia.terkunci = true);
 const lepasKunci = () => setTimeout(() => (dunia.terkunci = false), 150);
 const tutupSemuaDialog = () => document.querySelectorAll<HTMLDialogElement>('dialog[open]').forEach((d) => d.close());
 
-/** Mulai dari awal. Di mode demo cukup di memori; selain itu progres dihapus lalu halaman dimuat ulang. */
+/**
+ * Mulai dari awal. Di mode demo cukup di memori; selain itu progres dihapus lalu halaman dimuat ulang.
+ * Di playtest hanya data anak yang sedang bermain yang dikosongkan; hasil anak yang sudah disimpan tetap ada.
+ */
 function ulang(): void {
   if (DEMO) {
     tutupSemuaDialog();
     perbarui(progresAwal());
     return;
   }
-  simpan(progresAwal());
+  if (playtest) playtest.ulangAnak();
+  else simpan(progresAwal());
   location.reload();
 }
 
@@ -241,7 +282,7 @@ function tampilkanTamat(): void {
 function bukaMenuJeda(): void {
   if (document.querySelector('dialog[open]')) return;
   kunci();
-  bukaJeda({ ulang, tutup: lepasKunci });
+  bukaJeda({ ulang, tutup: lepasKunci, suara: { nyala: suara.nyala, ubah: (nyala) => suara.ubah(nyala) } });
 }
 
 const tombolJeda = document.createElement('button');
@@ -359,6 +400,7 @@ if (DEMO) {
     sisaTempat,
     ulang,
     mulai: (baru) => {
+      playtest?.catatMulai();
       if (baru) {
         // Misi 0: Kepala Desa dan Tiko memperkenalkan masalahnya.
         bukaPercakapan(WARGA.pembuka, {
