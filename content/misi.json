@@ -60,6 +60,12 @@
       "kutipanTerlarang": [
         "Panas matahari mengubah air menjadi uap air yang naik ke udara"
       ],
+      "aktivitas": {
+        "arahan": "Geser cermin supaya sinar matahari jatuh ke salah satu kolam. Lalu bandingkan garis air kedua kolam.",
+        "siap": "Lihat! Air kolam yang kena sinar turun lebih jauh dari garis awal.",
+        "sorot": "Perhatikan dasar kolam dan garis-garis tipis di atas air.",
+        "catatanSesudah": "Uap air sebenarnya tidak kelihatan. Garis-garis tadi cuma gambaran supaya kamu bisa membayangkannya."
+      },
       "petunjukCadangan": {
         "1": "Coba lihat dasar kolamnya. Terbuat dari apa? Bisakah air keluar lewat situ?",
         "2": "Dasar kolamnya batu, jadi air tidak bisa keluar lewat bawah. Perhatikan kolam yang kena sinar. Apa yang terlihat di atas airnya?",
@@ -114,6 +120,12 @@
       "kutipanTerlarang": [
         "Udara di atas lebih dingin, jadi uap air mengembun menjadi titik air"
       ],
+      "aktivitas": {
+        "arahan": "Geser arah angin supaya udara lembap dari laut tertiup ke gunung. Perhatikan termometer dan langit di atas puncak.",
+        "siap": "Lihat! Awan muncul di atas puncak. Di atas pantai juga ada udara lembap, tapi tidak jadi awan.",
+        "sorot": "Bandingkan angka termometer di pantai, di lereng, dan di puncak.",
+        "catatanSesudah": "Garis-garis tipis tadi cuma gambaran udara lembap. Uap air sebenarnya tidak kelihatan. Yang terlihat sebagai awan adalah titik-titik air yang sangat kecil."
+      },
       "petunjukCadangan": {
         "1": "Bandingkan puncak dan pantai. Kalau kamu naik gunung, udaranya terasa bagaimana?",
         "2": "Lihat termometer di puncak dan di pantai. Di mana titik-titik air kecil mulai muncul?",
@@ -164,6 +176,12 @@
       "kutipanTerlarang": [
         "Titik-titik air bergabung menjadi besar dan berat"
       ],
+      "aktivitas": {
+        "arahan": "Gerakkan angin di dalam awan: geser slider, atau seret di dalam awan. Perhatikan ukuran titik-titik air di awan.",
+        "siap": "Lihat! Hujan mulai turun ke sawah. Titik air mana yang jatuh?",
+        "sorot": "Lihat titik-titik yang saling bertemu. Perhatikan ukurannya sebelum jatuh.",
+        "catatanSesudah": "Titik air di awan aslinya sangat kecil, jauh lebih kecil dari butiran pasir. Di sini digambar besar supaya kamu bisa melihatnya."
+      },
       "petunjukCadangan": {
         "1": "Perhatikan ukuran titik air di awan sebelum dan sesudah kamu menggerakkan angin. Apa yang berubah?",
         "2": "Lihat titik-titik yang saling bertemu. Kapan mereka mulai jatuh?",
@@ -217,6 +235,22 @@
       "kutipanTerlarang": [
         "Akar dan tanah gembur membantu air hujan meresap ke tanah"
       ],
+      "aktivitas": {
+        "arahan": "Siram lereng gundul dan lereng berpohon. Lalu bandingkan ke mana air hujan pergi, dan mata air mana yang lebih lama mengalir.",
+        "siap": "Hujan sudah berhenti. Lihat mata air di kedua lereng. Mana yang masih mengalir?",
+        "sorot": "Perhatikan bagian bawah pohon dan tanah di bawah kedua lereng.",
+        "catatanSesudah": "Air yang masuk ke dalam tanah menjadi air tanah. Air tanah keluar pelan-pelan lewat mata air, jadi lereng berpohon tetap punya air saat kemarau.",
+        "label": {
+          "gundul": "Lereng gundul",
+          "pohon": "Lereng berpohon",
+          "siramGundul": "Siram lereng gundul",
+          "siramPohon": "Siram lereng berpohon",
+          "airTanah": "air tanah",
+          "mataAir": "mata air",
+          "sungai": "ke sungai",
+          "bawahPohon": "bagian bawah pohon"
+        }
+      },
       "petunjukCadangan": {
         "1": "Bandingkan air hujan di lereng gundul dan lereng berpohon. Ke mana air di masing-masing lereng pergi?",
         "2": "Perhatikan bagian bawah pohon dan tanah di sekitarnya. Di lereng mana airnya tidak langsung mengalir pergi?",
@@ -231,26 +265,71 @@
       "hujan",
       "peresapan"
     ],
+    "kartuMateri": [
+      1,
+      12
+    ],
+    "kataTerlarang": {
+      "penguapan": [
+        "uap",
+        "menguap",
+        "penguapan"
+      ],
+      "pengembunan": [
+        "mengembun",
+        "pengembunan"
+      ],
+      "hujan": [],
+      "peresapan": [
+        "resap",
+        "meresap",
+        "peresapan"
+      ]
+    },
     "peristiwa": [
       {
         "id": "f1",
         "teks": "Baju jemuran kering di siang hari",
-        "tahap": "penguapan"
+        "ikon": "👕",
+        "tahap": "penguapan",
+        "petunjuk": {
+          "1": "Ke mana perginya air dari baju yang basah itu? Coba ingat kolam yang kena sinar di Pantai Biru.",
+          "2": "Lihat Kartu Ilmu dari Pantai Biru. Apa yang dilakukan panas matahari pada air di kolam?",
+          "3": "Panas matahari mengubah air di baju menjadi uap air yang naik ke udara. Sama seperti kolam di Pantai Biru."
+        }
       },
       {
         "id": "f2",
         "teks": "Rumput basah oleh embun di pagi hari",
-        "tahap": "pengembunan"
+        "ikon": "🌱",
+        "tahap": "pengembunan",
+        "petunjuk": {
+          "1": "Dari mana air di rumput itu datang? Padahal semalam langit cerah.",
+          "2": "Ingat awan yang terbentuk di Puncak Kabut. Apa yang terjadi pada udara lembap di tempat yang suhunya rendah?",
+          "3": "Uap air di udara mendingin saat menyentuh rumput, lalu berubah menjadi titik-titik air. Sama seperti awan di Puncak Kabut."
+        }
       },
       {
         "id": "f3",
         "teks": "Langit mendung tebal, lalu turun hujan",
-        "tahap": "hujan"
+        "ikon": "🌧️",
+        "tahap": "hujan",
+        "petunjuk": {
+          "1": "Awan mendung itu berisi apa? Apa yang terjadi kalau isinya makin banyak?",
+          "2": "Ingat titik-titik air di awan Lembah Hujan. Kapan mereka mulai jatuh?",
+          "3": "Titik-titik air di awan saling bertemu sampai besar dan berat, lalu jatuh. Itu yang terjadi saat turun hujan."
+        }
       },
       {
         "id": "f4",
         "teks": "Air hujan di kebun hilang ke tanah, lalu muncul lagi di mata air",
-        "tahap": "peresapan"
+        "ikon": "⛲",
+        "tahap": "peresapan",
+        "petunjuk": {
+          "1": "Sebelum muncul di mata air, air hujan itu masuk ke mana dulu?",
+          "2": "Ingat lereng berpohon di Hutan & Sungai. Ke mana air hujan pergi di tanah yang gembur?",
+          "3": "Air hujan masuk ke dalam tanah dan menjadi air tanah. Air tanah itulah yang mengisi sumur dan mata air."
+        }
       }
     ]
   }

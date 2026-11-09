@@ -11,7 +11,10 @@
   </head>
   <body>
     <main class="tata">
-      <section id="game" aria-label="Layar game"></section>
+      <section id="game" aria-label="Layar game">
+        <!-- Non-modal di atas area game, supaya panel Tiko tetap bisa dipakai selama misi. -->
+        <dialog id="dialog-misi" class="dialog dialog-misi"></dialog>
+      </section>
 
       <aside id="tiko" class="tiko" aria-label="Tiko, teman belajar AI">
         <header class="tiko-kepala">
@@ -37,7 +40,6 @@
       </aside>
     </main>
 
-    <dialog id="dialog-misi" class="dialog"></dialog>
     <dialog id="dialog-tentang" class="dialog">
       <h2>Tentang Tiko</h2>
       <ul>

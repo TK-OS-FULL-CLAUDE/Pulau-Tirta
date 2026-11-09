@@ -1,12 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { FESTIVAL, MISI_UTAMA, pilihanBenar } from '../shared/content';
 import {
+  acak,
   dibantuPenuh,
   festivalTerbuka,
   jawab,
+  mintaPetunjuk,
   mulaiMisi,
   muat,
   periksaFestival,
+  petunjukFestival,
   progresAwal,
   simpan,
 } from '../shared/missions';
@@ -58,6 +61,53 @@ describe('status misi', () => {
   });
 });
 
+describe('Aku bingung', () => {
+  it('menaikkan tingkat petunjuk misi yang sedang berjalan sampai 3, berbagi hitungan dengan jawaban keliru', () => {
+    let p = mulaiMisi(progresAwal(), 'misi-1');
+    const tingkat: number[] = [];
+    let h = mintaPetunjuk(p, 'misi-1');
+    tingkat.push(h.tingkat);
+    p = h.progres;
+    const salah = MISI_UTAMA[0].pilihan!.find((x) => !x.benar)!.id;
+    const j = jawab(p, 'misi-1', salah);
+    tingkat.push(j.tingkatPetunjuk!);
+    p = j.progres;
+    for (let i = 0; i < 2; i++) {
+      h = mintaPetunjuk(p, 'misi-1');
+      tingkat.push(h.tingkat);
+      p = h.progres;
+    }
+    expect(tingkat).toEqual([1, 2, 3, 3]);
+    expect(p.petunjuk['misi-1']).toBe(3);
+  });
+
+  it('di luar misi yang sedang berjalan memberi tingkat 1 tanpa mengubah progres', () => {
+    const p = progresAwal();
+    const h = mintaPetunjuk(p, 'misi-1');
+    expect(h.tingkat).toBe(1);
+    expect(h.progres).toBe(p);
+  });
+});
+
+describe('acak pilihan', () => {
+  it('mengembalikan isi yang sama tanpa mengubah daftar asli', () => {
+    const asli = MISI_UTAMA[0].pilihan!;
+    const salinan = [...asli];
+    const hasil = acak(asli);
+    expect(asli).toEqual(salinan);
+    expect([...hasil].sort((a, b) => a.id.localeCompare(b.id))).toEqual([...asli].sort((a, b) => a.id.localeCompare(b.id)));
+  });
+
+  it('pilihan benar tidak selalu berada di posisi pertama', () => {
+    // Di konten, pilihan benar selalu ditulis pertama; urutan tampil harus berubah.
+    let n = 0;
+    const rng = () => ((n = (n * 9301 + 49297) % 233280) / 233280);
+    const posisi = new Set<number>();
+    for (let i = 0; i < 40; i++) posisi.add(acak(MISI_UTAMA[0].pilihan!, rng).findIndex((p) => p.benar));
+    expect(posisi.size).toBeGreaterThan(1);
+  });
+});
+
 describe('Festival Hujan', () => {
   it('benar kalau semua peristiwa cocok dengan tahapnya', () => {
     const benar = Object.fromEntries(FESTIVAL.peristiwa.map((e) => [e.id, e.tahap]));
@@ -68,6 +118,34 @@ describe('Festival Hujan', () => {
     const jawaban = Object.fromEntries(FESTIVAL.peristiwa.map((e) => [e.id, e.tahap]));
     jawaban.f2 = 'penguapan';
     expect(periksaFestival(jawaban)).toEqual(['f2']);
+  });
+
+  it('petunjuk naik bertingkat per peristiwa, sampai 3, dan dicatat di progres', () => {
+    let p = progresAwal();
+    const tingkat: number[] = [];
+    for (let i = 0; i < 4; i++) {
+      const h = petunjukFestival(p, ['f1', 'f3'])!;
+      expect(h.peristiwaId).toBe('f1');
+      tingkat.push(h.tingkat);
+      p = h.progres;
+    }
+    expect(tingkat).toEqual([1, 2, 3, 3]);
+    expect(petunjukFestival(p, ['f3'])!.tingkat).toBe(1);
+    expect(p.petunjuk['festival:f1']).toBe(3);
+    expect(petunjukFestival(p, [])).toBeNull();
+  });
+
+  it('setiap peristiwa punya petunjuk tingkat 1–3, dan tingkat 1–2 tidak menyebut tahapnya', () => {
+    const kata = (s: string) => s.toLowerCase().split(/[^a-z]+/).filter(Boolean);
+    for (const e of FESTIVAL.peristiwa) {
+      expect(Object.keys(e.petunjuk ?? {}).sort(), e.id).toEqual(['1', '2', '3']);
+      // Label tahap boleh muncul kalau sudah ada di teks peristiwanya sendiri (mis. "turun hujan").
+      const terlarang = [...FESTIVAL.kataTerlarang[e.tahap], ...(kata(e.teks).includes(e.tahap) ? [] : [e.tahap])];
+      for (const t of ['1', '2']) {
+        const bocor = kata(e.petunjuk![t]).filter((k) => terlarang.includes(k));
+        expect(bocor, `${e.id} tingkat ${t}: ${e.petunjuk![t]}`).toEqual([]);
+      }
+    }
   });
 });
 

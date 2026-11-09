@@ -57,6 +57,30 @@ export function jawab(p: Progres, id: string, pilihanId: string): HasilJawab {
   };
 }
 
+/**
+ * "Aku bingung" saat misi sedang berjalan: naikkan tingkat petunjuk (maksimal 3) dan catat di progres,
+ * sama seperti jawaban keliru, supaya anak bisa sampai ke petunjuk tingkat 2 (bukti di layar) tanpa harus salah dulu.
+ * Di luar misi yang sedang berjalan: tingkat 1, progres tidak berubah.
+ */
+export function mintaPetunjuk(p: Progres, id: string): { progres: Progres; tingkat: Tingkat } {
+  if (p.status[id] !== 'sedang') return { progres: p, tingkat: 1 };
+  const tingkat = Math.min(3, (p.petunjuk[id] ?? 0) + 1) as Tingkat;
+  return { progres: { ...p, petunjuk: { ...p.petunjuk, [id]: tingkat } }, tingkat };
+}
+
+/**
+ * Acak urutan (Fisher–Yates) tanpa mengubah daftar asli.
+ * Dipakai untuk pilihan alasan: di konten, pilihan benar selalu ditulis pertama.
+ */
+export function acak<T>(daftar: readonly T[], rng: () => number = Math.random): T[] {
+  const hasil = [...daftar];
+  for (let i = hasil.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [hasil[i], hasil[j]] = [hasil[j], hasil[i]];
+  }
+  return hasil;
+}
+
 /** Anak yang baru benar setelah petunjuk tingkat 3 dicatat "dibantu penuh". */
 export function dibantuPenuh(p: Progres, id: string): boolean {
   return p.status[id] === 'selesai' && (p.petunjuk[id] ?? 0) >= 3;
@@ -64,6 +88,22 @@ export function dibantuPenuh(p: Progres, id: string): boolean {
 
 export function festivalTerbuka(p: Progres): boolean {
   return MISI_UTAMA.every((m) => p.status[m.id] === 'selesai');
+}
+
+/**
+ * Petunjuk Festival Hujan untuk peristiwa pertama di `ids` (yang masih salah, atau yang sedang dipilih saat
+ * anak menekan "Aku bingung"). Tingkatnya naik per peristiwa (maksimal 3) dan dicatat di progres dengan kunci
+ * `festival:<id>`, supaya playtest bisa melihat tingkat tertinggi yang dipakai.
+ */
+export function petunjukFestival(
+  p: Progres,
+  ids: string[],
+): { progres: Progres; peristiwaId: string; tingkat: Tingkat } | null {
+  const id = ids[0];
+  if (!id) return null;
+  const kunci = `festival:${id}`;
+  const tingkat = Math.min(3, (p.petunjuk[kunci] ?? 0) + 1) as Tingkat;
+  return { progres: { ...p, petunjuk: { ...p.petunjuk, [kunci]: tingkat } }, peristiwaId: id, tingkat };
 }
 
 /** Cocokkan peristiwa → tahap. Mengembalikan id peristiwa yang salah (kosong = semua benar). */

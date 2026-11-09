@@ -1,0 +1,40 @@
+{
+  "_catatan": "Naskah warga Desa Tirta (DRAF dari Claude, perlu dicek Sabri). Satu baris = satu kotak dialog, maksimal 140 karakter supaya muat 2 baris. Naskah pembuka tidak boleh memakai kata terlarang tingkat 1 misi mana pun, dan arahan tiap misi tidak boleh memakai kata terlarang misinya; keduanya diuji otomatis (npm test).",
+  "pembicara": {
+    "kades": { "nama": "Kepala Desa", "ikon": "👨🏽‍🌾" },
+    "tiko": { "nama": "Tiko", "ikon": "💧" }
+  },
+  "pembuka": [
+    { "siapa": "kades", "teks": "Selamat datang di Desa Tirta! Sudah lama sekali hujan tidak turun di sini." },
+    { "siapa": "kades", "teks": "Sumur kami kering dan sawah retak-retak. Warga cemas sekali." },
+    { "siapa": "tiko", "teks": "Halo, aku Tiko! Aku tetes air yang tersesat. Aku ingin pulang ke awan, tapi jalannya putus." },
+    { "siapa": "kades", "teks": "Air di pulau ini biasanya terus berputar dari laut ke langit lalu kembali lagi. Sekarang putarannya macet." },
+    { "siapa": "tiko", "teks": "Ada empat tempat yang rusak: Pantai Biru, Puncak Kabut, Lembah Hujan, dan Hutan & Sungai." },
+    { "siapa": "tiko", "teks": "Kalau keempatnya pulih, hujan bisa turun lagi. Jalan pakai WASD, lalu tekan E di dekat tempat yang rusak. Ayo!" }
+  ],
+  "arahan": {
+    "misi-1": [
+      { "siapa": "kades", "teks": "Pantai Biru sepi sekali. Kata nelayan, airnya diam saja dan tidak ke mana-mana." },
+      { "siapa": "tiko", "teks": "Ayo kita lihat ke Pantai Biru!" }
+    ],
+    "misi-2": [
+      { "siapa": "kades", "teks": "Dulu Puncak Kabut selalu tertutup awan. Sekarang langit di atasnya kosong." },
+      { "siapa": "tiko", "teks": "Ayo kita lihat ke Puncak Kabut!" }
+    ],
+    "misi-3": [
+      { "siapa": "kades", "teks": "Awan di atas Lembah Hujan menggantung terus, tapi hujannya tidak pernah turun." },
+      { "siapa": "tiko", "teks": "Ayo kita lihat ke Lembah Hujan!" }
+    ],
+    "misi-4": [
+      { "siapa": "kades", "teks": "Di Hutan & Sungai, air hujan cepat sekali hilang. Mata airnya sampai kering." },
+      { "siapa": "tiko", "teks": "Ayo kita lihat ke Hutan & Sungai!" }
+    ]
+  },
+  "ajakanFestival": [
+    { "siapa": "kades", "teks": "Keempat tempat sudah pulih! Ayo kita rayakan dengan Festival Hujan." },
+    { "siapa": "kades", "teks": "Cocokkan kejadian sehari-hari dengan tahap siklus air. Kalau semuanya cocok, hujan akan turun!" }
+  ],
+  "sesudahFestival": [
+    { "siapa": "kades", "teks": "Terima kasih! Sumur penuh lagi dan sawah mulai hijau. Desa Tirta tidak akan lupa bantuanmu." }
+  ]
+}

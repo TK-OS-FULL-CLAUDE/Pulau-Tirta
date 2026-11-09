@@ -10,6 +10,19 @@ export interface Pilihan {
   miskonsepsi?: string;
 }
 
+/**
+ * Teks yang tampil di aktivitas misi. `arahan`, `siap`, dan `sorot` tampil SEBELUM anak menjawab,
+ * jadi wajib lolos aturan kebocoran tingkat 1 (diuji). `catatanSesudah` tampil setelah jawaban benar.
+ */
+export interface TeksAktivitas {
+  arahan: string;
+  siap: string;
+  sorot?: string;
+  catatanSesudah?: string;
+  /** Label di gambar dan tombol aktivitas (kunci ditentukan tiap aktivitas). Tampil sebelum menjawab, jadi ikut diuji. */
+  label?: Record<string, string>;
+}
+
 export interface Misi {
   id: string;
   judul: string;
@@ -21,12 +34,25 @@ export interface Misi {
   kataTerlarang?: Record<string, string[]>;
   kutipanTerlarang?: string[];
   petunjukCadangan?: Record<string, string>;
+  aktivitas?: TeksAktivitas;
 }
 
 export interface Peristiwa {
   id: string;
   teks: string;
+  /** Gambar kecil di kartu peristiwa (membantu anak yang membaca pelan). */
+  ikon?: string;
   tahap: string;
+  /** Petunjuk template Tiko per tingkat ("1"–"3"). Tingkat 1–2 tidak boleh menyebut kata terlarang tahapnya (diuji). */
+  petunjuk?: Record<string, string>;
+}
+
+export interface Festival {
+  tahap: string[];
+  kartuMateri: number[];
+  /** Kata yang tidak boleh muncul di petunjuk tingkat 1–2 untuk peristiwa dengan tahap ini. */
+  kataTerlarang: Record<string, string[]>;
+  peristiwa: Peristiwa[];
 }
 
 export interface KartuMateri {
@@ -35,7 +61,7 @@ export interface KartuMateri {
 }
 
 export const DAFTAR_MISI: Misi[] = misiData.misi as Misi[];
-export const FESTIVAL: { tahap: string[]; peristiwa: Peristiwa[] } = misiData.festival;
+export const FESTIVAL: Festival = misiData.festival as Festival;
 export const KARTU_MATERI: KartuMateri[] = kartuData.kartu;
 
 /** Misi yang punya pertanyaan alasan (misi 1–4). */
