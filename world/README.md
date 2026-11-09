@@ -1,8 +1,8 @@
 # Gameplay & World Aufa
 
-**Peta aktif V3.4-A4, seluruh Desa Tirta:** `world/maps/pulau_tirta_v34_a4.tmj`.
+**Peta aktif V3.4-A5, seluruh Desa Tirta:** `world/maps/pulau_tirta_v34_a5.tmj`.
 Panduan art pass, properti lokal, screenshot dan pengujian:
-[VILLAGE_A4.md](VILLAGE_A4.md). Living system V3.3: [LIVING_WORLD_V33.md](LIVING_WORLD_V33.md). Arsip desain V3.2: [ENVIRONMENT_V32.md](ENVIRONMENT_V32.md). V3.1 tetap menjadi pembanding. Ukuran, spawn, dan koordinat misi V3 dipertahankan.
+[VILLAGE_A5.md](VILLAGE_A5.md). Living system V3.3: [LIVING_WORLD_V33.md](LIVING_WORLD_V33.md). Arsip desain V3.2: [ENVIRONMENT_V32.md](ENVIRONMENT_V32.md). V3.1 tetap menjadi pembanding. Ukuran, spawn, dan koordinat misi V3 dipertahankan.
 
 Bagian berikut mendokumentasikan V3 dan arsip V1; keduanya tetap tersimpan.
 
