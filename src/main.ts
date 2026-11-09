@@ -15,8 +15,10 @@ import {
 } from '../shared/missions';
 import { DuniaScene, LEBAR, LOKASI, TINGGI, type Lokasi } from './game/world';
 import { PanelTiko } from './tiko/panel';
+import { WARGA, naskahDesa } from '../shared/warga';
 import { pasangDemo, tujuanDariUrl } from './ui/demo';
 import { bukaFestival, bukaMisi, peristiwaFestivalAktif, sorotMisiAktif, tandaiPetunjukFestival } from './ui/dialog-misi';
+import { bukaPercakapan } from './ui/kotak-dialog';
 import { bukaJeda, bukaJudul, bukaTamat } from './ui/layar';
 
 const q = new URLSearchParams(location.search);
@@ -27,6 +29,8 @@ let progres: Progres = DEMO ? progresAwal() : muat();
 let lokasiSekarang: Lokasi = LOKASI[0];
 let terakhirMaju = Date.now();
 let terakhirSapa = 0;
+/** Ajakan Festival dari Kepala Desa cukup sekali per sesi; kunjungan berikutnya langsung membuka Festival. */
+let sudahDiajakFestival = false;
 
 const persenPulih = () => MISI_UTAMA.filter((m) => progres.status[m.id] === 'selesai').length / MISI_UTAMA.length;
 
@@ -132,27 +136,46 @@ function interaksi(lokasi: Lokasi): void {
           if (!sudahSelesai && progres.status[misi.id] === 'selesai') sorak(`${lokasi.nama} pulih!`);
         },
       });
-    } else if (festivalTerbuka(progres) && !progres.festivalSelesai) {
-      bukaFestival({
-        periksa: periksaFestival,
-        petunjuk: beriPetunjukFestival,
-        selesai: () => {
-          const kartuDidapat = [...new Set([...progres.kartuDidapat, ...FESTIVAL.kartuMateri])].sort((a, b) => a - b);
-          perbarui({ ...progres, festivalSelesai: true, kartuDidapat });
-          panel.sapa('Hujan turun! Terima kasih sudah memulihkan Pulau Tirta. Aku pulang ke awan dulu, ya. Sampai jumpa!');
-        },
-        tutup: () => {
-          lepas();
-          if (progres.festivalSelesai) {
-            sorak('Hujan turun di Pulau Tirta!');
-            setTimeout(tampilkanTamat, 2200);
+    } else {
+      // Desa Tirta: Kepala Desa mengarahkan ke tempat yang masih rusak, mengajak ke Festival, atau berterima kasih.
+      const n = naskahDesa(progres);
+      if (n.jenis === 'festival' && sudahDiajakFestival) {
+        bukaFestivalDesa(lepas);
+        return;
+      }
+      bukaPercakapan(n.baris, {
+        pembicara: WARGA.pembicara,
+        tutup: (tamat) => {
+          if (n.jenis === 'festival') {
+            sudahDiajakFestival = true;
+            if (tamat) {
+              bukaFestivalDesa(lepas);
+              return;
+            }
           }
+          lepas();
         },
       });
-    } else {
-      panel.sapa(progres.festivalSelesai ? 'Hujan sudah turun. Terima kasih sudah memulihkan Pulau Tirta!' : 'Warga cemas. Perbaiki empat tempat yang rusak dulu, ya.');
-      lepas();
     }
+}
+
+function bukaFestivalDesa(lepas: () => void): void {
+  bukaFestival({
+    periksa: periksaFestival,
+    petunjuk: beriPetunjukFestival,
+    selesai: () => {
+      const kartuDidapat = [...new Set([...progres.kartuDidapat, ...FESTIVAL.kartuMateri])].sort((a, b) => a - b);
+      perbarui({ ...progres, festivalSelesai: true, kartuDidapat });
+      panel.sapa('Hujan turun! Terima kasih sudah memulihkan Pulau Tirta. Aku pulang ke awan dulu, ya. Sampai jumpa!');
+    },
+    tutup: () => {
+      lepas();
+      if (progres.festivalSelesai) {
+        sorak('Hujan turun di Pulau Tirta!');
+        setTimeout(tampilkanTamat, 2200);
+      }
+    },
+  });
 }
 
 const dunia = new DuniaScene({
@@ -250,7 +273,10 @@ function semuaMisiSelesai(p: Progres): Progres {
 function keDemo(tujuan: string): void {
   tutupSemuaDialog();
   setTimeout(() => {
-    if (tujuan === 'festival') {
+    if (tujuan === 'pembuka') {
+      bukaPercakapan(WARGA.pembuka, { pembicara: WARGA.pembicara, tutup: () => undefined });
+    } else if (tujuan === 'festival') {
+      sudahDiajakFestival = true;
       const petunjuk = Object.fromEntries(Object.entries(progres.petunjuk).filter(([k]) => !k.startsWith('festival:')));
       perbarui({ ...semuaMisiSelesai(progres), petunjuk, festivalSelesai: false });
       interaksi(LOKASI.find((l) => l.id === 'desa') ?? LOKASI[0]);
@@ -282,9 +308,19 @@ if (DEMO) {
     sisaTempat,
     ulang,
     mulai: (baru) => {
+      if (baru) {
+        // Misi 0: Kepala Desa dan Tiko memperkenalkan masalahnya.
+        bukaPercakapan(WARGA.pembuka, {
+          pembicara: WARGA.pembicara,
+          tutup: () => {
+            lepasKunci();
+            panel.sapa('Aku di sini kalau kamu bingung. Tekan "Aku harus ke mana?" atau tanya aku soal air, ya.');
+          },
+        });
+        return;
+      }
       lepasKunci();
-      if (baru) panel.sapa(SALAM);
-      else if (sisaTempat) panel.sapa(`Selamat datang kembali! Masih ada ${sisaTempat} tempat yang perlu dipulihkan.`);
+      if (sisaTempat) panel.sapa(`Selamat datang kembali! Masih ada ${sisaTempat} tempat yang perlu dipulihkan.`);
       else panel.sapa('Selamat datang kembali! Pulau Tirta sudah pulih. Jelajahi saja sesukamu.');
     },
   });
