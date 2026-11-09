@@ -20,3 +20,9 @@ Sebelum menambah aset baru: pastikan lisensinya mengizinkan dipakai dan dibagika
 ## Desa Tirta A4
 
 `world/assets/village_a4/paths.svg` adalah tekstur jalan tanah SVG pixel-grid lokal, dibuat melalui `scripts/design-village-a4.mjs` dengan palet tanah A1. Bukan aset Kenney dan tidak mengambil gambar eksternal. Enam belas varian tepian berbasis tetangga cardinal; ekspor runtime di `public/assets/world/village_a4/`. Seluruh atlas A3 tetap utuh.
+
+## Desa Tirta A5
+
+`world/assets/village_a5/props.svg` adalah properti SVG pixel-grid buatan lokal melalui `scripts/village-a5-props.mjs`: pohon peneduh, pergola, gerobak, rak panen beratap, meja kerja, planter dan jemuran. Palet kayu/hijau mengikuti atlas existing; tidak menyalin atau mengunduh gambar eksternal. Bukan aset resmi Kenney. Salinan runtime di `public/assets/world/village_a5/`. Atlas Kenney serta properti tahap sebelumnya tetap utuh. Detail komposisi dan batas penggunaan ada di `world/VILLAGE_A5.md`.
+
+Finishing warna A5 menggunakan slot kosong atlas yang sama: bunga kuning/putih/pink/ungu/merah, tuft rumput dan dua keluarga tint rumput bertepian tersambung. Geometri ditulis lokal pada `scripts/village-a5-color.mjs`; tidak mengambil gambar luar atau mengubah atlas Kenney. Palet native rumput #84c669 dipertahankan.

@@ -1,0 +1,687 @@
+{
+  "stage": "a5",
+  "bounds": {
+    "x": 70,
+    "y": 55,
+    "width": 51,
+    "height": 43
+  },
+  "houses": [
+    {
+      "name": "Rumah Kebun",
+      "door": [
+        87,
+        71
+      ]
+    },
+    {
+      "name": "Balai Desa",
+      "door": [
+        104,
+        70
+      ]
+    },
+    {
+      "name": "Rumah Barat",
+      "door": [
+        81,
+        81
+      ]
+    },
+    {
+      "name": "Rumah Timur",
+      "door": [
+        111,
+        80
+      ]
+    },
+    {
+      "name": "Rumah Petani",
+      "door": [
+        88,
+        91
+      ]
+    },
+    {
+      "name": "Rumah Sungai",
+      "door": [
+        104,
+        92
+      ]
+    },
+    {
+      "name": "Rumah Utara",
+      "door": [
+        95,
+        65
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "label": "Spawn",
+      "tile": [
+        96,
+        79
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Plaza Festival",
+      "tile": [
+        98,
+        79
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Sumur",
+      "tile": [
+        91,
+        77
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Pasar",
+      "tile": [
+        84,
+        74
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Rumah Barat",
+      "tile": [
+        81,
+        81
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Kebun sayur barat",
+      "tile": [
+        80,
+        90
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Bed bibit",
+      "tile": [
+        80,
+        96
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Gerbang pesisir",
+      "tile": [
+        76,
+        94
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Penyimpanan panen",
+      "tile": [
+        86,
+        94
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Rumah Petani",
+      "tile": [
+        88,
+        91
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Rumah Sungai",
+      "tile": [
+        104,
+        92
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Halaman komunal selatan",
+      "tile": [
+        97,
+        91
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Kebun keluarga",
+      "tile": [
+        111,
+        94
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Gerbang hutan",
+      "tile": [
+        117,
+        96
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Rumah Timur",
+      "tile": [
+        111,
+        80
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Pekarangan herbal",
+      "tile": [
+        116,
+        78
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Gerbang timur desa",
+      "tile": [
+        119,
+        84
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Balai Desa",
+      "tile": [
+        104,
+        70
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Kebun dapur",
+      "tile": [
+        111,
+        70
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Gerbang lembah",
+      "tile": [
+        119,
+        60
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Rumah Utara",
+      "tile": [
+        95,
+        65
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Halaman komunal utara",
+      "tile": [
+        99,
+        61
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Kebun kecil utara",
+      "tile": [
+        89,
+        65
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Gerbang puncak",
+      "tile": [
+        82,
+        64
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Rumah Kebun",
+      "tile": [
+        87,
+        71
+      ],
+      "pauseMs": 900
+    },
+    {
+      "label": "Kembali ke plaza",
+      "tile": [
+        96,
+        79
+      ],
+      "pauseMs": 900
+    }
+  ],
+  "checkpoint": "0ecc0fb",
+  "activities": {
+    "village_npc_1": {
+      "activity": "Menata sayur di pasar",
+      "tiles": [
+        [
+          86,
+          74
+        ],
+        [
+          87,
+          74
+        ],
+        [
+          87,
+          76
+        ]
+      ],
+      "pauseMs": 2800
+    },
+    "village_npc_2": {
+      "activity": "Berbincang dan menunggu di halaman komunal utara",
+      "tiles": [
+        [
+          98,
+          60
+        ],
+        [
+          99,
+          60
+        ]
+      ],
+      "pauseMs": 3200
+    },
+    "village_npc_3": {
+      "activity": "Memeriksa bibit dan panen",
+      "tiles": [
+        [
+          86,
+          94
+        ],
+        [
+          86,
+          92
+        ],
+        [
+          88,
+          91
+        ]
+      ],
+      "pauseMs": 3000
+    },
+    "village_npc_4": {
+      "activity": "Menyiapkan area sumur dan Festival",
+      "tiles": [
+        [
+          94,
+          78
+        ],
+        [
+          94,
+          80
+        ],
+        [
+          93,
+          81
+        ]
+      ],
+      "pauseMs": 2300
+    }
+  },
+  "notes": [
+    "Household clusters, not random scatter",
+    "Medium shapes connect the seven unchanged houses",
+    "No gameplay/UI/backend changes"
+  ],
+  "clusters": [
+    {
+      "id": "utara-komunal",
+      "role": "Halaman bersama Rumah Utara: tempat berteduh dan berkumpul",
+      "access": [
+        99,
+        61
+      ],
+      "props": [
+        {
+          "kind": "tree",
+          "x": 100,
+          "y": 56,
+          "width": 3,
+          "height": 3
+        },
+        {
+          "kind": "pergola",
+          "x": 103,
+          "y": 59,
+          "width": 2,
+          "height": 2
+        },
+        {
+          "kind": "planter",
+          "x": 97,
+          "y": 57,
+          "width": 2,
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "rumah-kebun",
+      "role": "Sudut simpan hasil kebun dan peneduh di sisi rumah",
+      "access": [
+        84,
+        67
+      ],
+      "props": [
+        {
+          "kind": "rack",
+          "x": 82,
+          "y": 65,
+          "width": 3,
+          "height": 2
+        },
+        {
+          "kind": "tree",
+          "x": 81,
+          "y": 67,
+          "width": 3,
+          "height": 3
+        },
+        {
+          "kind": "native-stock",
+          "frame": 72,
+          "x": 84,
+          "y": 69,
+          "width": 1,
+          "height": 1
+        },
+        {
+          "kind": "planter",
+          "x": 85,
+          "y": 71,
+          "width": 2,
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "balai",
+      "role": "Tempat tunggu berpeneduh di belakang Balai dan planter depan",
+      "access": [
+        107,
+        64
+      ],
+      "props": [
+        {
+          "kind": "tree",
+          "x": 107,
+          "y": 60,
+          "width": 3,
+          "height": 3
+        },
+        {
+          "kind": "native-bench",
+          "x": 107,
+          "y": 63,
+          "width": 2,
+          "height": 1
+        },
+        {
+          "kind": "planter",
+          "x": 100,
+          "y": 70,
+          "width": 2,
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "pasar-servis",
+      "role": "Naungan sortir, gerobak sayur dan ruang pembeli yang jelas",
+      "access": [
+        78,
+        73
+      ],
+      "props": [
+        {
+          "kind": "rack",
+          "x": 76,
+          "y": 71,
+          "width": 3,
+          "height": 2
+        },
+        {
+          "kind": "tree",
+          "x": 89,
+          "y": 71,
+          "width": 3,
+          "height": 3
+        },
+        {
+          "kind": "cart",
+          "x": 89,
+          "y": 78,
+          "width": 2,
+          "height": 2
+        },
+        {
+          "kind": "planter",
+          "x": 96,
+          "y": 71,
+          "width": 2,
+          "height": 1
+        },
+        {
+          "kind": "planter",
+          "x": 103,
+          "y": 76,
+          "width": 2,
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "rumah-pasar",
+      "role": "Rumah Barat melanjutkan aktivitas penyimpanan pasar",
+      "access": [
+        85,
+        81
+      ],
+      "props": [
+        {
+          "kind": "table",
+          "x": 83,
+          "y": 78,
+          "width": 2,
+          "height": 1
+        },
+        {
+          "kind": "native-stock",
+          "frame": 85,
+          "x": 83,
+          "y": 79,
+          "width": 1,
+          "height": 1
+        },
+        {
+          "kind": "native-stock",
+          "frame": 76,
+          "x": 85,
+          "y": 79,
+          "width": 1,
+          "height": 1
+        },
+        {
+          "kind": "planter",
+          "x": 83,
+          "y": 80,
+          "width": 2,
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "keluarga-timur",
+      "role": "Bangku, planter, jemuran dan pembatas pohon pekarangan",
+      "access": [
+        118,
+        83
+      ],
+      "props": [
+        {
+          "kind": "laundry",
+          "x": 117,
+          "y": 81,
+          "width": 3,
+          "height": 2
+        },
+        {
+          "kind": "planter",
+          "x": 114,
+          "y": 81,
+          "width": 2,
+          "height": 1
+        },
+        {
+          "kind": "tree",
+          "x": 117,
+          "y": 85,
+          "width": 3,
+          "height": 3
+        }
+      ]
+    },
+    {
+      "id": "petani-kerja",
+      "role": "Rak panen di samping rumah, wadah air dan meja kerja",
+      "access": [
+        94,
+        86
+      ],
+      "props": [
+        {
+          "kind": "rack",
+          "x": 92,
+          "y": 84,
+          "width": 3,
+          "height": 2
+        },
+        {
+          "kind": "table",
+          "x": 95,
+          "y": 85,
+          "width": 2,
+          "height": 1
+        },
+        {
+          "kind": "tree",
+          "x": 91,
+          "y": 88,
+          "width": 3,
+          "height": 3
+        }
+      ]
+    },
+    {
+      "id": "selatan-komunal",
+      "role": "Pohon, pergola dan tempat mencuci menghubungkan dua rumah selatan",
+      "access": [
+        97,
+        91
+      ],
+      "props": [
+        {
+          "kind": "tree",
+          "x": 98,
+          "y": 87,
+          "width": 3,
+          "height": 3
+        },
+        {
+          "kind": "pergola",
+          "x": 95,
+          "y": 89,
+          "width": 2,
+          "height": 2
+        },
+        {
+          "kind": "table",
+          "x": 98,
+          "y": 90,
+          "width": 2,
+          "height": 1
+        },
+        {
+          "kind": "tree",
+          "x": 92,
+          "y": 93,
+          "width": 3,
+          "height": 3
+        }
+      ]
+    },
+    {
+      "id": "nursery-panen",
+      "role": "Tempat sortir panen pada tepi nursery; aisle lama tetap terbuka",
+      "access": [
+        86,
+        95
+      ],
+      "props": [
+        {
+          "kind": "rack",
+          "x": 84,
+          "y": 96,
+          "width": 3,
+          "height": 2
+        }
+      ]
+    },
+    {
+      "id": "kebun-keluarga",
+      "role": "Meja pengolahan hasil kebun dekat penyimpanan dan jalur keluarga",
+      "access": [
+        115,
+        90
+      ],
+      "props": [
+        {
+          "kind": "table",
+          "x": 115,
+          "y": 89,
+          "width": 2,
+          "height": 1
+        },
+        {
+          "kind": "native-bench",
+          "x": 115,
+          "y": 92,
+          "width": 2,
+          "height": 1
+        },
+        {
+          "kind": "tree",
+          "x": 115,
+          "y": 94,
+          "width": 3,
+          "height": 3
+        }
+      ]
+    }
+  ],
+  "basis": {
+    "branch": "feature/world-desa-a5",
+    "commit": "d4d7d63",
+    "source": "integrated origin/main"
+  }
+}
