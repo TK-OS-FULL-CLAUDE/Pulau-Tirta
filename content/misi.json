@@ -235,6 +235,22 @@
       "kutipanTerlarang": [
         "Akar dan tanah gembur membantu air hujan meresap ke tanah"
       ],
+      "aktivitas": {
+        "arahan": "Siram lereng gundul dan lereng berpohon. Lalu bandingkan ke mana air hujan pergi, dan mata air mana yang lebih lama mengalir.",
+        "siap": "Hujan sudah berhenti. Lihat mata air di kedua lereng. Mana yang masih mengalir?",
+        "sorot": "Perhatikan bagian bawah pohon dan tanah di bawah kedua lereng.",
+        "catatanSesudah": "Air yang masuk ke dalam tanah menjadi air tanah. Air tanah keluar pelan-pelan lewat mata air, jadi lereng berpohon tetap punya air saat kemarau.",
+        "label": {
+          "gundul": "Lereng gundul",
+          "pohon": "Lereng berpohon",
+          "siramGundul": "Siram lereng gundul",
+          "siramPohon": "Siram lereng berpohon",
+          "airTanah": "air tanah",
+          "mataAir": "mata air",
+          "sungai": "ke sungai",
+          "bawahPohon": "bagian bawah pohon"
+        }
+      },
       "petunjukCadangan": {
         "1": "Bandingkan air hujan di lereng gundul dan lereng berpohon. Ke mana air di masing-masing lereng pergi?",
         "2": "Perhatikan bagian bawah pohon dan tanah di sekitarnya. Di lereng mana airnya tidak langsung mengalir pergi?",

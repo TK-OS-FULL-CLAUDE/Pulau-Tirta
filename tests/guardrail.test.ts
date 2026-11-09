@@ -68,8 +68,8 @@ describe('aturan kebocoran petunjuk', () => {
 
   it('teks aktivitas yang tampil sebelum menjawab tidak membocorkan jawaban', () => {
     for (const misi of MISI_UTAMA.filter((m) => m.aktivitas)) {
-      const { arahan, siap, sorot } = misi.aktivitas!;
-      for (const teks of [arahan, siap, sorot].filter(Boolean) as string[]) {
+      const { arahan, siap, sorot, label } = misi.aktivitas!;
+      for (const teks of [arahan, siap, sorot, ...Object.values(label ?? {})].filter(Boolean) as string[]) {
         expect(periksaKeluar(teks, { misi, tingkat: 1 }), `${misi.id}: ${teks}`).toMatchObject({ aman: true });
       }
     }

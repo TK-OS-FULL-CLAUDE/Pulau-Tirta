@@ -1,5 +1,6 @@
 import type { Misi } from '../../../shared/content';
 import { el } from '../dom';
+import { buatHutan } from './hutan';
 import { buatLembah } from './lembah';
 import { buatPantai } from './pantai';
 import { buatPuncak } from './puncak';
@@ -12,6 +13,7 @@ const DAFTAR: Record<string, PembuatAktivitas> = {
   'misi-1': buatPantai,
   'misi-2': buatPuncak,
   'misi-3': buatLembah,
+  'misi-4': buatHutan,
 };
 
 function sementara(_misi: Misi, siap: () => void): Aktivitas {

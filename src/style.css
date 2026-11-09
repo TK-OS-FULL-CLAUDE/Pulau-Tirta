@@ -111,6 +111,23 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
   .tetes-awan.baru, .cincin, .cipratan { animation: none; }
 }
 
+/* Misi 4 · Hutan & Sungai */
+.label-tanah { font-size: 16px; font-weight: 700; fill: #ffffff; paint-order: stroke; stroke: rgb(0 0 0 / 50%); stroke-width: 3px; }
+.air-tanah { fill: #4aa3cf; opacity: 0.6; }
+.aliran { fill: none; stroke: #3d8fc4; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 14 10; animation: alir 0.8s linear infinite; }
+.mata-air { fill: none; stroke: #3d8fc4; stroke-linecap: round; stroke-dasharray: 8 6; animation: alir 0.6s linear infinite; }
+@keyframes alir { to { stroke-dashoffset: -24; } }
+.akar { fill: none; stroke: #c49a6c; stroke-width: 3; stroke-linecap: round; }
+.butir-air { fill: #7cc4ea; stroke: #2f6f96; stroke-width: 1; }
+.garis-hujan { stroke: #3d8fc4; stroke-width: 2.5; stroke-linecap: round; animation: garis-hujan 0.5s linear infinite; }
+@keyframes garis-hujan { from { transform: translateY(0); opacity: 1; } to { transform: translateY(46px); opacity: 0.2; } }
+.aktivitas.sorot .akar { stroke: var(--aksen); stroke-width: 4; animation: kedip 0.9s ease-in-out infinite alternate; }
+.aktivitas.sorot .air-tanah { opacity: 0.85; }
+.hutan .label-sorot { fill: #ffffff; paint-order: stroke; stroke: #b85c00; stroke-width: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .aliran, .mata-air, .garis-hujan, .aktivitas.sorot .akar { animation: none; }
+}
+
 /* Festival Hujan */
 .festival { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(220px, 1fr); gap: 16px; align-items: start; }
 .festival-peristiwa, .festival-tahap { display: grid; gap: 10px; }

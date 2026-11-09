@@ -19,6 +19,8 @@ export interface TeksAktivitas {
   siap: string;
   sorot?: string;
   catatanSesudah?: string;
+  /** Label di gambar dan tombol aktivitas (kunci ditentukan tiap aktivitas). Tampil sebelum menjawab, jadi ikut diuji. */
+  label?: Record<string, string>;
 }
 
 export interface Misi {
