@@ -15,7 +15,7 @@ function publish(path, data) {
   writeFileSync(path, bytes);
 }
 
-for (const [editor, runtime] of [['pulau_tirta.tmj', 'pulau-tirta.json'], ['pulau_tirta_v3.tmj', 'pulau-tirta-v3.json'], ['pulau_tirta_v3_1.tmj', 'pulau-tirta-v3-1.json'], ['pulau_tirta_v3_2.tmj', 'pulau-tirta-v3-2.json'], ['pulau_tirta_v34_a1.tmj', 'pulau-tirta-v34-a1.json'], ['pulau_tirta_v34_a11.tmj', 'pulau-tirta-v34-a11.json'], ['pulau_tirta_v34_a2.tmj', 'pulau-tirta-v34-a2.json'], ['pulau_tirta_v34_a3.tmj', 'pulau-tirta-v34-a3.json'], ['pulau_tirta_v34_a4.tmj', 'pulau-tirta-v34-a4.json'], ['pulau_tirta_v34_a5.tmj', 'pulau-tirta-v34-a5.json']]) {
+for (const [editor, runtime] of [['pulau_tirta.tmj', 'pulau-tirta.json'], ['pulau_tirta_v3.tmj', 'pulau-tirta-v3.json'], ['pulau_tirta_v3_1.tmj', 'pulau-tirta-v3-1.json'], ['pulau_tirta_v3_2.tmj', 'pulau-tirta-v3-2.json'], ['pulau_tirta_v34_a1.tmj', 'pulau-tirta-v34-a1.json'], ['pulau_tirta_v34_a11.tmj', 'pulau-tirta-v34-a11.json'], ['pulau_tirta_v34_a2.tmj', 'pulau-tirta-v34-a2.json'], ['pulau_tirta_v34_a3.tmj', 'pulau-tirta-v34-a3.json'], ['pulau_tirta_v34_a4.tmj', 'pulau-tirta-v34-a4.json'], ['pulau_tirta_v34_a5.tmj', 'pulau-tirta-v34-a5.json'], ['pulau_tirta_v35.tmj', 'pulau-tirta-v35.json'], ['pulau_tirta_v351.tmj', 'pulau-tirta-v351.json'], ['pulau_tirta_v36.tmj', 'pulau-tirta-v36.json'], ['pulau_tirta_v37.tmj', 'pulau-tirta-v37.json']]) {
   const source = resolve(sourceRoot, 'maps', editor);
   const output = resolve(root, 'public/maps', runtime);
   const map = JSON.parse(readFileSync(source, 'utf8'));
@@ -34,4 +34,4 @@ for (const [editor, runtime] of [['pulau_tirta.tmj', 'pulau-tirta.json'], ['pula
 
   publish(output, `${JSON.stringify(map)}\n`);
 }
-console.log(check ? 'Ekspor V1–V3.4-A5 sesuai sumber Tiled.' : 'V1–V3.4-A5 diekspor (tileset embedded).');
+console.log(check ? 'Ekspor V1–V3.7 Lembah sesuai sumber Tiled.' : 'V1–V3.7 Lembah diekspor (tileset embedded).');

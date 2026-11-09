@@ -1,0 +1,357 @@
+{
+  "type": "tileset",
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "name": "coast_v35",
+  "tilewidth": 16,
+  "tileheight": 16,
+  "tilecount": 384,
+  "columns": 24,
+  "image": "../../assets/coast_v35/tileset.svg",
+  "imagewidth": 384,
+  "imageheight": 256,
+  "margin": 0,
+  "spacing": 0,
+  "tiles": [
+    {
+      "id": 1,
+      "properties": [
+        {
+          "name": "bridge",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "properties": [
+        {
+          "name": "bridge",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "properties": [
+        {
+          "name": "collides",
+          "value": true,
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

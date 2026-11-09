@@ -1,0 +1,714 @@
+{
+  "version": "3.5.1-Pool-Nature",
+  "source": "world/maps/pulau_tirta_v35.tmj",
+  "collisionChanged": false,
+  "buildingsAndPierChanged": false,
+  "poolFootprint": {
+    "width": 5,
+    "height": 5,
+    "positions": [
+      [
+        50,
+        102
+      ],
+      [
+        61,
+        102
+      ]
+    ]
+  },
+  "recoveryLayer": "Recovery_Plants_Pantai_Biru",
+  "details": [
+    {
+      "kind": "shrub",
+      "x": 33,
+      "y": 91,
+      "width": 2,
+      "height": 2,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara barat"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 36,
+      "y": 92,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara barat"
+    },
+    {
+      "kind": "coastal-flowers",
+      "x": 35,
+      "y": 93,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara barat"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 34,
+      "y": 93,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara barat"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 36,
+      "y": 94,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara barat"
+    },
+    {
+      "kind": "fan-palm",
+      "x": 40,
+      "y": 91,
+      "width": 3,
+      "height": 3,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara tengah"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 44,
+      "y": 93,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara tengah"
+    },
+    {
+      "kind": "coastal-flowers",
+      "x": 43,
+      "y": 94,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara tengah"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 42,
+      "y": 94,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara tengah"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 45,
+      "y": 94,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara tengah"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 46,
+      "y": 93,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara tengah"
+    },
+    {
+      "kind": "shrub",
+      "x": 67,
+      "y": 92,
+      "width": 2,
+      "height": 2,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara timur"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 65,
+      "y": 92,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara timur"
+    },
+    {
+      "kind": "coastal-flowers",
+      "x": 64,
+      "y": 93,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara timur"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 63,
+      "y": 92,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara timur"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 66,
+      "y": 94,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara timur"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 68,
+      "y": 94,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir utara timur"
+    },
+    {
+      "kind": "fan-palm",
+      "x": 43,
+      "y": 99,
+      "width": 3,
+      "height": 3,
+      "walkableGroundcover": true,
+      "pocket": "Kolam barat"
+    },
+    {
+      "kind": "shrub",
+      "x": 44,
+      "y": 105,
+      "width": 2,
+      "height": 2,
+      "walkableGroundcover": true,
+      "pocket": "Kolam barat"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 46,
+      "y": 106,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Kolam barat"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 49,
+      "y": 100,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Kolam barat"
+    },
+    {
+      "kind": "coastal-flowers",
+      "x": 45,
+      "y": 107,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Kolam barat"
+    },
+    {
+      "kind": "coastal-flowers",
+      "x": 49,
+      "y": 98,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Kolam barat"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 47,
+      "y": 107,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Kolam barat"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 48,
+      "y": 100,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Kolam barat"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 45,
+      "y": 104,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Kolam barat"
+    },
+    {
+      "kind": "fan-palm",
+      "x": 70,
+      "y": 109,
+      "width": 3,
+      "height": 3,
+      "walkableGroundcover": true,
+      "pocket": "Kolam timur"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 69,
+      "y": 107,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Kolam timur"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 70,
+      "y": 108,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Kolam timur"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 64,
+      "y": 97,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Kolam timur"
+    },
+    {
+      "kind": "fan-palm",
+      "x": 51,
+      "y": 94,
+      "width": 3,
+      "height": 3,
+      "walkableGroundcover": true,
+      "pocket": "Dune utara"
+    },
+    {
+      "kind": "shrub",
+      "x": 58,
+      "y": 94,
+      "width": 2,
+      "height": 2,
+      "walkableGroundcover": true,
+      "pocket": "Dune utara"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 59,
+      "y": 97,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Dune utara"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 60,
+      "y": 96,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Dune utara"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 62,
+      "y": 97,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Dune utara"
+    },
+    {
+      "kind": "fan-palm",
+      "x": 26,
+      "y": 101,
+      "width": 3,
+      "height": 3,
+      "walkableGroundcover": true,
+      "pocket": "Palem barat"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 30,
+      "y": 105,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem barat"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 36,
+      "y": 103,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem barat"
+    },
+    {
+      "kind": "coastal-flowers",
+      "x": 31,
+      "y": 103,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem barat"
+    },
+    {
+      "kind": "coastal-flowers",
+      "x": 35,
+      "y": 105,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem barat"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 30,
+      "y": 104,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem barat"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 36,
+      "y": 106,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem barat"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 37,
+      "y": 104,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem barat"
+    },
+    {
+      "kind": "shrub",
+      "x": 49,
+      "y": 109,
+      "width": 2,
+      "height": 2,
+      "walkableGroundcover": true,
+      "pocket": "Pasir antara fasilitas"
+    },
+    {
+      "kind": "coastal-flowers",
+      "x": 42,
+      "y": 109,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir antara fasilitas"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 51,
+      "y": 111,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pasir antara fasilitas"
+    },
+    {
+      "kind": "fan-palm",
+      "x": 62,
+      "y": 116,
+      "width": 3,
+      "height": 3,
+      "walkableGroundcover": true,
+      "pocket": "Pesisir tenggara"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 66,
+      "y": 119,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pesisir tenggara"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 65,
+      "y": 120,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pesisir tenggara"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 67,
+      "y": 118,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Pesisir tenggara"
+    },
+    {
+      "kind": "fan-palm",
+      "x": 55,
+      "y": 119,
+      "width": 3,
+      "height": 3,
+      "walkableGroundcover": true,
+      "pocket": "Palem selatan"
+    },
+    {
+      "kind": "shrub",
+      "x": 50,
+      "y": 124,
+      "width": 2,
+      "height": 2,
+      "walkableGroundcover": true,
+      "pocket": "Palem selatan"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 47,
+      "y": 123,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem selatan"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 53,
+      "y": 123,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem selatan"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 46,
+      "y": 123,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem selatan"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 48,
+      "y": 124,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem selatan"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 53,
+      "y": 125,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem selatan"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 55,
+      "y": 123,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Palem selatan"
+    },
+    {
+      "kind": "embedded-stones",
+      "x": 43,
+      "y": 127,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Batu pasang selatan"
+    },
+    {
+      "kind": "coastal-flowers",
+      "x": 42,
+      "y": 125,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Batu pasang selatan"
+    },
+    {
+      "kind": "dunegrass",
+      "x": 43,
+      "y": 126,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true,
+      "pocket": "Batu pasang selatan"
+    },
+    {
+      "kind": "shells",
+      "x": 40,
+      "y": 123,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "shells",
+      "x": 41,
+      "y": 124,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "shells",
+      "x": 46,
+      "y": 126,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "shells",
+      "x": 48,
+      "y": 127,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "shells",
+      "x": 56,
+      "y": 128,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "shells",
+      "x": 58,
+      "y": 127,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "shells",
+      "x": 63,
+      "y": 125,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "shells",
+      "x": 65,
+      "y": 123,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "fallen-branch",
+      "x": 31,
+      "y": 111,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "fallen-branch",
+      "x": 57,
+      "y": 126,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "fallen-branch",
+      "x": 65,
+      "y": 122,
+      "width": 2,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wind-sand",
+      "x": 51,
+      "y": 98,
+      "width": 3,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wind-sand",
+      "x": 45,
+      "y": 111,
+      "width": 3,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wind-sand",
+      "x": 60,
+      "y": 125,
+      "width": 3,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "white-flowers",
+      "x": 67,
+      "y": 107,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "white-flowers",
+      "x": 61,
+      "y": 120,
+      "width": 1,
+      "height": 1,
+      "walkableGroundcover": true
+    }
+  ],
+  "pockets": [
+    "Pasir utara barat",
+    "Pasir utara tengah",
+    "Pasir utara timur",
+    "Kolam barat",
+    "Kolam timur",
+    "Dune utara",
+    "Palem barat",
+    "Pasir antara fasilitas",
+    "Pesisir tenggara",
+    "Palem selatan",
+    "Batu pasang selatan"
+  ],
+  "placementSkipped": 38
+}
