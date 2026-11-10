@@ -1,0 +1,1902 @@
+{
+  "version": "3.8-R3-Native-Stands",
+  "source": "world/maps/pulau_tirta_v38_r2.tmj",
+  "collisionMode": "approved-local-trunks",
+  "usesNewAssets": false,
+  "upgrades": [
+    {
+      "x": 128,
+      "y": 134,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_6",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 176,
+      "y": 83,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_20",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 129,
+      "y": 121,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_52",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 144,
+      "y": 92,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_61",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 150,
+      "y": 95,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_76",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 183,
+      "y": 83,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_87",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 145,
+      "y": 96,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_106",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 125,
+      "y": 121,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_111",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 147,
+      "y": 94,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_112",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 145,
+      "y": 86,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_119",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 131,
+      "y": 132,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_124",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 128,
+      "y": 132,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_134",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 145,
+      "y": 83,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_153",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 132,
+      "y": 92,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_156",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 141,
+      "y": 86,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_291",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 123,
+      "y": 88,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_311",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 132,
+      "y": 135,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_314",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 126,
+      "y": 95,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_376",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 159,
+      "y": 97,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_446",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 131,
+      "y": 122,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_512",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 153,
+      "y": 96,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_529",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 131,
+      "y": 85,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_536",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 168,
+      "y": 103,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_560",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 174,
+      "y": 88,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_579",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 150,
+      "y": 90,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_616",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 166,
+      "y": 103,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_690",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 138,
+      "y": 89,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_691",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 182,
+      "y": 87,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_698",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 153,
+      "y": 95,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_759",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 136,
+      "y": 91,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_768",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 148,
+      "y": 98,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_809",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 138,
+      "y": 83,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_830",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 174,
+      "y": 96,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_841",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 151,
+      "y": 84,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_970",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 138,
+      "y": 128,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_975",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 153,
+      "y": 94,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_998",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 142,
+      "y": 100,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_1017",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 140,
+      "y": 130,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_1045",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 128,
+      "y": 120,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_1097",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 138,
+      "y": 99,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "tree_1112",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 169,
+      "y": 103,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_3",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 126,
+      "y": 105,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_8",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 123,
+      "y": 134,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_18",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 171,
+      "y": 86,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_40",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 125,
+      "y": 95,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_93",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 178,
+      "y": 96,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_95",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 178,
+      "y": 98,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_128",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 169,
+      "y": 87,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_205",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 153,
+      "y": 97,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_229",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 122,
+      "y": 116,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_235",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 128,
+      "y": 84,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_242",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 172,
+      "y": 106,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_261",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 130,
+      "y": 106,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_291",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 182,
+      "y": 85,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_292",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 144,
+      "y": 125,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_306",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 138,
+      "y": 98,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_320",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 173,
+      "y": 93,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_327",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 147,
+      "y": 85,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_350",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 171,
+      "y": 93,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_373",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 131,
+      "y": 128,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_393",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 137,
+      "y": 96,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_395",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 161,
+      "y": 101,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_410",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 157,
+      "y": 99,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "rock_439",
+      "kind": "rock-to-native-tree"
+    },
+    {
+      "x": 147,
+      "y": 102,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "v32_tree_147_102",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 149,
+      "y": 115,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "v32_tree_149_115",
+      "kind": "native-small-to-tall"
+    },
+    {
+      "x": 146,
+      "y": 116,
+      "width": 1,
+      "height": 2,
+      "reusesCollider": "v32_tree_146_116",
+      "kind": "native-small-to-tall"
+    }
+  ],
+  "newTrees": [
+    {
+      "x": 130,
+      "y": 93,
+      "group": "barat-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_130_93"
+    },
+    {
+      "x": 131,
+      "y": 93,
+      "group": "barat-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_131_93"
+    },
+    {
+      "x": 130,
+      "y": 95,
+      "group": "barat-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_130_95"
+    },
+    {
+      "x": 132,
+      "y": 94,
+      "group": "barat-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_132_94"
+    },
+    {
+      "x": 128,
+      "y": 95,
+      "group": "barat-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_128_95"
+    },
+    {
+      "x": 131,
+      "y": 96,
+      "group": "barat-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_131_96"
+    },
+    {
+      "x": 129,
+      "y": 97,
+      "group": "barat-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_129_97"
+    },
+    {
+      "x": 133,
+      "y": 96,
+      "group": "barat-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_133_96"
+    },
+    {
+      "x": 128,
+      "y": 109,
+      "group": "barat-dalam",
+      "zone": "deep",
+      "collider": "v38_r3_tree_128_109"
+    },
+    {
+      "x": 129,
+      "y": 109,
+      "group": "barat-dalam",
+      "zone": "deep",
+      "collider": "v38_r3_tree_129_109"
+    },
+    {
+      "x": 130,
+      "y": 110,
+      "group": "barat-dalam",
+      "zone": "deep",
+      "collider": "v38_r3_tree_130_110"
+    },
+    {
+      "x": 132,
+      "y": 110,
+      "group": "barat-dalam",
+      "zone": "deep",
+      "collider": "v38_r3_tree_132_110"
+    },
+    {
+      "x": 127,
+      "y": 111,
+      "group": "barat-dalam",
+      "zone": "deep",
+      "collider": "v38_r3_tree_127_111"
+    },
+    {
+      "x": 131,
+      "y": 112,
+      "group": "barat-dalam",
+      "zone": "deep",
+      "collider": "v38_r3_tree_131_112"
+    },
+    {
+      "x": 128,
+      "y": 113,
+      "group": "barat-dalam",
+      "zone": "deep",
+      "collider": "v38_r3_tree_128_113"
+    },
+    {
+      "x": 132,
+      "y": 112,
+      "group": "barat-dalam",
+      "zone": "deep",
+      "collider": "v38_r3_tree_132_112"
+    },
+    {
+      "x": 131,
+      "y": 118,
+      "group": "barat-selatan",
+      "zone": "deep",
+      "collider": "v38_r3_tree_131_118"
+    },
+    {
+      "x": 132,
+      "y": 118,
+      "group": "barat-selatan",
+      "zone": "deep",
+      "collider": "v38_r3_tree_132_118"
+    },
+    {
+      "x": 131,
+      "y": 120,
+      "group": "barat-selatan",
+      "zone": "deep",
+      "collider": "v38_r3_tree_131_120"
+    },
+    {
+      "x": 134,
+      "y": 119,
+      "group": "barat-selatan",
+      "zone": "deep",
+      "collider": "v38_r3_tree_134_119"
+    },
+    {
+      "x": 129,
+      "y": 120,
+      "group": "barat-selatan",
+      "zone": "deep",
+      "collider": "v38_r3_tree_129_120"
+    },
+    {
+      "x": 132,
+      "y": 121,
+      "group": "barat-selatan",
+      "zone": "deep",
+      "collider": "v38_r3_tree_132_121"
+    },
+    {
+      "x": 130,
+      "y": 122,
+      "group": "barat-selatan",
+      "zone": "deep",
+      "collider": "v38_r3_tree_130_122"
+    },
+    {
+      "x": 135,
+      "y": 121,
+      "group": "barat-selatan",
+      "zone": "deep",
+      "collider": "v38_r3_tree_135_121"
+    },
+    {
+      "x": 142,
+      "y": 88,
+      "group": "utara-rindang",
+      "zone": "deep",
+      "collider": "v38_r3_tree_142_88"
+    },
+    {
+      "x": 145,
+      "y": 88,
+      "group": "utara-rindang",
+      "zone": "deep",
+      "collider": "v38_r3_tree_145_88"
+    },
+    {
+      "x": 143,
+      "y": 89,
+      "group": "utara-rindang",
+      "zone": "deep",
+      "collider": "v38_r3_tree_143_89"
+    },
+    {
+      "x": 144,
+      "y": 89,
+      "group": "utara-rindang",
+      "zone": "deep",
+      "collider": "v38_r3_tree_144_89"
+    },
+    {
+      "x": 141,
+      "y": 90,
+      "group": "utara-rindang",
+      "zone": "deep",
+      "collider": "v38_r3_tree_141_90"
+    },
+    {
+      "x": 144,
+      "y": 91,
+      "group": "utara-rindang",
+      "zone": "deep",
+      "collider": "v38_r3_tree_144_91"
+    },
+    {
+      "x": 142,
+      "y": 92,
+      "group": "utara-rindang",
+      "zone": "deep",
+      "collider": "v38_r3_tree_142_92"
+    },
+    {
+      "x": 147,
+      "y": 91,
+      "group": "utara-rindang",
+      "zone": "deep",
+      "collider": "v38_r3_tree_147_91"
+    },
+    {
+      "x": 145,
+      "y": 93,
+      "group": "utara-rindang",
+      "zone": "deep",
+      "collider": "v38_r3_tree_145_93"
+    },
+    {
+      "x": 141,
+      "y": 93,
+      "group": "utara-rindang",
+      "zone": "deep",
+      "collider": "v38_r3_tree_141_93"
+    },
+    {
+      "x": 149,
+      "y": 93,
+      "group": "utara-timur",
+      "zone": "deep",
+      "collider": "v38_r3_tree_149_93"
+    },
+    {
+      "x": 152,
+      "y": 93,
+      "group": "utara-timur",
+      "zone": "deep",
+      "collider": "v38_r3_tree_152_93"
+    },
+    {
+      "x": 150,
+      "y": 94,
+      "group": "utara-timur",
+      "zone": "deep",
+      "collider": "v38_r3_tree_150_94"
+    },
+    {
+      "x": 152,
+      "y": 95,
+      "group": "utara-timur",
+      "zone": "deep",
+      "collider": "v38_r3_tree_152_95"
+    },
+    {
+      "x": 148,
+      "y": 95,
+      "group": "utara-timur",
+      "zone": "deep",
+      "collider": "v38_r3_tree_148_95"
+    },
+    {
+      "x": 151,
+      "y": 96,
+      "group": "utara-timur",
+      "zone": "deep",
+      "collider": "v38_r3_tree_151_96"
+    },
+    {
+      "x": 149,
+      "y": 97,
+      "group": "utara-timur",
+      "zone": "deep",
+      "collider": "v38_r3_tree_149_97"
+    },
+    {
+      "x": 152,
+      "y": 97,
+      "group": "utara-timur",
+      "zone": "deep",
+      "collider": "v38_r3_tree_152_97"
+    },
+    {
+      "x": 138,
+      "y": 95,
+      "group": "bahu-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_138_95"
+    },
+    {
+      "x": 141,
+      "y": 95,
+      "group": "bahu-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_141_95"
+    },
+    {
+      "x": 139,
+      "y": 96,
+      "group": "bahu-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_139_96"
+    },
+    {
+      "x": 142,
+      "y": 96,
+      "group": "bahu-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_142_96"
+    },
+    {
+      "x": 136,
+      "y": 97,
+      "group": "bahu-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_136_97"
+    },
+    {
+      "x": 141,
+      "y": 98,
+      "group": "bahu-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_141_98"
+    },
+    {
+      "x": 139,
+      "y": 99,
+      "group": "bahu-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_139_99"
+    },
+    {
+      "x": 143,
+      "y": 98,
+      "group": "bahu-utara",
+      "zone": "deep",
+      "collider": "v38_r3_tree_143_98"
+    },
+    {
+      "x": 137,
+      "y": 99,
+      "group": "belakang-pondok",
+      "zone": "hut",
+      "collider": "v38_r3_tree_137_99"
+    },
+    {
+      "x": 140,
+      "y": 100,
+      "group": "belakang-pondok",
+      "zone": "hut",
+      "collider": "v38_r3_tree_140_100"
+    },
+    {
+      "x": 139,
+      "y": 101,
+      "group": "belakang-pondok",
+      "zone": "hut",
+      "collider": "v38_r3_tree_139_101"
+    },
+    {
+      "x": 141,
+      "y": 100,
+      "group": "belakang-pondok",
+      "zone": "hut",
+      "collider": "v38_r3_tree_141_100"
+    },
+    {
+      "x": 138,
+      "y": 101,
+      "group": "belakang-pondok",
+      "zone": "hut",
+      "collider": "v38_r3_tree_138_101"
+    },
+    {
+      "x": 132,
+      "y": 107,
+      "group": "samping-pondok",
+      "zone": "hut",
+      "collider": "v38_r3_tree_132_107"
+    },
+    {
+      "x": 133,
+      "y": 107,
+      "group": "samping-pondok",
+      "zone": "hut",
+      "collider": "v38_r3_tree_133_107"
+    },
+    {
+      "x": 134,
+      "y": 108,
+      "group": "samping-pondok",
+      "zone": "hut",
+      "collider": "v38_r3_tree_134_108"
+    },
+    {
+      "x": 135,
+      "y": 108,
+      "group": "samping-pondok",
+      "zone": "hut",
+      "collider": "v38_r3_tree_135_108"
+    },
+    {
+      "x": 131,
+      "y": 108,
+      "group": "samping-pondok",
+      "zone": "hut",
+      "collider": "v38_r3_tree_131_108"
+    },
+    {
+      "x": 145,
+      "y": 118,
+      "group": "tengah-selatan",
+      "zone": "trail",
+      "collider": "v38_r3_tree_145_118"
+    },
+    {
+      "x": 147,
+      "y": 118,
+      "group": "tengah-selatan",
+      "zone": "trail",
+      "collider": "v38_r3_tree_147_118"
+    },
+    {
+      "x": 147,
+      "y": 120,
+      "group": "tengah-selatan",
+      "zone": "trail",
+      "collider": "v38_r3_tree_147_120"
+    },
+    {
+      "x": 148,
+      "y": 119,
+      "group": "tengah-selatan",
+      "zone": "trail",
+      "collider": "v38_r3_tree_148_119"
+    },
+    {
+      "x": 144,
+      "y": 119,
+      "group": "tengah-selatan",
+      "zone": "trail",
+      "collider": "v38_r3_tree_144_119"
+    },
+    {
+      "x": 149,
+      "y": 99,
+      "group": "jalur-jembatan",
+      "zone": "trail",
+      "collider": "v38_r3_tree_149_99"
+    },
+    {
+      "x": 151,
+      "y": 99,
+      "group": "jalur-jembatan",
+      "zone": "trail",
+      "collider": "v38_r3_tree_151_99"
+    },
+    {
+      "x": 149,
+      "y": 101,
+      "group": "jalur-jembatan",
+      "zone": "trail",
+      "collider": "v38_r3_tree_149_101"
+    },
+    {
+      "x": 151,
+      "y": 101,
+      "group": "jalur-jembatan",
+      "zone": "trail",
+      "collider": "v38_r3_tree_151_101"
+    },
+    {
+      "x": 147,
+      "y": 101,
+      "group": "jalur-jembatan",
+      "zone": "trail",
+      "collider": "v38_r3_tree_147_101"
+    },
+    {
+      "x": 165,
+      "y": 96,
+      "group": "tepi-timur-utara",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_165_96"
+    },
+    {
+      "x": 167,
+      "y": 96,
+      "group": "tepi-timur-utara",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_167_96"
+    },
+    {
+      "x": 166,
+      "y": 96,
+      "group": "tepi-timur-utara",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_166_96"
+    },
+    {
+      "x": 169,
+      "y": 97,
+      "group": "tepi-timur-utara",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_169_97"
+    },
+    {
+      "x": 164,
+      "y": 98,
+      "group": "tepi-timur-utara",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_164_98"
+    },
+    {
+      "x": 167,
+      "y": 99,
+      "group": "tepi-timur-utara",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_167_99"
+    },
+    {
+      "x": 165,
+      "y": 100,
+      "group": "tepi-timur-utara",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_165_100"
+    },
+    {
+      "x": 169,
+      "y": 99,
+      "group": "tepi-timur-utara",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_169_99"
+    },
+    {
+      "x": 167,
+      "y": 101,
+      "group": "tepi-timur-tengah",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_167_101"
+    },
+    {
+      "x": 169,
+      "y": 101,
+      "group": "tepi-timur-tengah",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_169_101"
+    },
+    {
+      "x": 167,
+      "y": 103,
+      "group": "tepi-timur-tengah",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_167_103"
+    },
+    {
+      "x": 171,
+      "y": 102,
+      "group": "tepi-timur-tengah",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_171_102"
+    },
+    {
+      "x": 166,
+      "y": 102,
+      "group": "tepi-timur-tengah",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_166_102"
+    },
+    {
+      "x": 169,
+      "y": 105,
+      "group": "tepi-timur-tengah",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_169_105"
+    },
+    {
+      "x": 168,
+      "y": 105,
+      "group": "tepi-timur-tengah",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_168_105"
+    },
+    {
+      "x": 171,
+      "y": 104,
+      "group": "tepi-timur-tengah",
+      "zone": "riverside",
+      "collider": "v38_r3_tree_171_104"
+    },
+    {
+      "x": 139,
+      "y": 125,
+      "group": "selatan-barat",
+      "zone": "deep",
+      "collider": "v38_r3_tree_139_125"
+    },
+    {
+      "x": 141,
+      "y": 125,
+      "group": "selatan-barat",
+      "zone": "deep",
+      "collider": "v38_r3_tree_141_125"
+    },
+    {
+      "x": 140,
+      "y": 125,
+      "group": "selatan-barat",
+      "zone": "deep",
+      "collider": "v38_r3_tree_140_125"
+    },
+    {
+      "x": 142,
+      "y": 126,
+      "group": "selatan-barat",
+      "zone": "deep",
+      "collider": "v38_r3_tree_142_126"
+    },
+    {
+      "x": 138,
+      "y": 127,
+      "group": "selatan-barat",
+      "zone": "deep",
+      "collider": "v38_r3_tree_138_127"
+    },
+    {
+      "x": 141,
+      "y": 128,
+      "group": "selatan-barat",
+      "zone": "deep",
+      "collider": "v38_r3_tree_141_128"
+    },
+    {
+      "x": 139,
+      "y": 129,
+      "group": "selatan-barat",
+      "zone": "deep",
+      "collider": "v38_r3_tree_139_129"
+    }
+  ],
+  "details": [
+    {
+      "kind": "understory-native",
+      "x": 129,
+      "y": 98,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "barat-utara"
+    },
+    {
+      "kind": "understory-native",
+      "x": 133,
+      "y": 97,
+      "gid": 987,
+      "walkableGroundcover": true,
+      "group": "barat-utara"
+    },
+    {
+      "kind": "understory-native",
+      "x": 128,
+      "y": 114,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "barat-dalam"
+    },
+    {
+      "kind": "understory-native",
+      "x": 132,
+      "y": 113,
+      "gid": 987,
+      "walkableGroundcover": true,
+      "group": "barat-dalam"
+    },
+    {
+      "kind": "understory-native",
+      "x": 133,
+      "y": 120,
+      "gid": 306,
+      "walkableGroundcover": true,
+      "group": "barat-selatan"
+    },
+    {
+      "kind": "understory-native",
+      "x": 130,
+      "y": 123,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "barat-selatan"
+    },
+    {
+      "kind": "understory-native",
+      "x": 145,
+      "y": 90,
+      "gid": 306,
+      "walkableGroundcover": true,
+      "group": "utara-rindang"
+    },
+    {
+      "kind": "understory-native",
+      "x": 142,
+      "y": 99,
+      "gid": 987,
+      "walkableGroundcover": true,
+      "group": "bahu-utara"
+    },
+    {
+      "kind": "understory-native",
+      "x": 137,
+      "y": 100,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "belakang-pondok"
+    },
+    {
+      "kind": "understory-native",
+      "x": 141,
+      "y": 101,
+      "gid": 306,
+      "walkableGroundcover": true,
+      "group": "belakang-pondok"
+    },
+    {
+      "kind": "understory-native",
+      "x": 135,
+      "y": 109,
+      "gid": 306,
+      "walkableGroundcover": true,
+      "group": "samping-pondok"
+    },
+    {
+      "kind": "understory-native",
+      "x": 148,
+      "y": 120,
+      "gid": 306,
+      "walkableGroundcover": true,
+      "group": "tengah-selatan"
+    },
+    {
+      "kind": "understory-native",
+      "x": 168,
+      "y": 98,
+      "gid": 306,
+      "walkableGroundcover": true,
+      "group": "tepi-timur-utara"
+    },
+    {
+      "kind": "understory-native",
+      "x": 165,
+      "y": 101,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "tepi-timur-utara"
+    },
+    {
+      "kind": "understory-native",
+      "x": 170,
+      "y": 103,
+      "gid": 306,
+      "walkableGroundcover": true,
+      "group": "tepi-timur-tengah"
+    },
+    {
+      "kind": "understory-native",
+      "x": 167,
+      "y": 106,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "tepi-timur-tengah"
+    },
+    {
+      "kind": "understory-native",
+      "x": 139,
+      "y": 130,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "selatan-barat"
+    },
+    {
+      "kind": "understory-native",
+      "x": 143,
+      "y": 129,
+      "gid": 987,
+      "walkableGroundcover": true,
+      "group": "selatan-barat"
+    }
+  ],
+  "metrics": {
+    "interiorBefore": 224,
+    "interiorAfter": 334,
+    "interiorIncreasePercent": 49,
+    "fullSizeBefore": 194,
+    "fullSizeAfter": 353
+  },
+  "plannedNewTreeGroups": [
+    {
+      "name": "barat-utara",
+      "zone": "deep",
+      "positions": [
+        [
+          130,
+          93
+        ],
+        [
+          131,
+          93
+        ],
+        [
+          130,
+          95
+        ],
+        [
+          132,
+          94
+        ],
+        [
+          128,
+          95
+        ],
+        [
+          131,
+          96
+        ],
+        [
+          129,
+          97
+        ],
+        [
+          133,
+          96
+        ]
+      ]
+    },
+    {
+      "name": "barat-dalam",
+      "zone": "deep",
+      "positions": [
+        [
+          128,
+          109
+        ],
+        [
+          129,
+          109
+        ],
+        [
+          130,
+          110
+        ],
+        [
+          132,
+          110
+        ],
+        [
+          127,
+          111
+        ],
+        [
+          131,
+          112
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          132,
+          112
+        ]
+      ]
+    },
+    {
+      "name": "barat-selatan",
+      "zone": "deep",
+      "positions": [
+        [
+          131,
+          118
+        ],
+        [
+          132,
+          118
+        ],
+        [
+          131,
+          120
+        ],
+        [
+          134,
+          119
+        ],
+        [
+          129,
+          120
+        ],
+        [
+          132,
+          121
+        ],
+        [
+          130,
+          122
+        ],
+        [
+          135,
+          121
+        ]
+      ]
+    },
+    {
+      "name": "utara-rindang",
+      "zone": "deep",
+      "positions": [
+        [
+          142,
+          88
+        ],
+        [
+          145,
+          88
+        ],
+        [
+          143,
+          89
+        ],
+        [
+          144,
+          89
+        ],
+        [
+          141,
+          90
+        ],
+        [
+          144,
+          91
+        ],
+        [
+          142,
+          92
+        ],
+        [
+          147,
+          91
+        ],
+        [
+          145,
+          93
+        ],
+        [
+          141,
+          93
+        ]
+      ]
+    },
+    {
+      "name": "utara-timur",
+      "zone": "deep",
+      "positions": [
+        [
+          149,
+          93
+        ],
+        [
+          152,
+          93
+        ],
+        [
+          150,
+          94
+        ],
+        [
+          152,
+          95
+        ],
+        [
+          148,
+          95
+        ],
+        [
+          151,
+          96
+        ],
+        [
+          149,
+          97
+        ],
+        [
+          152,
+          97
+        ]
+      ]
+    },
+    {
+      "name": "bahu-utara",
+      "zone": "deep",
+      "positions": [
+        [
+          138,
+          95
+        ],
+        [
+          141,
+          95
+        ],
+        [
+          139,
+          96
+        ],
+        [
+          142,
+          96
+        ],
+        [
+          136,
+          97
+        ],
+        [
+          141,
+          98
+        ],
+        [
+          139,
+          99
+        ],
+        [
+          143,
+          98
+        ]
+      ]
+    },
+    {
+      "name": "belakang-pondok",
+      "zone": "hut",
+      "positions": [
+        [
+          137,
+          99
+        ],
+        [
+          140,
+          100
+        ],
+        [
+          139,
+          101
+        ],
+        [
+          141,
+          100
+        ],
+        [
+          138,
+          101
+        ]
+      ]
+    },
+    {
+      "name": "samping-pondok",
+      "zone": "hut",
+      "positions": [
+        [
+          132,
+          107
+        ],
+        [
+          133,
+          107
+        ],
+        [
+          134,
+          108
+        ],
+        [
+          135,
+          108
+        ],
+        [
+          131,
+          108
+        ]
+      ]
+    },
+    {
+      "name": "tengah-selatan",
+      "zone": "trail",
+      "positions": [
+        [
+          145,
+          118
+        ],
+        [
+          147,
+          118
+        ],
+        [
+          147,
+          120
+        ],
+        [
+          148,
+          119
+        ],
+        [
+          144,
+          119
+        ]
+      ]
+    },
+    {
+      "name": "jalur-jembatan",
+      "zone": "trail",
+      "positions": [
+        [
+          149,
+          99
+        ],
+        [
+          151,
+          99
+        ],
+        [
+          149,
+          101
+        ],
+        [
+          151,
+          101
+        ],
+        [
+          147,
+          101
+        ]
+      ]
+    },
+    {
+      "name": "tepi-timur-utara",
+      "zone": "riverside",
+      "positions": [
+        [
+          165,
+          96
+        ],
+        [
+          167,
+          96
+        ],
+        [
+          166,
+          96
+        ],
+        [
+          169,
+          97
+        ],
+        [
+          164,
+          98
+        ],
+        [
+          167,
+          99
+        ],
+        [
+          165,
+          100
+        ],
+        [
+          169,
+          99
+        ]
+      ]
+    },
+    {
+      "name": "tepi-timur-tengah",
+      "zone": "riverside",
+      "positions": [
+        [
+          167,
+          101
+        ],
+        [
+          169,
+          101
+        ],
+        [
+          167,
+          103
+        ],
+        [
+          171,
+          102
+        ],
+        [
+          166,
+          102
+        ],
+        [
+          169,
+          105
+        ],
+        [
+          168,
+          105
+        ],
+        [
+          171,
+          104
+        ]
+      ]
+    },
+    {
+      "name": "selatan-barat",
+      "zone": "deep",
+      "positions": [
+        [
+          139,
+          125
+        ],
+        [
+          141,
+          125
+        ],
+        [
+          140,
+          125
+        ],
+        [
+          142,
+          126
+        ],
+        [
+          138,
+          127
+        ],
+        [
+          141,
+          128
+        ],
+        [
+          139,
+          129
+        ]
+      ]
+    },
+    {
+      "name": "selatan-timur",
+      "zone": "riverside",
+      "positions": []
+    }
+  ],
+  "proposedNewTreeCount": 93,
+  "proposedPercentOfInterior": 42,
+  "newTreeCollidersActivated": true,
+  "protectedCells": [
+    [
+      138,
+      104
+    ],
+    [
+      144,
+      114
+    ],
+    [
+      145,
+      107
+    ],
+    [
+      147,
+      107
+    ],
+    [
+      145,
+      109
+    ],
+    [
+      147,
+      109
+    ],
+    [
+      156,
+      102
+    ],
+    [
+      157,
+      102
+    ],
+    [
+      156,
+      103
+    ]
+  ],
+  "validationTargets": [
+    [
+      124,
+      101
+    ],
+    [
+      129,
+      101
+    ],
+    [
+      136,
+      103
+    ],
+    [
+      141,
+      106
+    ],
+    [
+      141,
+      110
+    ],
+    [
+      139,
+      110
+    ],
+    [
+      145,
+      113
+    ],
+    [
+      150,
+      112
+    ],
+    [
+      153,
+      108
+    ],
+    [
+      154,
+      106
+    ],
+    [
+      158,
+      106
+    ],
+    [
+      163,
+      106
+    ],
+    [
+      165,
+      110
+    ],
+    [
+      145,
+      108
+    ],
+    [
+      147,
+      110
+    ]
+  ]
+}

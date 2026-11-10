@@ -1,0 +1,16 @@
+{
+  "type": "tileset",
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "name": "mountain_v36_r1",
+  "tilewidth": 16,
+  "tileheight": 16,
+  "tilecount": 512,
+  "columns": 32,
+  "image": "../../assets/mountain_v36_r1/tileset.svg",
+  "imagewidth": 512,
+  "imageheight": 256,
+  "margin": 0,
+  "spacing": 0,
+  "tiles": []
+}

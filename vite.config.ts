@@ -12,7 +12,7 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('/node_modules/phaser/')) return 'phaser';
-          if (id.endsWith('/public/maps/pulau-tirta-v37.json')) return 'world-v37';
+          if (id.endsWith('/public/maps/pulau-tirta-v37-r2.json')) return 'world-v37-r2';
         },
       },
     },

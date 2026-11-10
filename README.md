@@ -29,7 +29,7 @@ npm run typecheck
 
 ## Struktur
 
-World aktif adalah **V3.7, Rainfall Basin Lembah Hujan (192 x 144 tile)**. Desa Tirta A5, Pantai Biru V3.5.1 dan Puncak Kabut V3.6 tetap dipertahankan. Buka `world/maps/pulau_tirta_v37.tmj`
+World aktif adalah **Lembah Hujan V3.7-R2 di atas world Puncak R2 dan Hutan R4 terbaru (192 x 144 tile)**. Dasar lembah memiliki satu akses turun dari Desa, pembatas tanah/batu mengikuti kontur dan ruang bebas di sekitar genangan. Ada 187 collider lokal16 x 16 yang mengikuti tile pembatas terlihat; collider lama, engine, misi, recovery dan wilayah lain tetap utuh. Bidang lumpur genangan dipecah menjadi endapan terbuka, sementara air dan alur R1 dipertahankan. Buka `world/maps/pulau_tirta_v37_r2.tmj`
 di Tiled, lalu jalankan `npm run world:export` setelah menyimpan edit.
 Map V1 tetap disimpan. Panduan koordinat, aset, layer, pengujian dan screenshot:
 [Panduan sumber world](world/README.md). Arsip Pantai: [V3.5.1](world/PANTAI_V351_POOL_POLISH.md), [V3.5](world/PANTAI_V35.md).

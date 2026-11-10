@@ -1,7 +1,7 @@
 # Peta runtime Pulau Tirta
 
-Game aktif memakai `pulau-tirta-v37.json`, hasil ekspor dari
-`world/maps/pulau_tirta_v37.tmj` (192 × 144 tile). V3.6, V3.5.1 dan V3.5 tetap tersimpan utuh sebagai pembanding. V3.1 tetap tersedia di `pulau-tirta-v3-1.json` / `world/maps/pulau_tirta_v3_1.tmj`. V3 tetap tersimpan sebagai
+Game aktif memakai `pulau-tirta-v37-r2.json`, hasil ekspor dari
+`world/maps/pulau_tirta_v37_r2.tmj` (192 × 144 tile, satu akses turun ke Lembah di atas world Puncak R2/Hutan R4; collider bank lokal ditambahkan, semua collider lama dan wilayah lain dipertahankan). Lembah R1, Puncak R2/R1, Hutan R4, R3, R2, R1, V3.8, V3.7, V3.6, V3.5.1 dan V3.5 tetap tersimpan utuh sebagai pembanding. V3.1 tetap tersedia di `pulau-tirta-v3-1.json` / `world/maps/pulau_tirta_v3_1.tmj`. V3 tetap tersimpan sebagai
 `pulau-tirta-v3.json` / `world/maps/pulau_tirta_v3.tmj`. `pulau-tirta.json` dan
 `world/maps/pulau_tirta.tmj` tetap tersedia sebagai arsip V1 (72 × 54 tile).
 Jangan mengedit JSON runtime secara langsung. Petunjuk editor, ekspor, layer, dan

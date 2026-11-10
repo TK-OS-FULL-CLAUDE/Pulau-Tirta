@@ -1,0 +1,2698 @@
+{
+  "version": "3.8-R4-Forest-Bridge",
+  "source": "world/maps/pulau_tirta_v38_r3.tmj",
+  "usesNewAssets": false,
+  "newTrees": [
+    {
+      "x": 127,
+      "y": 98,
+      "group": "jalan-masuk-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_127_98"
+    },
+    {
+      "x": 126,
+      "y": 98,
+      "group": "jalan-masuk-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_126_98"
+    },
+    {
+      "x": 125,
+      "y": 98,
+      "group": "jalan-masuk-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_125_98"
+    },
+    {
+      "x": 124,
+      "y": 98,
+      "group": "jalan-masuk-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_124_98"
+    },
+    {
+      "x": 128,
+      "y": 99,
+      "group": "jalan-masuk-utara",
+      "zone": "trail",
+      "gid": 292,
+      "canopy": 0,
+      "collider": "v38_r4_tree_128_99"
+    },
+    {
+      "x": 129,
+      "y": 99,
+      "group": "jalan-masuk-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_129_99"
+    },
+    {
+      "x": 130,
+      "y": 99,
+      "group": "jalan-masuk-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_130_99"
+    },
+    {
+      "x": 131,
+      "y": 99,
+      "group": "jalan-masuk-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_131_99"
+    },
+    {
+      "x": 133,
+      "y": 98,
+      "group": "jalan-masuk-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_133_98"
+    },
+    {
+      "x": 128,
+      "y": 105,
+      "group": "jalan-masuk-selatan",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_128_105"
+    },
+    {
+      "x": 127,
+      "y": 105,
+      "group": "jalan-masuk-selatan",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_127_105"
+    },
+    {
+      "x": 131,
+      "y": 106,
+      "group": "jalan-masuk-selatan",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_131_106"
+    },
+    {
+      "x": 137,
+      "y": 101,
+      "group": "tikungan-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_137_101"
+    },
+    {
+      "x": 136,
+      "y": 101,
+      "group": "tikungan-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_136_101"
+    },
+    {
+      "x": 135,
+      "y": 101,
+      "group": "tikungan-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_135_101"
+    },
+    {
+      "x": 134,
+      "y": 101,
+      "group": "tikungan-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_134_101"
+    },
+    {
+      "x": 134,
+      "y": 99,
+      "group": "tikungan-utara",
+      "zone": "trail",
+      "gid": 292,
+      "canopy": 0,
+      "collider": "v38_r4_tree_134_99"
+    },
+    {
+      "x": 133,
+      "y": 100,
+      "group": "tikungan-utara",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_133_100"
+    },
+    {
+      "x": 134,
+      "y": 106,
+      "group": "percabangan-barat",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_134_106"
+    },
+    {
+      "x": 136,
+      "y": 107,
+      "group": "percabangan-barat",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_136_107"
+    },
+    {
+      "x": 133,
+      "y": 109,
+      "group": "pondok-barat",
+      "zone": "hut",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_133_109"
+    },
+    {
+      "x": 134,
+      "y": 114,
+      "group": "pondok-barat",
+      "zone": "hut",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_134_114"
+    },
+    {
+      "x": 134,
+      "y": 112,
+      "group": "pondok-barat",
+      "zone": "hut",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_134_112"
+    },
+    {
+      "x": 133,
+      "y": 113,
+      "group": "pondok-barat",
+      "zone": "hut",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_133_113"
+    },
+    {
+      "x": 136,
+      "y": 114,
+      "group": "pondok-selatan",
+      "zone": "hut",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_136_114"
+    },
+    {
+      "x": 137,
+      "y": 114,
+      "group": "pondok-selatan",
+      "zone": "hut",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_137_114"
+    },
+    {
+      "x": 138,
+      "y": 114,
+      "group": "pondok-selatan",
+      "zone": "hut",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_138_114"
+    },
+    {
+      "x": 131,
+      "y": 114,
+      "group": "pondok-selatan",
+      "zone": "hut",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_131_114"
+    },
+    {
+      "x": 139,
+      "y": 114,
+      "group": "pondok-selatan",
+      "zone": "hut",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_139_114"
+    },
+    {
+      "x": 133,
+      "y": 115,
+      "group": "pondok-selatan",
+      "zone": "hut",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_133_115"
+    },
+    {
+      "x": 140,
+      "y": 115,
+      "group": "jalur-selatan-barat",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_140_115"
+    },
+    {
+      "x": 141,
+      "y": 115,
+      "group": "jalur-selatan-barat",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_141_115"
+    },
+    {
+      "x": 142,
+      "y": 115,
+      "group": "jalur-selatan-barat",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_142_115"
+    },
+    {
+      "x": 136,
+      "y": 116,
+      "group": "jalur-selatan-barat",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_136_116"
+    },
+    {
+      "x": 137,
+      "y": 116,
+      "group": "jalur-selatan-barat",
+      "zone": "trail",
+      "gid": 292,
+      "canopy": 0,
+      "collider": "v38_r4_tree_137_116"
+    },
+    {
+      "x": 143,
+      "y": 115,
+      "group": "jalur-selatan-barat",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_143_115"
+    },
+    {
+      "x": 147,
+      "y": 116,
+      "group": "jalur-selatan-timur",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_147_116"
+    },
+    {
+      "x": 145,
+      "y": 116,
+      "group": "jalur-selatan-timur",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_145_116"
+    },
+    {
+      "x": 148,
+      "y": 115,
+      "group": "jalur-selatan-timur",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_148_115"
+    },
+    {
+      "x": 150,
+      "y": 115,
+      "group": "jalur-selatan-timur",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_150_115"
+    },
+    {
+      "x": 167,
+      "y": 107,
+      "group": "pendekatan-jembatan-timur",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_167_107"
+    },
+    {
+      "x": 168,
+      "y": 107,
+      "group": "pendekatan-jembatan-timur",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_168_107"
+    },
+    {
+      "x": 167,
+      "y": 109,
+      "group": "pendekatan-jembatan-timur",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_167_109"
+    },
+    {
+      "x": 166,
+      "y": 109,
+      "group": "pendekatan-jembatan-timur",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_166_109"
+    },
+    {
+      "x": 168,
+      "y": 109,
+      "group": "pendekatan-jembatan-timur",
+      "zone": "trail",
+      "gid": 292,
+      "canopy": 0,
+      "collider": "v38_r4_tree_168_109"
+    },
+    {
+      "x": 169,
+      "y": 109,
+      "group": "pendekatan-jembatan-timur",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_169_109"
+    },
+    {
+      "x": 167,
+      "y": 111,
+      "group": "pendekatan-jembatan-timur",
+      "zone": "trail",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_167_111"
+    },
+    {
+      "x": 147,
+      "y": 99,
+      "group": "tepi-sungai-utara",
+      "zone": "riverside",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_147_99"
+    },
+    {
+      "x": 153,
+      "y": 99,
+      "group": "tepi-sungai-utara",
+      "zone": "riverside",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_153_99"
+    },
+    {
+      "x": 127,
+      "y": 109,
+      "group": "pedalaman-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_127_109"
+    },
+    {
+      "x": 127,
+      "y": 107,
+      "group": "pedalaman-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_127_107"
+    },
+    {
+      "x": 130,
+      "y": 108,
+      "group": "pedalaman-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_130_108"
+    },
+    {
+      "x": 125,
+      "y": 109,
+      "group": "pedalaman-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_125_109"
+    },
+    {
+      "x": 127,
+      "y": 113,
+      "group": "pedalaman-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_127_113"
+    },
+    {
+      "x": 125,
+      "y": 111,
+      "group": "pedalaman-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_125_111"
+    },
+    {
+      "x": 129,
+      "y": 111,
+      "group": "pedalaman-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_129_111"
+    },
+    {
+      "x": 125,
+      "y": 107,
+      "group": "pedalaman-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_125_107"
+    },
+    {
+      "x": 133,
+      "y": 94,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_133_94"
+    },
+    {
+      "x": 134,
+      "y": 94,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_134_94"
+    },
+    {
+      "x": 135,
+      "y": 94,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_135_94"
+    },
+    {
+      "x": 133,
+      "y": 92,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_133_92"
+    },
+    {
+      "x": 135,
+      "y": 92,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_135_92"
+    },
+    {
+      "x": 135,
+      "y": 96,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_135_96"
+    },
+    {
+      "x": 137,
+      "y": 93,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_137_93"
+    },
+    {
+      "x": 134,
+      "y": 90,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_134_90"
+    },
+    {
+      "x": 134,
+      "y": 98,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_134_98"
+    },
+    {
+      "x": 137,
+      "y": 91,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_137_91"
+    },
+    {
+      "x": 132,
+      "y": 90,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_132_90"
+    },
+    {
+      "x": 131,
+      "y": 91,
+      "group": "massa-tengah-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_131_91"
+    },
+    {
+      "x": 146,
+      "y": 93,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_146_93"
+    },
+    {
+      "x": 148,
+      "y": 93,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_148_93"
+    },
+    {
+      "x": 143,
+      "y": 92,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_143_92"
+    },
+    {
+      "x": 146,
+      "y": 95,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_146_95"
+    },
+    {
+      "x": 147,
+      "y": 89,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_147_89"
+    },
+    {
+      "x": 149,
+      "y": 91,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_149_91"
+    },
+    {
+      "x": 144,
+      "y": 95,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_144_95"
+    },
+    {
+      "x": 149,
+      "y": 89,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_149_89"
+    },
+    {
+      "x": 143,
+      "y": 95,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_143_95"
+    },
+    {
+      "x": 150,
+      "y": 92,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_150_92"
+    },
+    {
+      "x": 147,
+      "y": 96,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_147_96"
+    },
+    {
+      "x": 146,
+      "y": 97,
+      "group": "massa-tengah-utara",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_146_97"
+    },
+    {
+      "x": 134,
+      "y": 123,
+      "group": "pedalaman-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_134_123"
+    },
+    {
+      "x": 133,
+      "y": 121,
+      "group": "pedalaman-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_133_121"
+    },
+    {
+      "x": 136,
+      "y": 121,
+      "group": "pedalaman-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_136_121"
+    },
+    {
+      "x": 136,
+      "y": 125,
+      "group": "pedalaman-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_136_125"
+    },
+    {
+      "x": 131,
+      "y": 124,
+      "group": "pedalaman-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_131_124"
+    },
+    {
+      "x": 134,
+      "y": 126,
+      "group": "pedalaman-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_134_126"
+    },
+    {
+      "x": 138,
+      "y": 124,
+      "group": "pedalaman-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_138_124"
+    },
+    {
+      "x": 139,
+      "y": 123,
+      "group": "pedalaman-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_139_123"
+    },
+    {
+      "x": 137,
+      "y": 123,
+      "group": "pedalaman-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_137_123"
+    },
+    {
+      "x": 129,
+      "y": 123,
+      "group": "pedalaman-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_129_123"
+    },
+    {
+      "x": 142,
+      "y": 124,
+      "group": "massa-tengah-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_142_124"
+    },
+    {
+      "x": 143,
+      "y": 124,
+      "group": "massa-tengah-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_143_124"
+    },
+    {
+      "x": 145,
+      "y": 125,
+      "group": "massa-tengah-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_145_125"
+    },
+    {
+      "x": 140,
+      "y": 123,
+      "group": "massa-tengah-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_140_123"
+    },
+    {
+      "x": 146,
+      "y": 125,
+      "group": "massa-tengah-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_146_125"
+    },
+    {
+      "x": 144,
+      "y": 127,
+      "group": "massa-tengah-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_144_127"
+    },
+    {
+      "x": 143,
+      "y": 120,
+      "group": "massa-tengah-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_143_120"
+    },
+    {
+      "x": 143,
+      "y": 128,
+      "group": "massa-tengah-selatan",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_143_128"
+    },
+    {
+      "x": 170,
+      "y": 90,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_170_90"
+    },
+    {
+      "x": 168,
+      "y": 90,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_168_90"
+    },
+    {
+      "x": 172,
+      "y": 90,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_172_90"
+    },
+    {
+      "x": 167,
+      "y": 90,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_167_90"
+    },
+    {
+      "x": 173,
+      "y": 90,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_173_90"
+    },
+    {
+      "x": 167,
+      "y": 92,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_167_92"
+    },
+    {
+      "x": 168,
+      "y": 94,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_168_94"
+    },
+    {
+      "x": 169,
+      "y": 94,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_169_94"
+    },
+    {
+      "x": 170,
+      "y": 94,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_170_94"
+    },
+    {
+      "x": 172,
+      "y": 87,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_172_87"
+    },
+    {
+      "x": 167,
+      "y": 88,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_167_88"
+    },
+    {
+      "x": 173,
+      "y": 88,
+      "group": "hulu-timur",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_173_88"
+    },
+    {
+      "x": 154,
+      "y": 87,
+      "group": "hulu-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_154_87"
+    },
+    {
+      "x": 155,
+      "y": 87,
+      "group": "hulu-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_155_87"
+    },
+    {
+      "x": 152,
+      "y": 87,
+      "group": "hulu-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_152_87"
+    },
+    {
+      "x": 156,
+      "y": 87,
+      "group": "hulu-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_156_87"
+    },
+    {
+      "x": 154,
+      "y": 84,
+      "group": "hulu-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_154_84"
+    },
+    {
+      "x": 151,
+      "y": 86,
+      "group": "hulu-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_151_86"
+    },
+    {
+      "x": 152,
+      "y": 84,
+      "group": "hulu-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_152_84"
+    },
+    {
+      "x": 156,
+      "y": 84,
+      "group": "hulu-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_156_84"
+    },
+    {
+      "x": 158,
+      "y": 86,
+      "group": "hulu-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_158_86"
+    },
+    {
+      "x": 157,
+      "y": 86,
+      "group": "hulu-barat",
+      "zone": "deep",
+      "gid": 149,
+      "canopy": 137,
+      "collider": "v38_r4_tree_157_86"
+    }
+  ],
+  "groups": [
+    {
+      "name": "jalan-masuk-utara",
+      "zone": "trail",
+      "center": [
+        128,
+        98
+      ],
+      "positions": [
+        [
+          127,
+          98
+        ],
+        [
+          126,
+          98
+        ],
+        [
+          125,
+          98
+        ],
+        [
+          124,
+          98
+        ],
+        [
+          128,
+          99
+        ],
+        [
+          129,
+          99
+        ],
+        [
+          130,
+          99
+        ],
+        [
+          131,
+          99
+        ],
+        [
+          133,
+          98
+        ]
+      ]
+    },
+    {
+      "name": "jalan-masuk-selatan",
+      "zone": "trail",
+      "center": [
+        131,
+        104
+      ],
+      "positions": [
+        [
+          128,
+          105
+        ],
+        [
+          127,
+          105
+        ],
+        [
+          131,
+          106
+        ]
+      ]
+    },
+    {
+      "name": "tikungan-utara",
+      "zone": "trail",
+      "center": [
+        137,
+        100
+      ],
+      "positions": [
+        [
+          137,
+          101
+        ],
+        [
+          136,
+          101
+        ],
+        [
+          135,
+          101
+        ],
+        [
+          134,
+          101
+        ],
+        [
+          134,
+          99
+        ],
+        [
+          133,
+          100
+        ]
+      ]
+    },
+    {
+      "name": "percabangan-barat",
+      "zone": "trail",
+      "center": [
+        133,
+        106
+      ],
+      "positions": [
+        [
+          134,
+          106
+        ],
+        [
+          136,
+          107
+        ]
+      ]
+    },
+    {
+      "name": "pondok-belakang",
+      "zone": "hut",
+      "center": [
+        135,
+        103
+      ],
+      "positions": []
+    },
+    {
+      "name": "pondok-barat",
+      "zone": "hut",
+      "center": [
+        134,
+        110
+      ],
+      "positions": [
+        [
+          133,
+          109
+        ],
+        [
+          134,
+          114
+        ],
+        [
+          134,
+          112
+        ],
+        [
+          133,
+          113
+        ]
+      ]
+    },
+    {
+      "name": "pondok-selatan",
+      "zone": "hut",
+      "center": [
+        135,
+        114
+      ],
+      "positions": [
+        [
+          136,
+          114
+        ],
+        [
+          137,
+          114
+        ],
+        [
+          138,
+          114
+        ],
+        [
+          131,
+          114
+        ],
+        [
+          139,
+          114
+        ],
+        [
+          133,
+          115
+        ]
+      ]
+    },
+    {
+      "name": "jalur-selatan-barat",
+      "zone": "trail",
+      "center": [
+        139,
+        115
+      ],
+      "positions": [
+        [
+          140,
+          115
+        ],
+        [
+          141,
+          115
+        ],
+        [
+          142,
+          115
+        ],
+        [
+          136,
+          116
+        ],
+        [
+          137,
+          116
+        ],
+        [
+          143,
+          115
+        ]
+      ]
+    },
+    {
+      "name": "jalur-selatan-timur",
+      "zone": "trail",
+      "center": [
+        147,
+        116
+      ],
+      "positions": [
+        [
+          147,
+          116
+        ],
+        [
+          145,
+          116
+        ],
+        [
+          148,
+          115
+        ],
+        [
+          150,
+          115
+        ]
+      ]
+    },
+    {
+      "name": "pendekatan-jembatan-barat",
+      "zone": "trail",
+      "center": [
+        150,
+        111
+      ],
+      "positions": []
+    },
+    {
+      "name": "pendekatan-jembatan-timur",
+      "zone": "trail",
+      "center": [
+        167,
+        109
+      ],
+      "positions": [
+        [
+          167,
+          107
+        ],
+        [
+          168,
+          107
+        ],
+        [
+          167,
+          109
+        ],
+        [
+          166,
+          109
+        ],
+        [
+          168,
+          109
+        ],
+        [
+          169,
+          109
+        ],
+        [
+          167,
+          111
+        ]
+      ]
+    },
+    {
+      "name": "tepi-sungai-utara",
+      "zone": "riverside",
+      "center": [
+        150,
+        99
+      ],
+      "positions": [
+        [
+          147,
+          99
+        ],
+        [
+          153,
+          99
+        ]
+      ]
+    },
+    {
+      "name": "tepi-sungai-timur",
+      "zone": "riverside",
+      "center": [
+        168,
+        104
+      ],
+      "positions": []
+    },
+    {
+      "name": "pedalaman-barat",
+      "zone": "deep",
+      "center": [
+        128,
+        109
+      ],
+      "positions": [
+        [
+          127,
+          109
+        ],
+        [
+          127,
+          107
+        ],
+        [
+          130,
+          108
+        ],
+        [
+          125,
+          109
+        ],
+        [
+          127,
+          113
+        ],
+        [
+          125,
+          111
+        ],
+        [
+          129,
+          111
+        ],
+        [
+          125,
+          107
+        ]
+      ]
+    },
+    {
+      "name": "massa-tengah-barat",
+      "zone": "deep",
+      "center": [
+        134,
+        94
+      ],
+      "positions": [
+        [
+          133,
+          94
+        ],
+        [
+          134,
+          94
+        ],
+        [
+          135,
+          94
+        ],
+        [
+          133,
+          92
+        ],
+        [
+          135,
+          92
+        ],
+        [
+          135,
+          96
+        ],
+        [
+          137,
+          93
+        ],
+        [
+          134,
+          90
+        ],
+        [
+          134,
+          98
+        ],
+        [
+          137,
+          91
+        ],
+        [
+          132,
+          90
+        ],
+        [
+          131,
+          91
+        ]
+      ]
+    },
+    {
+      "name": "massa-tengah-utara",
+      "zone": "deep",
+      "center": [
+        146,
+        92
+      ],
+      "positions": [
+        [
+          146,
+          93
+        ],
+        [
+          148,
+          93
+        ],
+        [
+          143,
+          92
+        ],
+        [
+          146,
+          95
+        ],
+        [
+          147,
+          89
+        ],
+        [
+          149,
+          91
+        ],
+        [
+          144,
+          95
+        ],
+        [
+          149,
+          89
+        ],
+        [
+          143,
+          95
+        ],
+        [
+          150,
+          92
+        ],
+        [
+          147,
+          96
+        ],
+        [
+          146,
+          97
+        ]
+      ]
+    },
+    {
+      "name": "pedalaman-selatan",
+      "zone": "deep",
+      "center": [
+        134,
+        123
+      ],
+      "positions": [
+        [
+          134,
+          123
+        ],
+        [
+          133,
+          121
+        ],
+        [
+          136,
+          121
+        ],
+        [
+          136,
+          125
+        ],
+        [
+          131,
+          124
+        ],
+        [
+          134,
+          126
+        ],
+        [
+          138,
+          124
+        ],
+        [
+          139,
+          123
+        ],
+        [
+          137,
+          123
+        ],
+        [
+          129,
+          123
+        ]
+      ]
+    },
+    {
+      "name": "massa-tengah-selatan",
+      "zone": "deep",
+      "center": [
+        143,
+        124
+      ],
+      "positions": [
+        [
+          142,
+          124
+        ],
+        [
+          143,
+          124
+        ],
+        [
+          145,
+          125
+        ],
+        [
+          140,
+          123
+        ],
+        [
+          146,
+          125
+        ],
+        [
+          144,
+          127
+        ],
+        [
+          143,
+          120
+        ],
+        [
+          143,
+          128
+        ]
+      ]
+    },
+    {
+      "name": "hulu-timur",
+      "zone": "deep",
+      "center": [
+        170,
+        91
+      ],
+      "positions": [
+        [
+          170,
+          90
+        ],
+        [
+          168,
+          90
+        ],
+        [
+          172,
+          90
+        ],
+        [
+          167,
+          90
+        ],
+        [
+          173,
+          90
+        ],
+        [
+          167,
+          92
+        ],
+        [
+          168,
+          94
+        ],
+        [
+          169,
+          94
+        ],
+        [
+          170,
+          94
+        ],
+        [
+          172,
+          87
+        ],
+        [
+          167,
+          88
+        ],
+        [
+          173,
+          88
+        ]
+      ]
+    },
+    {
+      "name": "hulu-barat",
+      "zone": "deep",
+      "center": [
+        154,
+        86
+      ],
+      "positions": [
+        [
+          154,
+          87
+        ],
+        [
+          155,
+          87
+        ],
+        [
+          152,
+          87
+        ],
+        [
+          156,
+          87
+        ],
+        [
+          154,
+          84
+        ],
+        [
+          151,
+          86
+        ],
+        [
+          152,
+          84
+        ],
+        [
+          156,
+          84
+        ],
+        [
+          158,
+          86
+        ],
+        [
+          157,
+          86
+        ]
+      ]
+    }
+  ],
+  "details": [
+    {
+      "group": "entree",
+      "x": 126,
+      "y": 99,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "entree",
+      "x": 128,
+      "y": 100,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "entree",
+      "x": 126,
+      "y": 103,
+      "gid": 987,
+      "walkable": true
+    },
+    {
+      "group": "entree",
+      "x": 132,
+      "y": 99,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "entree",
+      "x": 131,
+      "y": 100,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "entree",
+      "x": 132,
+      "y": 100,
+      "gid": 329,
+      "walkable": true
+    },
+    {
+      "group": "entree",
+      "x": 132,
+      "y": 98,
+      "gid": 304,
+      "walkable": true
+    },
+    {
+      "group": "carrefour",
+      "x": 137,
+      "y": 102,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "carrefour",
+      "x": 138,
+      "y": 102,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "carrefour",
+      "x": 133,
+      "y": 105,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "carrefour",
+      "x": 132,
+      "y": 105,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "carrefour",
+      "x": 135,
+      "y": 106,
+      "gid": 329,
+      "walkable": true
+    },
+    {
+      "group": "pondok",
+      "x": 136,
+      "y": 110,
+      "gid": 987,
+      "walkable": true
+    },
+    {
+      "group": "pondok",
+      "x": 132,
+      "y": 108,
+      "gid": 330,
+      "walkable": true
+    },
+    {
+      "group": "pondok",
+      "x": 135,
+      "y": 112,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "pondok",
+      "x": 136,
+      "y": 111,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "pondok",
+      "x": 134,
+      "y": 115,
+      "gid": 987,
+      "walkable": true
+    },
+    {
+      "group": "pondok",
+      "x": 141,
+      "y": 113,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "pondok",
+      "x": 142,
+      "y": 113,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "pondok",
+      "x": 139,
+      "y": 115,
+      "gid": 988,
+      "walkable": true
+    },
+    {
+      "group": "pondok",
+      "x": 141,
+      "y": 116,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "sentier",
+      "x": 142,
+      "y": 116,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "sentier",
+      "x": 143,
+      "y": 116,
+      "gid": 987,
+      "walkable": true
+    },
+    {
+      "group": "sentier",
+      "x": 141,
+      "y": 117,
+      "gid": 984,
+      "walkable": true
+    },
+    {
+      "group": "sentier",
+      "x": 144,
+      "y": 115,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "sentier",
+      "x": 147,
+      "y": 114,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "sentier",
+      "x": 148,
+      "y": 116,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "sentier",
+      "x": 149,
+      "y": 110,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "sentier",
+      "x": 148,
+      "y": 111,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "sentier",
+      "x": 147,
+      "y": 111,
+      "gid": 988,
+      "walkable": true
+    },
+    {
+      "group": "sentier",
+      "x": 150,
+      "y": 109,
+      "gid": 304,
+      "walkable": true
+    },
+    {
+      "group": "jembatan",
+      "x": 149,
+      "y": 103,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "jembatan",
+      "x": 149,
+      "y": 106,
+      "gid": 987,
+      "walkable": true
+    },
+    {
+      "group": "jembatan",
+      "x": 166,
+      "y": 104,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "jembatan",
+      "x": 167,
+      "y": 104,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "jembatan",
+      "x": 166,
+      "y": 111,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "jembatan",
+      "x": 165,
+      "y": 112,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "jembatan",
+      "x": 168,
+      "y": 110,
+      "gid": 988,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 153,
+      "y": 100,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 150,
+      "y": 99,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 153,
+      "y": 102,
+      "gid": 329,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 148,
+      "y": 101,
+      "gid": 988,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 150,
+      "y": 102,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 152,
+      "y": 99,
+      "gid": 304,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 155,
+      "y": 111,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 157,
+      "y": 112,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 155,
+      "y": 112,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 155,
+      "y": 113,
+      "gid": 987,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 158,
+      "y": 113,
+      "gid": 984,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 150,
+      "y": 118,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 165,
+      "y": 97,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 162,
+      "y": 97,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 166,
+      "y": 98,
+      "gid": 329,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 162,
+      "y": 98,
+      "gid": 988,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 164,
+      "y": 99,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "berge",
+      "x": 167,
+      "y": 97,
+      "gid": 304,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 129,
+      "y": 114,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 130,
+      "y": 114,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 127,
+      "y": 114,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 129,
+      "y": 115,
+      "gid": 987,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 131,
+      "y": 115,
+      "gid": 984,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 136,
+      "y": 119,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 135,
+      "y": 119,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 137,
+      "y": 121,
+      "gid": 329,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 136,
+      "y": 122,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 137,
+      "y": 118,
+      "gid": 304,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 141,
+      "y": 123,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 144,
+      "y": 120,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 145,
+      "y": 120,
+      "gid": 988,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 147,
+      "y": 97,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 144,
+      "y": 96,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 145,
+      "y": 97,
+      "gid": 329,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 144,
+      "y": 97,
+      "gid": 988,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 145,
+      "y": 99,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 149,
+      "y": 95,
+      "gid": 304,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 133,
+      "y": 90,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 130,
+      "y": 90,
+      "gid": 330,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 134,
+      "y": 88,
+      "gid": 988,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 171,
+      "y": 98,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 171,
+      "y": 99,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 174,
+      "y": 99,
+      "gid": 984,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 139,
+      "y": 127,
+      "gid": 306,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 137,
+      "y": 127,
+      "gid": 305,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 141,
+      "y": 129,
+      "gid": 329,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 137,
+      "y": 128,
+      "gid": 988,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 137,
+      "y": 129,
+      "gid": 343,
+      "walkable": true
+    },
+    {
+      "group": "sous-bois",
+      "x": 141,
+      "y": 126,
+      "gid": 304,
+      "walkable": true
+    }
+  ],
+  "metrics": {
+    "forestBefore": 390,
+    "forestAfter": 511,
+    "interiorBefore": 334,
+    "interiorAfter": 451,
+    "newTrunkColliders": 121
+  },
+  "river": {
+    "diagnosis": "Dry full-width gaps at rows104/108 and closed small-pond lips; river is three tiles wide, old wooden deck eleven tiles long.",
+    "repairedCells": [
+      [
+        153,
+        104
+      ],
+      [
+        154,
+        104
+      ],
+      [
+        155,
+        104
+      ],
+      [
+        153,
+        105
+      ],
+      [
+        154,
+        105
+      ],
+      [
+        155,
+        105
+      ],
+      [
+        153,
+        106
+      ],
+      [
+        154,
+        106
+      ],
+      [
+        155,
+        106
+      ],
+      [
+        153,
+        107
+      ],
+      [
+        154,
+        107
+      ],
+      [
+        155,
+        107
+      ],
+      [
+        153,
+        108
+      ],
+      [
+        154,
+        108
+      ],
+      [
+        155,
+        108
+      ]
+    ],
+    "waterGids": [
+      433,
+      434,
+      435
+    ],
+    "originalWaterStyle": true
+  },
+  "bridge": {
+    "oldWoodenSpan": 11,
+    "newWoodenSpan": 3,
+    "woodenTilesBefore": 33,
+    "woodenTilesAfter": 15,
+    "pathEdits": [
+      [
+        153,
+        104
+      ],
+      [
+        154,
+        104
+      ],
+      [
+        155,
+        104
+      ],
+      [
+        153,
+        108
+      ],
+      [
+        154,
+        108
+      ],
+      [
+        155,
+        108
+      ],
+      [
+        156,
+        105
+      ],
+      [
+        157,
+        105
+      ],
+      [
+        158,
+        105
+      ],
+      [
+        159,
+        105
+      ],
+      [
+        160,
+        105
+      ],
+      [
+        161,
+        105
+      ],
+      [
+        162,
+        105
+      ],
+      [
+        163,
+        105
+      ],
+      [
+        156,
+        106
+      ],
+      [
+        157,
+        106
+      ],
+      [
+        158,
+        106
+      ],
+      [
+        159,
+        106
+      ],
+      [
+        160,
+        106
+      ],
+      [
+        161,
+        106
+      ],
+      [
+        162,
+        106
+      ],
+      [
+        163,
+        106
+      ],
+      [
+        156,
+        107
+      ],
+      [
+        157,
+        107
+      ],
+      [
+        158,
+        107
+      ],
+      [
+        159,
+        107
+      ],
+      [
+        160,
+        107
+      ],
+      [
+        161,
+        107
+      ],
+      [
+        162,
+        107
+      ],
+      [
+        163,
+        107
+      ]
+    ],
+    "railCollidersPreserved": true,
+    "technicalLimit": "Old outer railings remain visible as fences along the earthen approach. Shortening/removing those fences requires a separate collider edit; no invisible old obstacles are left behind."
+  },
+  "protectedCells": [
+    [
+      138,
+      104
+    ],
+    [
+      144,
+      114
+    ],
+    [
+      145,
+      107
+    ],
+    [
+      147,
+      107
+    ],
+    [
+      145,
+      109
+    ],
+    [
+      147,
+      109
+    ],
+    [
+      156,
+      102
+    ],
+    [
+      157,
+      102
+    ],
+    [
+      156,
+      103
+    ]
+  ],
+  "validationTargets": [
+    [
+      124,
+      101
+    ],
+    [
+      129,
+      101
+    ],
+    [
+      136,
+      103
+    ],
+    [
+      141,
+      106
+    ],
+    [
+      141,
+      110
+    ],
+    [
+      139,
+      110
+    ],
+    [
+      145,
+      113
+    ],
+    [
+      150,
+      112
+    ],
+    [
+      153,
+      108
+    ],
+    [
+      154,
+      106
+    ],
+    [
+      158,
+      106
+    ],
+    [
+      163,
+      106
+    ],
+    [
+      165,
+      110
+    ],
+    [
+      145,
+      108
+    ],
+    [
+      147,
+      110
+    ]
+  ]
+}

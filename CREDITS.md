@@ -40,3 +40,23 @@ Polish V3.5.1 memakai atlas terpisah `world/assets/coast_v351/tileset.svg`, ditu
 ## Lembah Hujan V3.7
 
 `world/assets/valley_v37/tileset.svg` adalah komposisi pixel-grid lokal melalui `scripts/valley-v37-art.mjs`: kontur lembah asimetris yang dipotong menjadi tile16, tiga cekungan kering/pulih, vegetasi, batu dan tanah lembap. Bukan screenshot atau aset resmi Kenney; tidak mengunduh gambar atau memakai dependency baru. Generator dan geometri komposisi berada di `scripts/design-lembah-v37.mjs` dan `world/valley-v37.json`. Semua atlas tahap sebelumnya dipertahankan.
+
+## Hutan & Sungai V3.8 (arsip)
+
+`world/assets/forest_v38/tileset.svg` dibuat lokal melalui `scripts/forest-v38-art.mjs`: tajuk bulat/ramping/understory, akar dan batang, material lantai hutan, tepian air dan properti rendah. Empat bidang komposit pada atlas2048×2048 menjaga tajuk bertumpuk tetap utuh serta menggunakan layer awal/pulih existing. Bukan screenshot atau aset resmi Kenney; tidak mengunduh gambar atau menambah dependency. Posisi pohon mengikuti collider lama. Generator dan manifest: `scripts/design-hutan-v38.mjs`, `world/forest-v38.json`. Atlas wilayah lain tetap utuh.
+
+V3.8-R1 kembali memakai air Kenney Tiny Battle dan pohon Kenney Tiny Town/Tiny Farm original dari sumber V3.7. Polesan menggunakan semak, batu, kayu, rumput dan bunga existing, termasuk variasi kecil palet A5 yang sudah tersedia. Tidak membuat atau memodifikasi gambar/tileset air maupun pohon. Atlas V3.8 tetap diarsipkan dan tidak termasuk tileset map R1 aktif.
+
+V3.8-R2 menggunakan kembali sprite atap/dinding/pintu Tiny Town untuk satu pondok kecil, pohon Tiny Town/Tiny Farm, serta tile air dan tepi genangan Tiny Battle original untuk sambungan visual di bawah pagar jembatan. Tidak membuat gambar atau tileset baru. Rumpun dan pondok tercatat pada `world/forest-v38-r2.json`; sumber manual `scripts/polish-hutan-v38-r2.mjs`. Collider existing dipertahankan.
+
+V3.8-R3 memakai pasangan pohon Kenney Tiny Town original16×32: 66 peningkatan tajuk pada collider existing dan 93 pohon baru dengan collider batang lokal6×7 sesuai izin Aufa. Tidak membuat aset pohon/air baru. Komposisi rumpun aktif disimpan di `world/forest-v38-r3.json`; sumber manual `scripts/polish-hutan-v38-r3.mjs`. Seluruh aset R2 dan wilayah lain dipertahankan.
+
+V3.8-R4 menyusun ulang kepadatan dengan tambahan pohon Tiny Town/Tiny Farm, semak, bunga dan rumput existing. Sambungan sungai tetap menggunakan Tiny Battle original, serta papan/jalan/pagar existing untuk bentang pendek dan pendekatan berpagar. Tidak membuat gambar/tileset baru. Sumber: `scripts/polish-hutan-v38-r4.mjs`, `world/forest-v38-r4.json`; seluruh arsip R3 tetap utuh.
+
+Puncak V3.6-R1 menambah atlas SVG lokal `world/assets/mountain_v36_r1/tileset.svg` melalui `scripts/puncak-v36-r1-art.mjs`: material kaki/lereng/puncak, bidang vertikal tebing16×32, rim, bayangan dan tangga16×16. Palet melanjutkan art pass pegunungan V3.6; bukan aset resmi Kenney atau unduhan eksternal. Tidak mengganti aset wilayah lain. Penataan: `scripts/polish-puncak-v36-r1.mjs`, `world/mountain-v36-r1.json`; berbasis world Hutan R4 terbaru.
+
+Puncak V3.6-R2 menambah atlas ridge kecil lokal `world/assets/mountain_v36_r2/tileset.svg` melalui `scripts/puncak-v36-r2-art.mjs`, meneruskan palet R1 untuk pembatas batu yang berfungsi sebagai collision lokal. Tidak memakai aset eksternal atau mengganti atlas lama. Penataan rute dan kontur: `scripts/polish-puncak-v36-r2.mjs`; sumber world R1 dan seluruh wilayah lain tetap tersimpan utuh.
+
+Lembah V3.7-R1 memakai komposisi SVG lokal `world/assets/valley_v37_r1/tileset.svg` dari `scripts/valley-v37-r1-art.mjs`, melanjutkan rim/vegetasi/aset V3.7. Pola air menanamkan crop tile37 Kenney Tiny Battle original dari PNG existing tanpa mengubah piksel atau membuat palet air baru. Tepian terbuka, bidang lereng dan saluran dangkal dibuat lokal; tidak ada aset eksternal atau dependency baru. Penataan: `scripts/polish-lembah-v37-r1.mjs`, `world/valley-v37-r1.json`; sumber Puncak R2 dan Hutan R4 tetap utuh.
+
+Lembah V3.7-R2 menambah atlas kecil `world/assets/valley_v37_r2/tileset.svg` melalui `scripts/valley-v37-r2-art.mjs`: cut-bank tanah/batu, transisi jalur turun dan endapan lumpur parsial. Bentuk air dan piksel tile37 Tiny Battle dipakai kembali tanpa perubahan. Tidak mengunduh aset atau menambah dependency. Penataan dan collision lokal: `scripts/polish-lembah-v37-r2.mjs`, `world/valley-v37-r2.json`; semua sumber R1 serta wilayah lain dipertahankan.
