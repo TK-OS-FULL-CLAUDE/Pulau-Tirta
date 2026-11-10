@@ -1,0 +1,711 @@
+{
+  "version": "3.8-R2-Forest-Hut",
+  "source": "world/maps/pulau_tirta_v38_r1.tmj",
+  "usesNewAssets": false,
+  "collisionChanged": false,
+  "hut": {
+    "x": 138,
+    "y": 107,
+    "width": 2,
+    "height": 3,
+    "door": [
+      139,
+      109
+    ],
+    "approach": [
+      139,
+      110
+    ],
+    "reusesCollider": "v32_boulder_138_108",
+    "decorative": true
+  },
+  "trees": [
+    {
+      "x": 128,
+      "y": 97,
+      "width": 1,
+      "height": 2,
+      "group": "barat",
+      "reusesCollider": "rock_215"
+    },
+    {
+      "x": 129,
+      "y": 107,
+      "width": 1,
+      "height": 2,
+      "group": "barat",
+      "reusesCollider": "rock_240"
+    },
+    {
+      "x": 135,
+      "y": 99,
+      "width": 1,
+      "height": 2,
+      "group": "barat",
+      "reusesCollider": "rock_415"
+    },
+    {
+      "x": 127,
+      "y": 118,
+      "width": 1,
+      "height": 2,
+      "group": "barat",
+      "reusesCollider": "rock_441"
+    },
+    {
+      "x": 144,
+      "y": 87,
+      "width": 1,
+      "height": 2,
+      "group": "hulu",
+      "reusesCollider": "rock_140"
+    },
+    {
+      "x": 173,
+      "y": 99,
+      "width": 1,
+      "height": 2,
+      "group": "timur",
+      "reusesCollider": "rock_209"
+    },
+    {
+      "x": 134,
+      "y": 128,
+      "width": 1,
+      "height": 2,
+      "group": "selatan",
+      "reusesCollider": "rock_486"
+    }
+  ],
+  "details": [
+    {
+      "kind": "anakan-original",
+      "x": 129,
+      "y": 105,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "barat"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 126,
+      "y": 104,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "barat"
+    },
+    {
+      "kind": "rumput-rumpun",
+      "x": 128,
+      "y": 104,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "barat"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 127,
+      "y": 107,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "barat"
+    },
+    {
+      "kind": "rumput-rumpun",
+      "x": 131,
+      "y": 106,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "barat"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 144,
+      "y": 88,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 146,
+      "y": 89,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 146,
+      "y": 87,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 147,
+      "y": 90,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 145,
+      "y": 91,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 148,
+      "y": 88,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 143,
+      "y": 89,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "rumput-rumpun",
+      "x": 144,
+      "y": 90,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 146,
+      "y": 88,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "rumput-rumpun",
+      "x": 147,
+      "y": 88,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 143,
+      "y": 93,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "rumput-rumpun",
+      "x": 146,
+      "y": 92,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "hulu"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 170,
+      "y": 100,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 171,
+      "y": 101,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 172,
+      "y": 99,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 173,
+      "y": 102,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 171,
+      "y": 103,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 174,
+      "y": 101,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 169,
+      "y": 101,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "rumput-rumpun",
+      "x": 172,
+      "y": 101,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 171,
+      "y": 100,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "rumput-rumpun",
+      "x": 173,
+      "y": 100,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 169,
+      "y": 105,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "rumput-rumpun",
+      "x": 172,
+      "y": 104,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "timur"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 139,
+      "y": 124,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "selatan"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 139,
+      "y": 126,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "selatan"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 140,
+      "y": 124,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "selatan"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 143,
+      "y": 126,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "selatan"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 140,
+      "y": 127,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "selatan"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 142,
+      "y": 125,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "selatan"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 138,
+      "y": 125,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "selatan"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 141,
+      "y": 124,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "selatan"
+    },
+    {
+      "kind": "rumput-rumpun",
+      "x": 142,
+      "y": 124,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "selatan"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 139,
+      "y": 128,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "selatan"
+    },
+    {
+      "kind": "rumput-rumpun",
+      "x": 141,
+      "y": 128,
+      "gid": 984,
+      "walkableGroundcover": true,
+      "group": "selatan"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 150,
+      "y": 116,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "pangkal-hutan"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 150,
+      "y": 117,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "pangkal-hutan"
+    },
+    {
+      "kind": "anakan-original",
+      "x": 150,
+      "y": 119,
+      "gid": 292,
+      "walkableGroundcover": true,
+      "group": "pangkal-hutan"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 148,
+      "y": 117,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "pangkal-hutan"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 150,
+      "y": 115,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "pangkal-hutan"
+    },
+    {
+      "kind": "semak-rumpun",
+      "x": 149,
+      "y": 120,
+      "gid": 305,
+      "walkableGroundcover": true,
+      "group": "pangkal-hutan"
+    },
+    {
+      "kind": "halaman-pondok",
+      "x": 137,
+      "y": 110,
+      "gid": 239,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "halaman-pondok",
+      "x": 136,
+      "y": 112,
+      "gid": 305,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "halaman-pondok",
+      "x": 139,
+      "y": 112,
+      "gid": 987,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "halaman-pondok",
+      "x": 135,
+      "y": 108,
+      "gid": 306,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "tepian-jembatan",
+      "x": 152,
+      "y": 103,
+      "gid": 342,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "tepian-jembatan",
+      "x": 152,
+      "y": 104,
+      "gid": 984,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "tepian-jembatan",
+      "x": 151,
+      "y": 108,
+      "gid": 305,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "tepian-jembatan",
+      "x": 155,
+      "y": 109,
+      "gid": 343,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "tepian-jembatan",
+      "x": 166,
+      "y": 108,
+      "gid": 988,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "tepian-jembatan",
+      "x": 165,
+      "y": 104,
+      "gid": 306,
+      "walkableGroundcover": true
+    }
+  ],
+  "river": {
+    "diagnosis": "Original bridge clearing removed water at rows104..108",
+    "underDeck": [
+      [
+        153,
+        105
+      ],
+      [
+        154,
+        105
+      ],
+      [
+        155,
+        105
+      ],
+      [
+        153,
+        106
+      ],
+      [
+        154,
+        106
+      ],
+      [
+        155,
+        106
+      ],
+      [
+        153,
+        107
+      ],
+      [
+        154,
+        107
+      ],
+      [
+        155,
+        107
+      ]
+    ],
+    "retiled": [
+      [
+        153,
+        103
+      ],
+      [
+        154,
+        103
+      ],
+      [
+        155,
+        103
+      ],
+      [
+        152,
+        109
+      ],
+      [
+        153,
+        109
+      ],
+      [
+        154,
+        109
+      ]
+    ],
+    "visualLips": [
+      [
+        153,
+        104,
+        400
+      ],
+      [
+        154,
+        104,
+        401
+      ],
+      [
+        153,
+        108,
+        418
+      ],
+      [
+        154,
+        108,
+        419
+      ]
+    ],
+    "visualLayer": "Forest_Bridge_Water_Visual",
+    "shallowNonphysicalLips": true
+  },
+  "protectedCells": [
+    [
+      138,
+      104
+    ],
+    [
+      144,
+      114
+    ],
+    [
+      145,
+      107
+    ],
+    [
+      147,
+      107
+    ],
+    [
+      145,
+      109
+    ],
+    [
+      147,
+      109
+    ],
+    [
+      156,
+      102
+    ],
+    [
+      157,
+      102
+    ],
+    [
+      156,
+      103
+    ]
+  ],
+  "validationTargets": [
+    [
+      124,
+      101
+    ],
+    [
+      129,
+      101
+    ],
+    [
+      136,
+      103
+    ],
+    [
+      141,
+      106
+    ],
+    [
+      141,
+      110
+    ],
+    [
+      139,
+      110
+    ],
+    [
+      145,
+      113
+    ],
+    [
+      150,
+      112
+    ],
+    [
+      153,
+      108
+    ],
+    [
+      154,
+      106
+    ],
+    [
+      158,
+      106
+    ],
+    [
+      163,
+      106
+    ],
+    [
+      165,
+      110
+    ],
+    [
+      145,
+      108
+    ],
+    [
+      147,
+      110
+    ]
+  ]
+}

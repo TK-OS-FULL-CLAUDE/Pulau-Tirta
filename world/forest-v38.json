@@ -1,0 +1,3002 @@
+{
+  "version": "3.8-Forest-River",
+  "source": "world/maps/pulau_tirta_v37.tmj",
+  "bounds": {
+    "x": 122,
+    "y": 82,
+    "width": 62,
+    "height": 54
+  },
+  "collisionChanged": false,
+  "interaction": {
+    "location": "hutan",
+    "mission": "misi-4",
+    "x": 2264,
+    "y": 1704
+  },
+  "groves": [
+    {
+      "id": "barat-berlapis",
+      "tiles": 375
+    },
+    {
+      "id": "hulu-rindang",
+      "tiles": 258
+    },
+    {
+      "id": "punggung-timur",
+      "tiles": 213
+    },
+    {
+      "id": "selatan-lembap",
+      "tiles": 178
+    },
+    {
+      "id": "pangkal-jembatan",
+      "tiles": 52
+    }
+  ],
+  "trees": [
+    {
+      "x": 133,
+      "y": 118,
+      "collider": "tree_5",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 128,
+      "y": 134,
+      "collider": "tree_6",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 163,
+      "y": 98,
+      "collider": "tree_11",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 144,
+      "y": 99,
+      "collider": "tree_13",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 138,
+      "y": 96,
+      "collider": "tree_14",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 142,
+      "y": 97,
+      "collider": "tree_16",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 127,
+      "y": 83,
+      "collider": "tree_18",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 176,
+      "y": 83,
+      "collider": "tree_20",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 157,
+      "y": 84,
+      "collider": "tree_21",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 170,
+      "y": 86,
+      "collider": "tree_23",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 165,
+      "y": 90,
+      "collider": "tree_24",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": true
+    },
+    {
+      "x": 131,
+      "y": 109,
+      "collider": "tree_26",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 140,
+      "y": 98,
+      "collider": "tree_29",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 127,
+      "y": 128,
+      "collider": "tree_34",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 134,
+      "y": 121,
+      "collider": "tree_35",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "selatan-lembap",
+      "dry": true
+    },
+    {
+      "x": 136,
+      "y": 134,
+      "collider": "tree_37",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 135,
+      "y": 111,
+      "collider": "tree_39",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 126,
+      "y": 132,
+      "collider": "tree_47",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 134,
+      "y": 92,
+      "collider": "tree_48",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 129,
+      "y": 121,
+      "collider": "tree_52",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 137,
+      "y": 85,
+      "collider": "tree_57",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 176,
+      "y": 95,
+      "collider": "tree_58",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 144,
+      "y": 92,
+      "collider": "tree_61",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 132,
+      "y": 97,
+      "collider": "tree_74",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 150,
+      "y": 95,
+      "collider": "tree_76",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 171,
+      "y": 89,
+      "collider": "tree_77",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 125,
+      "y": 88,
+      "collider": "tree_78",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 140,
+      "y": 126,
+      "collider": "tree_79",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "selatan-lembap",
+      "dry": false
+    },
+    {
+      "x": 132,
+      "y": 114,
+      "collider": "tree_81",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 130,
+      "y": 89,
+      "collider": "tree_84",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 183,
+      "y": 83,
+      "collider": "tree_87",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 172,
+      "y": 85,
+      "collider": "tree_88",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 129,
+      "y": 113,
+      "collider": "tree_89",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 149,
+      "y": 117,
+      "collider": "tree_97",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "pangkal-jembatan",
+      "dry": false
+    },
+    {
+      "x": 172,
+      "y": 94,
+      "collider": "tree_101",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 170,
+      "y": 106,
+      "collider": "tree_104",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": true
+    },
+    {
+      "x": 145,
+      "y": 96,
+      "collider": "tree_106",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 136,
+      "y": 98,
+      "collider": "tree_107",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 142,
+      "y": 90,
+      "collider": "tree_109",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 125,
+      "y": 121,
+      "collider": "tree_111",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 147,
+      "y": 94,
+      "collider": "tree_112",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 125,
+      "y": 117,
+      "collider": "tree_113",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 170,
+      "y": 96,
+      "collider": "tree_115",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": true
+    },
+    {
+      "x": 145,
+      "y": 86,
+      "collider": "tree_119",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 131,
+      "y": 132,
+      "collider": "tree_124",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 149,
+      "y": 94,
+      "collider": "tree_127",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 136,
+      "y": 95,
+      "collider": "tree_130",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 128,
+      "y": 132,
+      "collider": "tree_134",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 152,
+      "y": 98,
+      "collider": "tree_145",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 155,
+      "y": 84,
+      "collider": "tree_148",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 147,
+      "y": 84,
+      "collider": "tree_149",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 162,
+      "y": 95,
+      "collider": "tree_150",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 164,
+      "y": 93,
+      "collider": "tree_152",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": true
+    },
+    {
+      "x": 145,
+      "y": 83,
+      "collider": "tree_153",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 132,
+      "y": 92,
+      "collider": "tree_156",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 147,
+      "y": 87,
+      "collider": "tree_157",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 134,
+      "y": 135,
+      "collider": "tree_158",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 181,
+      "y": 91,
+      "collider": "tree_162",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 146,
+      "y": 99,
+      "collider": "tree_163",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 178,
+      "y": 89,
+      "collider": "tree_165",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 146,
+      "y": 119,
+      "collider": "tree_173",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 126,
+      "y": 113,
+      "collider": "tree_179",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 128,
+      "y": 107,
+      "collider": "tree_194",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 130,
+      "y": 131,
+      "collider": "tree_201",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 176,
+      "y": 87,
+      "collider": "tree_215",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 166,
+      "y": 97,
+      "collider": "tree_219",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 157,
+      "y": 88,
+      "collider": "tree_225",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 158,
+      "y": 101,
+      "collider": "tree_227",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 135,
+      "y": 128,
+      "collider": "tree_234",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "selatan-lembap",
+      "dry": true
+    },
+    {
+      "x": 140,
+      "y": 89,
+      "collider": "tree_245",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 178,
+      "y": 94,
+      "collider": "tree_247",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 132,
+      "y": 82,
+      "collider": "tree_251",
+      "style": "bud",
+      "width": 1,
+      "height": 1,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 183,
+      "y": 89,
+      "collider": "tree_252",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 167,
+      "y": 94,
+      "collider": "tree_262",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": true
+    },
+    {
+      "x": 129,
+      "y": 93,
+      "collider": "tree_263",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 153,
+      "y": 87,
+      "collider": "tree_265",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 159,
+      "y": 83,
+      "collider": "tree_272",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 134,
+      "y": 96,
+      "collider": "tree_276",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 135,
+      "y": 126,
+      "collider": "tree_282",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "selatan-lembap",
+      "dry": true
+    },
+    {
+      "x": 141,
+      "y": 86,
+      "collider": "tree_291",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 137,
+      "y": 125,
+      "collider": "tree_294",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "selatan-lembap",
+      "dry": true
+    },
+    {
+      "x": 181,
+      "y": 84,
+      "collider": "tree_302",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 155,
+      "y": 92,
+      "collider": "tree_304",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 128,
+      "y": 117,
+      "collider": "tree_306",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 123,
+      "y": 88,
+      "collider": "tree_311",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 132,
+      "y": 135,
+      "collider": "tree_314",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 124,
+      "y": 82,
+      "collider": "tree_319",
+      "style": "bud",
+      "width": 1,
+      "height": 1,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 130,
+      "y": 124,
+      "collider": "tree_320",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 174,
+      "y": 92,
+      "collider": "tree_324",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 139,
+      "y": 85,
+      "collider": "tree_325",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 164,
+      "y": 96,
+      "collider": "tree_326",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "punggung-timur",
+      "dry": true
+    },
+    {
+      "x": 128,
+      "y": 124,
+      "collider": "tree_331",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 178,
+      "y": 82,
+      "collider": "tree_344",
+      "style": "bud",
+      "width": 1,
+      "height": 1,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 168,
+      "y": 85,
+      "collider": "tree_350",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 144,
+      "y": 117,
+      "collider": "tree_351",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 123,
+      "y": 117,
+      "collider": "tree_360",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 135,
+      "y": 87,
+      "collider": "tree_366",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 124,
+      "y": 113,
+      "collider": "tree_368",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 135,
+      "y": 131,
+      "collider": "tree_369",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 126,
+      "y": 95,
+      "collider": "tree_376",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 136,
+      "y": 93,
+      "collider": "tree_387",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 148,
+      "y": 100,
+      "collider": "tree_390",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 138,
+      "y": 130,
+      "collider": "tree_392",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "selatan-lembap",
+      "dry": false
+    },
+    {
+      "x": 170,
+      "y": 92,
+      "collider": "tree_402",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 146,
+      "y": 91,
+      "collider": "tree_417",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 127,
+      "y": 94,
+      "collider": "tree_421",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 143,
+      "y": 87,
+      "collider": "tree_422",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 168,
+      "y": 97,
+      "collider": "tree_425",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": true
+    },
+    {
+      "x": 129,
+      "y": 129,
+      "collider": "tree_428",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 168,
+      "y": 92,
+      "collider": "tree_438",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 159,
+      "y": 97,
+      "collider": "tree_446",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 140,
+      "y": 94,
+      "collider": "tree_447",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 132,
+      "y": 131,
+      "collider": "tree_448",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 164,
+      "y": 102,
+      "collider": "tree_453",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 150,
+      "y": 86,
+      "collider": "tree_455",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 142,
+      "y": 127,
+      "collider": "tree_463",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "selatan-lembap",
+      "dry": true
+    },
+    {
+      "x": 156,
+      "y": 114,
+      "collider": "tree_465",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 133,
+      "y": 126,
+      "collider": "tree_472",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "selatan-lembap",
+      "dry": true
+    },
+    {
+      "x": 135,
+      "y": 124,
+      "collider": "tree_489",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "selatan-lembap",
+      "dry": false
+    },
+    {
+      "x": 128,
+      "y": 87,
+      "collider": "tree_490",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 125,
+      "y": 85,
+      "collider": "tree_492",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 172,
+      "y": 98,
+      "collider": "tree_504",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 162,
+      "y": 102,
+      "collider": "tree_508",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 131,
+      "y": 122,
+      "collider": "tree_512",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 143,
+      "y": 84,
+      "collider": "tree_515",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 153,
+      "y": 84,
+      "collider": "tree_528",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 153,
+      "y": 96,
+      "collider": "tree_529",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 125,
+      "y": 93,
+      "collider": "tree_535",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 131,
+      "y": 85,
+      "collider": "tree_536",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 151,
+      "y": 93,
+      "collider": "tree_545",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 160,
+      "y": 100,
+      "collider": "tree_548",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 123,
+      "y": 133,
+      "collider": "tree_559",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 168,
+      "y": 103,
+      "collider": "tree_560",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 170,
+      "y": 99,
+      "collider": "tree_561",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 124,
+      "y": 120,
+      "collider": "tree_567",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 139,
+      "y": 92,
+      "collider": "tree_572",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 174,
+      "y": 88,
+      "collider": "tree_579",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 169,
+      "y": 83,
+      "collider": "tree_580",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 148,
+      "y": 91,
+      "collider": "tree_582",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 145,
+      "y": 89,
+      "collider": "tree_586",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 166,
+      "y": 100,
+      "collider": "tree_588",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 128,
+      "y": 110,
+      "collider": "tree_590",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 127,
+      "y": 90,
+      "collider": "tree_591",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 131,
+      "y": 127,
+      "collider": "tree_592",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 170,
+      "y": 104,
+      "collider": "tree_603",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 158,
+      "y": 112,
+      "collider": "tree_613",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 170,
+      "y": 102,
+      "collider": "tree_614",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 133,
+      "y": 89,
+      "collider": "tree_615",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 150,
+      "y": 90,
+      "collider": "tree_616",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 171,
+      "y": 83,
+      "collider": "tree_623",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 176,
+      "y": 90,
+      "collider": "tree_630",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 150,
+      "y": 89,
+      "collider": "tree_638",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 174,
+      "y": 86,
+      "collider": "tree_644",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 130,
+      "y": 118,
+      "collider": "tree_653",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 126,
+      "y": 135,
+      "collider": "tree_666",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 127,
+      "y": 122,
+      "collider": "tree_668",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 150,
+      "y": 98,
+      "collider": "tree_676",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 166,
+      "y": 103,
+      "collider": "tree_690",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 138,
+      "y": 89,
+      "collider": "tree_691",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 130,
+      "y": 97,
+      "collider": "tree_693",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 181,
+      "y": 89,
+      "collider": "tree_696",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 182,
+      "y": 87,
+      "collider": "tree_698",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 134,
+      "y": 85,
+      "collider": "tree_701",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 169,
+      "y": 90,
+      "collider": "tree_702",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 124,
+      "y": 109,
+      "collider": "tree_705",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 123,
+      "y": 92,
+      "collider": "tree_710",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 155,
+      "y": 89,
+      "collider": "tree_714",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 152,
+      "y": 91,
+      "collider": "tree_723",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 173,
+      "y": 83,
+      "collider": "tree_728",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 166,
+      "y": 86,
+      "collider": "tree_729",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 133,
+      "y": 111,
+      "collider": "tree_747",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 135,
+      "y": 116,
+      "collider": "tree_754",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 153,
+      "y": 95,
+      "collider": "tree_759",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 134,
+      "y": 83,
+      "collider": "tree_765",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 180,
+      "y": 87,
+      "collider": "tree_767",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 136,
+      "y": 91,
+      "collider": "tree_768",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 126,
+      "y": 108,
+      "collider": "tree_788",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 156,
+      "y": 111,
+      "collider": "tree_795",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 179,
+      "y": 92,
+      "collider": "tree_802",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 148,
+      "y": 98,
+      "collider": "tree_809",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 141,
+      "y": 85,
+      "collider": "tree_817",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 138,
+      "y": 83,
+      "collider": "tree_830",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 126,
+      "y": 120,
+      "collider": "tree_837",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 145,
+      "y": 95,
+      "collider": "tree_839",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 174,
+      "y": 96,
+      "collider": "tree_841",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 160,
+      "y": 96,
+      "collider": "tree_844",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 181,
+      "y": 82,
+      "collider": "tree_851",
+      "style": "bud",
+      "width": 1,
+      "height": 1,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 160,
+      "y": 103,
+      "collider": "tree_855",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 148,
+      "y": 97,
+      "collider": "tree_863",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": true
+    },
+    {
+      "x": 142,
+      "y": 93,
+      "collider": "tree_879",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 126,
+      "y": 111,
+      "collider": "tree_880",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 138,
+      "y": 88,
+      "collider": "tree_888",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 179,
+      "y": 85,
+      "collider": "tree_889",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 126,
+      "y": 126,
+      "collider": "tree_895",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 125,
+      "y": 91,
+      "collider": "tree_908",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 122,
+      "y": 121,
+      "collider": "tree_912",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 122,
+      "y": 114,
+      "collider": "tree_917",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 123,
+      "y": 87,
+      "collider": "tree_923",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 176,
+      "y": 93,
+      "collider": "tree_949",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 146,
+      "y": 117,
+      "collider": "tree_952",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "pangkal-jembatan",
+      "dry": false
+    },
+    {
+      "x": 168,
+      "y": 102,
+      "collider": "tree_954",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": false
+    },
+    {
+      "x": 151,
+      "y": 84,
+      "collider": "tree_970",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 138,
+      "y": 128,
+      "collider": "tree_975",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "selatan-lembap",
+      "dry": true
+    },
+    {
+      "x": 168,
+      "y": 88,
+      "collider": "tree_980",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 153,
+      "y": 94,
+      "collider": "tree_998",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "hulu-rindang",
+      "dry": false
+    },
+    {
+      "x": 131,
+      "y": 121,
+      "collider": "tree_999",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 142,
+      "y": 100,
+      "collider": "tree_1017",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 143,
+      "y": 82,
+      "collider": "tree_1021",
+      "style": "bud",
+      "width": 1,
+      "height": 1,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 135,
+      "y": 114,
+      "collider": "tree_1029",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 129,
+      "y": 127,
+      "collider": "tree_1033",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 140,
+      "y": 130,
+      "collider": "tree_1045",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "selatan-lembap",
+      "dry": true
+    },
+    {
+      "x": 134,
+      "y": 109,
+      "collider": "tree_1054",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 159,
+      "y": 86,
+      "collider": "tree_1072",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 130,
+      "y": 116,
+      "collider": "tree_1076",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 135,
+      "y": 90,
+      "collider": "tree_1087",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 140,
+      "y": 129,
+      "collider": "tree_1091",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "selatan-lembap",
+      "dry": true
+    },
+    {
+      "x": 122,
+      "y": 112,
+      "collider": "tree_1093",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 128,
+      "y": 120,
+      "collider": "tree_1097",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 163,
+      "y": 91,
+      "collider": "tree_1105",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": false
+    },
+    {
+      "x": 132,
+      "y": 95,
+      "collider": "tree_1106",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "barat-berlapis",
+      "dry": false
+    },
+    {
+      "x": 168,
+      "y": 100,
+      "collider": "tree_1107",
+      "style": "slender",
+      "width": 3,
+      "height": 5,
+      "grove": "punggung-timur",
+      "dry": true
+    },
+    {
+      "x": 138,
+      "y": 99,
+      "collider": "tree_1112",
+      "style": "round",
+      "width": 3,
+      "height": 4,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 136,
+      "y": 105,
+      "collider": "v32_tree_136_105",
+      "style": "bud",
+      "width": 1,
+      "height": 1,
+      "grove": "barat-berlapis",
+      "dry": true
+    },
+    {
+      "x": 137,
+      "y": 106,
+      "collider": "v32_tree_137_106",
+      "style": "bud",
+      "width": 1,
+      "height": 1,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 136,
+      "y": 109,
+      "collider": "v32_tree_136_109",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 138,
+      "y": 111,
+      "collider": "v32_tree_138_111",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 140,
+      "y": 113,
+      "collider": "v32_tree_140_113",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 143,
+      "y": 101,
+      "collider": "v32_tree_143_101",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 145,
+      "y": 101,
+      "collider": "v32_tree_145_101",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 147,
+      "y": 102,
+      "collider": "v32_tree_147_102",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 150,
+      "y": 101,
+      "collider": "v32_tree_150_101",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 152,
+      "y": 102,
+      "collider": "v32_tree_152_102",
+      "style": "understory",
+      "width": 3,
+      "height": 3,
+      "grove": "lisiere",
+      "dry": true
+    },
+    {
+      "x": 154,
+      "y": 111,
+      "collider": "v32_tree_154_111",
+      "style": "bud",
+      "width": 1,
+      "height": 1,
+      "grove": "pangkal-jembatan",
+      "dry": true
+    },
+    {
+      "x": 153,
+      "y": 113,
+      "collider": "v32_tree_153_113",
+      "style": "bud",
+      "width": 1,
+      "height": 1,
+      "grove": "pangkal-jembatan",
+      "dry": true
+    },
+    {
+      "x": 149,
+      "y": 115,
+      "collider": "v32_tree_149_115",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "pangkal-jembatan",
+      "dry": true
+    },
+    {
+      "x": 146,
+      "y": 116,
+      "collider": "v32_tree_146_116",
+      "style": "sapling",
+      "width": 1,
+      "height": 2,
+      "grove": "pangkal-jembatan",
+      "dry": true
+    }
+  ],
+  "canopyTiles": 1076,
+  "rootTiles": 537,
+  "riverCells": 255,
+  "bankTiles": 125,
+  "dampTiles": 90,
+  "bridgeCells": [
+    [
+      153,
+      105
+    ],
+    [
+      154,
+      105
+    ],
+    [
+      155,
+      105
+    ],
+    [
+      156,
+      105
+    ],
+    [
+      157,
+      105
+    ],
+    [
+      158,
+      105
+    ],
+    [
+      159,
+      105
+    ],
+    [
+      160,
+      105
+    ],
+    [
+      161,
+      105
+    ],
+    [
+      162,
+      105
+    ],
+    [
+      163,
+      105
+    ],
+    [
+      153,
+      106
+    ],
+    [
+      154,
+      106
+    ],
+    [
+      155,
+      106
+    ],
+    [
+      156,
+      106
+    ],
+    [
+      157,
+      106
+    ],
+    [
+      158,
+      106
+    ],
+    [
+      159,
+      106
+    ],
+    [
+      160,
+      106
+    ],
+    [
+      161,
+      106
+    ],
+    [
+      162,
+      106
+    ],
+    [
+      163,
+      106
+    ],
+    [
+      153,
+      107
+    ],
+    [
+      154,
+      107
+    ],
+    [
+      155,
+      107
+    ],
+    [
+      156,
+      107
+    ],
+    [
+      157,
+      107
+    ],
+    [
+      158,
+      107
+    ],
+    [
+      159,
+      107
+    ],
+    [
+      160,
+      107
+    ],
+    [
+      161,
+      107
+    ],
+    [
+      162,
+      107
+    ],
+    [
+      163,
+      107
+    ]
+  ],
+  "details": [
+    {
+      "kind": "river-reeds",
+      "x": 157,
+      "y": 89,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true,
+      "group": "hulu-barat"
+    },
+    {
+      "kind": "river-pebbles",
+      "x": 156,
+      "y": 90,
+      "width": 2,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true,
+      "group": "hulu-barat"
+    },
+    {
+      "kind": "river-fern",
+      "x": 155,
+      "y": 87,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true,
+      "group": "hulu-barat"
+    },
+    {
+      "kind": "riparian-flowers",
+      "x": 155,
+      "y": 90,
+      "width": 1,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true,
+      "group": "hulu-barat"
+    },
+    {
+      "kind": "river-reeds",
+      "x": 158,
+      "y": 95,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true,
+      "group": "tikungan-utara"
+    },
+    {
+      "kind": "river-pebbles",
+      "x": 161,
+      "y": 97,
+      "width": 2,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true,
+      "group": "tikungan-utara"
+    },
+    {
+      "kind": "river-fern",
+      "x": 160,
+      "y": 94,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true,
+      "group": "tikungan-utara"
+    },
+    {
+      "kind": "river-reeds",
+      "x": 150,
+      "y": 99,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true,
+      "group": "sebelum-jembatan"
+    },
+    {
+      "kind": "river-pebbles",
+      "x": 149,
+      "y": 103,
+      "width": 2,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true,
+      "group": "sebelum-jembatan"
+    },
+    {
+      "kind": "short-grass",
+      "x": 148,
+      "y": 101,
+      "width": 1,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true,
+      "group": "sebelum-jembatan"
+    },
+    {
+      "kind": "riparian-flowers",
+      "x": 149,
+      "y": 102,
+      "width": 1,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true,
+      "group": "sebelum-jembatan"
+    },
+    {
+      "kind": "river-reeds",
+      "x": 155,
+      "y": 112,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true,
+      "group": "sesudah-jembatan"
+    },
+    {
+      "kind": "river-pebbles",
+      "x": 156,
+      "y": 113,
+      "width": 2,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true,
+      "group": "sesudah-jembatan"
+    },
+    {
+      "kind": "river-reeds",
+      "x": 148,
+      "y": 118,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true,
+      "group": "belokan-rendah"
+    },
+    {
+      "kind": "river-pebbles",
+      "x": 147,
+      "y": 119,
+      "width": 2,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true,
+      "group": "belokan-rendah"
+    },
+    {
+      "kind": "short-grass",
+      "x": 145,
+      "y": 119,
+      "width": 1,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true,
+      "group": "belokan-rendah"
+    },
+    {
+      "kind": "riparian-flowers",
+      "x": 146,
+      "y": 120,
+      "width": 1,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true,
+      "group": "belokan-rendah"
+    },
+    {
+      "kind": "understory-fern",
+      "x": 131,
+      "y": 113,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "leaf-litter",
+      "x": 130,
+      "y": 115,
+      "width": 2,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wild-grass",
+      "x": 133,
+      "y": 112,
+      "width": 1,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "understory-fern",
+      "x": 135,
+      "y": 122,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "forest-mushrooms",
+      "x": 137,
+      "y": 123,
+      "width": 1,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wild-grass",
+      "x": 137,
+      "y": 121,
+      "width": 1,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "understory-fern",
+      "x": 143,
+      "y": 94,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "leaf-litter",
+      "x": 142,
+      "y": 96,
+      "width": 2,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wild-grass",
+      "x": 145,
+      "y": 93,
+      "width": 1,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "wild-grass",
+      "x": 151,
+      "y": 88,
+      "width": 1,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "understory-fern",
+      "x": 141,
+      "y": 128,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "forest-mushrooms",
+      "x": 143,
+      "y": 129,
+      "width": 1,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "bridge-side-flowers",
+      "x": 151,
+      "y": 104,
+      "width": 1,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "bridge-side-ferns",
+      "x": 165,
+      "y": 104,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "bridge-side-ferns",
+      "x": 154,
+      "y": 113,
+      "width": 2,
+      "height": 1,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "bridge-side-flowers",
+      "x": 155,
+      "y": 114,
+      "width": 1,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-forest-shrub",
+      "x": 132,
+      "y": 116,
+      "width": 2,
+      "height": 2,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-forest-shrub",
+      "x": 147,
+      "y": 95,
+      "width": 2,
+      "height": 2,
+      "recovers": true,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "fallen-branch",
+      "x": 152,
+      "y": 99,
+      "width": 2,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "fallen-branch",
+      "x": 161,
+      "y": 111,
+      "width": 2,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true
+    },
+    {
+      "kind": "low-stump",
+      "x": 144,
+      "y": 126,
+      "width": 1,
+      "height": 1,
+      "recovers": false,
+      "walkableGroundcover": true
+    }
+  ],
+  "placementsSkipped": 138,
+  "protectedLivingAnchors": [
+    [
+      138,
+      104
+    ],
+    [
+      144,
+      114
+    ]
+  ],
+  "protectedSeedlings": [
+    [
+      145,
+      107
+    ],
+    [
+      147,
+      107
+    ],
+    [
+      145,
+      109
+    ],
+    [
+      147,
+      109
+    ]
+  ],
+  "protectedDebris": [
+    [
+      156,
+      102
+    ],
+    [
+      157,
+      102
+    ],
+    [
+      156,
+      103
+    ]
+  ],
+  "validationTargets": [
+    [
+      124,
+      101
+    ],
+    [
+      129,
+      101
+    ],
+    [
+      136,
+      103
+    ],
+    [
+      141,
+      106
+    ],
+    [
+      141,
+      110
+    ],
+    [
+      145,
+      113
+    ],
+    [
+      150,
+      112
+    ],
+    [
+      153,
+      108
+    ],
+    [
+      154,
+      106
+    ],
+    [
+      158,
+      106
+    ],
+    [
+      163,
+      106
+    ],
+    [
+      165,
+      110
+    ],
+    [
+      145,
+      108
+    ],
+    [
+      147,
+      110
+    ]
+  ]
+}

@@ -5,12 +5,13 @@ import {execFileSync} from 'node:child_process';
 import {resolve} from 'node:path';
 import baseline from '../world/valley-v37-baseline.json';
 import design from '../world/valley-v37.json';
-import {DUNIA,PETA_RUNTIME} from '../src/game/world-map';
 import {bacaPeta,bisaBerdiri,interaksiTerdekat,langkahGerak,misiPemulihan,properti,type PetaTiled,type ObjekTiled} from '../src/game/map-data';
 import {NPC_PLANS,validateNpcPlan} from '../src/game/living-model';
 import {villageActivity} from '../src/game/village-activity';
 const old=JSON.parse(readFileSync('public/maps/pulau-tirta-v36.json','utf8')) as PetaTiled;
 const raw=JSON.parse(readFileSync('public/maps/pulau-tirta-v37.json','utf8')) as PetaTiled;
+// This stage checks its stored map. The V3.8 regression separately checks the active world.
+const DUNIA=bacaPeta(raw);
 const previous=bacaPeta(old),L=(m:PetaTiled,n:string)=>m.layers.find(l=>l.name===n)!;
 const regions=L(old,'Regions').objects!,valley=regions.find(r=>r.name==='Lembah Hujan')!,others=regions.filter(r=>r!==valley);
 const contains=(r:ObjekTiled,x:number,y:number)=>x>=r.x&&x<r.x+r.width&&y>=r.y&&y<r.y+r.height;
@@ -20,7 +21,7 @@ function accessible(){const q=[[Math.floor(DUNIA.spawn.x/16),Math.floor(DUNIA.sp
 describe('Lembah V3.7 rainfall basin art and protected gameplay',()=>{
  it('protects all integrated team and earlier visual sources and activates the new editable export',()=>{
   for(const[file,hash]of Object.entries(baseline.hashes))expect(createHash('sha256').update(readFileSync(file)).digest('hex'),file).toBe(hash);
-  expect(PETA_RUNTIME).toEqual(raw);expect(properti(raw,'worldVersion')).toBe('3.7-Rainfall-Basin');expect([raw.width,raw.height,raw.tilewidth,raw.tileheight]).toEqual([192,144,16,16]);expect(raw.tilesets.slice(0,12)).toEqual(old.tilesets);
+  expect(properti(raw,'worldVersion')).toBe('3.7-Rainfall-Basin');expect([raw.width,raw.height,raw.tilewidth,raw.tileheight]).toEqual([192,144,16,16]);expect(raw.tilesets.slice(0,12)).toEqual(old.tilesets);
  });
  it('changes no pixel outside Lembah and no object layer, metadata, other mission or Festival layer',()=>{
   expect(raw.layers).toHaveLength(old.layers.length);

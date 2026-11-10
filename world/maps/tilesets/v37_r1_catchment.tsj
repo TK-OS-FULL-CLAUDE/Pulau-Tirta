@@ -1,0 +1,16 @@
+{
+  "type": "tileset",
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "name": "valley_v37_r1",
+  "tilewidth": 16,
+  "tileheight": 16,
+  "tilecount": 2688,
+  "columns": 48,
+  "image": "../../assets/valley_v37_r1/tileset.svg",
+  "imagewidth": 768,
+  "imageheight": 896,
+  "margin": 0,
+  "spacing": 0,
+  "tiles": []
+}
