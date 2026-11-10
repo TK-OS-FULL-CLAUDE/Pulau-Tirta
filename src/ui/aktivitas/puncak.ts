@@ -88,10 +88,11 @@ function termometer(x: number, c: number, warna: string, labelKiri: boolean): SV
     svg('rect', { x: x - 3, y: dasar - 14 - tinggiIsi, width: 6, height: tinggiIsi, fill: warna }),
     svg('circle', { cx: x, cy: dasar - 9, r: 9, fill: warna, stroke: '#5b6b75', 'stroke-width': 2 }),
   );
-  const kotakX = labelKiri ? x - 72 : x + 14;
+  // Kotak angka cukup lebar untuk label-suhu 23px (tetap ≥18px di layar 1366x768).
+  const kotakX = labelKiri ? x - 90 : x + 14;
   g.append(
-    svg('rect', { class: 'kotak', x: kotakX, y: dasar - 60, width: 58, height: 28, rx: 6, fill: '#ffffff', stroke: '#5b6b75', 'stroke-width': 2 }),
-    svg('text', { class: 'label-suhu', x: kotakX + 29, y: dasar - 40, 'text-anchor': 'middle' }, `${c}°C`),
+    svg('rect', { class: 'kotak', x: kotakX, y: dasar - 64, width: 76, height: 34, rx: 6, fill: '#ffffff', stroke: '#5b6b75', 'stroke-width': 2 }),
+    svg('text', { class: 'label-suhu', x: kotakX + 38, y: dasar - 39, 'text-anchor': 'middle' }, `${c}°C`),
   );
   return g;
 }
@@ -170,7 +171,7 @@ export function buatPuncak(misi: Misi, siap: () => void): Aktivitas {
   gambar.append(
     svg('text', { x: 120, y: 350, 'text-anchor': 'middle', class: 'label-kolam', fill: '#ffffff', style: 'fill:#ffffff' }, 'Laut'),
     svg('text', { x: 330, y: 352, 'text-anchor': 'middle', class: 'label-kolam' }, 'Pantai'),
-    svg('text', { x: 652, y: 132, 'text-anchor': 'middle', class: 'label-kolam' }, 'Puncak'),
+    svg('text', { x: 652, y: 148, 'text-anchor': 'middle', class: 'label-kolam' }, 'Puncak'),
   );
 
   // Kendali.
