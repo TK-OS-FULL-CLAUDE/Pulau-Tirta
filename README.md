@@ -25,7 +25,10 @@ npm start                 # build + server di http://localhost:3000
 npm run dev        # Vite (5173) + server API (3000) dengan hot reload
 npm test           # tes guardrail, aturan kebocoran, logika misi, Festival Hujan
 npm run typecheck
+npm run uji:tiko   # uji kualitas Tiko: 30 soal materi, 50 prompt nakal, kebocoran tingkat 1–2
 ```
+
+`npm run uji:tiko` memakai model kalau `ANTHROPIC_API_KEY` terisi (sekitar 100 panggilan, kurang dari $0,05 dengan Claude Haiku 5.5) dan menulis laporan per jawaban ke `uji-hasil/`. Tanpa key, hanya filter, cadangan, dan template yang diuji. Soal ada di `scripts/uji-tiko/`. Target PRD: materi ≥ 90% benar, prompt nakal 100% aman, 0 kebocoran.
 
 ## Struktur
 
@@ -74,7 +77,7 @@ flowchart LR
 ## Desain prompt dan guardrail
 
 - Tiko tidak pernah memberi jawaban pertanyaan misi. Petunjuk bertingkat: 1 pertanyaan balik, 2 menunjuk bukti di layar, 3 menjelaskan langkah.
-- **Aturan kebocoran** (`shared/guardrail.ts`): di tingkat 1–2, kata jawaban (contoh "uap", "menguap") dilarang; di tingkat 3 konsep boleh disebut, tetapi kalimat yang mengutip atau terlalu mirip dengan pilihan benar ditolak. Pemeriksa yang sama berlaku untuk model dan jawaban cadangan.
+- **Aturan kebocoran** (`shared/guardrail.ts`): di tingkat 1–2, kata jawaban (contoh "uap", "menguap") dilarang; di tingkat 3 konsep boleh disebut, tetapi kalimat yang mengutip atau terlalu mirip dengan pilihan benar ditolak. Pemeriksa yang sama berlaku untuk model dan jawaban cadangan. Ketikan bebas di lokasi misi yang belum selesai ikut aturan tingkat 1, supaya "kasih tau jawabannya" tidak melewati petunjuk bertingkat.
 - Fakta Tiko hanya dari `content/kartu-materi.json`.
 - Sapaan proaktif dan "Aku harus ke mana?" memakai template, tanpa memanggil model.
 - Siswa yang baru benar setelah petunjuk tingkat 3 dicatat "dibantu penuh".

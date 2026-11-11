@@ -3,7 +3,7 @@ import express from 'express';
 import { existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { jawabTiko, type PermintaanChat } from './tiko';
+import { MODE, jawabTiko, type Mode, type PermintaanChat } from './tiko';
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 3000);
@@ -32,7 +32,7 @@ app.post('/api/chat', async (req, res) => {
     return;
   }
   const body = req.body as Partial<PermintaanChat>;
-  if (typeof body?.pesan !== 'string' || (body.mode !== 'petunjuk' && body.mode !== 'tanya')) {
+  if (typeof body?.pesan !== 'string' || !MODE.includes(body.mode as Mode)) {
     res.status(400).json({ error: 'Format permintaan tidak dikenal.' });
     return;
   }

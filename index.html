@@ -16,27 +16,37 @@
         <dialog id="dialog-misi" class="dialog dialog-misi"></dialog>
       </section>
 
+      <!-- Tiko melayang di atas area game: kotak chat di kiri bawah, jawaban di tengah bawah (src/tiko/panel.ts). -->
       <aside id="tiko" class="tiko" aria-label="Tiko, teman belajar AI">
-        <header class="tiko-kepala">
-          <span class="tiko-wajah" aria-hidden="true">💧</span>
-          <div>
-            <strong>Tiko</strong>
-            <small>teman belajar AI</small>
-          </div>
-          <button id="tentang-tiko" class="tombol-kecil" type="button">Tentang Tiko</button>
-        </header>
-        <ol id="tiko-pesan" class="tiko-pesan" aria-live="polite"></ol>
-        <p id="tiko-mengetik" class="tiko-mengetik" hidden>Tiko sedang mengetik…</p>
-        <div class="tiko-cepat" role="group" aria-label="Pertanyaan cepat">
-          <button type="button" data-cepat="bingung">Aku bingung</button>
-          <button type="button" data-cepat="ke-mana">Aku harus ke mana?</button>
-          <button type="button" data-cepat="apa-itu">Apa itu …?</button>
+        <section id="tiko-jawaban" class="tiko-jawaban" aria-label="Jawaban Tiko" hidden>
+          <img class="tiko-potret" alt="" width="64" height="64" />
+          <span class="tiko-papan" aria-hidden="true">Tiko</span>
+          <button id="tiko-tutup" class="tiko-tutup" type="button" aria-label="Tutup jawaban Tiko">×</button>
+          <p id="tiko-tanya" class="tiko-tanya" hidden></p>
+          <p id="tiko-mengetik" class="tiko-mengetik" hidden>
+            <span class="titik" aria-hidden="true"><i></i><i></i><i></i></span> Tiko sedang berpikir…
+          </p>
+          <!-- Teks tampil huruf demi huruf; pembaca layar mendapat teks utuh lewat #tiko-teks-sr. -->
+          <p id="tiko-teks" class="tiko-teks" aria-hidden="true"></p>
+          <p id="tiko-teks-sr" class="sr" aria-live="polite"></p>
+          <small id="tiko-sumber" class="tiko-sumber" hidden></small>
+        </section>
+
+        <!-- Awalnya hanya logo Tiko; klik logo atau tekan T untuk membuka kolom ketik. -->
+        <div class="tiko-bar" data-tertutup>
+          <form id="tiko-form" class="tiko-form">
+            <button id="tiko-buka" class="tiko-buka" type="button" aria-expanded="false" aria-controls="tiko-isi-form" aria-label="Tanya Tiko (tombol T)">
+              <img class="tiko-potret-kecil" alt="" width="40" height="40" />
+              <kbd class="tiko-kunci" aria-hidden="true">T</kbd>
+            </button>
+            <div id="tiko-isi-form" class="tiko-isi-form">
+              <label for="tiko-input" class="sr">Tulis pertanyaan untuk Tiko</label>
+              <input id="tiko-input" maxlength="200" autocomplete="off" placeholder="Tanya Tiko soal air…" />
+              <button type="submit" class="tiko-kirim" aria-label="Kirim">➤</button>
+              <button id="tentang-tiko" class="tiko-info" type="button" aria-label="Tentang Tiko">?</button>
+            </div>
+          </form>
         </div>
-        <form id="tiko-form" class="tiko-form">
-          <label for="tiko-input" class="sr">Tulis pertanyaan untuk Tiko</label>
-          <input id="tiko-input" maxlength="200" autocomplete="off" placeholder="Tanya Tiko soal air…" />
-          <button type="submit">Kirim</button>
-        </form>
       </aside>
     </main>
 

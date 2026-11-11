@@ -2,8 +2,8 @@
  * Guardrail Tiko. Dipakai server (sebelum dan sesudah model) dan diuji otomatis.
  * Daftar kata di sini adalah titik awal; tim konten melengkapinya.
  */
-import type { Misi, Tingkat } from './content';
-import { pilihanBenar } from './content';
+import type { KartuMateri, Misi, Tingkat } from './content';
+import { KARTU_MATERI, pilihanBenar } from './content';
 
 export const BATAS_PANJANG_PESAN = 200;
 export const MAKS_KALIMAT_JAWABAN = 3;
@@ -137,3 +137,34 @@ export function periksaKeluar(teks: string, opsi: { misi?: Misi; tingkat?: Tingk
 export function petunjukCadangan(misi: Misi, tingkat: Tingkat): string {
   return misi.petunjukCadangan?.[String(tingkat)] ?? 'Coba lihat lagi apa yang berubah di layar. Apa bedanya?';
 }
+
+/** Fun fact cadangan: isi kartu materi apa adanya, jadi selalu benar dan tetap jalan tanpa AI atau internet. */
+export function faktaCadangan(kartu: KartuMateri): string {
+  return `Fakta seru: ${kartu.fakta}`;
+}
+
+/**
+ * Kartu yang boleh diceritakan sebagai fun fact. Selama misi di lokasi ini belum selesai, kartu misi itu dan kartu
+ * yang memuat kata terlarang tingkat 1 dilewati, supaya fun fact tidak membocorkan jawaban misi.
+ */
+export function kartuFunFact(misi?: Misi, misiAktif = false): KartuMateri[] {
+  if (!misi || !misiAktif) return KARTU_MATERI;
+  return KARTU_MATERI.filter(
+    (k) => !misi.kartuMateri.includes(k.no) && periksaKeluar(faktaCadangan(k), { misi, tingkat: 1 }).aman,
+  );
+}
+
+/** Pilih satu kartu fun fact, sebisa mungkin yang belum baru saja diceritakan. */
+export function pilihKartuFunFact(
+  pilihan: KartuMateri[],
+  hindari: number[] = [],
+  acak: () => number = Math.random,
+): KartuMateri | undefined {
+  const baru = pilihan.filter((k) => !hindari.includes(k.no));
+  const kumpulan = baru.length ? baru : pilihan;
+  return kumpulan[Math.floor(acak() * kumpulan.length)];
+}
+
+/** Kalau semua kartu bisa membocorkan misi yang sedang berjalan. */
+export const FUN_FACT_TUNDA =
+  'Fun fact-ku soal tempat ini aku simpan dulu sampai misinya selesai, ya. Coba tanya aku lagi nanti!';

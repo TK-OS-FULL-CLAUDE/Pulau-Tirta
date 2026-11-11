@@ -21,29 +21,14 @@
 }
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; }
-.tata { display: grid; grid-template-columns: 1fr 340px; gap: 12px; padding: 12px; height: 100vh; }
+/* Game memakai lebar penuh; Tiko melayang di atasnya (lihat bagian "Tiko" di akhir file). */
+.tata { position: relative; display: grid; grid-template-columns: 1fr; gap: 12px; padding: 12px; height: 100vh; }
 #game { min-width: 0; min-height: 0; border-radius: 12px; overflow: hidden; background: var(--laut); }
 /* Ukuran canvas diatur Phaser (Scale.FIT). Jangan dipaksa lewat CSS: posisi klik/sentuh jadi meleset. */
 #game canvas { display: block; image-rendering: pixelated; }
 
-/* Hanya panel Tiko; balon pesan Tiko juga punya class "tiko". */
-.tata > .tiko { display: flex; flex-direction: column; background: var(--kertas); border-radius: 12px; padding: 12px; min-height: 0; }
-.tiko-kepala { display: flex; align-items: center; gap: 8px; }
-.tiko-kepala small { display: block; color: var(--pucat); font-size: 16px; }
-.tiko-kepala .tombol-kecil { margin-left: auto; }
-.tiko-wajah { font-size: 32px; }
-.tiko-pesan { list-style: none; margin: 12px 0; padding: 0; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 8px; }
-.tiko-pesan li { flex-shrink: 0; padding: 8px 12px; border-radius: 12px; max-width: 90%; line-height: 1.4; }
-.tiko-pesan li.tiko { background: #e3f1f6; align-self: flex-start; }
-.tiko-pesan li.anak { background: #fde7cf; align-self: flex-end; }
-.tiko-pesan li small { display: block; color: var(--pucat); font-size: 12px; margin-top: 4px; }
-.tiko-mengetik { color: var(--pucat); font-size: 16px; margin: 0 0 8px; }
-.tiko-cepat { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
-.tiko-form { display: flex; gap: 6px; }
-.tiko-form input { flex: 1; min-width: 0; min-height: 48px; font-size: 18px; padding: 0 12px; border-radius: 10px; border: 2px solid #c9d6dc; }
 button { min-height: 48px; font-size: 18px; padding: 0 14px; border-radius: 10px; border: 0; background: var(--laut); color: white; cursor: pointer; }
 button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); outline-offset: 2px; }
-.tiko-cepat button { background: #d7ebf2; color: var(--tinta); min-height: 48px; }
 .tombol-kecil { min-height: 48px; font-size: 18px; background: #d7ebf2; color: var(--tinta); }
 
 .dialog { border: 0; border-radius: 16px; max-width: 560px; width: 92vw; padding: 20px; background: var(--kertas); color: var(--tinta); }
@@ -205,7 +190,6 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 @media (max-width: 900px) {
   .tata { grid-template-columns: 1fr; height: auto; }
   #game { aspect-ratio: 16 / 9; }
-  .tata > .tiko { min-height: 360px; }
   /* Layar kecil: area game terlalu pendek untuk misi. Selama misi, dialog mengambil lebar penuh dan peta disembunyikan. */
   #game:has(> .dialog-misi[open]) { aspect-ratio: auto; overflow: visible; background: none; }
   #game:has(> .dialog-misi[open]) > canvas { display: none; }
@@ -301,3 +285,108 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 /* Tombol suara di menu jeda */
 .tombol-suara { min-height: 52px; min-width: 260px; font-size: 18px; font-weight: 700; background: #d7ebf2; color: var(--tinta); }
 .tombol-suara[aria-pressed='false'] { background: #eef2f4; color: var(--pucat); }
+
+/*
+ * Tiko: kotak chat di kiri bawah dan kotak jawaban di tengah bawah, melayang di atas area game.
+ * Bagian ini sengaja di akhir file karena menggeser dialog misi, kotak dialog warga, dan tombol demo
+ * supaya tidak tertutup kotak chat.
+ */
+.tata {
+  --lebar-bar-tiko: 420px;
+  /* Baris bawah yang disisakan dialog misi untuk kotak chat dan jawaban Tiko. */
+  --ruang-bawah-tiko: 176px;
+  --bingkai-tiko: linear-gradient(135deg, #2f9bd6 0%, #7fe3d4 38%, #ffe08a 68%, #2f9bd6 100%);
+}
+.tata > .tiko { display: flex; flex-direction: column; gap: 12px; }
+.tiko-jawaban, .tiko-bar {
+  border: 4px solid transparent;
+  background: linear-gradient(var(--isi-tiko), var(--isi-tiko)) padding-box, var(--bingkai-tiko) border-box;
+  box-shadow: 0 12px 30px rgb(6 32 46 / 38%), inset 0 0 0 2px #e2f4fb;
+  color: var(--tinta);
+}
+
+/* Kotak jawaban */
+.tiko-jawaban { --isi-tiko: #ffffff; position: relative; min-height: 104px; padding: 16px 58px 16px 104px; border-radius: 24px; }
+.tiko-jawaban[hidden] { display: none; }
+.tiko-jawaban.baru { animation: tiko-muncul 0.28s ease-out; }
+@keyframes tiko-muncul { from { opacity: 0; transform: translateY(12px) scale(0.98); } }
+.tiko-jawaban::after { content: '✦'; position: absolute; right: 20px; bottom: 10px; color: #f5b83d; font-size: 18px; animation: tiko-kilau 2.4s ease-in-out infinite; }
+@keyframes tiko-kilau { 50% { opacity: 0.25; transform: scale(0.7) rotate(20deg); } }
+.tiko-potret {
+  position: absolute; left: 16px; top: 16px; width: 72px; height: 72px; padding: 9px; object-fit: contain; image-rendering: pixelated;
+  border: 3px solid #ffffff; border-radius: 50%; background: radial-gradient(circle at 50% 38%, #f2fcff, #bde9f8 72%);
+  box-shadow: 0 0 0 3px #7fd3f0, 0 6px 14px rgb(6 32 46 / 20%); animation: tiko-ayun 2.4s ease-in-out infinite alternate;
+}
+@keyframes tiko-ayun { to { transform: translateY(-4px); } }
+.tiko-papan {
+  position: absolute; top: -17px; left: 96px; padding: 2px 16px; border: 3px solid #ffffff; border-radius: 999px;
+  background: linear-gradient(#2f9bd6, #1f6f8b); color: #ffffff; font-size: 16px; font-weight: 800; letter-spacing: 0.06em;
+  box-shadow: 0 3px 8px rgb(6 32 46 / 25%);
+}
+.tiko-tutup { position: absolute; top: 6px; right: 6px; width: 48px; padding: 0; border-radius: 50%; background: transparent; color: var(--pucat); font-size: 30px; line-height: 1; }
+.tiko-tutup:hover { background: #eef7fb; color: var(--tinta); }
+.tiko-tanya { margin: 2px 0 4px; color: var(--pucat); font-size: 16px; font-style: italic; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tiko-tanya[hidden] { display: none; }
+.tiko-teks { max-height: 8.7em; margin: 0; overflow-y: auto; font-size: 20px; line-height: 1.45; }
+.tiko-teks:empty { display: none; }
+.tiko-mengetik { display: flex; align-items: center; gap: 10px; margin: 6px 0 0; color: var(--pucat); font-size: 16px; }
+.tiko-mengetik[hidden] { display: none; }
+.tiko-mengetik .titik { display: inline-flex; gap: 4px; }
+.tiko-mengetik .titik i { width: 9px; height: 9px; border-radius: 50%; background: #4fb3e0; animation: tiko-titik 1s ease-in-out infinite; }
+.tiko-mengetik .titik i:nth-child(2) { animation-delay: 0.15s; }
+.tiko-mengetik .titik i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes tiko-titik { 0%, 80%, 100% { transform: translateY(0); opacity: 0.4; } 40% { transform: translateY(-5px); opacity: 1; } }
+/* Label sumber jawaban (mode demo, untuk juri). */
+.tiko-sumber { display: block; margin-top: 6px; color: var(--pucat); font-size: 12px; }
+.tiko-sumber[hidden] { display: none; }
+
+/* Kotak chat: awalnya hanya logo Tiko (data-tertutup), melebar jadi kolom ketik saat dibuka. */
+.tiko-bar { --isi-tiko: rgb(255 252 244 / 96%); width: var(--lebar-bar-tiko); max-width: 100%; padding: 8px; border-radius: 999px; transition: width 0.25s ease; }
+.tiko-bar[data-tertutup] { width: 72px; }
+.tiko-form { display: flex; align-items: center; gap: 6px; }
+.tiko-buka { position: relative; flex: none; width: 48px; padding: 2px; border-radius: 50%; background: #e6f5fb; }
+.tiko-buka:hover { background: #d3eef9; }
+.tiko-bar[data-tertutup] .tiko-buka { animation: tiko-panggil 2.6s ease-in-out infinite; }
+@keyframes tiko-panggil { 50% { box-shadow: 0 0 0 6px rgb(79 195 247 / 35%); } }
+.tiko-potret-kecil { display: block; width: 44px; height: 44px; padding: 4px; object-fit: contain; image-rendering: pixelated; }
+/* Petunjuk tombol keyboard, hanya saat tertutup. */
+.tiko-kunci {
+  position: absolute; right: -8px; bottom: -8px; min-width: 24px; padding: 0 5px; border: 2px solid #ffffff; border-radius: 7px;
+  background: var(--laut); color: #ffffff; font: 800 16px/20px system-ui, sans-serif;
+}
+.tiko-bar:not([data-tertutup]) .tiko-kunci { display: none; }
+/* Sedikit ruang di dalam supaya garis fokus kotak ketik tidak terpotong saat melebar/menyempit. */
+.tiko-isi-form { display: flex; flex: 1; align-items: center; gap: 6px; min-width: 0; padding: 3px; margin: -3px; overflow: hidden; transition: opacity 0.2s; }
+.tiko-bar[data-tertutup] .tiko-isi-form { opacity: 0; pointer-events: none; }
+.tiko-form input { flex: 1; width: 0; min-width: 0; min-height: 48px; padding: 0 16px; border: 2px solid #c9d6dc; border-radius: 999px; background: #ffffff; font-size: 18px; }
+.tiko-form input:focus { border-color: #4fb3e0; }
+.tiko-kirim, .tiko-info { flex: none; width: 48px; padding: 0; border-radius: 50%; font-weight: 800; }
+.tiko-kirim { background: var(--laut); font-size: 20px; }
+.tiko-info { background: #e6f5fb; color: var(--laut); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tiko-jawaban.baru, .tiko-jawaban::after, .tiko-potret, .tiko-mengetik .titik i, .tiko-bar[data-tertutup] .tiko-buka { animation: none; }
+  .tiko-bar, .tiko-isi-form { transition: none; }
+}
+
+/* Layar lebar: Tiko melayang di atas area game. Layar sempit: Tiko di bawah game. */
+@media (min-width: 901px) {
+  .tata > .tiko { position: absolute; inset: 12px; z-index: 4; display: block; pointer-events: none; }
+  .tiko-bar { position: absolute; left: 12px; bottom: 12px; pointer-events: auto; }
+  /* Tengah bawah, di atas kotak chat dan label "E · ..." di bawah layar game. */
+  .tiko-jawaban { position: absolute; left: 0; right: 0; bottom: 92px; max-width: 640px; margin-inline: auto; pointer-events: auto; }
+  /* Selama misi, kotak jawaban turun ke baris bawah di samping kotak chat; dialog misi berhenti di atasnya. */
+  .tata:has(.dialog-misi[open]) .tiko-jawaban { left: calc(var(--lebar-bar-tiko) + 36px); right: 24px; bottom: 12px; }
+  .tata:has(.dialog-misi[open]) .tiko-teks { max-height: calc(var(--ruang-bawah-tiko) - 72px); }
+  .dialog-misi { bottom: calc(var(--ruang-bawah-tiko) + 24px); }
+  /* Kotak dialog warga di samping kotak chat; jawaban Tiko naik di atasnya. */
+  .kotak-dialog { left: calc(var(--lebar-bar-tiko) + 24px); }
+  .tata:has(.kotak-dialog[open]) .tiko-jawaban { bottom: 150px; }
+  .tombol-demo, .panel-demo { left: auto; right: 12px; }
+}
+/* Layar sempit: potret dan ruang kiri kotak jawaban lebih kecil supaya teks tetap lega. */
+@media (max-width: 900px) {
+  .tiko-jawaban { padding: 14px 52px 14px 84px; }
+  .tiko-potret { left: 12px; width: 58px; height: 58px; padding: 7px; }
+  .tiko-papan { left: 80px; }
+}

@@ -2,9 +2,7 @@ import Phaser from 'phaser';
 import './style.css';
 import { FESTIVAL, MISI_UTAMA, cariMisi } from '../shared/content';
 import {
-  festivalTerbuka,
   jawab,
-  mintaPetunjuk,
   mulaiMisi,
   muat,
   periksaFestival,
@@ -15,10 +13,11 @@ import {
 } from '../shared/missions';
 import { DuniaScene, LEBAR, LOKASI, TINGGI, type Lokasi } from './game/world';
 import { PanelTiko } from './tiko/panel';
+import { RohTiko } from './tiko/roh';
 import { isiJurnal } from '../shared/jurnal';
 import { WARGA, naskahDesa, naskahPenduduk, semuaPembicara } from '../shared/warga';
 import { pasangDemo, tujuanDariUrl } from './ui/demo';
-import { bukaFestival, bukaMisi, peristiwaFestivalAktif, sorotMisiAktif, tandaiPetunjukFestival } from './ui/dialog-misi';
+import { bukaFestival, bukaMisi } from './ui/dialog-misi';
 import { ID_JURNAL, bukaJurnal } from './ui/jurnal';
 import { bukaPercakapan } from './ui/kotak-dialog';
 import { bukaJeda, bukaJudul, bukaTamat } from './ui/layar';
@@ -78,27 +77,6 @@ const panel = new PanelTiko(
       kartuDidapat: progres.kartuDidapat,
       konsep: misi?.konsep,
     };
-  },
-  () => {
-    const sisa = LOKASI.find((l) => l.misiId && progres.status[l.misiId] !== 'selesai');
-    if (!sisa) return festivalTerbuka(progres) && !progres.festivalSelesai ? 'Semua tempat sudah pulih! Ayo ke Desa Tirta untuk Festival Hujan.' : 'Kamu sudah menyelesaikan semuanya. Hebat!';
-    return `Coba ke ${sisa.nama}. Kayaknya ada yang aneh di sana.`;
-  },
-  // "Aku bingung" di misi yang sedang berjalan menaikkan tingkat petunjuk; tingkat 2 juga menyorot bukti di aktivitas.
-  (misiId) => {
-    playtest?.catatBingung(progres, misiId);
-    const h = mintaPetunjuk(progres, misiId);
-    if (h.progres !== progres) perbarui(h.progres);
-    sorotMisiAktif(h.tingkat);
-    return h.tingkat;
-  },
-  // Di Festival Hujan, "Aku bingung" membantu peristiwa yang sedang dipilih anak.
-  () => {
-    const id = peristiwaFestivalAktif();
-    if (!id) return false;
-    const dibantu = beriPetunjukFestival([id]);
-    if (dibantu) tandaiPetunjukFestival(dibantu);
-    return true;
   },
 );
 
@@ -233,6 +211,11 @@ class SharpWorld extends DuniaScene {
         object.setResolution(3);
       }
     }
+    // Roh Tiko memutari pemain; panel memberi tahu kapan Tiko berpikir atau berbicara.
+    // Sprite pemain adalah field privat DuniaScene, dan world.ts dikunci tes preservasi World, jadi dibaca dari sini.
+    const pemain = () => (this as unknown as { pemain?: Phaser.GameObjects.Sprite }).pemain;
+    const roh = new RohTiko(this, () => pemain());
+    panel.pantau((s) => roh.atur(s));
   }
 }
 
@@ -430,7 +413,7 @@ if (DEMO) {
           pembicara: WARGA.pembicara,
           tutup: () => {
             lepasKunci();
-            panel.sapa('Aku di sini kalau kamu bingung. Tekan "Aku harus ke mana?" atau tanya aku soal air, ya.');
+            panel.sapa('Aku di sini kalau kamu bingung. Ketik pertanyaanmu soal air di kotak chat, ya.');
           },
         });
         return;

@@ -14,8 +14,9 @@ describe('jawabTiko tanpa model (mode cadangan)', () => {
     expect(j.teks).toBe(cariMisi('misi-1')!.petunjukCadangan!['2']);
   });
 
-  it('menjawab pertanyaan materi dari kartu materi', async () => {
-    const j = await jawabTiko({ pesan: 'Apa itu pengembunan?', mode: 'tanya', misiId: 'misi-2' });
+  it('menjawab pertanyaan materi dari kartu materi (misi sudah selesai)', async () => {
+    // Selama misi belum selesai, kartu misi itu memuat jawabannya; lihat tests/uji-tiko-data.test.ts.
+    const j = await jawabTiko({ pesan: 'Apa itu pengembunan?', mode: 'tanya', misiId: 'misi-2', statusMisi: 'selesai' });
     expect(j.sumber).toBe('cadangan');
     expect(j.teks).toMatch(/udara makin dingin|uap air/i);
   });
