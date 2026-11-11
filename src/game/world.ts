@@ -38,6 +38,9 @@ export class DuniaScene extends Phaser.Scene {
   private walkDistance = 0;
   private prompt?: InteraksiDunia;
   private lawanBicara?: string;
+  /** E/Spasi/Enter ditekan sejak frame terakhir. JustDown terlewat kalau tombol sudah dilepas sebelum frame berikutnya
+   * (tekanan cepat di laptop lambat), jadi tekanan dicatat lewat event 'down' dan dibaca sekali di update. */
+  private aksiDitekan = false;
   private bayangan!: Phaser.GameObjects.Ellipse;
   private tanda = new Map<string, Phaser.GameObjects.Arc>();
   private pemulihan = new Map<string, Phaser.Tilemaps.TilemapLayer[]>();
@@ -105,6 +108,7 @@ export class DuniaScene extends Phaser.Scene {
       kanan: [kb.addKey(K.D, false), kb.addKey(K.RIGHT, false)],
     };
     this.aksi = [kb.addKey(K.E, false), kb.addKey(K.SPACE, false), kb.addKey(K.ENTER, false)];
+    for (const k of this.aksi) k.on('down', () => { this.aksiDitekan = true; });
     kb.disableGlobalCapture();
     const hanyaGame = (event: KeyboardEvent) => {
       if (!this.inputTerhalang() && [...Object.values(this.tombol).flat(), ...this.aksi].some((k) => k.keyCode === event.keyCode)) event.preventDefault();
@@ -189,6 +193,7 @@ export class DuniaScene extends Phaser.Scene {
     const blocked = this.inputTerhalang();
     this.living.update(time, dtMs, blocked, this.pemain);
     if (blocked) {
+      this.aksiDitekan = false;
       this.input.keyboard?.resetKeys();
       this.label.setVisible(false);
       this.visualPemain.setPosition(this.pemain.x, this.pemain.y).setScale(1).setData('motion', 'paused');
@@ -225,7 +230,8 @@ export class DuniaScene extends Phaser.Scene {
       warga.state.waitMs = Math.max(warga.state.waitMs, 500);
       this.label.setText(`E · ${this.kait.namaWarga?.(warga.plan.id)}`);
     } else if (penanda) this.label.setText(String(properti(penanda, 'label') ?? penanda.name));
-    const aksi = this.aksi.map((k) => Phaser.Input.Keyboard.JustDown(k)).some(Boolean);
+    const aksi = this.aksiDitekan;
+    this.aksiDitekan = false;
     if (dekat && aksi) this.kait.interaksi(dekat);
     else if (warga && aksi) {
       this.hadapkan(warga);
