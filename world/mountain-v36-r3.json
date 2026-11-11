@@ -1,0 +1,5053 @@
+{
+  "version": "3.6-R3-Natural-Mountain",
+  "source": "world/maps/pulau_tirta_v36_r2_structure.tmj",
+  "plateaus": [
+    {
+      "id": "foot",
+      "tier": 0,
+      "polygon": [
+        [
+          49,
+          57
+        ],
+        [
+          53,
+          56
+        ],
+        [
+          57,
+          57
+        ],
+        [
+          61,
+          57
+        ],
+        [
+          65,
+          58
+        ],
+        [
+          69,
+          60
+        ],
+        [
+          69,
+          62
+        ],
+        [
+          63,
+          62
+        ],
+        [
+          58,
+          61
+        ],
+        [
+          53,
+          62
+        ],
+        [
+          49,
+          60
+        ],
+        [
+          47,
+          58
+        ]
+      ]
+    },
+    {
+      "id": "middle",
+      "tier": 1,
+      "polygon": [
+        [
+          48,
+          54
+        ],
+        [
+          44,
+          51
+        ],
+        [
+          45,
+          47
+        ],
+        [
+          49,
+          45
+        ],
+        [
+          53,
+          46
+        ],
+        [
+          56,
+          48
+        ],
+        [
+          61,
+          48
+        ],
+        [
+          63,
+          49
+        ],
+        [
+          64,
+          47
+        ],
+        [
+          66,
+          47
+        ],
+        [
+          67,
+          50
+        ],
+        [
+          63,
+          53
+        ],
+        [
+          57,
+          53
+        ],
+        [
+          53,
+          52
+        ],
+        [
+          51,
+          54
+        ]
+      ]
+    },
+    {
+      "id": "summit",
+      "tier": 2,
+      "polygon": [
+        [
+          53,
+          44
+        ],
+        [
+          52,
+          40
+        ],
+        [
+          54,
+          36
+        ],
+        [
+          58,
+          33
+        ],
+        [
+          63,
+          34
+        ],
+        [
+          67,
+          38
+        ],
+        [
+          68,
+          42
+        ],
+        [
+          66,
+          45
+        ],
+        [
+          66,
+          46
+        ],
+        [
+          64,
+          46
+        ],
+        [
+          62,
+          45
+        ],
+        [
+          58,
+          46
+        ]
+      ]
+    }
+  ],
+  "rockMass": [
+    [
+      49,
+      54
+    ],
+    [
+      52,
+      51
+    ],
+    [
+      56,
+      52
+    ],
+    [
+      62,
+      53
+    ],
+    [
+      65,
+      56
+    ],
+    [
+      63,
+      58
+    ],
+    [
+      57,
+      57
+    ],
+    [
+      53,
+      56
+    ]
+  ],
+  "stages": [
+    {
+      "id": "foothills",
+      "points": [
+        [
+          69,
+          61
+        ],
+        [
+          63,
+          60
+        ],
+        [
+          57,
+          59
+        ],
+        [
+          51,
+          58
+        ],
+        [
+          49,
+          55
+        ]
+      ]
+    },
+    {
+      "id": "rest",
+      "points": [
+        [
+          49,
+          55
+        ],
+        [
+          50,
+          55
+        ],
+        [
+          50,
+          52
+        ],
+        [
+          47,
+          51
+        ],
+        [
+          49,
+          49
+        ],
+        [
+          55,
+          49
+        ],
+        [
+          61,
+          50
+        ],
+        [
+          65,
+          47
+        ]
+      ]
+    },
+    {
+      "id": "observation",
+      "points": [
+        [
+          65,
+          47
+        ],
+        [
+          65,
+          44
+        ],
+        [
+          63,
+          43
+        ],
+        [
+          60,
+          43
+        ]
+      ]
+    },
+    {
+      "id": "summit",
+      "points": [
+        [
+          60,
+          43
+        ],
+        [
+          59,
+          42
+        ],
+        [
+          59,
+          41
+        ],
+        [
+          59,
+          37
+        ],
+        [
+          58,
+          36
+        ]
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "id": "entrance",
+      "x": 1104,
+      "y": 960,
+      "width": 16,
+      "height": 32,
+      "center": [
+        69,
+        61
+      ]
+    },
+    {
+      "id": "stairs-lower",
+      "x": 768,
+      "y": 880,
+      "width": 48,
+      "height": 32,
+      "center": [
+        49,
+        55
+      ]
+    },
+    {
+      "id": "stairs-upper",
+      "x": 1024,
+      "y": 752,
+      "width": 48,
+      "height": 32,
+      "center": [
+        65,
+        47
+      ]
+    }
+  ],
+  "viewpoint": [
+    58,
+    36
+  ],
+  "walls": [
+    {
+      "x": 56,
+      "y": 32,
+      "collider": "v36_r3_rock_56_32",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 38,
+      "gid": 2018
+    },
+    {
+      "x": 57,
+      "y": 32,
+      "collider": "v36_r3_rock_57_32",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 10,
+      "gid": 2018
+    },
+    {
+      "x": 58,
+      "y": 32,
+      "collider": "v36_r3_rock_58_32",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 10,
+      "gid": 2018
+    },
+    {
+      "x": 59,
+      "y": 32,
+      "collider": "v36_r3_rock_59_32",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 10,
+      "gid": 2018
+    },
+    {
+      "x": 60,
+      "y": 32,
+      "collider": "v36_r3_rock_60_32",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 28,
+      "gid": 2018
+    },
+    {
+      "x": 55,
+      "y": 33,
+      "collider": "v36_r3_rock_55_33",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 38,
+      "gid": 2018
+    },
+    {
+      "x": 56,
+      "y": 33,
+      "collider": "v36_r3_rock_56_33",
+      "kind": "west-face",
+      "tier": 2,
+      "frame": 137,
+      "gid": 8668
+    },
+    {
+      "x": 60,
+      "y": 33,
+      "collider": "v36_r3_rock_60_33",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 19,
+      "gid": 2018
+    },
+    {
+      "x": 61,
+      "y": 33,
+      "collider": "v36_r3_rock_61_33",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 26,
+      "gid": 2018
+    },
+    {
+      "x": 62,
+      "y": 33,
+      "collider": "v36_r3_rock_62_33",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 26,
+      "gid": 2018
+    },
+    {
+      "x": 63,
+      "y": 33,
+      "collider": "v36_r3_rock_63_33",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 44,
+      "gid": 2018
+    },
+    {
+      "x": 54,
+      "y": 34,
+      "collider": "v36_r3_rock_54_34",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 38,
+      "gid": 2018
+    },
+    {
+      "x": 55,
+      "y": 34,
+      "collider": "v36_r3_rock_55_34",
+      "kind": "west-face",
+      "tier": 2,
+      "frame": 137,
+      "gid": 8668
+    },
+    {
+      "x": 63,
+      "y": 34,
+      "collider": "v36_r3_rock_63_34",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 35,
+      "gid": 2018
+    },
+    {
+      "x": 64,
+      "y": 34,
+      "collider": "v36_r3_rock_64_34",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 44,
+      "gid": 2018
+    },
+    {
+      "x": 53,
+      "y": 35,
+      "collider": "v36_r3_rock_53_35",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 22,
+      "gid": 2018
+    },
+    {
+      "x": 54,
+      "y": 35,
+      "collider": "v36_r3_rock_54_35",
+      "kind": "west-face",
+      "tier": 2,
+      "frame": 137,
+      "gid": 8668
+    },
+    {
+      "x": 64,
+      "y": 35,
+      "collider": "v36_r3_rock_64_35",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 35,
+      "gid": 2018
+    },
+    {
+      "x": 65,
+      "y": 35,
+      "collider": "v36_r3_rock_65_35",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 44,
+      "gid": 2018
+    },
+    {
+      "x": 52,
+      "y": 36,
+      "collider": "v36_r3_rock_52_36",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 38,
+      "gid": 2018
+    },
+    {
+      "x": 53,
+      "y": 36,
+      "collider": "v36_r3_rock_53_36",
+      "kind": "west-face",
+      "tier": 2,
+      "frame": 137,
+      "gid": 8668
+    },
+    {
+      "x": 65,
+      "y": 36,
+      "collider": "v36_r3_rock_65_36",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 3,
+      "gid": 2018
+    },
+    {
+      "x": 66,
+      "y": 36,
+      "collider": "v36_r3_rock_66_36",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 28,
+      "gid": 2018
+    },
+    {
+      "x": 52,
+      "y": 37,
+      "collider": "v36_r3_rock_52_37",
+      "kind": "west-face",
+      "tier": 2,
+      "frame": 133,
+      "gid": 8664
+    },
+    {
+      "x": 66,
+      "y": 37,
+      "collider": "v36_r3_rock_66_37",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 19,
+      "gid": 2018
+    },
+    {
+      "x": 67,
+      "y": 37,
+      "collider": "v36_r3_rock_67_37",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 28,
+      "gid": 2018
+    },
+    {
+      "x": 51,
+      "y": 38,
+      "collider": "v36_r3_rock_51_38",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 38,
+      "gid": 2018
+    },
+    {
+      "x": 52,
+      "y": 38,
+      "collider": "v36_r3_rock_52_38",
+      "kind": "west-face",
+      "tier": 2,
+      "frame": 137,
+      "gid": 8668
+    },
+    {
+      "x": 67,
+      "y": 38,
+      "collider": "v36_r3_rock_67_38",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 21,
+      "gid": 2018
+    },
+    {
+      "x": 51,
+      "y": 39,
+      "collider": "v36_r3_rock_51_39",
+      "kind": "west-face",
+      "tier": 2,
+      "frame": 133,
+      "gid": 8664
+    },
+    {
+      "x": 67,
+      "y": 39,
+      "collider": "v36_r3_rock_67_39",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 19,
+      "gid": 2018
+    },
+    {
+      "x": 68,
+      "y": 39,
+      "collider": "v36_r3_rock_68_39",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 28,
+      "gid": 2018
+    },
+    {
+      "x": 51,
+      "y": 40,
+      "collider": "v36_r3_rock_51_40",
+      "kind": "west-face",
+      "tier": 2,
+      "frame": 101,
+      "gid": 8632
+    },
+    {
+      "x": 68,
+      "y": 40,
+      "collider": "v36_r3_rock_68_40",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 37,
+      "gid": 2018
+    },
+    {
+      "x": 51,
+      "y": 41,
+      "collider": "v36_r3_rock_51_41",
+      "kind": "west-face",
+      "tier": 2,
+      "frame": 101,
+      "gid": 8632
+    },
+    {
+      "x": 68,
+      "y": 41,
+      "collider": "v36_r3_rock_68_41",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 37,
+      "gid": 2018
+    },
+    {
+      "x": 51,
+      "y": 42,
+      "collider": "v36_r3_rock_51_42",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 3,
+      "gid": 2018
+    },
+    {
+      "x": 52,
+      "y": 42,
+      "collider": "v36_r3_rock_52_42",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 108,
+      "gid": 8639
+    },
+    {
+      "x": 68,
+      "y": 42,
+      "collider": "v36_r3_rock_68_42",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 37,
+      "gid": 2018
+    },
+    {
+      "x": 52,
+      "y": 43,
+      "collider": "v36_r3_rock_52_43",
+      "kind": "west-face",
+      "tier": 2,
+      "frame": 101,
+      "gid": 8632
+    },
+    {
+      "x": 67,
+      "y": 43,
+      "collider": "v36_r3_rock_67_43",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 134,
+      "gid": 8665
+    },
+    {
+      "x": 68,
+      "y": 43,
+      "collider": "v36_r3_rock_68_43",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 41,
+      "gid": 2018
+    },
+    {
+      "x": 47,
+      "y": 44,
+      "collider": "v36_r3_rock_47_44",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 38,
+      "gid": 2018
+    },
+    {
+      "x": 48,
+      "y": 44,
+      "collider": "v36_r3_rock_48_44",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 10,
+      "gid": 2018
+    },
+    {
+      "x": 49,
+      "y": 44,
+      "collider": "v36_r3_rock_49_44",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 10,
+      "gid": 2018
+    },
+    {
+      "x": 50,
+      "y": 44,
+      "collider": "v36_r3_rock_50_44",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 10,
+      "gid": 2018
+    },
+    {
+      "x": 51,
+      "y": 44,
+      "collider": "v36_r3_rock_51_44",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 30,
+      "gid": 2018
+    },
+    {
+      "x": 52,
+      "y": 44,
+      "collider": "v36_r3_rock_52_44",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 31,
+      "gid": 2018
+    },
+    {
+      "x": 53,
+      "y": 44,
+      "collider": "v36_r3_rock_53_44",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 124,
+      "gid": 8655
+    },
+    {
+      "x": 66,
+      "y": 44,
+      "collider": "v36_r3_rock_66_44",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 102,
+      "gid": 8633
+    },
+    {
+      "x": 67,
+      "y": 44,
+      "collider": "v36_r3_rock_67_44",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 13,
+      "gid": 2018
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "collider": "v36_r3_rock_45_45",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 38,
+      "gid": 2018
+    },
+    {
+      "x": 46,
+      "y": 45,
+      "collider": "v36_r3_rock_46_45",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 42,
+      "gid": 2018
+    },
+    {
+      "x": 47,
+      "y": 45,
+      "collider": "v36_r3_rock_47_45",
+      "kind": "west-face",
+      "tier": 1,
+      "frame": 89,
+      "gid": 8620
+    },
+    {
+      "x": 51,
+      "y": 45,
+      "collider": "v36_r3_rock_51_45",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 19,
+      "gid": 2018
+    },
+    {
+      "x": 52,
+      "y": 45,
+      "collider": "v36_r3_rock_52_45",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 27,
+      "gid": 2018
+    },
+    {
+      "x": 53,
+      "y": 45,
+      "collider": "v36_r3_rock_53_45",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 27,
+      "gid": 2018
+    },
+    {
+      "x": 54,
+      "y": 45,
+      "collider": "v36_r3_rock_54_45",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 142,
+      "gid": 8673
+    },
+    {
+      "x": 55,
+      "y": 45,
+      "collider": "v36_r3_rock_55_45",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 142,
+      "gid": 8673
+    },
+    {
+      "x": 56,
+      "y": 45,
+      "collider": "v36_r3_rock_56_45",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 140,
+      "gid": 8671
+    },
+    {
+      "x": 60,
+      "y": 45,
+      "collider": "v36_r3_rock_60_45",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 118,
+      "gid": 8649
+    },
+    {
+      "x": 61,
+      "y": 45,
+      "collider": "v36_r3_rock_61_45",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 122,
+      "gid": 8653
+    },
+    {
+      "x": 62,
+      "y": 45,
+      "collider": "v36_r3_rock_62_45",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 124,
+      "gid": 8655
+    },
+    {
+      "x": 66,
+      "y": 45,
+      "collider": "v36_r3_rock_66_45",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 3,
+      "gid": 2018
+    },
+    {
+      "x": 67,
+      "y": 45,
+      "collider": "v36_r3_rock_67_45",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 13,
+      "gid": 2018
+    },
+    {
+      "x": 44,
+      "y": 46,
+      "collider": "v36_r3_rock_44_46",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 22,
+      "gid": 2018
+    },
+    {
+      "x": 45,
+      "y": 46,
+      "collider": "v36_r3_rock_45_46",
+      "kind": "west-face",
+      "tier": 1,
+      "frame": 89,
+      "gid": 8620
+    },
+    {
+      "x": 54,
+      "y": 46,
+      "collider": "v36_r3_rock_54_46",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 35,
+      "gid": 2018
+    },
+    {
+      "x": 55,
+      "y": 46,
+      "collider": "v36_r3_rock_55_46",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 47,
+      "gid": 2018
+    },
+    {
+      "x": 56,
+      "y": 46,
+      "collider": "v36_r3_rock_56_46",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 47,
+      "gid": 2018
+    },
+    {
+      "x": 57,
+      "y": 46,
+      "collider": "v36_r3_rock_57_46",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 110,
+      "gid": 8641
+    },
+    {
+      "x": 58,
+      "y": 46,
+      "collider": "v36_r3_rock_58_46",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 110,
+      "gid": 8641
+    },
+    {
+      "x": 59,
+      "y": 46,
+      "collider": "v36_r3_rock_59_46",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 110,
+      "gid": 8641
+    },
+    {
+      "x": 60,
+      "y": 46,
+      "collider": "v36_r3_rock_60_46",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 29,
+      "gid": 2018
+    },
+    {
+      "x": 62,
+      "y": 46,
+      "collider": "v36_r3_rock_62_46",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 23,
+      "gid": 2018
+    },
+    {
+      "x": 63,
+      "y": 46,
+      "collider": "v36_r3_rock_63_46",
+      "kind": "south-face",
+      "tier": 2,
+      "frame": 140,
+      "gid": 8671
+    },
+    {
+      "x": 67,
+      "y": 46,
+      "collider": "v36_r3_rock_67_46",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 5,
+      "gid": 2018
+    },
+    {
+      "x": 44,
+      "y": 47,
+      "collider": "v36_r3_rock_44_47",
+      "kind": "west-face",
+      "tier": 1,
+      "frame": 69,
+      "gid": 8600
+    },
+    {
+      "x": 55,
+      "y": 47,
+      "collider": "v36_r3_rock_55_47",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 35,
+      "gid": 2018
+    },
+    {
+      "x": 56,
+      "y": 47,
+      "collider": "v36_r3_rock_56_47",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 43,
+      "gid": 2018
+    },
+    {
+      "x": 57,
+      "y": 47,
+      "collider": "v36_r3_rock_57_47",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 11,
+      "gid": 2018
+    },
+    {
+      "x": 58,
+      "y": 47,
+      "collider": "v36_r3_rock_58_47",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 11,
+      "gid": 2018
+    },
+    {
+      "x": 59,
+      "y": 47,
+      "collider": "v36_r3_rock_59_47",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 11,
+      "gid": 2018
+    },
+    {
+      "x": 60,
+      "y": 47,
+      "collider": "v36_r3_rock_60_47",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 27,
+      "gid": 2018
+    },
+    {
+      "x": 61,
+      "y": 47,
+      "collider": "v36_r3_rock_61_47",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 26,
+      "gid": 2018
+    },
+    {
+      "x": 62,
+      "y": 47,
+      "collider": "v36_r3_rock_62_47",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 31,
+      "gid": 2018
+    },
+    {
+      "x": 63,
+      "y": 47,
+      "collider": "v36_r3_rock_63_47",
+      "kind": "west-face",
+      "tier": 1,
+      "frame": 89,
+      "gid": 8620
+    },
+    {
+      "x": 67,
+      "y": 47,
+      "collider": "v36_r3_rock_67_47",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 5,
+      "gid": 2018
+    },
+    {
+      "x": 43,
+      "y": 48,
+      "collider": "v36_r3_rock_43_48",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 38,
+      "gid": 2018
+    },
+    {
+      "x": 44,
+      "y": 48,
+      "collider": "v36_r3_rock_44_48",
+      "kind": "west-face",
+      "tier": 1,
+      "frame": 89,
+      "gid": 8620
+    },
+    {
+      "x": 62,
+      "y": 48,
+      "collider": "v36_r3_rock_62_48",
+      "kind": "west-face",
+      "tier": 1,
+      "frame": 81,
+      "gid": 8612
+    },
+    {
+      "x": 67,
+      "y": 48,
+      "collider": "v36_r3_rock_67_48",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 21,
+      "gid": 2018
+    },
+    {
+      "x": 43,
+      "y": 49,
+      "collider": "v36_r3_rock_43_49",
+      "kind": "west-face",
+      "tier": 1,
+      "frame": 85,
+      "gid": 8616
+    },
+    {
+      "x": 67,
+      "y": 49,
+      "collider": "v36_r3_rock_67_49",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 21,
+      "gid": 2018
+    },
+    {
+      "x": 43,
+      "y": 50,
+      "collider": "v36_r3_rock_43_50",
+      "kind": "west-face",
+      "tier": 1,
+      "frame": 85,
+      "gid": 8616
+    },
+    {
+      "x": 66,
+      "y": 50,
+      "collider": "v36_r3_rock_66_50",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 70,
+      "gid": 8601
+    },
+    {
+      "x": 67,
+      "y": 50,
+      "collider": "v36_r3_rock_67_50",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 25,
+      "gid": 2018
+    },
+    {
+      "x": 43,
+      "y": 51,
+      "collider": "v36_r3_rock_43_51",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 35,
+      "gid": 2018
+    },
+    {
+      "x": 44,
+      "y": 51,
+      "collider": "v36_r3_rock_44_51",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 92,
+      "gid": 8623
+    },
+    {
+      "x": 65,
+      "y": 51,
+      "collider": "v36_r3_rock_65_51",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 54,
+      "gid": 8585
+    },
+    {
+      "x": 66,
+      "y": 51,
+      "collider": "v36_r3_rock_66_51",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 25,
+      "gid": 2018
+    },
+    {
+      "x": 44,
+      "y": 52,
+      "collider": "v36_r3_rock_44_52",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 3,
+      "gid": 2018
+    },
+    {
+      "x": 45,
+      "y": 52,
+      "collider": "v36_r3_rock_45_52",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 76,
+      "gid": 8607
+    },
+    {
+      "x": 52,
+      "y": 52,
+      "collider": "v36_r3_rock_52_52",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 54,
+      "gid": 8585
+    },
+    {
+      "x": 53,
+      "y": 52,
+      "collider": "v36_r3_rock_53_52",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 62,
+      "gid": 8593
+    },
+    {
+      "x": 54,
+      "y": 52,
+      "collider": "v36_r3_rock_54_52",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 76,
+      "gid": 8607
+    },
+    {
+      "x": 64,
+      "y": 52,
+      "collider": "v36_r3_rock_64_52",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 70,
+      "gid": 8601
+    },
+    {
+      "x": 65,
+      "y": 52,
+      "collider": "v36_r3_rock_65_52",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 25,
+      "gid": 2018
+    },
+    {
+      "x": 45,
+      "y": 53,
+      "collider": "v36_r3_rock_45_53",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 19,
+      "gid": 2018
+    },
+    {
+      "x": 46,
+      "y": 53,
+      "collider": "v36_r3_rock_46_53",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 76,
+      "gid": 8607
+    },
+    {
+      "x": 51,
+      "y": 53,
+      "collider": "v36_r3_rock_51_53",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 54,
+      "gid": 8585
+    },
+    {
+      "x": 52,
+      "y": 53,
+      "collider": "v36_r3_rock_52_53",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 15,
+      "gid": 2018
+    },
+    {
+      "x": 53,
+      "y": 53,
+      "collider": "v36_r3_rock_53_53",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 15,
+      "gid": 2018
+    },
+    {
+      "x": 54,
+      "y": 53,
+      "collider": "v36_r3_rock_54_53",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 31,
+      "gid": 2018
+    },
+    {
+      "x": 55,
+      "y": 53,
+      "collider": "v36_r3_rock_55_53",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 78,
+      "gid": 8609
+    },
+    {
+      "x": 56,
+      "y": 53,
+      "collider": "v36_r3_rock_56_53",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 78,
+      "gid": 8609
+    },
+    {
+      "x": 57,
+      "y": 53,
+      "collider": "v36_r3_rock_57_53",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 94,
+      "gid": 8625
+    },
+    {
+      "x": 58,
+      "y": 53,
+      "collider": "v36_r3_rock_58_53",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 94,
+      "gid": 8625
+    },
+    {
+      "x": 59,
+      "y": 53,
+      "collider": "v36_r3_rock_59_53",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 94,
+      "gid": 8625
+    },
+    {
+      "x": 60,
+      "y": 53,
+      "collider": "v36_r3_rock_60_53",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 62,
+      "gid": 8593
+    },
+    {
+      "x": 61,
+      "y": 53,
+      "collider": "v36_r3_rock_61_53",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 62,
+      "gid": 8593
+    },
+    {
+      "x": 62,
+      "y": 53,
+      "collider": "v36_r3_rock_62_53",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 62,
+      "gid": 8593
+    },
+    {
+      "x": 63,
+      "y": 53,
+      "collider": "v36_r3_rock_63_53",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 74,
+      "gid": 8605
+    },
+    {
+      "x": 64,
+      "y": 53,
+      "collider": "v36_r3_rock_64_53",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 25,
+      "gid": 2018
+    },
+    {
+      "x": 46,
+      "y": 54,
+      "collider": "v36_r3_rock_46_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 19,
+      "gid": 2018
+    },
+    {
+      "x": 47,
+      "y": 54,
+      "collider": "v36_r3_rock_47_54",
+      "kind": "south-face",
+      "tier": 1,
+      "frame": 76,
+      "gid": 8607
+    },
+    {
+      "x": 51,
+      "y": 54,
+      "collider": "v36_r3_rock_51_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 7,
+      "gid": 2018
+    },
+    {
+      "x": 52,
+      "y": 54,
+      "collider": "v36_r3_rock_52_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 15,
+      "gid": 2018
+    },
+    {
+      "x": 53,
+      "y": 54,
+      "collider": "v36_r3_rock_53_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 15,
+      "gid": 2018
+    },
+    {
+      "x": 54,
+      "y": 54,
+      "collider": "v36_r3_rock_54_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 31,
+      "gid": 2018
+    },
+    {
+      "x": 55,
+      "y": 54,
+      "collider": "v36_r3_rock_55_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 31,
+      "gid": 2018
+    },
+    {
+      "x": 56,
+      "y": 54,
+      "collider": "v36_r3_rock_56_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 31,
+      "gid": 2018
+    },
+    {
+      "x": 57,
+      "y": 54,
+      "collider": "v36_r3_rock_57_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 47,
+      "gid": 2018
+    },
+    {
+      "x": 58,
+      "y": 54,
+      "collider": "v36_r3_rock_58_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 47,
+      "gid": 2018
+    },
+    {
+      "x": 59,
+      "y": 54,
+      "collider": "v36_r3_rock_59_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 47,
+      "gid": 2018
+    },
+    {
+      "x": 60,
+      "y": 54,
+      "collider": "v36_r3_rock_60_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 15,
+      "gid": 2018
+    },
+    {
+      "x": 61,
+      "y": 54,
+      "collider": "v36_r3_rock_61_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 15,
+      "gid": 2018
+    },
+    {
+      "x": 62,
+      "y": 54,
+      "collider": "v36_r3_rock_62_54",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 13,
+      "gid": 2018
+    },
+    {
+      "x": 47,
+      "y": 55,
+      "collider": "v36_r3_rock_47_55",
+      "kind": "west-face",
+      "tier": 0,
+      "frame": 21,
+      "gid": 8552
+    },
+    {
+      "x": 51,
+      "y": 55,
+      "collider": "v36_r3_rock_51_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 3,
+      "gid": 2018
+    },
+    {
+      "x": 52,
+      "y": 55,
+      "collider": "v36_r3_rock_52_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 11,
+      "gid": 2018
+    },
+    {
+      "x": 53,
+      "y": 55,
+      "collider": "v36_r3_rock_53_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 11,
+      "gid": 2018
+    },
+    {
+      "x": 54,
+      "y": 55,
+      "collider": "v36_r3_rock_54_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 27,
+      "gid": 2018
+    },
+    {
+      "x": 55,
+      "y": 55,
+      "collider": "v36_r3_rock_55_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 31,
+      "gid": 2018
+    },
+    {
+      "x": 56,
+      "y": 55,
+      "collider": "v36_r3_rock_56_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 31,
+      "gid": 2018
+    },
+    {
+      "x": 57,
+      "y": 55,
+      "collider": "v36_r3_rock_57_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 47,
+      "gid": 2018
+    },
+    {
+      "x": 58,
+      "y": 55,
+      "collider": "v36_r3_rock_58_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 47,
+      "gid": 2018
+    },
+    {
+      "x": 59,
+      "y": 55,
+      "collider": "v36_r3_rock_59_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 47,
+      "gid": 2018
+    },
+    {
+      "x": 60,
+      "y": 55,
+      "collider": "v36_r3_rock_60_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 15,
+      "gid": 2018
+    },
+    {
+      "x": 61,
+      "y": 55,
+      "collider": "v36_r3_rock_61_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 15,
+      "gid": 2018
+    },
+    {
+      "x": 62,
+      "y": 55,
+      "collider": "v36_r3_rock_62_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 15,
+      "gid": 2018
+    },
+    {
+      "x": 63,
+      "y": 55,
+      "collider": "v36_r3_rock_63_55",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 28,
+      "gid": 2018
+    },
+    {
+      "x": 47,
+      "y": 56,
+      "collider": "v36_r3_rock_47_56",
+      "kind": "west-face",
+      "tier": 0,
+      "frame": 37,
+      "gid": 8568
+    },
+    {
+      "x": 55,
+      "y": 56,
+      "collider": "v36_r3_rock_55_56",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 35,
+      "gid": 2018
+    },
+    {
+      "x": 56,
+      "y": 56,
+      "collider": "v36_r3_rock_56_56",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 43,
+      "gid": 2018
+    },
+    {
+      "x": 57,
+      "y": 56,
+      "collider": "v36_r3_rock_57_56",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 11,
+      "gid": 2018
+    },
+    {
+      "x": 58,
+      "y": 56,
+      "collider": "v36_r3_rock_58_56",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 11,
+      "gid": 2018
+    },
+    {
+      "x": 59,
+      "y": 56,
+      "collider": "v36_r3_rock_59_56",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 11,
+      "gid": 2018
+    },
+    {
+      "x": 60,
+      "y": 56,
+      "collider": "v36_r3_rock_60_56",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 27,
+      "gid": 2018
+    },
+    {
+      "x": 61,
+      "y": 56,
+      "collider": "v36_r3_rock_61_56",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 27,
+      "gid": 2018
+    },
+    {
+      "x": 62,
+      "y": 56,
+      "collider": "v36_r3_rock_62_56",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 27,
+      "gid": 2018
+    },
+    {
+      "x": 63,
+      "y": 56,
+      "collider": "v36_r3_rock_63_56",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 45,
+      "gid": 2018
+    },
+    {
+      "x": 46,
+      "y": 57,
+      "collider": "v36_r3_rock_46_57",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 38,
+      "gid": 2018
+    },
+    {
+      "x": 47,
+      "y": 57,
+      "collider": "v36_r3_rock_47_57",
+      "kind": "west-face",
+      "tier": 0,
+      "frame": 41,
+      "gid": 8572
+    },
+    {
+      "x": 63,
+      "y": 57,
+      "collider": "v36_r3_rock_63_57",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 35,
+      "gid": 2018
+    },
+    {
+      "x": 64,
+      "y": 57,
+      "collider": "v36_r3_rock_64_57",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 42,
+      "gid": 2018
+    },
+    {
+      "x": 65,
+      "y": 57,
+      "collider": "v36_r3_rock_65_57",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 42,
+      "gid": 2018
+    },
+    {
+      "x": 66,
+      "y": 57,
+      "collider": "v36_r3_rock_66_57",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 12,
+      "gid": 2018
+    },
+    {
+      "x": 46,
+      "y": 58,
+      "collider": "v36_r3_rock_46_58",
+      "kind": "west-face",
+      "tier": 0,
+      "frame": 37,
+      "gid": 8568
+    },
+    {
+      "x": 66,
+      "y": 58,
+      "collider": "v36_r3_rock_66_58",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 3,
+      "gid": 2018
+    },
+    {
+      "x": 67,
+      "y": 58,
+      "collider": "v36_r3_rock_67_58",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 10,
+      "gid": 2018
+    },
+    {
+      "x": 68,
+      "y": 58,
+      "collider": "v36_r3_rock_68_58",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 12,
+      "gid": 2018
+    },
+    {
+      "x": 46,
+      "y": 59,
+      "collider": "v36_r3_rock_46_59",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 35,
+      "gid": 2018
+    },
+    {
+      "x": 47,
+      "y": 59,
+      "collider": "v36_r3_rock_47_59",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 44,
+      "gid": 8575
+    },
+    {
+      "x": 68,
+      "y": 59,
+      "collider": "v36_r3_rock_68_59",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 3,
+      "gid": 2018
+    },
+    {
+      "x": 69,
+      "y": 59,
+      "collider": "v36_r3_rock_69_59",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 24,
+      "gid": 2018
+    },
+    {
+      "x": 47,
+      "y": 60,
+      "collider": "v36_r3_rock_47_60",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 3,
+      "gid": 2018
+    },
+    {
+      "x": 48,
+      "y": 60,
+      "collider": "v36_r3_rock_48_60",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 26,
+      "gid": 8557
+    },
+    {
+      "x": 49,
+      "y": 60,
+      "collider": "v36_r3_rock_49_60",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 28,
+      "gid": 8559
+    },
+    {
+      "x": 49,
+      "y": 61,
+      "collider": "v36_r3_rock_49_61",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 19,
+      "gid": 2018
+    },
+    {
+      "x": 50,
+      "y": 61,
+      "collider": "v36_r3_rock_50_61",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 26,
+      "gid": 8557
+    },
+    {
+      "x": 51,
+      "y": 61,
+      "collider": "v36_r3_rock_51_61",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 44,
+      "gid": 8575
+    },
+    {
+      "x": 55,
+      "y": 61,
+      "collider": "v36_r3_rock_55_61",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 6,
+      "gid": 8537
+    },
+    {
+      "x": 56,
+      "y": 61,
+      "collider": "v36_r3_rock_56_61",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 10,
+      "gid": 8541
+    },
+    {
+      "x": 57,
+      "y": 61,
+      "collider": "v36_r3_rock_57_61",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 26,
+      "gid": 8557
+    },
+    {
+      "x": 58,
+      "y": 61,
+      "collider": "v36_r3_rock_58_61",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 26,
+      "gid": 8557
+    },
+    {
+      "x": 59,
+      "y": 61,
+      "collider": "v36_r3_rock_59_61",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 28,
+      "gid": 8559
+    },
+    {
+      "x": 51,
+      "y": 62,
+      "collider": "v36_r3_rock_51_62",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 35,
+      "gid": 2018
+    },
+    {
+      "x": 52,
+      "y": 62,
+      "collider": "v36_r3_rock_52_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 42,
+      "gid": 8573
+    },
+    {
+      "x": 53,
+      "y": 62,
+      "collider": "v36_r3_rock_53_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 42,
+      "gid": 8573
+    },
+    {
+      "x": 54,
+      "y": 62,
+      "collider": "v36_r3_rock_54_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 10,
+      "gid": 8541
+    },
+    {
+      "x": 55,
+      "y": 62,
+      "collider": "v36_r3_rock_55_62",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 9,
+      "gid": 2018
+    },
+    {
+      "x": 59,
+      "y": 62,
+      "collider": "v36_r3_rock_59_62",
+      "kind": "scree",
+      "tier": 0,
+      "frame": 19,
+      "gid": 2018
+    },
+    {
+      "x": 60,
+      "y": 62,
+      "collider": "v36_r3_rock_60_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 42,
+      "gid": 8573
+    },
+    {
+      "x": 61,
+      "y": 62,
+      "collider": "v36_r3_rock_61_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 42,
+      "gid": 8573
+    },
+    {
+      "x": 62,
+      "y": 62,
+      "collider": "v36_r3_rock_62_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 42,
+      "gid": 8573
+    },
+    {
+      "x": 63,
+      "y": 62,
+      "collider": "v36_r3_rock_63_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 10,
+      "gid": 8541
+    },
+    {
+      "x": 64,
+      "y": 62,
+      "collider": "v36_r3_rock_64_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 10,
+      "gid": 8541
+    },
+    {
+      "x": 65,
+      "y": 62,
+      "collider": "v36_r3_rock_65_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 10,
+      "gid": 8541
+    },
+    {
+      "x": 66,
+      "y": 62,
+      "collider": "v36_r3_rock_66_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 26,
+      "gid": 8557
+    },
+    {
+      "x": 67,
+      "y": 62,
+      "collider": "v36_r3_rock_67_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 26,
+      "gid": 8557
+    },
+    {
+      "x": 68,
+      "y": 62,
+      "collider": "v36_r3_rock_68_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 26,
+      "gid": 8557
+    },
+    {
+      "x": 69,
+      "y": 62,
+      "collider": "v36_r3_rock_69_62",
+      "kind": "south-face",
+      "tier": 0,
+      "frame": 40,
+      "gid": 8571
+    }
+  ],
+  "changedLayers": [
+    "Paths",
+    "Environment_V32",
+    "Objects",
+    "Mountain_V36_Detail",
+    "Mountain_V36R1_Rim",
+    "Mountain_V36R1_Shadow",
+    "Mountain_V36R2_Ridges"
+  ],
+  "playableCells": [
+    [
+      51,
+      56
+    ],
+    [
+      52,
+      56
+    ],
+    [
+      53,
+      56
+    ],
+    [
+      54,
+      56
+    ],
+    [
+      48,
+      57
+    ],
+    [
+      49,
+      57
+    ],
+    [
+      50,
+      57
+    ],
+    [
+      51,
+      57
+    ],
+    [
+      52,
+      57
+    ],
+    [
+      53,
+      57
+    ],
+    [
+      54,
+      57
+    ],
+    [
+      55,
+      57
+    ],
+    [
+      56,
+      57
+    ],
+    [
+      57,
+      57
+    ],
+    [
+      58,
+      57
+    ],
+    [
+      59,
+      57
+    ],
+    [
+      60,
+      57
+    ],
+    [
+      61,
+      57
+    ],
+    [
+      62,
+      57
+    ],
+    [
+      47,
+      58
+    ],
+    [
+      48,
+      58
+    ],
+    [
+      49,
+      58
+    ],
+    [
+      50,
+      58
+    ],
+    [
+      51,
+      58
+    ],
+    [
+      52,
+      58
+    ],
+    [
+      53,
+      58
+    ],
+    [
+      54,
+      58
+    ],
+    [
+      55,
+      58
+    ],
+    [
+      56,
+      58
+    ],
+    [
+      57,
+      58
+    ],
+    [
+      58,
+      58
+    ],
+    [
+      59,
+      58
+    ],
+    [
+      60,
+      58
+    ],
+    [
+      61,
+      58
+    ],
+    [
+      62,
+      58
+    ],
+    [
+      63,
+      58
+    ],
+    [
+      64,
+      58
+    ],
+    [
+      65,
+      58
+    ],
+    [
+      48,
+      59
+    ],
+    [
+      49,
+      59
+    ],
+    [
+      50,
+      59
+    ],
+    [
+      51,
+      59
+    ],
+    [
+      52,
+      59
+    ],
+    [
+      53,
+      59
+    ],
+    [
+      54,
+      59
+    ],
+    [
+      55,
+      59
+    ],
+    [
+      56,
+      59
+    ],
+    [
+      57,
+      59
+    ],
+    [
+      58,
+      59
+    ],
+    [
+      59,
+      59
+    ],
+    [
+      60,
+      59
+    ],
+    [
+      61,
+      59
+    ],
+    [
+      62,
+      59
+    ],
+    [
+      63,
+      59
+    ],
+    [
+      64,
+      59
+    ],
+    [
+      65,
+      59
+    ],
+    [
+      66,
+      59
+    ],
+    [
+      67,
+      59
+    ],
+    [
+      50,
+      60
+    ],
+    [
+      51,
+      60
+    ],
+    [
+      52,
+      60
+    ],
+    [
+      53,
+      60
+    ],
+    [
+      54,
+      60
+    ],
+    [
+      55,
+      60
+    ],
+    [
+      56,
+      60
+    ],
+    [
+      57,
+      60
+    ],
+    [
+      58,
+      60
+    ],
+    [
+      59,
+      60
+    ],
+    [
+      60,
+      60
+    ],
+    [
+      61,
+      60
+    ],
+    [
+      62,
+      60
+    ],
+    [
+      63,
+      60
+    ],
+    [
+      64,
+      60
+    ],
+    [
+      65,
+      60
+    ],
+    [
+      66,
+      60
+    ],
+    [
+      67,
+      60
+    ],
+    [
+      68,
+      60
+    ],
+    [
+      52,
+      61
+    ],
+    [
+      53,
+      61
+    ],
+    [
+      54,
+      61
+    ],
+    [
+      60,
+      61
+    ],
+    [
+      61,
+      61
+    ],
+    [
+      62,
+      61
+    ],
+    [
+      63,
+      61
+    ],
+    [
+      64,
+      61
+    ],
+    [
+      65,
+      61
+    ],
+    [
+      66,
+      61
+    ],
+    [
+      67,
+      61
+    ],
+    [
+      68,
+      61
+    ],
+    [
+      48,
+      45
+    ],
+    [
+      49,
+      45
+    ],
+    [
+      50,
+      45
+    ],
+    [
+      46,
+      46
+    ],
+    [
+      47,
+      46
+    ],
+    [
+      48,
+      46
+    ],
+    [
+      49,
+      46
+    ],
+    [
+      50,
+      46
+    ],
+    [
+      51,
+      46
+    ],
+    [
+      52,
+      46
+    ],
+    [
+      53,
+      46
+    ],
+    [
+      45,
+      47
+    ],
+    [
+      46,
+      47
+    ],
+    [
+      47,
+      47
+    ],
+    [
+      48,
+      47
+    ],
+    [
+      49,
+      47
+    ],
+    [
+      50,
+      47
+    ],
+    [
+      51,
+      47
+    ],
+    [
+      52,
+      47
+    ],
+    [
+      53,
+      47
+    ],
+    [
+      54,
+      47
+    ],
+    [
+      64,
+      47
+    ],
+    [
+      65,
+      47
+    ],
+    [
+      45,
+      48
+    ],
+    [
+      46,
+      48
+    ],
+    [
+      47,
+      48
+    ],
+    [
+      48,
+      48
+    ],
+    [
+      49,
+      48
+    ],
+    [
+      50,
+      48
+    ],
+    [
+      51,
+      48
+    ],
+    [
+      52,
+      48
+    ],
+    [
+      53,
+      48
+    ],
+    [
+      54,
+      48
+    ],
+    [
+      55,
+      48
+    ],
+    [
+      56,
+      48
+    ],
+    [
+      57,
+      48
+    ],
+    [
+      58,
+      48
+    ],
+    [
+      59,
+      48
+    ],
+    [
+      60,
+      48
+    ],
+    [
+      61,
+      48
+    ],
+    [
+      63,
+      48
+    ],
+    [
+      64,
+      48
+    ],
+    [
+      65,
+      48
+    ],
+    [
+      44,
+      49
+    ],
+    [
+      45,
+      49
+    ],
+    [
+      46,
+      49
+    ],
+    [
+      47,
+      49
+    ],
+    [
+      48,
+      49
+    ],
+    [
+      49,
+      49
+    ],
+    [
+      50,
+      49
+    ],
+    [
+      51,
+      49
+    ],
+    [
+      52,
+      49
+    ],
+    [
+      53,
+      49
+    ],
+    [
+      54,
+      49
+    ],
+    [
+      55,
+      49
+    ],
+    [
+      56,
+      49
+    ],
+    [
+      57,
+      49
+    ],
+    [
+      58,
+      49
+    ],
+    [
+      59,
+      49
+    ],
+    [
+      60,
+      49
+    ],
+    [
+      61,
+      49
+    ],
+    [
+      62,
+      49
+    ],
+    [
+      63,
+      49
+    ],
+    [
+      64,
+      49
+    ],
+    [
+      65,
+      49
+    ],
+    [
+      66,
+      49
+    ],
+    [
+      44,
+      50
+    ],
+    [
+      45,
+      50
+    ],
+    [
+      46,
+      50
+    ],
+    [
+      47,
+      50
+    ],
+    [
+      48,
+      50
+    ],
+    [
+      49,
+      50
+    ],
+    [
+      50,
+      50
+    ],
+    [
+      51,
+      50
+    ],
+    [
+      52,
+      50
+    ],
+    [
+      53,
+      50
+    ],
+    [
+      54,
+      50
+    ],
+    [
+      55,
+      50
+    ],
+    [
+      56,
+      50
+    ],
+    [
+      57,
+      50
+    ],
+    [
+      58,
+      50
+    ],
+    [
+      59,
+      50
+    ],
+    [
+      60,
+      50
+    ],
+    [
+      61,
+      50
+    ],
+    [
+      62,
+      50
+    ],
+    [
+      63,
+      50
+    ],
+    [
+      64,
+      50
+    ],
+    [
+      65,
+      50
+    ],
+    [
+      45,
+      51
+    ],
+    [
+      46,
+      51
+    ],
+    [
+      47,
+      51
+    ],
+    [
+      48,
+      51
+    ],
+    [
+      49,
+      51
+    ],
+    [
+      50,
+      51
+    ],
+    [
+      51,
+      51
+    ],
+    [
+      52,
+      51
+    ],
+    [
+      53,
+      51
+    ],
+    [
+      54,
+      51
+    ],
+    [
+      55,
+      51
+    ],
+    [
+      56,
+      51
+    ],
+    [
+      57,
+      51
+    ],
+    [
+      58,
+      51
+    ],
+    [
+      59,
+      51
+    ],
+    [
+      60,
+      51
+    ],
+    [
+      61,
+      51
+    ],
+    [
+      62,
+      51
+    ],
+    [
+      63,
+      51
+    ],
+    [
+      64,
+      51
+    ],
+    [
+      46,
+      52
+    ],
+    [
+      47,
+      52
+    ],
+    [
+      48,
+      52
+    ],
+    [
+      49,
+      52
+    ],
+    [
+      50,
+      52
+    ],
+    [
+      51,
+      52
+    ],
+    [
+      55,
+      52
+    ],
+    [
+      56,
+      52
+    ],
+    [
+      57,
+      52
+    ],
+    [
+      58,
+      52
+    ],
+    [
+      59,
+      52
+    ],
+    [
+      60,
+      52
+    ],
+    [
+      61,
+      52
+    ],
+    [
+      62,
+      52
+    ],
+    [
+      63,
+      52
+    ],
+    [
+      47,
+      53
+    ],
+    [
+      48,
+      53
+    ],
+    [
+      49,
+      53
+    ],
+    [
+      50,
+      53
+    ],
+    [
+      57,
+      33
+    ],
+    [
+      58,
+      33
+    ],
+    [
+      59,
+      33
+    ],
+    [
+      56,
+      34
+    ],
+    [
+      57,
+      34
+    ],
+    [
+      58,
+      34
+    ],
+    [
+      59,
+      34
+    ],
+    [
+      60,
+      34
+    ],
+    [
+      61,
+      34
+    ],
+    [
+      62,
+      34
+    ],
+    [
+      55,
+      35
+    ],
+    [
+      56,
+      35
+    ],
+    [
+      57,
+      35
+    ],
+    [
+      58,
+      35
+    ],
+    [
+      59,
+      35
+    ],
+    [
+      60,
+      35
+    ],
+    [
+      61,
+      35
+    ],
+    [
+      62,
+      35
+    ],
+    [
+      63,
+      35
+    ],
+    [
+      54,
+      36
+    ],
+    [
+      55,
+      36
+    ],
+    [
+      56,
+      36
+    ],
+    [
+      57,
+      36
+    ],
+    [
+      58,
+      36
+    ],
+    [
+      59,
+      36
+    ],
+    [
+      60,
+      36
+    ],
+    [
+      61,
+      36
+    ],
+    [
+      62,
+      36
+    ],
+    [
+      63,
+      36
+    ],
+    [
+      64,
+      36
+    ],
+    [
+      53,
+      37
+    ],
+    [
+      54,
+      37
+    ],
+    [
+      55,
+      37
+    ],
+    [
+      56,
+      37
+    ],
+    [
+      57,
+      37
+    ],
+    [
+      58,
+      37
+    ],
+    [
+      59,
+      37
+    ],
+    [
+      60,
+      37
+    ],
+    [
+      61,
+      37
+    ],
+    [
+      62,
+      37
+    ],
+    [
+      63,
+      37
+    ],
+    [
+      64,
+      37
+    ],
+    [
+      65,
+      37
+    ],
+    [
+      53,
+      38
+    ],
+    [
+      54,
+      38
+    ],
+    [
+      55,
+      38
+    ],
+    [
+      56,
+      38
+    ],
+    [
+      57,
+      38
+    ],
+    [
+      58,
+      38
+    ],
+    [
+      59,
+      38
+    ],
+    [
+      60,
+      38
+    ],
+    [
+      61,
+      38
+    ],
+    [
+      62,
+      38
+    ],
+    [
+      63,
+      38
+    ],
+    [
+      64,
+      38
+    ],
+    [
+      65,
+      38
+    ],
+    [
+      66,
+      38
+    ],
+    [
+      52,
+      39
+    ],
+    [
+      53,
+      39
+    ],
+    [
+      54,
+      39
+    ],
+    [
+      55,
+      39
+    ],
+    [
+      56,
+      39
+    ],
+    [
+      57,
+      39
+    ],
+    [
+      58,
+      39
+    ],
+    [
+      59,
+      39
+    ],
+    [
+      60,
+      39
+    ],
+    [
+      61,
+      39
+    ],
+    [
+      62,
+      39
+    ],
+    [
+      63,
+      39
+    ],
+    [
+      64,
+      39
+    ],
+    [
+      65,
+      39
+    ],
+    [
+      66,
+      39
+    ],
+    [
+      52,
+      40
+    ],
+    [
+      53,
+      40
+    ],
+    [
+      54,
+      40
+    ],
+    [
+      55,
+      40
+    ],
+    [
+      56,
+      40
+    ],
+    [
+      57,
+      40
+    ],
+    [
+      58,
+      40
+    ],
+    [
+      59,
+      40
+    ],
+    [
+      60,
+      40
+    ],
+    [
+      61,
+      40
+    ],
+    [
+      62,
+      40
+    ],
+    [
+      63,
+      40
+    ],
+    [
+      64,
+      40
+    ],
+    [
+      65,
+      40
+    ],
+    [
+      66,
+      40
+    ],
+    [
+      67,
+      40
+    ],
+    [
+      52,
+      41
+    ],
+    [
+      53,
+      41
+    ],
+    [
+      54,
+      41
+    ],
+    [
+      55,
+      41
+    ],
+    [
+      56,
+      41
+    ],
+    [
+      57,
+      41
+    ],
+    [
+      58,
+      41
+    ],
+    [
+      59,
+      41
+    ],
+    [
+      60,
+      41
+    ],
+    [
+      61,
+      41
+    ],
+    [
+      62,
+      41
+    ],
+    [
+      63,
+      41
+    ],
+    [
+      64,
+      41
+    ],
+    [
+      65,
+      41
+    ],
+    [
+      66,
+      41
+    ],
+    [
+      67,
+      41
+    ],
+    [
+      53,
+      42
+    ],
+    [
+      54,
+      42
+    ],
+    [
+      55,
+      42
+    ],
+    [
+      56,
+      42
+    ],
+    [
+      57,
+      42
+    ],
+    [
+      58,
+      42
+    ],
+    [
+      59,
+      42
+    ],
+    [
+      60,
+      42
+    ],
+    [
+      61,
+      42
+    ],
+    [
+      62,
+      42
+    ],
+    [
+      63,
+      42
+    ],
+    [
+      64,
+      42
+    ],
+    [
+      65,
+      42
+    ],
+    [
+      66,
+      42
+    ],
+    [
+      67,
+      42
+    ],
+    [
+      53,
+      43
+    ],
+    [
+      54,
+      43
+    ],
+    [
+      55,
+      43
+    ],
+    [
+      56,
+      43
+    ],
+    [
+      57,
+      43
+    ],
+    [
+      58,
+      43
+    ],
+    [
+      59,
+      43
+    ],
+    [
+      60,
+      43
+    ],
+    [
+      61,
+      43
+    ],
+    [
+      62,
+      43
+    ],
+    [
+      63,
+      43
+    ],
+    [
+      64,
+      43
+    ],
+    [
+      65,
+      43
+    ],
+    [
+      66,
+      43
+    ],
+    [
+      54,
+      44
+    ],
+    [
+      55,
+      44
+    ],
+    [
+      56,
+      44
+    ],
+    [
+      57,
+      44
+    ],
+    [
+      58,
+      44
+    ],
+    [
+      59,
+      44
+    ],
+    [
+      60,
+      44
+    ],
+    [
+      61,
+      44
+    ],
+    [
+      62,
+      44
+    ],
+    [
+      63,
+      44
+    ],
+    [
+      64,
+      44
+    ],
+    [
+      65,
+      44
+    ],
+    [
+      57,
+      45
+    ],
+    [
+      58,
+      45
+    ],
+    [
+      59,
+      45
+    ],
+    [
+      63,
+      45
+    ],
+    [
+      64,
+      45
+    ],
+    [
+      65,
+      45
+    ],
+    [
+      69,
+      60
+    ],
+    [
+      69,
+      61
+    ],
+    [
+      48,
+      54
+    ],
+    [
+      49,
+      54
+    ],
+    [
+      50,
+      54
+    ],
+    [
+      48,
+      55
+    ],
+    [
+      49,
+      55
+    ],
+    [
+      50,
+      55
+    ],
+    [
+      48,
+      56
+    ],
+    [
+      49,
+      56
+    ],
+    [
+      50,
+      56
+    ],
+    [
+      64,
+      46
+    ],
+    [
+      65,
+      46
+    ],
+    [
+      66,
+      46
+    ],
+    [
+      66,
+      47
+    ],
+    [
+      66,
+      48
+    ]
+  ],
+  "roadCells": [
+    [
+      68,
+      60
+    ],
+    [
+      69,
+      60
+    ],
+    [
+      68,
+      61
+    ],
+    [
+      69,
+      61
+    ],
+    [
+      67,
+      61
+    ],
+    [
+      67,
+      60
+    ],
+    [
+      66,
+      61
+    ],
+    [
+      66,
+      60
+    ],
+    [
+      65,
+      60
+    ],
+    [
+      65,
+      61
+    ],
+    [
+      66,
+      59
+    ],
+    [
+      65,
+      59
+    ],
+    [
+      64,
+      60
+    ],
+    [
+      64,
+      61
+    ],
+    [
+      64,
+      59
+    ],
+    [
+      63,
+      60
+    ],
+    [
+      63,
+      61
+    ],
+    [
+      63,
+      59
+    ],
+    [
+      62,
+      60
+    ],
+    [
+      62,
+      59
+    ],
+    [
+      62,
+      61
+    ],
+    [
+      61,
+      60
+    ],
+    [
+      61,
+      59
+    ],
+    [
+      61,
+      61
+    ],
+    [
+      60,
+      60
+    ],
+    [
+      60,
+      59
+    ],
+    [
+      60,
+      61
+    ],
+    [
+      59,
+      59
+    ],
+    [
+      59,
+      60
+    ],
+    [
+      60,
+      58
+    ],
+    [
+      59,
+      58
+    ],
+    [
+      58,
+      59
+    ],
+    [
+      58,
+      60
+    ],
+    [
+      58,
+      58
+    ],
+    [
+      57,
+      59
+    ],
+    [
+      57,
+      60
+    ],
+    [
+      56,
+      59
+    ],
+    [
+      56,
+      60
+    ],
+    [
+      55,
+      59
+    ],
+    [
+      55,
+      58
+    ],
+    [
+      55,
+      60
+    ],
+    [
+      54,
+      59
+    ],
+    [
+      54,
+      58
+    ],
+    [
+      54,
+      60
+    ],
+    [
+      53,
+      58
+    ],
+    [
+      53,
+      59
+    ],
+    [
+      54,
+      57
+    ],
+    [
+      53,
+      57
+    ],
+    [
+      52,
+      58
+    ],
+    [
+      52,
+      59
+    ],
+    [
+      52,
+      57
+    ],
+    [
+      51,
+      58
+    ],
+    [
+      51,
+      59
+    ],
+    [
+      51,
+      57
+    ],
+    [
+      50,
+      58
+    ],
+    [
+      50,
+      57
+    ],
+    [
+      50,
+      59
+    ],
+    [
+      50,
+      56
+    ],
+    [
+      51,
+      56
+    ],
+    [
+      49,
+      57
+    ],
+    [
+      49,
+      56
+    ],
+    [
+      50,
+      55
+    ],
+    [
+      49,
+      55
+    ],
+    [
+      48,
+      56
+    ],
+    [
+      48,
+      55
+    ],
+    [
+      50,
+      54
+    ],
+    [
+      48,
+      54
+    ],
+    [
+      50,
+      53
+    ],
+    [
+      49,
+      53
+    ],
+    [
+      50,
+      52
+    ],
+    [
+      49,
+      52
+    ],
+    [
+      51,
+      52
+    ],
+    [
+      50,
+      51
+    ],
+    [
+      49,
+      51
+    ],
+    [
+      51,
+      51
+    ],
+    [
+      48,
+      52
+    ],
+    [
+      48,
+      51
+    ],
+    [
+      48,
+      50
+    ],
+    [
+      47,
+      51
+    ],
+    [
+      47,
+      52
+    ],
+    [
+      46,
+      51
+    ],
+    [
+      46,
+      52
+    ],
+    [
+      47,
+      49
+    ],
+    [
+      48,
+      49
+    ],
+    [
+      49,
+      50
+    ],
+    [
+      49,
+      49
+    ],
+    [
+      49,
+      48
+    ],
+    [
+      50,
+      49
+    ],
+    [
+      48,
+      48
+    ],
+    [
+      50,
+      50
+    ],
+    [
+      50,
+      48
+    ],
+    [
+      51,
+      49
+    ],
+    [
+      51,
+      48
+    ],
+    [
+      51,
+      50
+    ],
+    [
+      52,
+      49
+    ],
+    [
+      52,
+      48
+    ],
+    [
+      52,
+      50
+    ],
+    [
+      53,
+      49
+    ],
+    [
+      53,
+      48
+    ],
+    [
+      53,
+      50
+    ],
+    [
+      54,
+      49
+    ],
+    [
+      54,
+      48
+    ],
+    [
+      54,
+      50
+    ],
+    [
+      55,
+      49
+    ],
+    [
+      55,
+      48
+    ],
+    [
+      55,
+      50
+    ],
+    [
+      56,
+      49
+    ],
+    [
+      56,
+      48
+    ],
+    [
+      56,
+      50
+    ],
+    [
+      57,
+      49
+    ],
+    [
+      57,
+      50
+    ],
+    [
+      57,
+      48
+    ],
+    [
+      58,
+      49
+    ],
+    [
+      58,
+      50
+    ],
+    [
+      58,
+      48
+    ],
+    [
+      59,
+      50
+    ],
+    [
+      58,
+      51
+    ],
+    [
+      60,
+      49
+    ],
+    [
+      60,
+      50
+    ],
+    [
+      59,
+      51
+    ],
+    [
+      60,
+      51
+    ],
+    [
+      61,
+      50
+    ],
+    [
+      61,
+      49
+    ],
+    [
+      61,
+      51
+    ],
+    [
+      62,
+      50
+    ],
+    [
+      62,
+      49
+    ],
+    [
+      62,
+      51
+    ],
+    [
+      63,
+      49
+    ],
+    [
+      63,
+      50
+    ],
+    [
+      63,
+      48
+    ],
+    [
+      64,
+      49
+    ],
+    [
+      64,
+      48
+    ],
+    [
+      64,
+      47
+    ],
+    [
+      65,
+      48
+    ],
+    [
+      65,
+      47
+    ],
+    [
+      64,
+      46
+    ],
+    [
+      65,
+      46
+    ],
+    [
+      66,
+      47
+    ],
+    [
+      66,
+      48
+    ],
+    [
+      66,
+      46
+    ],
+    [
+      65,
+      45
+    ],
+    [
+      64,
+      45
+    ],
+    [
+      65,
+      44
+    ],
+    [
+      64,
+      44
+    ],
+    [
+      65,
+      43
+    ],
+    [
+      64,
+      43
+    ],
+    [
+      66,
+      43
+    ],
+    [
+      63,
+      43
+    ],
+    [
+      63,
+      44
+    ],
+    [
+      64,
+      42
+    ],
+    [
+      63,
+      42
+    ],
+    [
+      62,
+      43
+    ],
+    [
+      62,
+      44
+    ],
+    [
+      62,
+      42
+    ],
+    [
+      61,
+      43
+    ],
+    [
+      61,
+      42
+    ],
+    [
+      61,
+      44
+    ],
+    [
+      60,
+      43
+    ],
+    [
+      60,
+      42
+    ],
+    [
+      60,
+      44
+    ],
+    [
+      59,
+      43
+    ],
+    [
+      59,
+      42
+    ],
+    [
+      59,
+      44
+    ],
+    [
+      59,
+      41
+    ],
+    [
+      58,
+      42
+    ],
+    [
+      60,
+      41
+    ],
+    [
+      58,
+      43
+    ],
+    [
+      58,
+      41
+    ],
+    [
+      59,
+      40
+    ],
+    [
+      59,
+      39
+    ],
+    [
+      58,
+      39
+    ],
+    [
+      59,
+      38
+    ],
+    [
+      58,
+      38
+    ],
+    [
+      59,
+      37
+    ],
+    [
+      58,
+      37
+    ],
+    [
+      60,
+      37
+    ],
+    [
+      59,
+      36
+    ],
+    [
+      58,
+      36
+    ],
+    [
+      60,
+      36
+    ],
+    [
+      58,
+      35
+    ],
+    [
+      57,
+      36
+    ],
+    [
+      59,
+      35
+    ],
+    [
+      57,
+      37
+    ],
+    [
+      57,
+      35
+    ],
+    [
+      49,
+      58
+    ],
+    [
+      47,
+      47
+    ],
+    [
+      48,
+      47
+    ],
+    [
+      49,
+      47
+    ],
+    [
+      50,
+      47
+    ],
+    [
+      51,
+      47
+    ],
+    [
+      46,
+      48
+    ],
+    [
+      47,
+      48
+    ],
+    [
+      46,
+      49
+    ],
+    [
+      56,
+      36
+    ]
+  ],
+  "viewpointCrown": [
+    [
+      57,
+      34
+    ],
+    [
+      58,
+      34
+    ],
+    [
+      59,
+      34
+    ],
+    [
+      56,
+      35
+    ],
+    [
+      57,
+      35
+    ],
+    [
+      58,
+      35
+    ],
+    [
+      59,
+      35
+    ],
+    [
+      60,
+      35
+    ],
+    [
+      56,
+      36
+    ],
+    [
+      57,
+      36
+    ],
+    [
+      58,
+      36
+    ],
+    [
+      59,
+      36
+    ],
+    [
+      60,
+      36
+    ],
+    [
+      56,
+      37
+    ],
+    [
+      57,
+      37
+    ],
+    [
+      58,
+      37
+    ],
+    [
+      59,
+      37
+    ],
+    [
+      60,
+      37
+    ],
+    [
+      57,
+      38
+    ],
+    [
+      58,
+      38
+    ],
+    [
+      59,
+      38
+    ]
+  ],
+  "summitTread": [
+    [
+      58,
+      38
+    ],
+    [
+      59,
+      38
+    ]
+  ],
+  "removedLocalBodies": [
+    "v32_rail_51_33_0",
+    "v32_rail_51_33_1",
+    "v32_rail_51_33_2",
+    "v32_rail_51_33_3",
+    "v32_rail_51_33_4",
+    "v32_rail_51_33_10",
+    "v32_rail_51_33_11",
+    "v32_rail_51_33_12",
+    "v32_rail_51_33_13",
+    "v32_rail_51_33_14",
+    "v32_rail_51_33_15",
+    "v32_rail_51_33_16",
+    "v32_rail_51_33_17",
+    "v32_rail_52_44_0",
+    "v32_rail_52_44_1",
+    "v32_rail_52_44_2",
+    "v32_rail_52_44_3",
+    "v32_rail_52_44_6",
+    "v32_rail_52_44_7",
+    "v32_rail_68_38_0",
+    "v32_rail_68_38_1",
+    "v32_rail_68_38_2",
+    "v32_rail_68_38_3",
+    "v32_bench_35_40",
+    "v32_bench_51_35",
+    "v32_sign_35_42",
+    "puncak_structure_face_36_55",
+    "puncak_structure_face_37_55",
+    "puncak_structure_face_41_55",
+    "puncak_structure_face_42_55",
+    "puncak_structure_face_43_55",
+    "puncak_structure_face_44_55",
+    "puncak_structure_face_45_55",
+    "puncak_structure_face_46_55",
+    "puncak_structure_face_47_55",
+    "puncak_structure_face_48_55",
+    "puncak_structure_face_49_55",
+    "puncak_structure_face_50_55",
+    "puncak_structure_face_51_55",
+    "puncak_structure_face_52_55",
+    "puncak_structure_face_53_55",
+    "puncak_structure_face_54_55",
+    "puncak_structure_face_55_55",
+    "puncak_structure_face_56_55",
+    "puncak_structure_face_57_55",
+    "puncak_structure_face_58_55",
+    "puncak_structure_face_59_55",
+    "puncak_structure_face_60_55",
+    "puncak_structure_face_61_55",
+    "puncak_structure_face_62_55",
+    "puncak_structure_face_63_55",
+    "puncak_structure_face_64_55",
+    "puncak_structure_face_65_55",
+    "puncak_structure_face_66_55",
+    "puncak_structure_face_67_55",
+    "puncak_structure_face_40_47",
+    "puncak_structure_face_41_47",
+    "puncak_structure_face_42_47",
+    "puncak_structure_face_43_47",
+    "puncak_structure_face_44_47",
+    "puncak_structure_face_45_47",
+    "puncak_structure_face_46_47",
+    "puncak_structure_face_47_47",
+    "puncak_structure_face_48_47",
+    "puncak_structure_face_49_47",
+    "puncak_structure_face_50_47",
+    "puncak_structure_face_51_47",
+    "puncak_structure_face_52_47",
+    "puncak_structure_face_53_47",
+    "puncak_structure_face_54_47",
+    "puncak_structure_face_55_47",
+    "puncak_structure_face_56_47",
+    "puncak_structure_face_57_47",
+    "puncak_structure_face_58_47",
+    "puncak_structure_face_59_47",
+    "puncak_structure_face_60_47",
+    "puncak_structure_face_61_47",
+    "puncak_structure_face_62_47",
+    "puncak_structure_face_63_47",
+    "puncak_structure_face_67_47",
+    "puncak_structure_face_68_47",
+    "puncak_structure_edge_53_31",
+    "puncak_structure_edge_54_31",
+    "puncak_structure_edge_55_31",
+    "puncak_structure_edge_56_31",
+    "puncak_structure_edge_57_31",
+    "puncak_structure_edge_58_31",
+    "puncak_structure_edge_59_31",
+    "puncak_structure_edge_60_31",
+    "puncak_structure_edge_61_31",
+    "puncak_structure_edge_62_31",
+    "puncak_structure_edge_63_31",
+    "puncak_structure_edge_64_31",
+    "puncak_structure_edge_65_31",
+    "puncak_structure_edge_50_32",
+    "puncak_structure_edge_51_32",
+    "puncak_structure_edge_52_32",
+    "puncak_structure_edge_53_32",
+    "puncak_structure_edge_65_32",
+    "puncak_structure_edge_66_32",
+    "puncak_structure_edge_67_32",
+    "puncak_structure_edge_49_33",
+    "puncak_structure_edge_50_33",
+    "puncak_structure_edge_67_33",
+    "puncak_structure_edge_68_33",
+    "puncak_structure_edge_48_34",
+    "puncak_structure_edge_49_34",
+    "puncak_structure_edge_68_34",
+    "puncak_structure_edge_69_34",
+    "puncak_structure_edge_48_35",
+    "puncak_structure_edge_69_35",
+    "puncak_structure_edge_70_35",
+    "puncak_structure_edge_48_36",
+    "puncak_structure_edge_70_36",
+    "puncak_structure_edge_48_37",
+    "puncak_structure_edge_70_37",
+    "puncak_structure_edge_48_38",
+    "puncak_structure_edge_70_38",
+    "puncak_structure_edge_71_38",
+    "puncak_structure_edge_48_39",
+    "puncak_structure_edge_71_39",
+    "puncak_structure_edge_48_40",
+    "puncak_structure_edge_71_40",
+    "puncak_structure_edge_47_41",
+    "puncak_structure_edge_48_41",
+    "puncak_structure_edge_71_41",
+    "puncak_structure_edge_46_42",
+    "puncak_structure_edge_47_42",
+    "puncak_structure_edge_71_42",
+    "puncak_structure_edge_45_43",
+    "puncak_structure_edge_46_43",
+    "puncak_structure_edge_70_43",
+    "puncak_structure_edge_71_43",
+    "puncak_structure_edge_44_44",
+    "puncak_structure_edge_45_44",
+    "puncak_structure_edge_70_44",
+    "puncak_structure_edge_42_45",
+    "puncak_structure_edge_43_45",
+    "puncak_structure_edge_44_45",
+    "puncak_structure_edge_70_45",
+    "puncak_structure_edge_42_46",
+    "puncak_structure_edge_69_46",
+    "puncak_structure_edge_70_46",
+    "puncak_structure_edge_37_47",
+    "puncak_structure_edge_38_47",
+    "puncak_structure_edge_39_47",
+    "puncak_structure_edge_69_47",
+    "puncak_structure_edge_36_48",
+    "puncak_structure_edge_37_48",
+    "puncak_structure_edge_69_48",
+    "puncak_structure_edge_70_48",
+    "puncak_structure_edge_35_49",
+    "puncak_structure_edge_36_49",
+    "puncak_structure_edge_70_49",
+    "puncak_structure_edge_35_50",
+    "puncak_structure_edge_70_50",
+    "puncak_structure_edge_35_51",
+    "puncak_structure_edge_69_51",
+    "puncak_structure_edge_70_51",
+    "puncak_structure_edge_35_52",
+    "puncak_structure_edge_69_52",
+    "puncak_structure_edge_35_53",
+    "puncak_structure_edge_69_53",
+    "puncak_structure_edge_35_54",
+    "puncak_structure_edge_69_54",
+    "puncak_structure_edge_35_55",
+    "puncak_structure_edge_68_55",
+    "puncak_structure_edge_69_55",
+    "puncak_structure_edge_34_56",
+    "puncak_structure_edge_35_56",
+    "puncak_structure_edge_68_56",
+    "puncak_structure_edge_34_57",
+    "puncak_structure_edge_68_57",
+    "puncak_structure_edge_69_57",
+    "puncak_structure_edge_34_58",
+    "puncak_structure_edge_69_58",
+    "puncak_structure_edge_34_59",
+    "puncak_structure_edge_69_59",
+    "puncak_structure_edge_34_60",
+    "puncak_structure_edge_35_60",
+    "puncak_structure_edge_35_61",
+    "puncak_structure_edge_36_61",
+    "puncak_structure_edge_36_62",
+    "puncak_structure_edge_37_62",
+    "puncak_structure_edge_38_62",
+    "puncak_structure_edge_39_62",
+    "puncak_structure_edge_40_62",
+    "puncak_structure_edge_41_62",
+    "puncak_structure_edge_42_62",
+    "puncak_structure_edge_43_62",
+    "puncak_structure_edge_44_62",
+    "puncak_structure_edge_45_62",
+    "puncak_structure_edge_46_62",
+    "puncak_structure_edge_47_62",
+    "puncak_structure_edge_48_62",
+    "puncak_structure_edge_49_62",
+    "puncak_structure_edge_50_62",
+    "puncak_structure_edge_51_62",
+    "puncak_structure_edge_52_62",
+    "puncak_structure_edge_53_62",
+    "puncak_structure_edge_54_62",
+    "puncak_structure_edge_55_62",
+    "puncak_structure_edge_56_62",
+    "puncak_structure_edge_57_62",
+    "puncak_structure_edge_58_62",
+    "puncak_structure_edge_59_62",
+    "puncak_structure_edge_60_62",
+    "puncak_structure_edge_61_62",
+    "puncak_structure_edge_62_62",
+    "puncak_structure_edge_63_62",
+    "puncak_structure_edge_64_62",
+    "puncak_structure_edge_65_62",
+    "puncak_structure_edge_66_62",
+    "puncak_structure_edge_67_62",
+    "puncak_structure_edge_68_62",
+    "puncak_structure_edge_69_62"
+  ],
+  "propColliders": [
+    "v36_r3_rest_bench",
+    "v36_r3_summit_cairn"
+  ],
+  "details": [
+    {
+      "kind": "grass",
+      "x": 63,
+      "y": 52,
+      "w": 1,
+      "h": 1
+    },
+    {
+      "kind": "alpine",
+      "x": 64,
+      "y": 40,
+      "w": 1,
+      "h": 1
+    },
+    {
+      "kind": "alpine",
+      "x": 55,
+      "y": 35,
+      "w": 1,
+      "h": 1
+    }
+  ],
+  "deck": {
+    "previous": {
+      "x": 55,
+      "y": 37,
+      "width": 7,
+      "height": 5,
+      "cells": 35
+    },
+    "x": 57,
+    "y": 39,
+    "width": 5,
+    "height": 3,
+    "cells": [
+      [
+        58,
+        39
+      ],
+      [
+        59,
+        39
+      ],
+      [
+        60,
+        39
+      ],
+      [
+        61,
+        39
+      ],
+      [
+        57,
+        40
+      ],
+      [
+        58,
+        40
+      ],
+      [
+        59,
+        40
+      ],
+      [
+        60,
+        40
+      ],
+      [
+        61,
+        40
+      ],
+      [
+        57,
+        41
+      ],
+      [
+        58,
+        41
+      ],
+      [
+        59,
+        41
+      ],
+      [
+        60,
+        41
+      ]
+    ]
+  },
+  "mission": {
+    "id": "misi-2",
+    "location": "puncak",
+    "x": 968,
+    "y": 696,
+    "radius": 36
+  },
+  "validationTargets": [
+    [
+      74,
+      61
+    ],
+    [
+      69,
+      61
+    ],
+    [
+      63,
+      60
+    ],
+    [
+      57,
+      59
+    ],
+    [
+      51,
+      58
+    ],
+    [
+      49,
+      55
+    ],
+    [
+      49,
+      55
+    ],
+    [
+      50,
+      55
+    ],
+    [
+      50,
+      52
+    ],
+    [
+      47,
+      51
+    ],
+    [
+      49,
+      49
+    ],
+    [
+      55,
+      49
+    ],
+    [
+      61,
+      50
+    ],
+    [
+      65,
+      47
+    ],
+    [
+      65,
+      47
+    ],
+    [
+      65,
+      44
+    ],
+    [
+      63,
+      43
+    ],
+    [
+      60,
+      43
+    ],
+    [
+      60,
+      43
+    ],
+    [
+      59,
+      42
+    ],
+    [
+      59,
+      41
+    ],
+    [
+      59,
+      37
+    ],
+    [
+      58,
+      36
+    ],
+    [
+      45,
+      51
+    ],
+    [
+      59,
+      41
+    ]
+  ],
+  "assetAudit": {
+    "inspected": [
+      "tiny_city",
+      "tiny_town",
+      "tiny_farm",
+      "tiny_battle",
+      "mountain_v36",
+      "mountain_v36_r1",
+      "mountain_v36_r2"
+    ],
+    "reused": [
+      "all existing pines and boulders",
+      "bench/sign/backpack/cairn",
+      "station equipment/windsock",
+      "deck plank/edge frames",
+      "three elevation ground palettes",
+      "low vegetation and scree",
+      "Living World fog and recovery"
+    ],
+    "added": "one local PNG atlas with 3 rock strata, connected edge/corner/cap variants, soil/gravel path transitions and a joined stone stair stamp",
+    "reason": "Previous narrow full-height ridge columns and straight repeated face bands read as fortress walls. Joined rock strata form irregular cliffs and broad steep slopes instead."
+  },
+  "note": "Only local mountain map geometry, decorative observation timber and local colliders change; integrated team systems and all earlier world archives remain immutable."
+}
