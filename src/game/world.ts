@@ -6,6 +6,7 @@ import { LivingWorld } from './living-world';
 import { actorPose, facingFor, promptTarget, type Facing } from './living-model';
 import type { InteraksiDunia } from './map-data';
 import { wargaTerdekat } from './warga-dekat';
+import { SorakWarga, hujan, kilau, munculPelan } from './perayaan';
 
 export type { Lokasi } from './map-data';
 export const LEBAR = 1280;
@@ -45,6 +46,10 @@ export class DuniaScene extends Phaser.Scene {
   private tanda = new Map<string, Phaser.GameObjects.Arc>();
   private pemulihan = new Map<string, Phaser.Tilemaps.TilemapLayer[]>();
   private perayaan: Phaser.Tilemaps.TilemapLayer[] = [];
+  /** Pemulihan yang ditahan selama dialog misi masih terbuka, supaya anak melihat tempatnya berubah saat kembali ke pulau. */
+  private pulihDitunda = new Set<string>();
+  private festivalDitunda = false;
+  private sorakWarga!: SorakWarga;
   private label!: Phaser.GameObjects.Text;
   private judulWilayah!: Phaser.GameObjects.Text;
   private wilayahId?: string;
@@ -139,7 +144,8 @@ export class DuniaScene extends Phaser.Scene {
     const promptObserver = new ResizeObserver(resizePrompt);
     promptObserver.observe(this.game.canvas); resizePrompt();
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => promptObserver.disconnect());
-    this.living = new LivingWorld(this, DUNIA, map, id => this.kait.statusMisi(id) === 'selesai', () => this.kait.festivalSelesai?.() === true);
+    this.living = new LivingWorld(this, DUNIA, map, id => this.pulihTampak(id), () => this.festivalTampak());
+    this.sorakWarga = new SorakWarga(this);
     this.perbaruiWilayah();
     this.segarkan();
   }
@@ -157,9 +163,51 @@ export class DuniaScene extends Phaser.Scene {
     this.kait.pindahWilayah?.(lokasi);
   }
 
+  private pulihTampak(misi: string): boolean {
+    return this.kait.statusMisi(misi) === 'selesai' && !this.pulihDitunda.has(misi);
+  }
+
+  private festivalTampak(): boolean {
+    return this.kait.festivalSelesai?.() === true && !this.festivalDitunda;
+  }
+
+  /** Sistem misi: jawaban benar, tapi dialog misi masih terbuka. Tempatnya baru berubah saat rayakanPemulihan(). */
+  tundaPemulihan(misi: string): void {
+    this.pulihDitunda.add(misi);
+  }
+
+  /** Dialog misi ditutup: tempat itu berubah di depan pemain, berkilau, dan warga yang terlihat bersorak. */
+  rayakanPemulihan(misi: string): void {
+    this.pulihDitunda.delete(misi);
+    this.segarkan();
+    if (!this.pulihTampak(misi)) return;
+    munculPelan(this, this.pemulihan.get(misi) ?? []);
+    const lokasi = LOKASI.find((l) => l.misiId === misi);
+    if (lokasi) kilau(this, lokasi.x, lokasi.y);
+    this.sorakWarga.mulai(this.living.npcs);
+  }
+
+  /** Sistem misi: Festival selesai, tapi dialog Festival masih terbuka. */
+  tundaFestival(): void {
+    this.festivalDitunda = true;
+  }
+
+  /** Dialog Festival ditutup: hujan turun, desa berhias, dan warga bersorak. */
+  rayakanFestival(): void {
+    this.festivalDitunda = false;
+    this.segarkan();
+    if (!this.festivalTampak()) return;
+    munculPelan(this, this.perayaan, 1800);
+    hujan(this);
+    this.sorakWarga.mulai(this.living.npcs, 3200);
+  }
+
   segarkan(): void {
-    for (const [misi, layers] of this.pemulihan) for (const layer of layers) layer.setVisible(this.kait.statusMisi(misi) === 'selesai');
-    for (const layer of this.perayaan) layer.setVisible(this.kait.festivalSelesai?.() === true);
+    // Pemulihan yang ditunda dilepas kalau statusnya sudah bukan selesai lagi (misalnya progres diulang dari awal).
+    for (const misi of this.pulihDitunda) if (this.kait.statusMisi(misi) !== 'selesai') this.pulihDitunda.delete(misi);
+    if (this.kait.festivalSelesai?.() !== true) this.festivalDitunda = false;
+    for (const [misi, layers] of this.pemulihan) for (const layer of layers) layer.setVisible(this.pulihTampak(misi));
+    for (const layer of this.perayaan) layer.setVisible(this.festivalTampak());
     this.living?.refresh();
     for (const l of LOKASI) {
       const status = l.misiId ? this.kait.statusMisi(l.misiId) : undefined;
@@ -192,6 +240,7 @@ export class DuniaScene extends Phaser.Scene {
     if (!this.pemain) return;
     const blocked = this.inputTerhalang();
     this.living.update(time, dtMs, blocked, this.pemain);
+    this.sorakWarga.ikuti();
     if (blocked) {
       this.aksiDitekan = false;
       this.input.keyboard?.resetKeys();

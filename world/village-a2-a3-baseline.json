@@ -2,7 +2,7 @@
   "world/maps/pulau_tirta_v34_a11.tmj": "4578082a2ee1475523326b9c20df67790d22defa0427bb91e6c1b0bbe55a19bd",
   "public/maps/pulau-tirta-v34-a11.json": "66fe04c5af684655eb92a573c4956814871b77336fb1c5fcf64de653af0e1085",
   "world/buildings-v34-a1.json": "29a1bbf8f40bc692f65e36856231d871f23018e0d0bac277191c9fa5f063e2f8",
-  "src/game/world.ts": "999ba335380038da17a0608ee57d9677dbed5e9e2864aaf943a65126d328efb9",
+  "src/game/world.ts": "6266dc62882b03450d172824509b5ab1ca10d833e49e272d2665d41ad96826bd",
   "src/game/living-model.ts": "d5b8ba58338f8df7d76d4994405bf48086d7d20c85c3b20ec69465fab7b0ef2a",
   "src/game/map-data.ts": "c0c7585cfb6e79ac9cd2f23b7380b9bf521137565c04c18d07963c146c3bb6e3",
   "world/archives/living-world-through-a3.ts.txt": "65e1a1912e1f5937f951198ff87d509092d9c012cf37c9b1262009cd5a7206f4"
