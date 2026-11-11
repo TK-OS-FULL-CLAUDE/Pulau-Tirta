@@ -16,7 +16,7 @@ import {
 import { DuniaScene, LEBAR, LOKASI, TINGGI, type Lokasi } from './game/world';
 import { PanelTiko } from './tiko/panel';
 import { isiJurnal } from '../shared/jurnal';
-import { WARGA, naskahDesa } from '../shared/warga';
+import { WARGA, naskahDesa, naskahPenduduk, semuaPembicara } from '../shared/warga';
 import { pasangDemo, tujuanDariUrl } from './ui/demo';
 import { bukaFestival, bukaMisi, peristiwaFestivalAktif, sorotMisiAktif, tandaiPetunjukFestival } from './ui/dialog-misi';
 import { ID_JURNAL, bukaJurnal } from './ui/jurnal';
@@ -191,6 +191,14 @@ function interaksi(lokasi: Lokasi): void {
     }
 }
 
+/** Penduduk desa (PRD F-03): menyebut tempat yang mereka pedulikan sampai tempat itu pulih. */
+function ajakBicara(wargaId: string): void {
+  const n = naskahPenduduk(progres, wargaId);
+  if (!n) return;
+  dunia.terkunci = true;
+  bukaPercakapan(n.baris, { pembicara: semuaPembicara(), tutup: () => lepasKunci() });
+}
+
 function bukaFestivalDesa(lepas: () => void): void {
   bukaFestival({
     periksa: (jawaban) => {
@@ -222,6 +230,8 @@ const dunia = new DuniaScene({
   bergerak: () => undefined,
   pindahWilayah: (lokasi) => { lokasiSekarang = lokasi; },
   interaksi,
+  namaWarga: (id) => WARGA.penduduk[id]?.nama,
+  bicara: ajakBicara,
 });
 
 new Phaser.Game({

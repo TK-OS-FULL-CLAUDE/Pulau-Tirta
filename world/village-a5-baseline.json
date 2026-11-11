@@ -16,7 +16,7 @@
     "src/game/living-world.ts": "fa24801d49308a4c766d0665f2a607ccbce356cb434e6b87e72b2e8d571efc8f",
     "src/game/map-data.ts": "c0c7585cfb6e79ac9cd2f23b7380b9bf521137565c04c18d07963c146c3bb6e3",
     "src/game/village-activity.ts": "c81ef52fcdd8fe84d4431753cbf70cd06694a1ad210a06455e78fcd4b9b9e7c8",
-    "src/game/world.ts": "7dbb1fc008f91a71f046ba2426629babdc957a884d2cadf84265c2b4cad555c7",
+    "src/game/world.ts": "999ba335380038da17a0608ee57d9677dbed5e9e2864aaf943a65126d328efb9",
     "world/assets/kenney_tiny_battle/tilemap_packed.png": "d8b164ef0e8db6429407dca2e68669c76f57df08ddb3e8ec4278eb26556f5656",
     "world/assets/kenney_tiny_farm/tilemap_packed.png": "0c4b3b4058cacf6a9bf021666838156d46da9ce27500d4c13e30cd5a92b722f4",
     "world/assets/kenney_tiny_town/tilemap_packed.png": "3a54d99ecde790d4fdea207a3644cf130fc56fa838f1beb1507c185a95b8e902",

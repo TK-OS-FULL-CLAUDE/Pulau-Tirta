@@ -1,5 +1,5 @@
 {
-  "_catatan": "Naskah warga Desa Tirta (DRAF dari Claude, perlu dicek Sabri). Satu baris = satu kotak dialog, maksimal 140 karakter supaya muat 2 baris. Naskah pembuka tidak boleh memakai kata terlarang tingkat 1 misi mana pun, dan arahan tiap misi tidak boleh memakai kata terlarang misinya; keduanya diuji otomatis (npm test).",
+  "_catatan": "Naskah warga Desa Tirta (DRAF dari Claude, perlu dicek Sabri). Satu baris = satu kotak dialog, maksimal 140 karakter supaya muat 2 baris. Naskah pembuka tidak boleh memakai kata terlarang tingkat 1 misi mana pun, dan arahan tiap misi tidak boleh memakai kata terlarang misinya; keduanya diuji otomatis (npm test). 'penduduk' = warga yang berjalan di desa; kuncinya harus sama dengan id NPC di peta (village_npc_1 sampai 4). Tiap warga peduli pada satu tempat ('misi') dan punya naskah untuk empat keadaan: 'sebelum' tempatnya pulih, 'sesudah' tempatnya pulih, 'festival' (keempat tempat pulih, Festival belum), dan 'tamat' (sesudah Festival). Baris berupa teks biasa diucapkan warga itu sendiri; untuk pembicara lain (misalnya Tiko) tulis { \"siapa\": \"tiko\", \"teks\": \"...\" }. Naskah penduduk tidak boleh memakai kata terlarang tingkat 1 misi mana pun (diuji otomatis).",
   "pembicara": {
     "kades": { "nama": "Kepala Desa", "ikon": "👨🏽‍🌾" },
     "tiko": { "nama": "Tiko", "ikon": "💧" }
@@ -36,5 +36,77 @@
   ],
   "sesudahFestival": [
     { "siapa": "kades", "teks": "Terima kasih! Sumur penuh lagi dan sawah mulai hijau. Desa Tirta tidak akan lupa bantuanmu." }
-  ]
+  ],
+  "penduduk": {
+    "village_npc_4": {
+      "nama": "Kak Dimas", "ikon": "🧑🏽", "peran": "panitia Festival Hujan", "misi": "misi-1",
+      "sebelum": [
+        "Aku Dimas, panitia Festival Hujan. Tapi bagaimana mau berpesta kalau hujan tidak turun-turun?",
+        "Pantai Biru juga aneh. Airnya diam saja, tidak naik-naik ke langit seperti dulu.",
+        { "siapa": "tiko", "teks": "Ayo kita lihat ke Pantai Biru!" }
+      ],
+      "sesudah": [
+        "Pantai Biru sudah pulih! Sekarang aku bisa lanjut menyiapkan Festival Hujan.",
+        "Masih ada tempat lain yang rusak. Kalau bingung, tanya Tiko, ya."
+      ],
+      "festival": [
+        "Semua tempat sudah pulih! Ayo ke tengah desa. Kepala Desa menunggu di tempat Festival Hujan."
+      ],
+      "tamat": [
+        "Festivalnya meriah sekali! Terima kasih sudah membawa hujan kembali ke Desa Tirta."
+      ]
+    },
+    "village_npc_2": {
+      "nama": "Pak Darto", "ikon": "👨🏽", "peran": "warga", "misi": "misi-2",
+      "sebelum": [
+        "Dulu dari halaman ini Puncak Kabut kelihatan berselimut awan putih. Sekarang langit di atasnya kosong.",
+        { "siapa": "tiko", "teks": "Ayo kita lihat ke Puncak Kabut!" }
+      ],
+      "sesudah": [
+        "Awan putih sudah muncul lagi di atas Puncak Kabut. Pemandangan dari sini indah lagi!",
+        "Masih ada tempat lain yang rusak. Semangat, ya!"
+      ],
+      "festival": [
+        "Semua tempat sudah pulih! Ayo ke tengah desa, Festival Hujan mau dimulai."
+      ],
+      "tamat": [
+        "Akhirnya hujan turun! Aku sudah lama menunggu hari ini. Terima kasih, ya!"
+      ]
+    },
+    "village_npc_3": {
+      "nama": "Kak Budi", "ikon": "🧑🏽‍🌾", "peran": "petani", "misi": "misi-3",
+      "sebelum": [
+        "Sawahku di Lembah Hujan retak-retak. Awannya menggantung di sana, tapi hujannya tidak pernah turun.",
+        { "siapa": "tiko", "teks": "Ayo kita lihat ke Lembah Hujan!" }
+      ],
+      "sesudah": [
+        "Hujan sudah turun di Lembah Hujan! Sawahku bisa ditanami lagi. Terima kasih!",
+        "Masih ada tempat lain yang rusak. Ayo, kamu pasti bisa!"
+      ],
+      "festival": [
+        "Semua tempat sudah pulih! Aku mau ikut Festival Hujan di tengah desa. Kamu juga, ya!"
+      ],
+      "tamat": [
+        "Sawah di seluruh pulau basah lagi. Panen tahun ini pasti bagus. Terima kasih!"
+      ]
+    },
+    "village_npc_1": {
+      "nama": "Bu Sari", "ikon": "👩🏽‍🌾", "peran": "pekebun", "misi": "misi-4",
+      "sebelum": [
+        "Sayur di kebunku layu semua. Mata air di Hutan & Sungai sudah lama tidak mengalir.",
+        "Kalau ada hujan pun, airnya cepat sekali hilang dari lereng. Ke mana perginya, ya?",
+        { "siapa": "tiko", "teks": "Ayo kita lihat ke Hutan & Sungai!" }
+      ],
+      "sesudah": [
+        "Mata air di Hutan & Sungai mengalir lagi! Sayurku segar kembali. Terima kasih, ya!",
+        "Masih ada tempat lain yang rusak. Semangat!"
+      ],
+      "festival": [
+        "Semua tempat sudah pulih! Aku bawa sayur terbaik untuk Festival Hujan di tengah desa."
+      ],
+      "tamat": [
+        "Hujan turun! Kebunku tidak akan kekeringan lagi. Terima kasih sudah membantu."
+      ]
+    }
+  }
 }
