@@ -1,0 +1,5084 @@
+{
+  "version": "3.6-R2-Structure-Fix",
+  "source": "world/maps/pulau_tirta_v37_r2.tmj",
+  "outline": [
+    [
+      37,
+      62
+    ],
+    [
+      68,
+      62
+    ],
+    [
+      69,
+      61
+    ],
+    [
+      69,
+      59
+    ],
+    [
+      68,
+      57
+    ],
+    [
+      69,
+      53
+    ],
+    [
+      70,
+      50
+    ],
+    [
+      69,
+      48
+    ],
+    [
+      70,
+      45
+    ],
+    [
+      71,
+      41
+    ],
+    [
+      70,
+      37
+    ],
+    [
+      68,
+      34
+    ],
+    [
+      64,
+      32
+    ],
+    [
+      56,
+      32
+    ],
+    [
+      52,
+      33
+    ],
+    [
+      49,
+      36
+    ],
+    [
+      49,
+      42
+    ],
+    [
+      47,
+      44
+    ],
+    [
+      45,
+      46
+    ],
+    [
+      41,
+      47
+    ],
+    [
+      37,
+      49
+    ],
+    [
+      36,
+      52
+    ],
+    [
+      36,
+      56
+    ],
+    [
+      35,
+      59
+    ]
+  ],
+  "stages": [
+    {
+      "id": "foothills",
+      "name": "Kaki gunung",
+      "points": [
+        [
+          69,
+          61
+        ],
+        [
+          66,
+          60
+        ],
+        [
+          55,
+          60
+        ],
+        [
+          44,
+          59
+        ],
+        [
+          39,
+          58
+        ],
+        [
+          39,
+          55
+        ]
+      ]
+    },
+    {
+      "id": "middle",
+      "name": "Teras istirahat",
+      "points": [
+        [
+          39,
+          55
+        ],
+        [
+          39,
+          52
+        ],
+        [
+          44,
+          51
+        ],
+        [
+          55,
+          51
+        ],
+        [
+          65,
+          51
+        ],
+        [
+          65,
+          47
+        ]
+      ]
+    },
+    {
+      "id": "checkpoint",
+      "name": "Pos pengembunan",
+      "points": [
+        [
+          65,
+          47
+        ],
+        [
+          65,
+          43
+        ],
+        [
+          61,
+          43
+        ],
+        [
+          60,
+          43
+        ]
+      ]
+    },
+    {
+      "id": "summit",
+      "name": "Pendakian akhir dan viewpoint",
+      "points": [
+        [
+          60,
+          43
+        ],
+        [
+          58,
+          43
+        ],
+        [
+          58,
+          42
+        ],
+        [
+          59,
+          41
+        ],
+        [
+          59,
+          37
+        ],
+        [
+          57,
+          36
+        ],
+        [
+          57,
+          34
+        ]
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "id": "entrance",
+      "x": 1104,
+      "y": 960,
+      "width": 16,
+      "height": 32,
+      "center": [
+        69,
+        61
+      ]
+    },
+    {
+      "id": "stairs-lower",
+      "x": 608,
+      "y": 880,
+      "width": 48,
+      "height": 32,
+      "center": [
+        39,
+        55
+      ]
+    },
+    {
+      "id": "stairs-upper",
+      "x": 1024,
+      "y": 752,
+      "width": 48,
+      "height": 32,
+      "center": [
+        65,
+        47
+      ]
+    }
+  ],
+  "viewpoint": [
+    57,
+    34
+  ],
+  "mission": {
+    "id": "misi-2",
+    "location": "puncak",
+    "x": 968,
+    "y": 696,
+    "radius": 36
+  },
+  "changedLayers": [
+    "Paths",
+    "Environment_V32",
+    "Objects",
+    "Mountain_V36R1_Rim",
+    "Mountain_V36R1_Shadow",
+    "Mountain_V36R2_Ridges"
+  ],
+  "removedTerrainBodies": [
+    "v32_cliff_35_61",
+    "v32_cliff_36_61",
+    "v32_cliff_37_61",
+    "v32_cliff_38_61",
+    "v32_cliff_39_61",
+    "v32_cliff_33_55",
+    "v32_cliff_34_55",
+    "v32_cliff_35_55",
+    "v32_cliff_36_55",
+    "v32_cliff_43_56",
+    "v32_cliff_44_56",
+    "v32_cliff_45_56",
+    "v32_cliff_46_56",
+    "v32_cliff_47_56",
+    "v32_cliff_48_56",
+    "v32_cliff_49_57",
+    "v32_cliff_50_57",
+    "v32_cliff_51_57",
+    "v32_cliff_52_57",
+    "v32_cliff_53_57",
+    "v32_cliff_54_57",
+    "v32_cliff_55_57",
+    "v32_cliff_56_55",
+    "v32_cliff_57_55",
+    "v32_cliff_58_55",
+    "v32_cliff_59_55",
+    "v32_cliff_50_45",
+    "v32_cliff_51_45",
+    "v32_cliff_52_45",
+    "v32_cliff_53_47",
+    "v32_cliff_54_47",
+    "v32_cliff_55_47",
+    "v32_cliff_56_47",
+    "v32_cliff_57_47",
+    "v32_cliff_58_47",
+    "v32_cliff_59_48",
+    "v32_cliff_60_48",
+    "v32_cliff_61_48",
+    "v32_cliff_62_48",
+    "v32_cliff_68_47",
+    "v32_cliff_69_47",
+    "v32_cliff_70_45",
+    "v32_cliff_71_45",
+    "v36_r2_ridge_60_29",
+    "v36_r2_ridge_55_30",
+    "v36_r2_ridge_56_30",
+    "v36_r2_ridge_57_30",
+    "v36_r2_ridge_58_30",
+    "v36_r2_ridge_59_30",
+    "v36_r2_ridge_61_30",
+    "v36_r2_ridge_62_30",
+    "v36_r2_ridge_63_30",
+    "v36_r2_ridge_64_30",
+    "v36_r2_ridge_65_30",
+    "v36_r2_ridge_53_31",
+    "v36_r2_ridge_54_31",
+    "v36_r2_ridge_66_31",
+    "v36_r2_ridge_67_31",
+    "v36_r2_ridge_49_32",
+    "v36_r2_ridge_50_32",
+    "v36_r2_ridge_51_32",
+    "v36_r2_ridge_52_32",
+    "v36_r2_ridge_53_32",
+    "v36_r2_ridge_54_32",
+    "v36_r2_ridge_55_32",
+    "v36_r2_ridge_56_32",
+    "v36_r2_ridge_57_32",
+    "v36_r2_ridge_68_32",
+    "v36_r2_ridge_69_32",
+    "v36_r2_ridge_48_33",
+    "v36_r2_ridge_49_33",
+    "v36_r2_ridge_57_33",
+    "v36_r2_ridge_58_33",
+    "v36_r2_ridge_59_33",
+    "v36_r2_ridge_60_33",
+    "v36_r2_ridge_61_33",
+    "v36_r2_ridge_62_33",
+    "v36_r2_ridge_63_33",
+    "v36_r2_ridge_64_33",
+    "v36_r2_ridge_70_33",
+    "v36_r2_ridge_48_34",
+    "v36_r2_ridge_64_34",
+    "v36_r2_ridge_65_34",
+    "v36_r2_ridge_66_34",
+    "v36_r2_ridge_71_34",
+    "v36_r2_ridge_46_35",
+    "v36_r2_ridge_47_35",
+    "v36_r2_ridge_48_35",
+    "v36_r2_ridge_66_35",
+    "v36_r2_ridge_67_35",
+    "v36_r2_ridge_71_35",
+    "v36_r2_ridge_44_36",
+    "v36_r2_ridge_45_36",
+    "v36_r2_ridge_46_36",
+    "v36_r2_ridge_51_36",
+    "v36_r2_ridge_52_36",
+    "v36_r2_ridge_67_36",
+    "v36_r2_ridge_72_36",
+    "v36_r2_ridge_41_37",
+    "v36_r2_ridge_42_37",
+    "v36_r2_ridge_43_37",
+    "v36_r2_ridge_44_37",
+    "v36_r2_ridge_50_37",
+    "v36_r2_ridge_51_37",
+    "v36_r2_ridge_52_37",
+    "v36_r2_ridge_67_37",
+    "v36_r2_ridge_68_37",
+    "v36_r2_ridge_72_37",
+    "v36_r2_ridge_39_38",
+    "v36_r2_ridge_40_38",
+    "v36_r2_ridge_41_38",
+    "v36_r2_ridge_48_38",
+    "v36_r2_ridge_49_38",
+    "v36_r2_ridge_50_38",
+    "v36_r2_ridge_51_38",
+    "v36_r2_ridge_68_38",
+    "v36_r2_ridge_72_38",
+    "v36_r2_ridge_36_39",
+    "v36_r2_ridge_37_39",
+    "v36_r2_ridge_38_39",
+    "v36_r2_ridge_39_39",
+    "v36_r2_ridge_40_39",
+    "v36_r2_ridge_45_39",
+    "v36_r2_ridge_46_39",
+    "v36_r2_ridge_47_39",
+    "v36_r2_ridge_48_39",
+    "v36_r2_ridge_51_39",
+    "v36_r2_ridge_68_39",
+    "v36_r2_ridge_73_39",
+    "v36_r2_ridge_34_40",
+    "v36_r2_ridge_35_40",
+    "v36_r2_ridge_36_40",
+    "v36_r2_ridge_37_40",
+    "v36_r2_ridge_43_40",
+    "v36_r2_ridge_44_40",
+    "v36_r2_ridge_45_40",
+    "v36_r2_ridge_51_40",
+    "v36_r2_ridge_68_40",
+    "v36_r2_ridge_72_40",
+    "v36_r2_ridge_33_41",
+    "v36_r2_ridge_34_41",
+    "v36_r2_ridge_35_41",
+    "v36_r2_ridge_42_41",
+    "v36_r2_ridge_43_41",
+    "v36_r2_ridge_51_41",
+    "v36_r2_ridge_68_41",
+    "v36_r2_ridge_72_41",
+    "v36_r2_ridge_32_42",
+    "v36_r2_ridge_34_42",
+    "v36_r2_ridge_42_42",
+    "v36_r2_ridge_51_42",
+    "v36_r2_ridge_52_42",
+    "v36_r2_ridge_67_42",
+    "v36_r2_ridge_68_42",
+    "v36_r2_ridge_72_42",
+    "v36_r2_ridge_31_43",
+    "v36_r2_ridge_34_43",
+    "v36_r2_ridge_35_43",
+    "v36_r2_ridge_41_43",
+    "v36_r2_ridge_42_43",
+    "v36_r2_ridge_52_43",
+    "v36_r2_ridge_67_43",
+    "v36_r2_ridge_71_43",
+    "v36_r2_ridge_30_44",
+    "v36_r2_ridge_35_44",
+    "v36_r2_ridge_36_44",
+    "v36_r2_ridge_37_44",
+    "v36_r2_ridge_39_44",
+    "v36_r2_ridge_40_44",
+    "v36_r2_ridge_41_44",
+    "v36_r2_ridge_52_44",
+    "v36_r2_ridge_53_44",
+    "v36_r2_ridge_67_44",
+    "v36_r2_ridge_71_44",
+    "v36_r2_ridge_30_45",
+    "v36_r2_ridge_37_45",
+    "v36_r2_ridge_38_45",
+    "v36_r2_ridge_39_45",
+    "v36_r2_ridge_53_45",
+    "v36_r2_ridge_54_45",
+    "v36_r2_ridge_55_45",
+    "v36_r2_ridge_67_45",
+    "v36_r2_ridge_70_45",
+    "v36_r2_ridge_30_46",
+    "v36_r2_ridge_55_46",
+    "v36_r2_ridge_56_46",
+    "v36_r2_ridge_57_46",
+    "v36_r2_ridge_58_46",
+    "v36_r2_ridge_59_46",
+    "v36_r2_ridge_60_46",
+    "v36_r2_ridge_61_46",
+    "v36_r2_ridge_62_46",
+    "v36_r2_ridge_63_46",
+    "v36_r2_ridge_67_46",
+    "v36_r2_ridge_68_46",
+    "v36_r2_ridge_69_46",
+    "v36_r2_ridge_29_47",
+    "v36_r2_ridge_43_47",
+    "v36_r2_ridge_44_47",
+    "v36_r2_ridge_45_47",
+    "v36_r2_ridge_46_47",
+    "v36_r2_ridge_47_47",
+    "v36_r2_ridge_63_47",
+    "v36_r2_ridge_67_47",
+    "v36_r2_ridge_30_48",
+    "v36_r2_ridge_40_48",
+    "v36_r2_ridge_41_48",
+    "v36_r2_ridge_42_48",
+    "v36_r2_ridge_43_48",
+    "v36_r2_ridge_47_48",
+    "v36_r2_ridge_48_48",
+    "v36_r2_ridge_49_48",
+    "v36_r2_ridge_50_48",
+    "v36_r2_ridge_51_48",
+    "v36_r2_ridge_52_48",
+    "v36_r2_ridge_63_48",
+    "v36_r2_ridge_67_48",
+    "v36_r2_ridge_30_49",
+    "v36_r2_ridge_37_49",
+    "v36_r2_ridge_38_49",
+    "v36_r2_ridge_39_49",
+    "v36_r2_ridge_40_49",
+    "v36_r2_ridge_52_49",
+    "v36_r2_ridge_53_49",
+    "v36_r2_ridge_54_49",
+    "v36_r2_ridge_55_49",
+    "v36_r2_ridge_56_49",
+    "v36_r2_ridge_57_49",
+    "v36_r2_ridge_58_49",
+    "v36_r2_ridge_59_49",
+    "v36_r2_ridge_60_49",
+    "v36_r2_ridge_61_49",
+    "v36_r2_ridge_62_49",
+    "v36_r2_ridge_63_49",
+    "v36_r2_ridge_67_49",
+    "v36_r2_ridge_30_50",
+    "v36_r2_ridge_36_50",
+    "v36_r2_ridge_37_50",
+    "v36_r2_ridge_66_50",
+    "v36_r2_ridge_67_50",
+    "v36_r2_ridge_31_51",
+    "v36_r2_ridge_36_51",
+    "v36_r2_ridge_44_51",
+    "v36_r2_ridge_45_51",
+    "v36_r2_ridge_46_51",
+    "v36_r2_ridge_47_51",
+    "v36_r2_ridge_48_51",
+    "v36_r2_ridge_65_51",
+    "v36_r2_ridge_66_51",
+    "v36_r2_ridge_67_51",
+    "v36_r2_ridge_32_52",
+    "v36_r2_ridge_36_52",
+    "v36_r2_ridge_37_52",
+    "v36_r2_ridge_41_52",
+    "v36_r2_ridge_42_52",
+    "v36_r2_ridge_43_52",
+    "v36_r2_ridge_44_52",
+    "v36_r2_ridge_48_52",
+    "v36_r2_ridge_49_52",
+    "v36_r2_ridge_50_52",
+    "v36_r2_ridge_51_52",
+    "v36_r2_ridge_52_52",
+    "v36_r2_ridge_64_52",
+    "v36_r2_ridge_65_52",
+    "v36_r2_ridge_68_52",
+    "v36_r2_ridge_69_52",
+    "v36_r2_ridge_32_53",
+    "v36_r2_ridge_37_53",
+    "v36_r2_ridge_41_53",
+    "v36_r2_ridge_52_53",
+    "v36_r2_ridge_53_53",
+    "v36_r2_ridge_54_53",
+    "v36_r2_ridge_55_53",
+    "v36_r2_ridge_56_53",
+    "v36_r2_ridge_57_53",
+    "v36_r2_ridge_58_53",
+    "v36_r2_ridge_59_53",
+    "v36_r2_ridge_60_53",
+    "v36_r2_ridge_61_53",
+    "v36_r2_ridge_62_53",
+    "v36_r2_ridge_63_53",
+    "v36_r2_ridge_64_53",
+    "v36_r2_ridge_70_53",
+    "v36_r2_ridge_31_54",
+    "v36_r2_ridge_37_54",
+    "v36_r2_ridge_41_54",
+    "v36_r2_ridge_70_54",
+    "v36_r2_ridge_71_54",
+    "v36_r2_ridge_30_55",
+    "v36_r2_ridge_37_55",
+    "v36_r2_ridge_41_55",
+    "v36_r2_ridge_69_55",
+    "v36_r2_ridge_30_56",
+    "v36_r2_ridge_37_56",
+    "v36_r2_ridge_41_56",
+    "v36_r2_ridge_42_56",
+    "v36_r2_ridge_43_56",
+    "v36_r2_ridge_44_56",
+    "v36_r2_ridge_69_56",
+    "v36_r2_ridge_29_57",
+    "v36_r2_ridge_37_57",
+    "v36_r2_ridge_38_57",
+    "v36_r2_ridge_44_57",
+    "v36_r2_ridge_45_57",
+    "v36_r2_ridge_46_57",
+    "v36_r2_ridge_47_57",
+    "v36_r2_ridge_48_57",
+    "v36_r2_ridge_49_57",
+    "v36_r2_ridge_50_57",
+    "v36_r2_ridge_51_57",
+    "v36_r2_ridge_69_57",
+    "v36_r2_ridge_30_58",
+    "v36_r2_ridge_38_58",
+    "v36_r2_ridge_39_58",
+    "v36_r2_ridge_51_58",
+    "v36_r2_ridge_52_58",
+    "v36_r2_ridge_53_58",
+    "v36_r2_ridge_54_58",
+    "v36_r2_ridge_55_58",
+    "v36_r2_ridge_56_58",
+    "v36_r2_ridge_57_58",
+    "v36_r2_ridge_58_58",
+    "v36_r2_ridge_59_58",
+    "v36_r2_ridge_60_58",
+    "v36_r2_ridge_61_58",
+    "v36_r2_ridge_62_58",
+    "v36_r2_ridge_69_58",
+    "v36_r2_ridge_30_59",
+    "v36_r2_ridge_39_59",
+    "v36_r2_ridge_40_59",
+    "v36_r2_ridge_62_59",
+    "v36_r2_ridge_63_59",
+    "v36_r2_ridge_64_59",
+    "v36_r2_ridge_65_59",
+    "v36_r2_ridge_66_59",
+    "v36_r2_ridge_67_59",
+    "v36_r2_ridge_68_59",
+    "v36_r2_ridge_69_59",
+    "v36_r2_ridge_31_60",
+    "v36_r2_ridge_40_60",
+    "v36_r2_ridge_41_60",
+    "v36_r2_ridge_42_60",
+    "v36_r2_ridge_43_60",
+    "v36_r2_ridge_44_60",
+    "v36_r2_ridge_32_61",
+    "v36_r2_ridge_44_61",
+    "v36_r2_ridge_45_61",
+    "v36_r2_ridge_46_61",
+    "v36_r2_ridge_47_61",
+    "v36_r2_ridge_48_61",
+    "v36_r2_ridge_49_61",
+    "v36_r2_ridge_50_61",
+    "v36_r2_ridge_51_61",
+    "v36_r2_ridge_52_61",
+    "v36_r2_ridge_53_61",
+    "v36_r2_ridge_54_61",
+    "v36_r2_ridge_33_62",
+    "v36_r2_ridge_34_62",
+    "v36_r2_ridge_35_62",
+    "v36_r2_ridge_36_62",
+    "v36_r2_ridge_37_62",
+    "v36_r2_ridge_38_62",
+    "v36_r2_ridge_39_62",
+    "v36_r2_ridge_40_62",
+    "v36_r2_ridge_41_62",
+    "v36_r2_ridge_42_62",
+    "v36_r2_ridge_43_62",
+    "v36_r2_ridge_44_62",
+    "v36_r2_ridge_45_62",
+    "v36_r2_ridge_46_62",
+    "v36_r2_ridge_47_62",
+    "v36_r2_ridge_48_62",
+    "v36_r2_ridge_49_62",
+    "v36_r2_ridge_50_62",
+    "v36_r2_ridge_51_62",
+    "v36_r2_ridge_52_62",
+    "v36_r2_ridge_53_62",
+    "v36_r2_ridge_54_62",
+    "v36_r2_ridge_55_62",
+    "v36_r2_ridge_56_62",
+    "v36_r2_ridge_57_62",
+    "v36_r2_ridge_58_62",
+    "v36_r2_ridge_59_62",
+    "v36_r2_ridge_60_62",
+    "v36_r2_ridge_61_62",
+    "v36_r2_ridge_62_62",
+    "v36_r2_ridge_63_62",
+    "v36_r2_ridge_64_62",
+    "v36_r2_ridge_65_62",
+    "v36_r2_ridge_66_62",
+    "v36_r2_ridge_67_62",
+    "v36_r2_ridge_68_62",
+    "v36_r2_ridge_69_62"
+  ],
+  "walls": [
+    {
+      "x": 36,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_36_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 37,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_37_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 41,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_41_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 42,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_42_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 43,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_43_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 44,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_44_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 45,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_45_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 46,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_46_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 47,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_47_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 48,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_48_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 49,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_49_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 50,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_50_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 51,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_51_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 52,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_52_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 53,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_53_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 54,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_54_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 55,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_55_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 56,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_56_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 57,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_57_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 58,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_58_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 59,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_59_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 60,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_60_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 61,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_61_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 62,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_62_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 63,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_63_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 64,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_64_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 65,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_65_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 66,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_66_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 67,
+      "y": 55,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_67_55",
+      "kind": "terrace"
+    },
+    {
+      "x": 40,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_40_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 41,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_41_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 42,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_42_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 43,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_43_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 44,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_44_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 45,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_45_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 46,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_46_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 47,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_47_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 48,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_48_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 49,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_49_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 50,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_50_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 51,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_51_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 52,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_52_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 53,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_53_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 54,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_54_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 55,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_55_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 56,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_56_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 57,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_57_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 58,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_58_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 59,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_59_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 60,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_60_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 61,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_61_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 62,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_62_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 63,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_63_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 67,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_67_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 68,
+      "y": 47,
+      "width": 1,
+      "height": 2,
+      "collider": "puncak_structure_face_68_47",
+      "kind": "terrace"
+    },
+    {
+      "x": 53,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_53_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 54,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_54_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 55,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_55_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 56,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_56_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 57,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_57_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 58,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_58_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 59,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_59_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 60,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_60_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 61,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_61_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 62,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_62_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 63,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_63_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 64,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_64_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 65,
+      "y": 31,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_65_31",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 50,
+      "y": 32,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_50_32",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 51,
+      "y": 32,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_51_32",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 52,
+      "y": 32,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_52_32",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 53,
+      "y": 32,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_53_32",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 65,
+      "y": 32,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_65_32",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 66,
+      "y": 32,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_66_32",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 67,
+      "y": 32,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_67_32",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 49,
+      "y": 33,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_49_33",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 50,
+      "y": 33,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_50_33",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 67,
+      "y": 33,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_67_33",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 68,
+      "y": 33,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_68_33",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 48,
+      "y": 34,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_48_34",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 49,
+      "y": 34,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_49_34",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 68,
+      "y": 34,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_68_34",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 34,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_34",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 48,
+      "y": 35,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_48_35",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 35,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_35",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 35,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_35",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 48,
+      "y": 36,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_48_36",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 36,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_36",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 48,
+      "y": 37,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_48_37",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 37,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_37",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 48,
+      "y": 38,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_48_38",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 38,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_38",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 71,
+      "y": 38,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_71_38",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 48,
+      "y": 39,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_48_39",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 71,
+      "y": 39,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_71_39",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 48,
+      "y": 40,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_48_40",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 71,
+      "y": 40,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_71_40",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 47,
+      "y": 41,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_47_41",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 48,
+      "y": 41,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_48_41",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 71,
+      "y": 41,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_71_41",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 46,
+      "y": 42,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_46_42",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 47,
+      "y": 42,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_47_42",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 71,
+      "y": 42,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_71_42",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 45,
+      "y": 43,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_45_43",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 46,
+      "y": 43,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_46_43",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 43,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_43",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 71,
+      "y": 43,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_71_43",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 44,
+      "y": 44,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_44_44",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 45,
+      "y": 44,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_45_44",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 44,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_44",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 42,
+      "y": 45,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_42_45",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 43,
+      "y": 45,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_43_45",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 44,
+      "y": 45,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_44_45",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 45,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_45",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 42,
+      "y": 46,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_42_46",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 46,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_46",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 46,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_46",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 37,
+      "y": 47,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_37_47",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 38,
+      "y": 47,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_38_47",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 39,
+      "y": 47,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_39_47",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 47,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_47",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 36,
+      "y": 48,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_36_48",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 37,
+      "y": 48,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_37_48",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 48,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_48",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 48,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_48",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 35,
+      "y": 49,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_35_49",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 36,
+      "y": 49,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_36_49",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 49,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_49",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 35,
+      "y": 50,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_35_50",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 50,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_50",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 35,
+      "y": 51,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_35_51",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 51,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_51",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 70,
+      "y": 51,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_70_51",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 35,
+      "y": 52,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_35_52",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 52,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_52",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 35,
+      "y": 53,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_35_53",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 53,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_53",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 35,
+      "y": 54,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_35_54",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 54,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_54",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 35,
+      "y": 55,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_35_55",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 68,
+      "y": 55,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_68_55",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 55,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_55",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 34,
+      "y": 56,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_34_56",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 35,
+      "y": 56,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_35_56",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 68,
+      "y": 56,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_68_56",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 34,
+      "y": 57,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_34_57",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 68,
+      "y": 57,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_68_57",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 57,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_57",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 34,
+      "y": 58,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_34_58",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 58,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_58",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 34,
+      "y": 59,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_34_59",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 59,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_59",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 34,
+      "y": 60,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_34_60",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 35,
+      "y": 60,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_35_60",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 35,
+      "y": 61,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_35_61",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 36,
+      "y": 61,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_36_61",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 36,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_36_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 37,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_37_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 38,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_38_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 39,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_39_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 40,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_40_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 41,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_41_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 42,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_42_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 43,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_43_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 44,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_44_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 45,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_45_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 46,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_46_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 47,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_47_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 48,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_48_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 49,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_49_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 50,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_50_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 51,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_51_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 52,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_52_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 53,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_53_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 54,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_54_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 55,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_55_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 56,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_56_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 57,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_57_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 58,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_58_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 59,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_59_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 60,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_60_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 61,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_61_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 62,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_62_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 63,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_63_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 64,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_64_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 65,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_65_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 66,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_66_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 67,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_67_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 68,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_68_62",
+      "kind": "outer-edge"
+    },
+    {
+      "x": 69,
+      "y": 62,
+      "width": 1,
+      "height": 1,
+      "collider": "puncak_structure_edge_69_62",
+      "kind": "outer-edge"
+    }
+  ],
+  "playableCells": [
+    [
+      54,
+      32
+    ],
+    [
+      55,
+      32
+    ],
+    [
+      56,
+      32
+    ],
+    [
+      57,
+      32
+    ],
+    [
+      58,
+      32
+    ],
+    [
+      59,
+      32
+    ],
+    [
+      60,
+      32
+    ],
+    [
+      61,
+      32
+    ],
+    [
+      62,
+      32
+    ],
+    [
+      63,
+      32
+    ],
+    [
+      64,
+      32
+    ],
+    [
+      51,
+      33
+    ],
+    [
+      52,
+      33
+    ],
+    [
+      53,
+      33
+    ],
+    [
+      54,
+      33
+    ],
+    [
+      55,
+      33
+    ],
+    [
+      56,
+      33
+    ],
+    [
+      57,
+      33
+    ],
+    [
+      58,
+      33
+    ],
+    [
+      59,
+      33
+    ],
+    [
+      60,
+      33
+    ],
+    [
+      61,
+      33
+    ],
+    [
+      62,
+      33
+    ],
+    [
+      63,
+      33
+    ],
+    [
+      64,
+      33
+    ],
+    [
+      65,
+      33
+    ],
+    [
+      66,
+      33
+    ],
+    [
+      50,
+      34
+    ],
+    [
+      51,
+      34
+    ],
+    [
+      52,
+      34
+    ],
+    [
+      53,
+      34
+    ],
+    [
+      54,
+      34
+    ],
+    [
+      55,
+      34
+    ],
+    [
+      56,
+      34
+    ],
+    [
+      57,
+      34
+    ],
+    [
+      58,
+      34
+    ],
+    [
+      59,
+      34
+    ],
+    [
+      60,
+      34
+    ],
+    [
+      61,
+      34
+    ],
+    [
+      62,
+      34
+    ],
+    [
+      63,
+      34
+    ],
+    [
+      64,
+      34
+    ],
+    [
+      65,
+      34
+    ],
+    [
+      66,
+      34
+    ],
+    [
+      67,
+      34
+    ],
+    [
+      49,
+      35
+    ],
+    [
+      50,
+      35
+    ],
+    [
+      51,
+      35
+    ],
+    [
+      52,
+      35
+    ],
+    [
+      53,
+      35
+    ],
+    [
+      54,
+      35
+    ],
+    [
+      55,
+      35
+    ],
+    [
+      56,
+      35
+    ],
+    [
+      57,
+      35
+    ],
+    [
+      58,
+      35
+    ],
+    [
+      59,
+      35
+    ],
+    [
+      60,
+      35
+    ],
+    [
+      61,
+      35
+    ],
+    [
+      62,
+      35
+    ],
+    [
+      63,
+      35
+    ],
+    [
+      64,
+      35
+    ],
+    [
+      65,
+      35
+    ],
+    [
+      66,
+      35
+    ],
+    [
+      67,
+      35
+    ],
+    [
+      68,
+      35
+    ],
+    [
+      49,
+      36
+    ],
+    [
+      50,
+      36
+    ],
+    [
+      51,
+      36
+    ],
+    [
+      52,
+      36
+    ],
+    [
+      53,
+      36
+    ],
+    [
+      54,
+      36
+    ],
+    [
+      55,
+      36
+    ],
+    [
+      56,
+      36
+    ],
+    [
+      57,
+      36
+    ],
+    [
+      58,
+      36
+    ],
+    [
+      59,
+      36
+    ],
+    [
+      60,
+      36
+    ],
+    [
+      61,
+      36
+    ],
+    [
+      62,
+      36
+    ],
+    [
+      63,
+      36
+    ],
+    [
+      64,
+      36
+    ],
+    [
+      65,
+      36
+    ],
+    [
+      66,
+      36
+    ],
+    [
+      67,
+      36
+    ],
+    [
+      68,
+      36
+    ],
+    [
+      69,
+      36
+    ],
+    [
+      49,
+      37
+    ],
+    [
+      50,
+      37
+    ],
+    [
+      51,
+      37
+    ],
+    [
+      52,
+      37
+    ],
+    [
+      53,
+      37
+    ],
+    [
+      54,
+      37
+    ],
+    [
+      55,
+      37
+    ],
+    [
+      56,
+      37
+    ],
+    [
+      57,
+      37
+    ],
+    [
+      58,
+      37
+    ],
+    [
+      59,
+      37
+    ],
+    [
+      60,
+      37
+    ],
+    [
+      61,
+      37
+    ],
+    [
+      62,
+      37
+    ],
+    [
+      63,
+      37
+    ],
+    [
+      64,
+      37
+    ],
+    [
+      65,
+      37
+    ],
+    [
+      66,
+      37
+    ],
+    [
+      67,
+      37
+    ],
+    [
+      68,
+      37
+    ],
+    [
+      69,
+      37
+    ],
+    [
+      49,
+      38
+    ],
+    [
+      50,
+      38
+    ],
+    [
+      51,
+      38
+    ],
+    [
+      52,
+      38
+    ],
+    [
+      53,
+      38
+    ],
+    [
+      54,
+      38
+    ],
+    [
+      55,
+      38
+    ],
+    [
+      56,
+      38
+    ],
+    [
+      57,
+      38
+    ],
+    [
+      58,
+      38
+    ],
+    [
+      59,
+      38
+    ],
+    [
+      60,
+      38
+    ],
+    [
+      61,
+      38
+    ],
+    [
+      62,
+      38
+    ],
+    [
+      63,
+      38
+    ],
+    [
+      64,
+      38
+    ],
+    [
+      65,
+      38
+    ],
+    [
+      66,
+      38
+    ],
+    [
+      67,
+      38
+    ],
+    [
+      68,
+      38
+    ],
+    [
+      69,
+      38
+    ],
+    [
+      49,
+      39
+    ],
+    [
+      50,
+      39
+    ],
+    [
+      51,
+      39
+    ],
+    [
+      52,
+      39
+    ],
+    [
+      53,
+      39
+    ],
+    [
+      54,
+      39
+    ],
+    [
+      55,
+      39
+    ],
+    [
+      56,
+      39
+    ],
+    [
+      57,
+      39
+    ],
+    [
+      58,
+      39
+    ],
+    [
+      59,
+      39
+    ],
+    [
+      60,
+      39
+    ],
+    [
+      61,
+      39
+    ],
+    [
+      62,
+      39
+    ],
+    [
+      63,
+      39
+    ],
+    [
+      64,
+      39
+    ],
+    [
+      65,
+      39
+    ],
+    [
+      66,
+      39
+    ],
+    [
+      67,
+      39
+    ],
+    [
+      68,
+      39
+    ],
+    [
+      69,
+      39
+    ],
+    [
+      70,
+      39
+    ],
+    [
+      49,
+      40
+    ],
+    [
+      50,
+      40
+    ],
+    [
+      51,
+      40
+    ],
+    [
+      52,
+      40
+    ],
+    [
+      53,
+      40
+    ],
+    [
+      54,
+      40
+    ],
+    [
+      55,
+      40
+    ],
+    [
+      56,
+      40
+    ],
+    [
+      57,
+      40
+    ],
+    [
+      58,
+      40
+    ],
+    [
+      59,
+      40
+    ],
+    [
+      60,
+      40
+    ],
+    [
+      61,
+      40
+    ],
+    [
+      62,
+      40
+    ],
+    [
+      63,
+      40
+    ],
+    [
+      64,
+      40
+    ],
+    [
+      65,
+      40
+    ],
+    [
+      66,
+      40
+    ],
+    [
+      67,
+      40
+    ],
+    [
+      68,
+      40
+    ],
+    [
+      69,
+      40
+    ],
+    [
+      70,
+      40
+    ],
+    [
+      49,
+      41
+    ],
+    [
+      50,
+      41
+    ],
+    [
+      51,
+      41
+    ],
+    [
+      52,
+      41
+    ],
+    [
+      53,
+      41
+    ],
+    [
+      54,
+      41
+    ],
+    [
+      55,
+      41
+    ],
+    [
+      56,
+      41
+    ],
+    [
+      57,
+      41
+    ],
+    [
+      58,
+      41
+    ],
+    [
+      59,
+      41
+    ],
+    [
+      60,
+      41
+    ],
+    [
+      61,
+      41
+    ],
+    [
+      62,
+      41
+    ],
+    [
+      63,
+      41
+    ],
+    [
+      64,
+      41
+    ],
+    [
+      65,
+      41
+    ],
+    [
+      66,
+      41
+    ],
+    [
+      67,
+      41
+    ],
+    [
+      68,
+      41
+    ],
+    [
+      69,
+      41
+    ],
+    [
+      70,
+      41
+    ],
+    [
+      48,
+      42
+    ],
+    [
+      49,
+      42
+    ],
+    [
+      50,
+      42
+    ],
+    [
+      51,
+      42
+    ],
+    [
+      52,
+      42
+    ],
+    [
+      53,
+      42
+    ],
+    [
+      54,
+      42
+    ],
+    [
+      55,
+      42
+    ],
+    [
+      56,
+      42
+    ],
+    [
+      57,
+      42
+    ],
+    [
+      58,
+      42
+    ],
+    [
+      59,
+      42
+    ],
+    [
+      60,
+      42
+    ],
+    [
+      61,
+      42
+    ],
+    [
+      62,
+      42
+    ],
+    [
+      63,
+      42
+    ],
+    [
+      64,
+      42
+    ],
+    [
+      65,
+      42
+    ],
+    [
+      66,
+      42
+    ],
+    [
+      67,
+      42
+    ],
+    [
+      68,
+      42
+    ],
+    [
+      69,
+      42
+    ],
+    [
+      70,
+      42
+    ],
+    [
+      47,
+      43
+    ],
+    [
+      48,
+      43
+    ],
+    [
+      49,
+      43
+    ],
+    [
+      50,
+      43
+    ],
+    [
+      51,
+      43
+    ],
+    [
+      52,
+      43
+    ],
+    [
+      53,
+      43
+    ],
+    [
+      54,
+      43
+    ],
+    [
+      55,
+      43
+    ],
+    [
+      56,
+      43
+    ],
+    [
+      57,
+      43
+    ],
+    [
+      58,
+      43
+    ],
+    [
+      59,
+      43
+    ],
+    [
+      60,
+      43
+    ],
+    [
+      61,
+      43
+    ],
+    [
+      62,
+      43
+    ],
+    [
+      63,
+      43
+    ],
+    [
+      64,
+      43
+    ],
+    [
+      65,
+      43
+    ],
+    [
+      66,
+      43
+    ],
+    [
+      67,
+      43
+    ],
+    [
+      68,
+      43
+    ],
+    [
+      69,
+      43
+    ],
+    [
+      46,
+      44
+    ],
+    [
+      47,
+      44
+    ],
+    [
+      48,
+      44
+    ],
+    [
+      49,
+      44
+    ],
+    [
+      50,
+      44
+    ],
+    [
+      51,
+      44
+    ],
+    [
+      52,
+      44
+    ],
+    [
+      53,
+      44
+    ],
+    [
+      54,
+      44
+    ],
+    [
+      55,
+      44
+    ],
+    [
+      56,
+      44
+    ],
+    [
+      57,
+      44
+    ],
+    [
+      58,
+      44
+    ],
+    [
+      59,
+      44
+    ],
+    [
+      60,
+      44
+    ],
+    [
+      61,
+      44
+    ],
+    [
+      62,
+      44
+    ],
+    [
+      63,
+      44
+    ],
+    [
+      64,
+      44
+    ],
+    [
+      65,
+      44
+    ],
+    [
+      66,
+      44
+    ],
+    [
+      67,
+      44
+    ],
+    [
+      68,
+      44
+    ],
+    [
+      69,
+      44
+    ],
+    [
+      45,
+      45
+    ],
+    [
+      46,
+      45
+    ],
+    [
+      47,
+      45
+    ],
+    [
+      48,
+      45
+    ],
+    [
+      49,
+      45
+    ],
+    [
+      50,
+      45
+    ],
+    [
+      51,
+      45
+    ],
+    [
+      52,
+      45
+    ],
+    [
+      53,
+      45
+    ],
+    [
+      54,
+      45
+    ],
+    [
+      55,
+      45
+    ],
+    [
+      56,
+      45
+    ],
+    [
+      57,
+      45
+    ],
+    [
+      58,
+      45
+    ],
+    [
+      59,
+      45
+    ],
+    [
+      60,
+      45
+    ],
+    [
+      61,
+      45
+    ],
+    [
+      62,
+      45
+    ],
+    [
+      63,
+      45
+    ],
+    [
+      64,
+      45
+    ],
+    [
+      65,
+      45
+    ],
+    [
+      66,
+      45
+    ],
+    [
+      67,
+      45
+    ],
+    [
+      68,
+      45
+    ],
+    [
+      69,
+      45
+    ],
+    [
+      43,
+      46
+    ],
+    [
+      44,
+      46
+    ],
+    [
+      45,
+      46
+    ],
+    [
+      46,
+      46
+    ],
+    [
+      47,
+      46
+    ],
+    [
+      48,
+      46
+    ],
+    [
+      49,
+      46
+    ],
+    [
+      50,
+      46
+    ],
+    [
+      51,
+      46
+    ],
+    [
+      52,
+      46
+    ],
+    [
+      53,
+      46
+    ],
+    [
+      54,
+      46
+    ],
+    [
+      55,
+      46
+    ],
+    [
+      56,
+      46
+    ],
+    [
+      57,
+      46
+    ],
+    [
+      58,
+      46
+    ],
+    [
+      59,
+      46
+    ],
+    [
+      60,
+      46
+    ],
+    [
+      61,
+      46
+    ],
+    [
+      62,
+      46
+    ],
+    [
+      63,
+      46
+    ],
+    [
+      64,
+      46
+    ],
+    [
+      65,
+      46
+    ],
+    [
+      66,
+      46
+    ],
+    [
+      67,
+      46
+    ],
+    [
+      68,
+      46
+    ],
+    [
+      64,
+      47
+    ],
+    [
+      65,
+      47
+    ],
+    [
+      66,
+      47
+    ],
+    [
+      38,
+      48
+    ],
+    [
+      39,
+      48
+    ],
+    [
+      64,
+      48
+    ],
+    [
+      65,
+      48
+    ],
+    [
+      66,
+      48
+    ],
+    [
+      37,
+      49
+    ],
+    [
+      38,
+      49
+    ],
+    [
+      39,
+      49
+    ],
+    [
+      40,
+      49
+    ],
+    [
+      41,
+      49
+    ],
+    [
+      42,
+      49
+    ],
+    [
+      43,
+      49
+    ],
+    [
+      44,
+      49
+    ],
+    [
+      45,
+      49
+    ],
+    [
+      46,
+      49
+    ],
+    [
+      47,
+      49
+    ],
+    [
+      48,
+      49
+    ],
+    [
+      49,
+      49
+    ],
+    [
+      50,
+      49
+    ],
+    [
+      51,
+      49
+    ],
+    [
+      52,
+      49
+    ],
+    [
+      53,
+      49
+    ],
+    [
+      54,
+      49
+    ],
+    [
+      55,
+      49
+    ],
+    [
+      56,
+      49
+    ],
+    [
+      57,
+      49
+    ],
+    [
+      58,
+      49
+    ],
+    [
+      59,
+      49
+    ],
+    [
+      60,
+      49
+    ],
+    [
+      61,
+      49
+    ],
+    [
+      62,
+      49
+    ],
+    [
+      63,
+      49
+    ],
+    [
+      64,
+      49
+    ],
+    [
+      65,
+      49
+    ],
+    [
+      66,
+      49
+    ],
+    [
+      67,
+      49
+    ],
+    [
+      68,
+      49
+    ],
+    [
+      69,
+      49
+    ],
+    [
+      36,
+      50
+    ],
+    [
+      37,
+      50
+    ],
+    [
+      38,
+      50
+    ],
+    [
+      39,
+      50
+    ],
+    [
+      40,
+      50
+    ],
+    [
+      41,
+      50
+    ],
+    [
+      42,
+      50
+    ],
+    [
+      43,
+      50
+    ],
+    [
+      44,
+      50
+    ],
+    [
+      45,
+      50
+    ],
+    [
+      46,
+      50
+    ],
+    [
+      47,
+      50
+    ],
+    [
+      48,
+      50
+    ],
+    [
+      49,
+      50
+    ],
+    [
+      50,
+      50
+    ],
+    [
+      51,
+      50
+    ],
+    [
+      52,
+      50
+    ],
+    [
+      53,
+      50
+    ],
+    [
+      54,
+      50
+    ],
+    [
+      55,
+      50
+    ],
+    [
+      56,
+      50
+    ],
+    [
+      57,
+      50
+    ],
+    [
+      58,
+      50
+    ],
+    [
+      59,
+      50
+    ],
+    [
+      60,
+      50
+    ],
+    [
+      61,
+      50
+    ],
+    [
+      62,
+      50
+    ],
+    [
+      63,
+      50
+    ],
+    [
+      64,
+      50
+    ],
+    [
+      65,
+      50
+    ],
+    [
+      66,
+      50
+    ],
+    [
+      67,
+      50
+    ],
+    [
+      68,
+      50
+    ],
+    [
+      69,
+      50
+    ],
+    [
+      36,
+      51
+    ],
+    [
+      37,
+      51
+    ],
+    [
+      38,
+      51
+    ],
+    [
+      39,
+      51
+    ],
+    [
+      40,
+      51
+    ],
+    [
+      41,
+      51
+    ],
+    [
+      42,
+      51
+    ],
+    [
+      43,
+      51
+    ],
+    [
+      44,
+      51
+    ],
+    [
+      45,
+      51
+    ],
+    [
+      46,
+      51
+    ],
+    [
+      47,
+      51
+    ],
+    [
+      48,
+      51
+    ],
+    [
+      49,
+      51
+    ],
+    [
+      50,
+      51
+    ],
+    [
+      51,
+      51
+    ],
+    [
+      52,
+      51
+    ],
+    [
+      53,
+      51
+    ],
+    [
+      54,
+      51
+    ],
+    [
+      55,
+      51
+    ],
+    [
+      56,
+      51
+    ],
+    [
+      57,
+      51
+    ],
+    [
+      58,
+      51
+    ],
+    [
+      59,
+      51
+    ],
+    [
+      60,
+      51
+    ],
+    [
+      61,
+      51
+    ],
+    [
+      62,
+      51
+    ],
+    [
+      63,
+      51
+    ],
+    [
+      64,
+      51
+    ],
+    [
+      65,
+      51
+    ],
+    [
+      66,
+      51
+    ],
+    [
+      67,
+      51
+    ],
+    [
+      68,
+      51
+    ],
+    [
+      36,
+      52
+    ],
+    [
+      37,
+      52
+    ],
+    [
+      38,
+      52
+    ],
+    [
+      39,
+      52
+    ],
+    [
+      40,
+      52
+    ],
+    [
+      41,
+      52
+    ],
+    [
+      42,
+      52
+    ],
+    [
+      43,
+      52
+    ],
+    [
+      44,
+      52
+    ],
+    [
+      45,
+      52
+    ],
+    [
+      46,
+      52
+    ],
+    [
+      47,
+      52
+    ],
+    [
+      48,
+      52
+    ],
+    [
+      49,
+      52
+    ],
+    [
+      50,
+      52
+    ],
+    [
+      51,
+      52
+    ],
+    [
+      52,
+      52
+    ],
+    [
+      53,
+      52
+    ],
+    [
+      54,
+      52
+    ],
+    [
+      55,
+      52
+    ],
+    [
+      56,
+      52
+    ],
+    [
+      57,
+      52
+    ],
+    [
+      58,
+      52
+    ],
+    [
+      59,
+      52
+    ],
+    [
+      60,
+      52
+    ],
+    [
+      61,
+      52
+    ],
+    [
+      62,
+      52
+    ],
+    [
+      63,
+      52
+    ],
+    [
+      64,
+      52
+    ],
+    [
+      65,
+      52
+    ],
+    [
+      66,
+      52
+    ],
+    [
+      67,
+      52
+    ],
+    [
+      68,
+      52
+    ],
+    [
+      36,
+      53
+    ],
+    [
+      37,
+      53
+    ],
+    [
+      38,
+      53
+    ],
+    [
+      39,
+      53
+    ],
+    [
+      40,
+      53
+    ],
+    [
+      41,
+      53
+    ],
+    [
+      42,
+      53
+    ],
+    [
+      43,
+      53
+    ],
+    [
+      44,
+      53
+    ],
+    [
+      45,
+      53
+    ],
+    [
+      46,
+      53
+    ],
+    [
+      47,
+      53
+    ],
+    [
+      48,
+      53
+    ],
+    [
+      49,
+      53
+    ],
+    [
+      50,
+      53
+    ],
+    [
+      51,
+      53
+    ],
+    [
+      52,
+      53
+    ],
+    [
+      53,
+      53
+    ],
+    [
+      54,
+      53
+    ],
+    [
+      55,
+      53
+    ],
+    [
+      56,
+      53
+    ],
+    [
+      57,
+      53
+    ],
+    [
+      58,
+      53
+    ],
+    [
+      59,
+      53
+    ],
+    [
+      60,
+      53
+    ],
+    [
+      61,
+      53
+    ],
+    [
+      62,
+      53
+    ],
+    [
+      63,
+      53
+    ],
+    [
+      64,
+      53
+    ],
+    [
+      65,
+      53
+    ],
+    [
+      66,
+      53
+    ],
+    [
+      67,
+      53
+    ],
+    [
+      68,
+      53
+    ],
+    [
+      36,
+      54
+    ],
+    [
+      37,
+      54
+    ],
+    [
+      38,
+      54
+    ],
+    [
+      39,
+      54
+    ],
+    [
+      40,
+      54
+    ],
+    [
+      41,
+      54
+    ],
+    [
+      42,
+      54
+    ],
+    [
+      43,
+      54
+    ],
+    [
+      44,
+      54
+    ],
+    [
+      45,
+      54
+    ],
+    [
+      46,
+      54
+    ],
+    [
+      47,
+      54
+    ],
+    [
+      48,
+      54
+    ],
+    [
+      49,
+      54
+    ],
+    [
+      50,
+      54
+    ],
+    [
+      51,
+      54
+    ],
+    [
+      52,
+      54
+    ],
+    [
+      53,
+      54
+    ],
+    [
+      54,
+      54
+    ],
+    [
+      55,
+      54
+    ],
+    [
+      56,
+      54
+    ],
+    [
+      57,
+      54
+    ],
+    [
+      58,
+      54
+    ],
+    [
+      59,
+      54
+    ],
+    [
+      60,
+      54
+    ],
+    [
+      61,
+      54
+    ],
+    [
+      62,
+      54
+    ],
+    [
+      63,
+      54
+    ],
+    [
+      64,
+      54
+    ],
+    [
+      65,
+      54
+    ],
+    [
+      66,
+      54
+    ],
+    [
+      67,
+      54
+    ],
+    [
+      68,
+      54
+    ],
+    [
+      38,
+      55
+    ],
+    [
+      39,
+      55
+    ],
+    [
+      40,
+      55
+    ],
+    [
+      38,
+      56
+    ],
+    [
+      39,
+      56
+    ],
+    [
+      40,
+      56
+    ],
+    [
+      35,
+      57
+    ],
+    [
+      36,
+      57
+    ],
+    [
+      37,
+      57
+    ],
+    [
+      38,
+      57
+    ],
+    [
+      39,
+      57
+    ],
+    [
+      40,
+      57
+    ],
+    [
+      41,
+      57
+    ],
+    [
+      42,
+      57
+    ],
+    [
+      43,
+      57
+    ],
+    [
+      44,
+      57
+    ],
+    [
+      45,
+      57
+    ],
+    [
+      46,
+      57
+    ],
+    [
+      47,
+      57
+    ],
+    [
+      48,
+      57
+    ],
+    [
+      49,
+      57
+    ],
+    [
+      50,
+      57
+    ],
+    [
+      51,
+      57
+    ],
+    [
+      52,
+      57
+    ],
+    [
+      53,
+      57
+    ],
+    [
+      54,
+      57
+    ],
+    [
+      55,
+      57
+    ],
+    [
+      56,
+      57
+    ],
+    [
+      57,
+      57
+    ],
+    [
+      58,
+      57
+    ],
+    [
+      59,
+      57
+    ],
+    [
+      60,
+      57
+    ],
+    [
+      61,
+      57
+    ],
+    [
+      62,
+      57
+    ],
+    [
+      63,
+      57
+    ],
+    [
+      64,
+      57
+    ],
+    [
+      65,
+      57
+    ],
+    [
+      66,
+      57
+    ],
+    [
+      67,
+      57
+    ],
+    [
+      35,
+      58
+    ],
+    [
+      36,
+      58
+    ],
+    [
+      37,
+      58
+    ],
+    [
+      38,
+      58
+    ],
+    [
+      39,
+      58
+    ],
+    [
+      40,
+      58
+    ],
+    [
+      41,
+      58
+    ],
+    [
+      42,
+      58
+    ],
+    [
+      43,
+      58
+    ],
+    [
+      44,
+      58
+    ],
+    [
+      45,
+      58
+    ],
+    [
+      46,
+      58
+    ],
+    [
+      47,
+      58
+    ],
+    [
+      48,
+      58
+    ],
+    [
+      49,
+      58
+    ],
+    [
+      50,
+      58
+    ],
+    [
+      51,
+      58
+    ],
+    [
+      52,
+      58
+    ],
+    [
+      53,
+      58
+    ],
+    [
+      54,
+      58
+    ],
+    [
+      55,
+      58
+    ],
+    [
+      56,
+      58
+    ],
+    [
+      57,
+      58
+    ],
+    [
+      58,
+      58
+    ],
+    [
+      59,
+      58
+    ],
+    [
+      60,
+      58
+    ],
+    [
+      61,
+      58
+    ],
+    [
+      62,
+      58
+    ],
+    [
+      63,
+      58
+    ],
+    [
+      64,
+      58
+    ],
+    [
+      65,
+      58
+    ],
+    [
+      66,
+      58
+    ],
+    [
+      67,
+      58
+    ],
+    [
+      68,
+      58
+    ],
+    [
+      35,
+      59
+    ],
+    [
+      36,
+      59
+    ],
+    [
+      37,
+      59
+    ],
+    [
+      38,
+      59
+    ],
+    [
+      39,
+      59
+    ],
+    [
+      40,
+      59
+    ],
+    [
+      41,
+      59
+    ],
+    [
+      42,
+      59
+    ],
+    [
+      43,
+      59
+    ],
+    [
+      44,
+      59
+    ],
+    [
+      45,
+      59
+    ],
+    [
+      46,
+      59
+    ],
+    [
+      47,
+      59
+    ],
+    [
+      48,
+      59
+    ],
+    [
+      49,
+      59
+    ],
+    [
+      50,
+      59
+    ],
+    [
+      51,
+      59
+    ],
+    [
+      52,
+      59
+    ],
+    [
+      53,
+      59
+    ],
+    [
+      54,
+      59
+    ],
+    [
+      55,
+      59
+    ],
+    [
+      56,
+      59
+    ],
+    [
+      57,
+      59
+    ],
+    [
+      58,
+      59
+    ],
+    [
+      59,
+      59
+    ],
+    [
+      60,
+      59
+    ],
+    [
+      61,
+      59
+    ],
+    [
+      62,
+      59
+    ],
+    [
+      63,
+      59
+    ],
+    [
+      64,
+      59
+    ],
+    [
+      65,
+      59
+    ],
+    [
+      66,
+      59
+    ],
+    [
+      67,
+      59
+    ],
+    [
+      68,
+      59
+    ],
+    [
+      36,
+      60
+    ],
+    [
+      37,
+      60
+    ],
+    [
+      38,
+      60
+    ],
+    [
+      39,
+      60
+    ],
+    [
+      40,
+      60
+    ],
+    [
+      41,
+      60
+    ],
+    [
+      42,
+      60
+    ],
+    [
+      43,
+      60
+    ],
+    [
+      44,
+      60
+    ],
+    [
+      45,
+      60
+    ],
+    [
+      46,
+      60
+    ],
+    [
+      47,
+      60
+    ],
+    [
+      48,
+      60
+    ],
+    [
+      49,
+      60
+    ],
+    [
+      50,
+      60
+    ],
+    [
+      51,
+      60
+    ],
+    [
+      52,
+      60
+    ],
+    [
+      53,
+      60
+    ],
+    [
+      54,
+      60
+    ],
+    [
+      55,
+      60
+    ],
+    [
+      56,
+      60
+    ],
+    [
+      57,
+      60
+    ],
+    [
+      58,
+      60
+    ],
+    [
+      59,
+      60
+    ],
+    [
+      60,
+      60
+    ],
+    [
+      61,
+      60
+    ],
+    [
+      62,
+      60
+    ],
+    [
+      63,
+      60
+    ],
+    [
+      64,
+      60
+    ],
+    [
+      65,
+      60
+    ],
+    [
+      66,
+      60
+    ],
+    [
+      67,
+      60
+    ],
+    [
+      68,
+      60
+    ],
+    [
+      37,
+      61
+    ],
+    [
+      38,
+      61
+    ],
+    [
+      39,
+      61
+    ],
+    [
+      40,
+      61
+    ],
+    [
+      41,
+      61
+    ],
+    [
+      42,
+      61
+    ],
+    [
+      43,
+      61
+    ],
+    [
+      44,
+      61
+    ],
+    [
+      45,
+      61
+    ],
+    [
+      46,
+      61
+    ],
+    [
+      47,
+      61
+    ],
+    [
+      48,
+      61
+    ],
+    [
+      49,
+      61
+    ],
+    [
+      50,
+      61
+    ],
+    [
+      51,
+      61
+    ],
+    [
+      52,
+      61
+    ],
+    [
+      53,
+      61
+    ],
+    [
+      54,
+      61
+    ],
+    [
+      55,
+      61
+    ],
+    [
+      56,
+      61
+    ],
+    [
+      57,
+      61
+    ],
+    [
+      58,
+      61
+    ],
+    [
+      59,
+      61
+    ],
+    [
+      60,
+      61
+    ],
+    [
+      61,
+      61
+    ],
+    [
+      62,
+      61
+    ],
+    [
+      63,
+      61
+    ],
+    [
+      64,
+      61
+    ],
+    [
+      65,
+      61
+    ],
+    [
+      66,
+      61
+    ],
+    [
+      67,
+      61
+    ],
+    [
+      69,
+      60
+    ],
+    [
+      68,
+      61
+    ],
+    [
+      69,
+      61
+    ]
+  ],
+  "validationTargets": [
+    [
+      74,
+      61
+    ],
+    [
+      69,
+      61
+    ],
+    [
+      66,
+      60
+    ],
+    [
+      55,
+      60
+    ],
+    [
+      44,
+      59
+    ],
+    [
+      39,
+      58
+    ],
+    [
+      39,
+      55
+    ],
+    [
+      39,
+      55
+    ],
+    [
+      39,
+      52
+    ],
+    [
+      44,
+      51
+    ],
+    [
+      55,
+      51
+    ],
+    [
+      65,
+      51
+    ],
+    [
+      65,
+      47
+    ],
+    [
+      65,
+      47
+    ],
+    [
+      65,
+      43
+    ],
+    [
+      61,
+      43
+    ],
+    [
+      60,
+      43
+    ],
+    [
+      60,
+      43
+    ],
+    [
+      58,
+      43
+    ],
+    [
+      58,
+      42
+    ],
+    [
+      59,
+      41
+    ],
+    [
+      59,
+      37
+    ],
+    [
+      57,
+      36
+    ],
+    [
+      57,
+      34
+    ],
+    [
+      57,
+      41
+    ],
+    [
+      61,
+      39
+    ]
+  ],
+  "note": "Broad open terraces, two compulsory stair crossings, one original entrance. The obsolete west lookout branch is scenic terrain; the northern existing observation rail is the summit endpoint. Local terrain bodies only; no engine or mission changes."
+}

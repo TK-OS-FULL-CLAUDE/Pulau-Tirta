@@ -1,0 +1,9 @@
+{
+  "source": "R2 structure working tree before natural mountain R3",
+  "hashes": {
+    "world/maps/pulau_tirta_v36_r2_structure.tmj": "7577ca5017697c14a683a0fb75c130e3a60e671754cb6c585fcdc25b3e4d58a2",
+    "public/maps/pulau-tirta-v36-r2-structure.json": "7e219fbec0b0adca8fa6610d0c83586959a3641180d04144bfc8be91223886c8",
+    "world/mountain-v36-r2-structure.json": "bd0c136111c9d727728fe9e18e77f2c73ed87e817d4deb59acbf785c6ecc2cab",
+    "scripts/structure-puncak-v36-r2.mjs": "42f98656087514f8e1fcb7359f73cc076595320e88f06e5bf73602c9866a2ab5"
+  }
+}

@@ -223,7 +223,20 @@ function bukaFestivalDesa(lepas: () => void): void {
   });
 }
 
-const dunia = new DuniaScene({
+class SharpWorld extends DuniaScene {
+  override create(): void {
+    super.create();
+    // These two fixed labels are drawn at 7–9 world pixels before camera zoom.
+    // Rasterize their glyphs at the camera's 3× zoom for readable screen text.
+    for (const object of this.children.list) {
+      if (object instanceof Phaser.GameObjects.Text && object.scrollFactorX === 0 && object.scrollFactorY === 0 && object.style.backgroundColor === '#1c2a33') {
+        object.setResolution(3);
+      }
+    }
+  }
+}
+
+const dunia = new SharpWorld({
   statusMisi: (id) => progres.status[id] ?? 'belum',
   persenPulih,
   festivalSelesai: () => progres.festivalSelesai,
