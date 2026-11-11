@@ -126,6 +126,8 @@ function interaksi(lokasi: Lokasi): void {
         sudahSelesai,
         pilih: (pilihanId) => {
           const hasil = jawab(progres, misi.id, pilihanId);
+          // Tempatnya baru berubah saat anak kembali ke pulau, supaya perubahannya terlihat (lihat tutup di bawah).
+          if (hasil.benar && !sudahSelesai) dunia.tundaPemulihan(misi.id);
           perbarui(hasil.progres);
           suara.main(hasil.benar ? 'benar' : 'keliru');
           if (hasil.benar) {
@@ -141,6 +143,7 @@ function interaksi(lokasi: Lokasi): void {
         tutup: () => {
           lepas();
           if (!sudahSelesai && progres.status[misi.id] === 'selesai') {
+            dunia.rayakanPemulihan(misi.id);
             sorak(`${lokasi.nama} pulih!`);
             suara.main('pulih');
           }
@@ -187,6 +190,7 @@ function bukaFestivalDesa(lepas: () => void): void {
     petunjuk: beriPetunjukFestival,
     selesai: () => {
       const kartuDidapat = [...new Set([...progres.kartuDidapat, ...FESTIVAL.kartuMateri])].sort((a, b) => a - b);
+      dunia.tundaFestival();
       perbarui({ ...progres, festivalSelesai: true, kartuDidapat });
       suara.main('hujan');
       panel.sapa('Hujan turun! Terima kasih sudah memulihkan Pulau Tirta. Aku pulang ke awan dulu, ya. Sampai jumpa!');
@@ -194,8 +198,10 @@ function bukaFestivalDesa(lepas: () => void): void {
     tutup: () => {
       lepas();
       if (progres.festivalSelesai) {
+        dunia.rayakanFestival();
         sorak('Hujan turun di Pulau Tirta!');
-        setTimeout(tampilkanTamat, 2200);
+        // Beri waktu melihat hujan dan desa yang berhias sebelum layar tamat.
+        setTimeout(tampilkanTamat, 3400);
       }
     },
   });
