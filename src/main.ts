@@ -1,4 +1,7 @@
 import Phaser from 'phaser';
+import { WorldMinimap } from './game/minimap';
+import './ui/minimap.css';
+import { explorerFrame, explorerShadow, playerMovementDelta } from './game/player-explorer';
 import './style.css';
 import { FESTIVAL, MISI_UTAMA, cariMisi } from '../shared/content';
 import {
@@ -208,8 +211,40 @@ function bukaFestivalDesa(lepas: () => void): void {
 }
 
 class SharpWorld extends DuniaScene {
+  private minimap?: WorldMinimap;
+  private originalDelta = 0;
+  override preload(): void {
+    super.preload();
+    this.load.spritesheet('tirta-explorer', '/assets/player/tirta-explorer.png', { frameWidth: 20, frameHeight: 20 });
+  }
+  private explorerState() {
+    return this as unknown as { visualPemain: Phaser.GameObjects.Sprite; pemain: Phaser.GameObjects.Sprite; bayangan: Phaser.GameObjects.Ellipse; judulWilayah: Phaser.GameObjects.Text; living: import('./game/living-world').LivingWorld; facing: import('./game/living-model').Facing; walkDistance: number };
+  }
+  private groundExplorerShadow(): void {
+    const state=this.explorerState(),foot=explorerShadow(state.visualPemain);
+    state.bayangan.setPosition(foot.x,foot.y).setDisplaySize(foot.width,foot.height).setFillStyle(0x130f16,0.2);
+  }
+  override update(time: number, dt: number): void {
+    this.originalDelta = dt;
+    super.update(time, playerMovementDelta(dt));
+    const state = this.explorerState(), sprite = state.visualPemain;
+    if (!sprite) return;
+    const paused = sprite.getData('motion') === 'paused';
+    // Animate limbs/accessories inside the frame, never lift the planted feet.
+    sprite.setPosition(state.pemain.x, state.pemain.y).setFlipX(false).setScale(1);
+    if (!paused) sprite.setFrame(explorerFrame(state.facing, sprite.getData('motion') === 'walking', state.walkDistance, time));
+    this.groundExplorerShadow();
+    this.minimap?.update(time,state.pemain,state.facing);
+  }
   override create(): void {
     super.create();
+    const state = this.explorerState();
+    state.visualPemain.setTexture('tirta-explorer', 0).setOrigin(0.5, 0.9);
+    this.groundExplorerShadow();
+    // DuniaScene shares its delta with LivingWorld. Preserve the original NPC
+    // delta so only player movement receives the 15% adjustment.
+    const updateLiving = state.living.update.bind(state.living);
+    state.living.update = (time, _playerDt, blocked, player) => updateLiving(time, this.originalDelta, blocked, player);
     // These two fixed labels are drawn at 7–9 world pixels before camera zoom.
     // Rasterize their glyphs at the camera's 3× zoom for readable screen text.
     for (const object of this.children.list) {
@@ -217,6 +252,7 @@ class SharpWorld extends DuniaScene {
         object.setResolution(3);
       }
     }
+    this.minimap = new WorldMinimap(this,state.judulWilayah,()=>this.terkunci||document.querySelector('dialog[open]')!==null);
     // Roh Tiko memutari pemain; panel memberi tahu kapan Tiko berpikir atau berbicara.
     // Sprite pemain adalah field privat DuniaScene, dan world.ts dikunci tes preservasi World, jadi dibaca dari sini.
     const pemain = () => (this as unknown as { pemain?: Phaser.GameObjects.Sprite }).pemain;

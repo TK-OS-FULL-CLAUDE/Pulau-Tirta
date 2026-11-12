@@ -1,0 +1,77 @@
+/** Local CDP smoke test. No screenshots, recordings or browser dependencies. */
+import assert from 'node:assert/strict';
+import {existsSync,mkdtempSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {spawn} from 'node:child_process';
+const chrome=['C:/Program Files/Google/Chrome/Application/chrome.exe','C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'].find(existsSync);
+assert(chrome,'Chrome/Edge required');
+const browser=spawn(chrome,['--headless=new','--remote-debugging-port=9337',`--user-data-dir=${mkdtempSync(join(tmpdir(),'tirta-minimap-'))}`,'--no-first-run','--use-angle=swiftshader','--enable-unsafe-swiftshader','about:blank'],{windowsHide:true,stdio:'ignore'});
+const delay=ms=>new Promise(r=>setTimeout(r,ms));let ws,id=0;const pending=new Map(),errors=[];
+try{
+ let tabs;for(let i=0;i<100;i++){try{tabs=await(await fetch('http://127.0.0.1:9337/json/list')).json();break;}catch{await delay(100);}}
+ assert(tabs?.length,'Browser did not start');ws=new WebSocket(tabs.find(t=>t.type==='page').webSocketDebuggerUrl);
+ await new Promise((r,j)=>{ws.onopen=r;ws.onerror=j;});
+ ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.id){const p=pending.get(m.id);pending.delete(m.id);m.error?p.reject(m.error):p.resolve(m.result);}if(m.method==='Runtime.exceptionThrown')errors.push(m.params.exceptionDetails.text);};
+ const send=(method,params={})=>new Promise((resolve,reject)=>{const n=++id;pending.set(n,{resolve,reject});ws.send(JSON.stringify({id:n,method,params}));});
+ const evaluate=async expression=>{const r=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});assert(!r.exceptionDetails,JSON.stringify(r.exceptionDetails));return r.result.value;};
+ await send('Runtime.enable');await send('Page.enable');await send('Emulation.setDeviceMetricsOverride',{width:1280,height:900,deviceScaleFactor:1,mobile:false});
+ await send('Page.navigate',{url:'http://127.0.0.1:5174/'});
+ let ready=false;
+ for(let i=0;i<100;i++){
+  ready=await evaluate(`(async()=>{const e=performance.getEntriesByType('resource').find(e=>/\\/src\\/game\\/world\\.ts/.test(e.name));if(!e)return false;if(!window.__attach){const {DuniaScene}=await import(e.name);const original=DuniaScene.prototype.inputTerhalang;DuniaScene.prototype.inputTerhalang=function(...args){window.__scene=this;return original.apply(this,args)};window.__attach=true}return !!window.__scene?.minimap})()`);
+  if(ready)break;await delay(100);
+ }
+ assert(ready,'Scene/minimap did not initialize');
+ await evaluate(`document.querySelectorAll('dialog[open]').forEach(d=>d.close());window.__scene.terkunci=false;`);await delay(400);
+ assert(await evaluate(`document.querySelector('.world-minimap').getBoundingClientRect().width===210`),'desktop width');
+ assert(await evaluate(`!document.querySelector('#world-minimap-view').hidden`),'desktop map should start open');
+ const toggle=async()=>{await send('Input.dispatchKeyEvent',{type:'keyDown',key:'m',code:'KeyM'});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'m',code:'KeyM'});await delay(150);};
+ await toggle();assert(await evaluate(`document.querySelector('.world-map-dialog').open`),'M opens world map');
+ const feet=await evaluate(`({x:window.__scene.pemain.x,y:window.__scene.pemain.y})`);
+ await send('Input.dispatchKeyEvent',{type:'keyDown',key:'d',code:'KeyD',windowsVirtualKeyCode:68});await delay(250);await send('Input.dispatchKeyEvent',{type:'keyUp',key:'d',code:'KeyD',windowsVirtualKeyCode:68});
+ assert.deepEqual(await evaluate(`({x:window.__scene.pemain.x,y:window.__scene.pemain.y})`),feet,'modal blocks movement');
+ assert.equal(await evaluate(`window.__scene.minimap.worldMap.zoom`),1);
+ await evaluate(`document.querySelector('[aria-label="Perbesar peta"]').click()`);assert.equal(await evaluate(`window.__scene.minimap.worldMap.zoom`),1.25);
+ await evaluate(`document.querySelector('[aria-label="Pusatkan peta pada pemain"]').click()`);assert.equal(await evaluate(`window.__scene.minimap.worldMap.zoom`),2);
+ const centerBefore=await evaluate(`({...window.__scene.minimap.worldMap.center})`);
+ const r=await evaluate(`(()=>{const r=document.querySelector('.world-map-surface').getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2}})()`);
+ await send('Input.dispatchMouseEvent',{type:'mousePressed',x:r.x,y:r.y,button:'left',clickCount:1});
+ await send('Input.dispatchMouseEvent',{type:'mouseMoved',x:r.x+70,y:r.y+30,button:'left',buttons:1});
+ await send('Input.dispatchMouseEvent',{type:'mouseReleased',x:r.x+70,y:r.y+30,button:'left',clickCount:1});
+ assert.notDeepEqual(await evaluate(`({...window.__scene.minimap.worldMap.center})`),centerBefore,'drag pans');
+ await evaluate(`document.querySelector('[aria-label="Tampilkan seluruh pulau"]').click()`);assert.equal(await evaluate(`window.__scene.minimap.worldMap.zoom`),1);
+ await toggle();assert(await evaluate(`!document.querySelector('.world-map-dialog').open`),'M closes world map');
+ const resumeX=await evaluate(`window.__scene.pemain.x`);
+ await send('Input.dispatchKeyEvent',{type:'keyDown',key:'d',code:'KeyD',windowsVirtualKeyCode:68});await delay(180);await send('Input.dispatchKeyEvent',{type:'keyUp',key:'d',code:'KeyD',windowsVirtualKeyCode:68});
+ assert((await evaluate(`window.__scene.pemain.x`))>resumeX,'movement resumes after close');
+ await evaluate(`document.querySelector('#world-minimap-view').click()`);assert(await evaluate(`document.querySelector('.world-map-dialog').open`),'click opens world map');
+ await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});await delay(150);
+ assert(await evaluate(`!document.querySelector('.world-map-dialog').open`),'Esc closes world map');
+ assert(await evaluate(`(()=>{const c=window.__scene.minimap.cache;return c.getContext('2d').getImageData(0,0,c.width,c.height).data.some(v=>v>0)})()`),'Terrain cache empty');
+ assert(await evaluate(`(()=>{const s=window.__scene,c=s.cameras.main,t=s.judulWilayah,r=s.game.canvas.getBoundingClientRect(),p=document.querySelector('.world-minimap').getBoundingClientRect();const bottom=r.top+(c.y+c.height/2+(t.y+t.height-c.height/2)*c.zoom)*r.height/c.height;return p.top>=bottom+7&&p.top<=bottom+9})()`),'panel must sit directly below location label');
+ assert(await evaluate(`(()=>{const p=document.querySelector('.world-minimap').getBoundingClientRect();return [...document.querySelectorAll('.tombol-jeda,.tombol-jurnal')].every(b=>{const r=b.getBoundingClientRect();return p.right<=r.left||p.left>=r.right||p.bottom<=r.top||p.top>=r.bottom})})()`),'HUD overlap');
+ const cropBefore=await evaluate(`window.__scene.minimap.canvas.getContext('2d').getImageData(0,0,168,126).data.reduce((v,n,i)=>(v+n*(i%31))%100000007,0)`);
+ await evaluate(`window.__scene.pemain.x+=32`);await delay(200);
+ const cropAfter=await evaluate(`window.__scene.minimap.canvas.getContext('2d').getImageData(0,0,168,126).data.reduce((v,n,i)=>(v+n*(i%31))%100000007,0)`);assert.notEqual(cropBefore,cropAfter,'tracking raster must move');
+ await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await delay(300);
+ assert(await evaluate(`document.querySelector('.world-minimap').getBoundingClientRect().width===128`),'mobile width');
+ assert(await evaluate(`document.querySelector('.world-minimap-toggle').getBoundingClientRect().height>=44`),'touch target');
+ await evaluate(`document.querySelector('.world-minimap-toggle').click()`);
+ assert(await evaluate(`document.querySelector('.world-map-dialog').open`),'touch expand opens modal');
+ assert(await evaluate(`(()=>{const r=document.querySelector('.world-map-dialog').getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight})()`),'mobile modal fits screen');
+ await evaluate(`document.querySelector('.world-map-close').click()`);
+ assert(await evaluate(`document.activeElement!==document.querySelector('.world-minimap-toggle')`),'control releases keyboard focus');
+ await send('Emulation.setDeviceMetricsOverride',{width:844,height:390,deviceScaleFactor:1,mobile:true});await delay(250);
+ assert(await evaluate(`document.querySelector('.world-minimap').getBoundingClientRect().height<70`),'compact landscape control');
+ await evaluate(`document.querySelector('.world-minimap-toggle').click();document.querySelector('[aria-label="Perbesar peta"]').click()`);
+ const touchStart=await evaluate(`({...window.__scene.minimap.worldMap.center})`);
+ const touchPoint=await evaluate(`(()=>{const r=document.querySelector('.world-map-surface').getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2}})()`);
+ await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...touchPoint,id:1}]});
+ await send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:touchPoint.x+40,y:touchPoint.y+20,id:1}]});
+ await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+ assert.notDeepEqual(await evaluate(`({...window.__scene.minimap.worldMap.center})`),touchStart,'touch drag pans');
+ await evaluate(`document.querySelector('.world-map-close').click()`);
+ assert.deepEqual(errors,[],'browser exceptions');
+ console.log('PASS: desktop/mobile layout, cache, tracking, modal click/M/Esc/X, zoom, drag, reset, blocked movement and browser exceptions. No screenshots created.');
+}finally{ws?.close();browser.kill();}
