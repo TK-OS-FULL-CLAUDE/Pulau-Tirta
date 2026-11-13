@@ -28,9 +28,12 @@ npm run dev        # Vite (5173) + server API (3000) dengan hot reload
 npm test           # tes guardrail, aturan kebocoran, logika misi, Festival Hujan
 npm run typecheck
 npm run uji:tiko   # uji kualitas Tiko: 30 soal materi, 50 prompt nakal, kebocoran tingkat 1–2
+npm run uji:tiko -- --offline  # uji cadangan/template, tanpa kuota API
 ```
 
-`npm run uji:tiko` memakai model kalau API key terisi dan `TIKO_MOCK=0` (sekitar 100 panggilan) dan menulis laporan per jawaban ke `uji-hasil/`. Tanpa key, hanya filter, cadangan, dan template yang diuji. Soal ada di `scripts/uji-tiko/`. Target PRD: materi ≥ 90% benar, prompt nakal 100% aman, 0 kebocoran.
+`npm run uji:tiko` memakai model kalau API key terisi dan `TIKO_MOCK` bukan `1`, lalu menulis laporan per jawaban ke `uji-hasil/`. Pengujian berjalan berurutan dengan jeda 4,5 detik antarpanggilan; atur `TIKO_UJI_JEDA_MS` sesuai kuota penyedia. Seluruh set bisa memerlukan beberapa menit dan hingga sekitar 100 panggilan. Tanpa key atau dengan `--offline`, semua pertanyaan tetap dinilai, tetapi hasilnya hanya membuktikan kualitas cadangan/template. Soal ada di `scripts/uji-tiko/`. Target PRD: materi ≥ 90% benar, prompt nakal 100% aman, 0 kebocoran.
+
+Laporan memisahkan sumber model/cadangan/template. Saat API gagal, dijeda, tidak menghasilkan jawaban model, atau melewati batas waktu, uji online berstatus **BELUM TERVERIFIKASI** dan keluar dengan kode gagal meskipun semua jawaban cadangan benar. Jangan memakai skor offline sebagai bukti kualitas model langsung. Pemeriksaan kata kunci tetap perlu ditinjau manual.
 
 ## Cara bermain
 
@@ -121,13 +124,14 @@ flowchart LR
 1. Pesan anak diperiksa dulu (panjang, data pribadi, kata kasar, cerita yang mengkhawatirkan). Yang tidak lolos dijawab template tanpa memanggil model.
 2. Server menambahkan konteks game (lokasi, misi, alasan yang dipilih, tingkat petunjuk) dan hanya kartu materi yang relevan.
 3. Jawaban model diperiksa lagi: kepantasan, panjang maksimal 3 kalimat, dan aturan kebocoran per misi dan per tingkat.
-4. Kalau model gagal, lambat (lebih dari 8 detik), atau jawabannya tidak lolos, Tiko memakai jawaban cadangan.
+4. Kalau model gagal, melewati batas waktu (bawaan 7 detik, maksimal 7,5 detik), atau jawabannya tidak lolos, Tiko memakai jawaban cadangan. Kuota habis/429 menjeda panggilan sesuai `Retry-After` (bawaan 60 detik); timeout atau koneksi gagal menjedanya 15 detik agar permintaan berikutnya langsung memakai cadangan. Setelah jeda, model dicoba lagi.
 
 ## Desain prompt dan guardrail
 
 - Tiko tidak pernah memberi jawaban pertanyaan misi. Petunjuk bertingkat: 1 pertanyaan balik, 2 menunjuk bukti di layar, 3 menjelaskan langkah.
 - **Aturan kebocoran** (`shared/guardrail.ts`): di tingkat 1–2, kata jawaban (contoh "uap", "menguap") dilarang; di tingkat 3 konsep boleh disebut, tetapi kalimat yang mengutip atau terlalu mirip dengan pilihan benar ditolak. Pemeriksa yang sama berlaku untuk model dan jawaban cadangan. Ketikan bebas di lokasi misi yang belum selesai ikut aturan tingkat 1, supaya "kasih tau jawabannya" tidak melewati petunjuk bertingkat.
 - Fakta Tiko hanya dari `content/kartu-materi.json`.
+- Pertanyaan tentang identitas AI, kemungkinan Tiko salah, dan privasi percakapan dijawab template yang sama di server dan browser offline, tanpa bergantung pada model. Pertanyaan lintas tahap mengambil beberapa kartu materi agar sebab-akibatnya tetap lengkap saat API mati.
 - Sapaan proaktif dan "Aku harus ke mana?" memakai template, tanpa memanggil model.
 - Siswa yang baru benar setelah petunjuk tingkat 3 dicatat "dibantu penuh".
 

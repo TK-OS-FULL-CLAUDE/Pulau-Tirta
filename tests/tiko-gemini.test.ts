@@ -1,16 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cariMisi } from '../shared/content';
-import { infoModel, jawabTiko, permintaanGemini } from '../server/tiko';
+import { infoModel, infoJedaModel, jawabTiko, permintaanGemini, type CatatanTiko } from '../server/tiko';
 
 type Panggilan = { url: string; body: Record<string, any>; headers: Record<string, string> };
 
-function balasGemini(...isi: { status?: number; json: unknown }[]) {
+function balasGemini(...isi: { status?: number; json: unknown; headers?: Record<string, string> }[]) {
   const panggilan: Panggilan[] = [];
   let i = 0;
   const fetchPalsu = vi.fn(async (url: string, init: RequestInit) => {
     panggilan.push({ url, body: JSON.parse(String(init.body)), headers: init.headers as Record<string, string> });
     const b = isi[Math.min(i++, isi.length - 1)];
-    return new Response(JSON.stringify(b.json), { status: b.status ?? 200 });
+    return new Response(JSON.stringify(b.json), { status: b.status ?? 200, headers: b.headers });
   });
   vi.stubGlobal('fetch', fetchPalsu);
   return panggilan;
@@ -20,9 +20,11 @@ const teks = (t: string, extra: Record<string, unknown> = {}) => ({
   candidates: [{ content: { parts: [{ text: 'rencana tersembunyi', thought: true }, { text: t }] }, finishReason: 'STOP', ...extra }],
 });
 
+let nomorUji = 0;
 beforeEach(() => {
   vi.stubEnv('TIKO_PROVIDER', 'gemini');
-  vi.stubEnv('GEMINI_API_KEY', 'kunci-uji');
+  // Tiap tes mewakili konfigurasi penyedia terpisah, tanpa membawa jeda kuota dari tes sebelumnya.
+  vi.stubEnv('GEMINI_API_KEY', `kunci-uji-${++nomorUji}`);
   vi.stubEnv('TIKO_MOCK', '0');
   vi.stubEnv('TIKO_MODEL', '');
 });
@@ -30,6 +32,7 @@ beforeEach(() => {
 afterEach(() => {
   vi.unstubAllEnvs();
   vi.unstubAllGlobals();
+  vi.useRealTimers();
 });
 
 describe('Tiko dengan Gemini', () => {
@@ -57,7 +60,7 @@ describe('Tiko dengan Gemini', () => {
     expect(j).toEqual({ teks: 'Coba lihat kolam yang kena sinar. Apa bedanya?', sumber: 'model', tingkat: 1 });
     expect(panggilan[0].url).toContain('/models/gemini-3.5-flash-lite:generateContent');
     expect(panggilan[0].url).not.toContain('kunci-uji');
-    expect(panggilan[0].headers['x-goog-api-key']).toBe('kunci-uji');
+    expect(panggilan[0].headers['x-goog-api-key']).toBe(process.env.GEMINI_API_KEY);
   });
 
   it('jawaban yang membocorkan jawaban misi diganti petunjuk cadangan', async () => {
@@ -102,5 +105,66 @@ describe('Tiko dengan Gemini', () => {
     });
     expect(panggilan).toHaveLength(1);
     expect(JSON.stringify(panggilan[0].body)).not.toContain('3456');
+  });
+
+  it('kuota habis menjeda chat dan fun fact, lalu mencoba lagi setelah Retry-After', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    const panggilan = balasGemini(
+      { status: 429, headers: { 'retry-after': '90' }, json: { error: { message: 'quota exceeded' } } },
+      { json: teks('Uap air yang dingin berubah menjadi titik air pembentuk awan.') },
+    );
+    const catatan: CatatanTiko[] = [];
+    const req = { pesan: 'Apa itu pengembunan?', mode: 'tanya' as const };
+    expect((await jawabTiko(req, (c) => catatan.push(c))).sumber).toBe('cadangan');
+    expect(infoJedaModel().ms).toBe(90_000);
+    await jawabTiko(req, (c) => catatan.push(c));
+    await jawabTiko({ pesan: 'Fakta seru', mode: 'fakta' });
+    expect(panggilan).toHaveLength(1);
+    expect(catatan.some((c) => c.ditunda)).toBe(true);
+    vi.setSystemTime(Date.now() + 90_001);
+    expect((await jawabTiko(req)).sumber).toBe('model');
+    expect(panggilan).toHaveLength(2);
+  });
+
+  it('timeout memakai cadangan dan tidak mengulang API di permintaan berikutnya', async () => {
+    const fetchPalsu = vi.fn().mockRejectedValue(new DOMException('The operation was aborted due to timeout', 'TimeoutError'));
+    vi.stubGlobal('fetch', fetchPalsu);
+    const req = { pesan: 'Apa itu pengembunan?', mode: 'tanya' as const };
+    expect((await jawabTiko(req)).sumber).toBe('cadangan');
+    expect(infoJedaModel().ms).toBeGreaterThan(0);
+    expect((await jawabTiko(req)).teks).toContain('Pengembunan');
+    expect(fetchPalsu).toHaveBeenCalledTimes(1);
+  });
+
+  it('identitas dan privasi dijawab tanpa API walau kuota tersedia', async () => {
+    const panggilan = balasGemini({ json: teks('Jawaban model yang seharusnya tidak dipakai.') });
+    for (const pesan of ['kamu manusia ya?', 'kamu bisa salah nggak?', 'obrolan kita disimpan nggak?']) {
+      expect((await jawabTiko({ pesan, mode: 'tanya' })).sumber).toBe('template');
+    }
+    expect(panggilan).toHaveLength(0);
+  });
+
+  it('koneksi putus tidak menyebabkan setiap pertanyaan mengulangi permintaan gagal', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    const fetchPalsu = vi.fn().mockRejectedValue(new TypeError('fetch failed'));
+    vi.stubGlobal('fetch', fetchPalsu);
+    const catatan: CatatanTiko[] = [];
+    const req = { pesan: 'Apa itu pengembunan?', mode: 'tanya' as const };
+    await jawabTiko(req, (c) => catatan.push(c));
+    await jawabTiko(req, (c) => catatan.push(c));
+    expect(fetchPalsu).toHaveBeenCalledTimes(1);
+    expect(catatan.some((c) => c.galat === 'fetch failed')).toBe(true);
+    expect(catatan.some((c) => c.ditunda?.includes('Koneksi API gagal'))).toBe(true);
+    vi.setSystemTime(Date.now() + 15_001);
+    await jawabTiko(req);
+    expect(fetchPalsu).toHaveBeenCalledTimes(2);
+  });
+
+  it('mempertahankan inti jawaban sesudah sapaan sebelum batas tiga kalimat', async () => {
+    balasGemini({ json: teks('Halo! Aku Tiko, temanmu di pulau ini. Wah, itu pertanyaan bagus sekali! Tidak, air tidak harus mendidih untuk menguap.') });
+    const j = await jawabTiko({ pesan: 'Air harus mendidih sebelum menguap?', mode: 'tanya' });
+    expect(j.sumber).toBe('model');
+    expect(j.teks).toContain('tidak harus mendidih');
+    expect(j.teks).not.toContain('Aku Tiko');
   });
 });

@@ -113,7 +113,14 @@ export function rapikanJawaban(teks: string): string {
     .trim()
     .match(/[^.!?]+[.!?]*/g);
   if (!kalimat) return teks.trim();
-  return kalimat
+  // Sapaan dan perkenalan model sering menghabiskan tiga kalimat sebelum inti jawaban.
+  // Hanya buang kalimat pembuka yang seluruhnya basa-basi; "Hai, air ..." tetap utuh.
+  const isi = kalimat.filter((k) => !(
+    /^(hai|halo|helo)[!. ]*$/i.test(k.trim()) ||
+    /^(hai[!, ]*|halo[!, ]*)?aku tiko\b/i.test(k.trim()) ||
+    /^(wah[,! ]*)?(itu )?pertanyaan( yang)? (bagus|menarik)/i.test(k.trim())
+  ));
+  return (isi.length ? isi : kalimat)
     .slice(0, MAKS_KALIMAT_JAWABAN)
     .map((k) => k.trim())
     .join(' ');
@@ -201,14 +208,14 @@ export function pilihKartuFunFact(
 export const FUN_FACT_TUNDA =
   'Fun fact-ku soal tempat ini aku simpan dulu sampai misinya selesai, ya. Coba tanya aku lagi nanti!';
 
-const BUKAN_KATA_KUNCI = new Set(['apa', 'itu', 'kenapa', 'mengapa', 'bagaimana', 'gimana', 'yang', 'dari', 'dengan', 'untuk', 'tiko', 'kamu', 'aku', 'dong', 'bisa', 'ada', 'tidak', 'nggak', 'air', 'jadi', 'kalau', 'apakah', 'sama', 'juga', 'kok', 'deh', 'mana', 'saja', 'aja']);
+const BUKAN_KATA_KUNCI = new Set(['apa', 'itu', 'kenapa', 'mengapa', 'bagaimana', 'gimana', 'yang', 'dari', 'dengan', 'untuk', 'tiko', 'kamu', 'aku', 'kita', 'dong', 'bisa', 'ada', 'tidak', 'nggak', 'air', 'jadi', 'kalau', 'apakah', 'sama', 'juga', 'kok', 'deh', 'mana', 'saja', 'aja']);
 
 /**
  * Kartu materi yang paling cocok dengan pertanyaan (kata yang sama atau bentuk dasarnya), untuk jawaban tanpa AI.
  * Tanpa kecocokan: undefined, supaya Tiko tidak menjawab dengan fakta yang tidak nyambung.
  */
 export function kartuPalingCocok(pesan: string, kartu: KartuMateri[]): KartuMateri | undefined {
-  const dasar = (k: string) => k.replace(/^(pen|peng|pem|pe|me|meng|mem|ber|ter|di)(?=[a-z]{3})/, '').replace(/(an|kan|nya)$/, '');
+  const dasar = (k: string) => k.replace(/^(peng|pen|pem|meng|mem|ber|ter|pe|me|di)(?=[a-z]{3})/, '').replace(/(kan|nya|an)$/, '');
   const kata = (pesan.toLowerCase().match(/[a-z]+/g) ?? []).filter((k) => k.length >= 3 && !BUKAN_KATA_KUNCI.has(k));
   let terbaik: KartuMateri | undefined;
   let skor = 0;
@@ -221,4 +228,45 @@ export function kartuPalingCocok(pesan: string, kartu: KartuMateri[]): KartuMate
     }
   }
   return terbaik;
+}
+
+/** Identitas dan privasi harus tetap benar ketika API mati, termasuk di browser offline. */
+export function jawabanTentangTiko(pesan: string): string | undefined {
+  const t = normal(pesan);
+  const balasan: string[] = [];
+  if (/\b(obrolan|percakapan|chat|pesan|riwayat)\b/.test(t) && /simpan|rekam/.test(t))
+    balasan.push('Percakapan tidak disimpan di server; riwayat hanya ada sementara selama aplikasi dibuka.');
+  if (/\b(kamu|tiko|jawabanmu)\b/.test(t) && /\b(salah|keliru|benar|sempurna)\b/.test(t))
+    balasan.push('Aku bisa salah, jadi cek juga Kartu Ilmu atau tanyakan ke guru, ya.');
+  if (/\b(kamu|tiko)\b/.test(t) && /\b(manusia|robot|ai|siapa|program)\b/.test(t))
+    balasan.push('Aku Tiko, AI di dalam game, bukan manusia.');
+  return balasan.length ? balasan.join(' ') : undefined;
+}
+
+/** Pertanyaan sebab-akibat bisa memerlukan lebih dari satu kartu, bukan kecocokan satu kata saja. */
+export function kartuUntukPertanyaan(pesan: string, kartu: KartuMateri[]): KartuMateri[] {
+  const t = normal(pesan);
+  let nomor: number[] | undefined;
+  if (/jaga|hemat|lindungi/.test(t) && /air|siklus/.test(t)) nomor = [12];
+  else if (/siklus air/.test(t) && /urut|tahap|proses|gimana|bagaimana/.test(t)) nomor = [3, 6, 8, 9, 10];
+  else if (/uap/.test(t) && /naik|tinggi|dingin/.test(t)) nomor = [5, 6];
+  else if (/hujan/.test(t) && /tanah|setelah|sesudah/.test(t)) nomor = [9, 10];
+  else if (/sungai/.test(t) && /mana|menuju|muara/.test(t)) nomor = [10];
+  else if (/\bwujud\b|\bes batu\b/.test(t)) nomor = [2];
+  else if (/uap/.test(t) && /lihat|kelihatan|tampak/.test(t)) nomor = [3];
+  const pilihan = nomor?.map((no) => kartu.find((k) => k.no === no)).filter((k): k is KartuMateri => Boolean(k));
+  if (pilihan?.length) return pilihan;
+  const cocok = kartuPalingCocok(pesan, kartu);
+  return cocok ? [cocok] : [];
+}
+
+/** Ambil fakta dari konten yang sama di server dan browser; jangan menjawab dengan kartu acak. */
+export function jawabanMateriCadangan(pesan: string, kartu: KartuMateri[]): string | undefined {
+  const pilihan = kartuUntukPertanyaan(pesan, kartu);
+  if (!pilihan.length) return undefined;
+  if (pilihan.length === 1) return `Ini yang aku tahu: ${pilihan[0].fakta}`;
+  // Ringkasan lintas tahap: tiap kartu menyumbang fakta pertamanya, tetap maksimal tiga kalimat.
+  const fakta = pilihan.map((k) => k.fakta.split(/(?<=[.!?])\s+/)[0].replace(/[.!?]+$/, ''));
+  const teks = fakta.slice(0, 2).join('. ') + (fakta.length > 2 ? `. ${fakta.slice(2).join('; ')}` : '');
+  return `Ini yang aku tahu: ${teks}.`;
 }

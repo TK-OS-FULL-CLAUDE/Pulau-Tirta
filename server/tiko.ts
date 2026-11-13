@@ -9,6 +9,9 @@ import {
   periksaMasuk,
   petunjukCadangan,
   kartuPalingCocok,
+  kartuUntukPertanyaan,
+  jawabanMateriCadangan,
+  jawabanTentangTiko,
   pilihKartuFunFact,
   type HasilKeluar,
 } from '../shared/guardrail';
@@ -41,7 +44,9 @@ export interface JawabanChat {
   kartu?: number;
 }
 
-const BATAS_WAKTU_MS = Number(process.env.TIKO_TIMEOUT_MS ?? 8000);
+// Sisakan waktu untuk pemeriksaan keluaran dan cadangan sebelum batas delapan detik PRD.
+const timeoutDiminta = Number(process.env.TIKO_TIMEOUT_MS ?? 7000);
+const BATAS_WAKTU_MS = Number.isFinite(timeoutDiminta) && timeoutDiminta > 0 ? Math.min(timeoutDiminta, 7500) : 7000;
 
 /** Penyedia model: `TIKO_PROVIDER`, atau otomatis dari key yang terisi (Gemini lebih dulu). */
 export type Penyedia = 'gemini' | 'anthropic';
@@ -75,6 +80,36 @@ export interface CatatanTiko {
   mentah?: string;
   keluar?: HasilKeluar;
   galat?: string;
+  ditunda?: string;
+}
+
+// Jangan terus menembak penyedia yang sedang menolak kuota atau timeout. Status ini hanya di memori.
+let jedaModel = { identitas: '', sampai: 0, alasan: '' };
+function identitasModel(): string {
+  return `${penyedia()}:${modelDipakai()}:${keyPenyedia(penyedia())}`;
+}
+export function infoJedaModel(): { ms: number; alasan: string } {
+  return jedaModel.identitas === identitasModel()
+    ? { ms: Math.max(0, jedaModel.sampai - Date.now()), alasan: jedaModel.alasan }
+    : { ms: 0, alasan: '' };
+}
+class GalatModel extends Error {
+  constructor(message: string, readonly status: number, readonly jedaMs = 60_000) { super(message); }
+}
+function catatKegagalan(e: unknown, catat?: (c: CatatanTiko) => void): void {
+  const pesan = e instanceof Error ? e.message : String(e);
+  catat?.({ galat: pesan });
+  const status = (e as { status?: number })?.status;
+  const timeout = e instanceof Error && /timeout|timed out|aborted/i.test(`${e.name} ${pesan}`);
+  const jaringan = e instanceof Error && /fetch failed|ECONNREFUSED|ENETUNREACH|ENOTFOUND|EAI_AGAIN|ECONNRESET|APIConnectionError/i.test(`${e.name} ${pesan}`);
+  if (status === 429 || timeout || jaringan) {
+    jedaModel = {
+      identitas: identitasModel(),
+      sampai: Date.now() + (status === 429 ? (e instanceof GalatModel ? e.jedaMs : 60_000) : 15_000),
+      alasan: status === 429 ? 'Kuota/batas laju API; memakai cadangan sementara.'
+        : timeout ? 'API timeout; memakai cadangan sementara.' : 'Koneksi API gagal; memakai cadangan sementara.',
+    };
+  }
 }
 
 let klien: Anthropic | null = null;
@@ -144,7 +179,13 @@ async function panggilGemini(system: string, messages: PesanModel[]): Promise<st
     res = await kirim(false);
     data = (await res.json().catch(() => ({}))) as BalasanGemini;
   }
-  if (!res.ok) throw new Error(`Gemini ${res.status}: ${data.error?.message ?? 'tanpa pesan'}`);
+  if (!res.ok) {
+    const retry = res.headers.get('retry-after');
+    const detik = retry ? Number(retry) : NaN;
+    const jeda = Number.isFinite(detik) ? detik * 1000 : retry ? Date.parse(retry) - Date.now() : 60_000;
+    throw new GalatModel(`Gemini ${res.status}: ${data.error?.message ?? 'tanpa pesan'}`, res.status,
+      Number.isFinite(jeda) && jeda > 0 ? jeda : 60_000);
+  }
   if (data.promptFeedback?.blockReason) throw new Error(`Gemini memblokir pesan: ${data.promptFeedback.blockReason}`);
   const kandidat = data.candidates?.[0];
   const teks = (kandidat?.content?.parts ?? [])
@@ -168,7 +209,10 @@ export function systemPrompt(
   /** Mode 'fakta': satu-satunya kartu yang boleh diceritakan. */
   kartuFakta?: KartuMateri,
 ): string {
-  const kartu = (kartuFakta ? [kartuFakta] : kartuUntuk(misi))
+  const tersedia = kartuUntuk(misi);
+  const relevan = req.mode === 'tanya' && (!misi || req.statusMisi === 'selesai')
+    ? kartuUntukPertanyaan(req.pesan, tersedia) : [];
+  const kartu = (kartuFakta ? [kartuFakta] : relevan.length ? relevan : tersedia)
     .map((k) => `${k.no}. ${k.fakta}`)
     .join('\n');
   const tugasFakta = kartuFakta
@@ -186,6 +230,8 @@ Kamu menemani anak SD kelas V belajar siklus air.
 
 CARA BICARA
 - Bahasa Indonesia sederhana. Maksimal 3 kalimat pendek.
+- Langsung jawab inti pertanyaan pada kalimat pertama; jangan menghabiskan kalimat untuk sapaan, perkenalan, atau pujian.
+- Jawab semua bagian pertanyaan. Untuk sebab-akibat, jelaskan apa yang berubah dan mengapa, bukan hanya mengulang keadaan awal.
 - Panggil pemain "kamu", sebut dirimu "aku". Ramah, sabar, tidak menggurui.
 - Kalau memakai istilah (penguapan, pengembunan, dll.), jelaskan dengan contoh sehari-hari.
 - Kalau ditanya, jujur bahwa kamu AI di dalam game.
@@ -216,8 +262,8 @@ ${kartu}`;
 }
 
 function cadanganTanya(misi: Misi | undefined, pesan = ''): string {
-  const cocok = kartuPalingCocok(pesan, kartuUntuk(misi));
-  if (cocok) return `Ini yang aku tahu: ${cocok.fakta}`;
+  const jawaban = jawabanMateriCadangan(pesan, kartuUntuk(misi));
+  if (jawaban) return jawaban;
   if (!pesan) {
     const fakta = kartuUntuk(misi)[0]?.fakta;
     if (fakta) return `Ini yang aku tahu: ${fakta}`;
@@ -280,6 +326,10 @@ async function panggilModel(
 export async function jawabTiko(req: PermintaanChat, catat?: (c: CatatanTiko) => void): Promise<JawabanChat> {
   const masuk = periksaMasuk(req.pesan);
   if (!masuk.lolos) return { teks: masuk.balasan, sumber: 'template' };
+  if (req.mode === 'tanya') {
+    const tentang = jawabanTentangTiko(masuk.pesan);
+    if (tentang) return { teks: tentang, sumber: 'template' };
+  }
 
   const misi = req.misiId ? cariMisi(req.misiId) : undefined;
   const tingkat =
@@ -298,6 +348,8 @@ export async function jawabTiko(req: PermintaanChat, catat?: (c: CatatanTiko) =>
   if (req.mode === 'fakta') return jawabFakta({ ...req, pesan: masuk.pesan }, misi, misiAktif, catat);
 
   if (!pakaiModel()) return cadangan();
+  const jeda = infoJedaModel();
+  if (jeda.ms) { catat?.({ ditunda: jeda.alasan }); return cadangan(); }
   try {
     const mentah = await panggilModel({ ...req, pesan: masuk.pesan }, misi, tingkat, tingkatLarangan);
     const keluar = periksaKeluar(mentah, { misi, tingkat: tingkatLarangan });
@@ -305,7 +357,7 @@ export async function jawabTiko(req: PermintaanChat, catat?: (c: CatatanTiko) =>
     if (!keluar.aman) return cadangan();
     return { teks: keluar.teks, sumber: 'model', tingkat };
   } catch (e) {
-    catat?.({ galat: e instanceof Error ? e.message : String(e) });
+    catatKegagalan(e, catat);
     return cadangan();
   }
 }
@@ -326,6 +378,8 @@ async function jawabFakta(
   if (!kartu) return { teks: FUN_FACT_TUNDA, sumber: 'template' };
   const cadangan: JawabanChat = { teks: faktaCadangan(kartu), sumber: 'cadangan', kartu: kartu.no };
   if (!pakaiModel()) return cadangan;
+  const jeda = infoJedaModel();
+  if (jeda.ms) { catat?.({ ditunda: jeda.alasan }); return cadangan; }
   const tingkatLarangan: Tingkat | undefined = misiAktif ? 1 : undefined;
   try {
     // Riwayat tidak dikirim: fun fact berdiri sendiri, dan prompt-nya hanya memuat satu kartu.
@@ -335,7 +389,7 @@ async function jawabFakta(
     if (!keluar.aman) return cadangan;
     return { teks: keluar.teks, sumber: 'model', kartu: kartu.no };
   } catch (e) {
-    catat?.({ galat: e instanceof Error ? e.message : String(e) });
+    catatKegagalan(e, catat);
     return cadangan;
   }
 }
