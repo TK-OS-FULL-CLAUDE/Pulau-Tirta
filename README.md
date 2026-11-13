@@ -40,7 +40,9 @@ Laporan memisahkan sumber model/cadangan/template. Saat API gagal, dijeda, tidak
 | Tombol | Fungsi |
 | --- | --- |
 | WASD / panah | Berjalan |
-| E, Spasi, atau Enter | Bicara dengan warga, membuka misi, melanjutkan dialog |
+| E atau Enter | Bicara dengan warga, membuka misi |
+| E, Enter, atau Spasi | Melanjutkan dialog |
+| Spasi | Lompat |
 | T | Tanya Tiko (atau klik ikon Tiko di kiri bawah) |
 | J | Jurnal Petualangan: status keempat tempat, satu kalimat petunjuk, Kartu Ilmu |
 | Esc | Menu jeda: lanjutkan, suara nyala/mati, Tentang Tiko, mulai dari awal |

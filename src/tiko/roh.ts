@@ -71,6 +71,11 @@ export class RohTiko {
     this.suasana = s;
   }
 
+  /** Puncak kepala roh di dunia, untuk gelembung percakapan. */
+  puncak(): Titik {
+    return { x: this.sprite.x, y: this.sprite.y - this.sprite.displayHeight / 2 };
+  }
+
   private perbarui(waktu: number, dtMs: number): void {
     const p = this.pemain();
     if (!p) return;
