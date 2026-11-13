@@ -5,6 +5,7 @@ import { explorerFrame, explorerShadow, playerMovementDelta } from './game/playe
 import './style.css';
 import { FESTIVAL, MISI_UTAMA, cariMisi } from '../shared/content';
 import {
+  festivalTerbuka,
   jawab,
   mulaiMisi,
   muat,
@@ -29,6 +30,7 @@ import { aturTitikKepala, bukaPercakapan } from './ui/kotak-dialog';
 import { bukaJeda, bukaJudul, bukaTamat } from './ui/layar';
 import { pasangPlaytest } from './ui/playtest';
 import { Suara } from './ui/suara';
+import { ukuranDasar } from './ui/ukuran-game';
 
 const q = new URLSearchParams(location.search);
 /** Mode playtest untuk pendamping (lihat src/ui/playtest.ts). Mengalahkan mode demo. */
@@ -370,15 +372,18 @@ const dunia = new SharpWorld({
   pindahWilayah: (lokasi) => { lokasiSekarang = lokasi; },
   interaksi,
   namaWarga: (id) => WARGA.penduduk[id]?.nama,
+  // Titik desa baru menjadi Festival Hujan setelah keempat tempat pulih; sebelum dan sesudahnya, yang menjawab Kepala Desa.
+  namaTempat: (id) => (id !== 'desa' ? undefined : festivalTerbuka(progres) && !progres.festivalSelesai ? 'Festival Hujan' : WARGA.pembicara.kades?.nama),
   bicara: ajakBicara,
 });
 aturTitikKepala((siapa) => dunia.titikKepala(siapa));
 
-new Phaser.Game({
+const wadahGame = document.getElementById('game')!;
+const awal = wadahGame.getBoundingClientRect();
+const game = new Phaser.Game({
   type: Phaser.AUTO,
   parent: 'game',
-  width: LEBAR,
-  height: TINGGI,
+  ...(awal.width > 0 && awal.height > 0 ? ukuranDasar(awal.width, awal.height, LEBAR, TINGGI) : { width: LEBAR, height: TINGGI }),
   backgroundColor: '#1f6f8b',
   pixelArt: true,
   roundPixels: true,
@@ -389,6 +394,13 @@ new Phaser.Game({
   audio: { noAudio: true },
   scene: [dunia],
 });
+new ResizeObserver(() => {
+  const { width, height } = wadahGame.getBoundingClientRect();
+  // Di layar kecil canvas disembunyikan selama misi; ukurannya disesuaikan lagi saat canvas tampil.
+  if (width < 1 || height < 1 || (game.canvas && getComputedStyle(game.canvas).display === 'none')) return;
+  const u = ukuranDasar(width, height, LEBAR, TINGGI);
+  if (u.width !== game.scale.width || u.height !== game.scale.height) game.scale.setGameSize(u.width, u.height);
+}).observe(wadahGame);
 
 const SALAM = 'Halo, aku Tiko! Aku tetes air yang tersesat. Pulau ini kekeringan. Jalan pakai WASD, tekan E di dekat tempat yang rusak.';
 

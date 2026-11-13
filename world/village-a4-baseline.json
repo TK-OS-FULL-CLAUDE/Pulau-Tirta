@@ -3,5 +3,5 @@
   "public/maps/pulau-tirta-v34-a3.json": "769b4d34bf355bf272918323fbc509666ee8128bb0bb120b463f5b7155c16d30",
   "src/game/living-model.ts": "d5b8ba58338f8df7d76d4994405bf48086d7d20c85c3b20ec69465fab7b0ef2a",
   "src/game/map-data.ts": "c0c7585cfb6e79ac9cd2f23b7380b9bf521137565c04c18d07963c146c3bb6e3",
-  "src/game/world.ts": "6266dc62882b03450d172824509b5ab1ca10d833e49e272d2665d41ad96826bd"
+  "src/game/world.ts": "a4025b79793fe8ca52c2f4b1978143878d389da691969792e44a01f986943d51"
 }
