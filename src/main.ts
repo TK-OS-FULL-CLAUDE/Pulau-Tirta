@@ -235,19 +235,19 @@ class SharpWorld extends DuniaScene {
   private roh?: RohTiko;
   /**
    * Titik di atas kepala pembicara, dalam pixel relatif ke #game, untuk gelembung percakapan (src/ui/kotak-dialog.ts).
-   * Warga memakai sprite-nya, Tiko memakai rohnya, Kepala Desa memakai titik Desa Tirta. Kalau titiknya di luar layar,
-   * gelembung muncul di atas kepala pemain.
+   * Warga memakai sprite-nya, Tiko memakai rohnya. Kalau titiknya di luar layar, gelembung muncul di atas kepala
+   * pemain. Kepala Desa tidak punya titik, jadi pesannya tampil di panel tengah atas.
    */
   titikKepala(siapa: string): { x: number; y: number } | undefined {
     const state = this.explorerState();
     if (!state.pemain) return undefined;
     const npc = state.living?.npcs.find((n) => n.plan.id === siapa && n.image.visible);
-    const desa = LOKASI.find((l) => l.id === 'desa');
+    // Kepala Desa tidak punya sosok di peta: pesannya tampil di panel tengah atas (lihat kotak-dialog.ts).
+    if (siapa === 'kades') return undefined;
     const kepalaPemain = { x: state.visualPemain.x, y: state.visualPemain.getTopCenter().y };
     const dunia =
       siapa === 'tiko' && this.roh ? this.roh.puncak()
       : npc ? { x: npc.image.x, y: npc.image.getTopCenter().y }
-      : siapa === 'kades' && desa ? { x: desa.x, y: desa.y - 6 }
       : kepalaPemain;
     const kam = this.cameras.main;
     const layar = (t: { x: number; y: number }) => ({ x: (t.x - kam.worldView.x) * kam.zoom, y: (t.y - kam.worldView.y) * kam.zoom });
@@ -351,7 +351,7 @@ class SharpWorld extends DuniaScene {
     // Roh Tiko memutari pemain; panel memberi tahu kapan Tiko berpikir atau berbicara.
     // Sprite pemain adalah field privat DuniaScene, dan world.ts dikunci tes preservasi World, jadi dibaca dari sini.
     const pemain = () => (this as unknown as { pemain?: Phaser.GameObjects.Sprite }).pemain;
-    const roh = new RohTiko(this, () => pemain());
+    const roh = new RohTiko(this, () => pemain(), () => document.getElementById('kotak-dialog')?.hasAttribute('open') === true);
     this.roh = roh;
     panel.pantau((s) => roh.atur(s));
     const wilayahPuncak = DUNIA.wilayah.find((w) => w.lokasi.misiId === 'misi-2')?.batas;
