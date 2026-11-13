@@ -15,6 +15,8 @@ import {
   type Progres,
 } from '../shared/missions';
 import { DuniaScene, LEBAR, LOKASI, TINGGI, type Lokasi } from './game/world';
+import { DUNIA, PETA_RUNTIME } from './game/world-map';
+import { SuasanaPuncak } from './efek/puncak-kabut';
 import { PanelTiko } from './tiko/panel';
 import { RohTiko } from './tiko/roh';
 import { isiJurnal } from '../shared/jurnal';
@@ -59,6 +61,12 @@ let sudahDiajakFestival = false;
 
 const persenPulih = () => MISI_UTAMA.filter((m) => progres.status[m.id] === 'selesai').length / MISI_UTAMA.length;
 
+/** Awan dan kabut Puncak Kabut di peta (src/efek/puncak-kabut.ts). */
+let suasanaPuncak: SuasanaPuncak | undefined;
+/** Jawaban Puncak Kabut sudah benar tapi dialog misinya masih terbuka: awan baru terbentuk saat anak kembali ke pulau. */
+let puncakDitunda = false;
+const puncakPulih = () => progres.status['misi-2'] === 'selesai';
+
 function perbarui(p: Progres): void {
   const lama = progres;
   progres = p;
@@ -67,6 +75,7 @@ function perbarui(p: Progres): void {
   else if (!DEMO) simpan(progres);
   terakhirMaju = Date.now();
   dunia.segarkan();
+  if (!puncakDitunda) suasanaPuncak?.sesuaikan(puncakPulih());
   perbaruiLencana();
 }
 
@@ -130,7 +139,10 @@ function interaksi(lokasi: Lokasi): void {
         pilih: (pilihanId) => {
           const hasil = jawab(progres, misi.id, pilihanId);
           // Tempatnya baru berubah saat anak kembali ke pulau, supaya perubahannya terlihat (lihat tutup di bawah).
-          if (hasil.benar && !sudahSelesai) dunia.tundaPemulihan(misi.id);
+          if (hasil.benar && !sudahSelesai) {
+            dunia.tundaPemulihan(misi.id);
+            if (misi.id === 'misi-2') puncakDitunda = true;
+          }
           perbarui(hasil.progres);
           suara.main(hasil.benar ? 'benar' : 'keliru');
           if (hasil.benar) {
@@ -145,8 +157,10 @@ function interaksi(lokasi: Lokasi): void {
         },
         tutup: () => {
           lepas();
+          if (misi.id === 'misi-2') puncakDitunda = false;
           if (!sudahSelesai && progres.status[misi.id] === 'selesai') {
             dunia.rayakanPemulihan(misi.id);
+            if (misi.id === 'misi-2') suasanaPuncak?.pulihkan();
             sorak(`${lokasi.nama} pulih!`);
             suara.main('pulih');
           }
@@ -258,6 +272,8 @@ class SharpWorld extends DuniaScene {
     const pemain = () => (this as unknown as { pemain?: Phaser.GameObjects.Sprite }).pemain;
     const roh = new RohTiko(this, () => pemain());
     panel.pantau((s) => roh.atur(s));
+    const wilayahPuncak = DUNIA.wilayah.find((w) => w.lokasi.misiId === 'misi-2')?.batas;
+    if (wilayahPuncak) suasanaPuncak = new SuasanaPuncak(this, wilayahPuncak, () => pemain(), puncakPulih(), PETA_RUNTIME);
   }
 }
 
