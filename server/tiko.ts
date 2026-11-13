@@ -8,9 +8,12 @@ import {
   periksaKeluar,
   periksaMasuk,
   petunjukCadangan,
+  kartuPalingCocok,
   pilihKartuFunFact,
   type HasilKeluar,
 } from '../shared/guardrail';
+
+export { kartuPalingCocok };
 
 /** 'fakta' = tombol "Fun fact": Tiko menceritakan satu kartu materi dengan gaya seru. */
 export type Mode = 'petunjuk' | 'tanya' | 'fakta';
@@ -39,15 +42,32 @@ export interface JawabanChat {
 }
 
 const BATAS_WAKTU_MS = Number(process.env.TIKO_TIMEOUT_MS ?? 8000);
-const MODEL = process.env.TIKO_MODEL ?? 'claude-haiku-5-5';
 
-function pakaiModel(): boolean {
-  return Boolean(process.env.ANTHROPIC_API_KEY) && process.env.TIKO_MOCK !== '1';
+/** Penyedia model: `TIKO_PROVIDER`, atau otomatis dari key yang terisi (Gemini lebih dulu). */
+export type Penyedia = 'gemini' | 'anthropic';
+const MODEL_BAWAAN: Record<Penyedia, string> = { gemini: 'gemini-3.5-flash-lite', anthropic: 'claude-haiku-5-5' };
+
+function penyedia(): Penyedia {
+  const p = process.env.TIKO_PROVIDER?.trim().toLowerCase();
+  if (p === 'gemini' || p === 'anthropic') return p;
+  return process.env.GEMINI_API_KEY ? 'gemini' : 'anthropic';
 }
 
-/** Untuk laporan uji: model apa yang dipakai, atau mode cadangan. */
-export function infoModel(): { pakaiModel: boolean; model: string } {
-  return { pakaiModel: pakaiModel(), model: MODEL };
+function keyPenyedia(p: Penyedia): string | undefined {
+  return (p === 'gemini' ? process.env.GEMINI_API_KEY : process.env.ANTHROPIC_API_KEY)?.trim() || undefined;
+}
+
+function modelDipakai(): string {
+  return process.env.TIKO_MODEL?.trim() || MODEL_BAWAAN[penyedia()];
+}
+
+export function pakaiModel(): boolean {
+  return Boolean(keyPenyedia(penyedia())) && process.env.TIKO_MOCK !== '1';
+}
+
+/** Untuk laporan uji dan /api/health: penyedia dan model yang dipakai, atau mode cadangan. */
+export function infoModel(): { pakaiModel: boolean; penyedia: Penyedia; model: string } {
+  return { pakaiModel: pakaiModel(), penyedia: penyedia(), model: modelDipakai() };
 }
 
 /** Yang terjadi di dalam satu jawaban: teks mentah model, hasil guardrail keluar, atau galat API. Hanya untuk uji. */
@@ -61,6 +81,79 @@ let klien: Anthropic | null = null;
 function getKlien(): Anthropic {
   if (!klien) klien = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY, timeout: BATAS_WAKTU_MS, maxRetries: 0 });
   return klien;
+}
+
+type PesanModel = { role: 'user' | 'assistant'; content: string };
+
+async function panggilAnthropic(system: string, messages: PesanModel[]): Promise<string> {
+  const res = await getKlien().messages.create({
+    model: modelDipakai(),
+    max_tokens: 200,
+    // Haiku 5.5 menolak temperature selain bawaan (400), jadi tidak dikirim. Thinking-nya menyala secara bawaan dan
+    // bisa menghabiskan max_tokens sebelum ada teks; jawaban Tiko pendek, jadi thinking dimatikan.
+    thinking: { type: 'disabled' },
+    system,
+    messages,
+  });
+  return res.content
+    .filter((b): b is Anthropic.TextBlock => b.type === 'text')
+    .map((b) => b.text)
+    .join(' ');
+}
+
+/** Filter keamanan Gemini dipasang paling ketat, karena penggunanya anak. Guardrail keluar tetap jalan sesudahnya. */
+const KEAMANAN_GEMINI = [
+  'HARM_CATEGORY_HARASSMENT',
+  'HARM_CATEGORY_HATE_SPEECH',
+  'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+  'HARM_CATEGORY_DANGEROUS_CONTENT',
+].map((category) => ({ category, threshold: 'BLOCK_LOW_AND_ABOVE' }));
+
+/** Isi permintaan REST `generateContent`. Dipisah supaya bisa diuji tanpa memanggil API. */
+export function permintaanGemini(system: string, messages: PesanModel[], thinking = true): Record<string, unknown> {
+  return {
+    systemInstruction: { parts: [{ text: system }] },
+    contents: messages.map((m) => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] })),
+    safetySettings: KEAMANAN_GEMINI,
+    // Temperature dibiarkan bawaan (saran Google untuk Gemini 3). Batas token cukup longgar karena token berpikir
+    // ikut dihitung; panjang jawaban tetap dipotong menjadi 3 kalimat oleh guardrail keluar.
+    generationConfig: { maxOutputTokens: 1024, ...(thinking ? { thinkingConfig: { thinkingLevel: 'minimal' } } : {}) },
+  };
+}
+
+interface BalasanGemini {
+  candidates?: { content?: { parts?: { text?: string; thought?: boolean }[] }; finishReason?: string }[];
+  promptFeedback?: { blockReason?: string };
+  error?: { message?: string };
+}
+
+async function panggilGemini(system: string, messages: PesanModel[]): Promise<string> {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelDipakai())}:generateContent`;
+  const sinyal = AbortSignal.timeout(BATAS_WAKTU_MS);
+  const kirim = (thinking: boolean) =>
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': keyPenyedia('gemini') ?? '' },
+      body: JSON.stringify(permintaanGemini(system, messages, thinking)),
+      signal: sinyal,
+    });
+  let res = await kirim(true);
+  let data = (await res.json().catch(() => ({}))) as BalasanGemini;
+  // Model yang tidak mengenal thinkingLevel menolak dengan 400; coba sekali lagi tanpa pengaturan itu.
+  if (res.status === 400 && /thinking/i.test(data.error?.message ?? '')) {
+    res = await kirim(false);
+    data = (await res.json().catch(() => ({}))) as BalasanGemini;
+  }
+  if (!res.ok) throw new Error(`Gemini ${res.status}: ${data.error?.message ?? 'tanpa pesan'}`);
+  if (data.promptFeedback?.blockReason) throw new Error(`Gemini memblokir pesan: ${data.promptFeedback.blockReason}`);
+  const kandidat = data.candidates?.[0];
+  const teks = (kandidat?.content?.parts ?? [])
+    .filter((p) => !p.thought && typeof p.text === 'string')
+    .map((p) => p.text)
+    .join(' ')
+    .trim();
+  if (!teks) throw new Error(`Gemini tidak memberi teks (${kandidat?.finishReason ?? 'tanpa alasan'})`);
+  return teks;
 }
 
 /**
@@ -122,28 +215,6 @@ KARTU MATERI
 ${kartu}`;
 }
 
-const BUKAN_KATA_KUNCI = new Set(['apa', 'itu', 'kenapa', 'mengapa', 'bagaimana', 'gimana', 'yang', 'dari', 'dengan', 'untuk', 'tiko', 'kamu', 'aku', 'dong', 'bisa', 'ada', 'tidak', 'nggak', 'air', 'jadi', 'kalau', 'apakah', 'sama', 'juga', 'kok', 'deh', 'mana', 'saja', 'aja']);
-
-/**
- * Kartu materi yang paling cocok dengan pertanyaan (kata yang sama atau bentuk dasarnya), untuk jawaban tanpa AI.
- * Tanpa kecocokan: undefined, supaya Tiko tidak menjawab dengan fakta yang tidak nyambung.
- */
-export function kartuPalingCocok(pesan: string, kartu: KartuMateri[]): KartuMateri | undefined {
-  const dasar = (k: string) => k.replace(/^(pen|peng|pem|pe|me|meng|mem|ber|ter|di)(?=[a-z]{3})/, '').replace(/(an|kan|nya)$/, '');
-  const kata = (pesan.toLowerCase().match(/[a-z]+/g) ?? []).filter((k) => k.length >= 3 && !BUKAN_KATA_KUNCI.has(k));
-  let terbaik: KartuMateri | undefined;
-  let skor = 0;
-  for (const k of kartu) {
-    const fakta = k.fakta.toLowerCase();
-    const s = kata.reduce((n, w) => n + (fakta.includes(w) ? 2 : dasar(w).length >= 3 && fakta.includes(dasar(w)) ? 1 : 0), 0);
-    if (s > skor) {
-      skor = s;
-      terbaik = k;
-    }
-  }
-  return terbaik;
-}
-
 function cadanganTanya(misi: Misi | undefined, pesan = ''): string {
   const cocok = kartuPalingCocok(pesan, kartuUntuk(misi));
   if (cocok) return `Ini yang aku tahu: ${cocok.fakta}`;
@@ -154,6 +225,31 @@ function cadanganTanya(misi: Misi | undefined, pesan = ''): string {
   return BALASAN.cadanganTanya;
 }
 
+/**
+ * Riwayat datang dari browser, jadi diperiksa ulang sebelum dikirim ke model. Pesan anak yang dulu ditahan filter
+ * masuk (data pribadi, kata kasar, cerita yang mengkhawatirkan) dibuang bersama balasan Tiko sesudahnya; tanpa ini,
+ * nomor HP yang ditahan di giliran pertama ikut terkirim ke model di giliran berikutnya.
+ */
+export function rapikanRiwayat(riwayat: unknown): { dari: 'anak' | 'tiko'; teks: string }[] {
+  if (!Array.isArray(riwayat)) return [];
+  const hasil: { dari: 'anak' | 'tiko'; teks: string }[] = [];
+  let buangBalasan = false;
+  for (const r of riwayat.slice(-6)) {
+    const dari = (r as { dari?: unknown })?.dari;
+    const teks = (r as { teks?: unknown })?.teks;
+    if ((dari !== 'anak' && dari !== 'tiko') || typeof teks !== 'string' || !teks.trim()) continue;
+    if (dari === 'anak') {
+      const masuk = periksaMasuk(teks);
+      buangBalasan = !masuk.lolos;
+      if (masuk.lolos) hasil.push({ dari, teks: masuk.pesan });
+    } else {
+      if (!buangBalasan) hasil.push({ dari, teks: teks.slice(0, 400) });
+      buangBalasan = false;
+    }
+  }
+  return hasil;
+}
+
 async function panggilModel(
   req: PermintaanChat,
   misi: Misi | undefined,
@@ -161,25 +257,24 @@ async function panggilModel(
   tingkatLarangan?: Tingkat,
   kartuFakta?: KartuMateri,
 ): Promise<string> {
-  const riwayat = (req.riwayat ?? []).slice(-6).map((r) => ({
+  const riwayat = rapikanRiwayat(req.riwayat).map((r) => ({
     role: r.dari === 'anak' ? ('user' as const) : ('assistant' as const),
     content: r.teks,
   }));
   // API mensyaratkan pesan pertama dari user.
   while (riwayat.length && riwayat[0].role !== 'user') riwayat.shift();
-  const res = await getKlien().messages.create({
-    model: MODEL,
-    max_tokens: 200,
-    // Haiku 5.5 menolak temperature selain bawaan (400), jadi tidak dikirim. Thinking-nya menyala secara bawaan dan
-    // bisa menghabiskan max_tokens sebelum ada teks; jawaban Tiko pendek, jadi thinking dimatikan.
-    thinking: { type: 'disabled' },
-    system: systemPrompt(req, misi, tingkat, tingkatLarangan, kartuFakta),
-    messages: [...riwayat, { role: 'user', content: req.pesan }],
-  });
-  return res.content
-    .filter((b): b is Anthropic.TextBlock => b.type === 'text')
-    .map((b) => b.text)
-    .join(' ');
+  // Dua pesan berurutan dengan peran sama digabung, supaya urutan user/assistant tetap bergantian.
+  for (let i = riwayat.length - 1; i > 0; i--) {
+    if (riwayat[i].role === riwayat[i - 1].role) {
+      riwayat[i - 1].content += `\n${riwayat[i].content}`;
+      riwayat.splice(i, 1);
+    }
+  }
+  // Pesan terakhir di riwayat dari anak: gabungkan dengan pesan baru (lihat di bawah) supaya tidak ada dua user berurutan.
+  const pesanTerakhir = riwayat.at(-1)?.role === 'user' ? riwayat.pop()!.content + '\n' : '';
+  const system = systemPrompt(req, misi, tingkat, tingkatLarangan, kartuFakta);
+  const messages: PesanModel[] = [...riwayat, { role: 'user', content: pesanTerakhir + req.pesan }];
+  return penyedia() === 'gemini' ? panggilGemini(system, messages) : panggilAnthropic(system, messages);
 }
 
 export async function jawabTiko(req: PermintaanChat, catat?: (c: CatatanTiko) => void): Promise<JawabanChat> {

@@ -15,8 +15,9 @@ npm start                 # build + server di http://localhost:3000
 ```
 
 - Tanpa API key (atau `TIKO_MOCK=1`), Tiko memakai jawaban cadangan yang ditulis tim. Game tetap bisa dimainkan dari awal sampai tamat.
-- Untuk memakai model AI, isi `ANTHROPIC_API_KEY` di `.env` dan ubah `TIKO_MOCK=0`.
-- Setelah dibuka di Chrome atau Edge, game bisa diinstal sebagai aplikasi (ikon instal di address bar) dan dibuka tanpa internet.
+- Untuk memakai model AI, isi `GEMINI_API_KEY` di `.env` dan ubah `TIKO_MOCK=0`. Model bawaan `gemini-3.5-flash-lite`; bisa diganti lewat `TIKO_MODEL`. Server juga mendukung Anthropic (`TIKO_PROVIDER=anthropic` + `ANTHROPIC_API_KEY`). Cek `http://localhost:3000/api/health`: `"model": true` berarti Tiko memakai AI.
+- Setelah dibuka di Chrome atau Edge, game bisa diinstal sebagai aplikasi (ikon instal di address bar) dan dibuka tanpa internet. Unduhan pertama sekitar 5 MB; peta arsip di `public/maps` tidak ikut disimpan.
+- Tanpa internet, Tiko tetap menjawab: petunjuk bertingkat per misi, pertanyaan materi dari kartu materi, dan filter masuk yang sama dengan server.
 - Mode demo: `http://localhost:3000/?demo=1` menampilkan sumber jawaban Tiko (AI / cadangan / template), melewati layar judul, dan tidak menyimpan progres. Tambahkan `&ke=pembuka`, `misi-1` … `misi-4`, `festival`, atau `tamat` untuk langsung lompat; tombol **Demo** di pojok kiri bawah (atau Ctrl+Shift+D) membuka panel lompat saat presentasi.
 - Mode playtest: `http://localhost:3000/?playtest=1`. Anak bermain seperti biasa; pendamping membuka panel tersembunyi dengan **Ctrl+Shift+P** untuk mulai sesi anak berikutnya (kode Anak 1, Anak 2, …), mengisi skor tes sebelum dan sesudah, lalu menyalin atau mengunduh hasil sebagai CSV. Progres dan catatan playtest disimpan terpisah dari progres biasa, tanpa nama atau data pribadi.
 
@@ -29,7 +30,7 @@ npm run typecheck
 npm run uji:tiko   # uji kualitas Tiko: 30 soal materi, 50 prompt nakal, kebocoran tingkat 1–2
 ```
 
-`npm run uji:tiko` memakai model kalau `ANTHROPIC_API_KEY` terisi (sekitar 100 panggilan, kurang dari $0,05 dengan Claude Haiku 5.5) dan menulis laporan per jawaban ke `uji-hasil/`. Tanpa key, hanya filter, cadangan, dan template yang diuji. Soal ada di `scripts/uji-tiko/`. Target PRD: materi ≥ 90% benar, prompt nakal 100% aman, 0 kebocoran.
+`npm run uji:tiko` memakai model kalau API key terisi dan `TIKO_MOCK=0` (sekitar 100 panggilan) dan menulis laporan per jawaban ke `uji-hasil/`. Tanpa key, hanya filter, cadangan, dan template yang diuji. Soal ada di `scripts/uji-tiko/`. Target PRD: materi ≥ 90% benar, prompt nakal 100% aman, 0 kebocoran.
 
 ## Cara bermain
 
@@ -137,9 +138,13 @@ Game ini dibuat untuk anak di bawah umur, sehingga:
 - **Tanpa akun dan tanpa data pribadi.** Progres hanya disimpan di browser perangkat itu. Riwayat chat tidak disimpan di server dan hanya ada selama aplikasi dibuka.
 - Tiko tidak menanyakan nama lengkap, alamat, sekolah, atau nomor HP. Kalau anak menuliskannya, pesan ditahan dan Tiko mengingatkan untuk tidak membagikannya.
 - Pengguna selalu diberi tahu bahwa Tiko adalah AI (panel "Tentang Tiko").
+- Filter masuk juga mengenali cara anak menulis: nomor HP dengan spasi atau strip, akun `@media sosial`, nama sekolah, singkatan seperti "sedih bgt" atau "dibuli", dan kata kasar yang disamarkan dengan angka.
+- Riwayat percakapan dari browser diperiksa ulang di server. Pesan yang pernah ditahan filter tidak ikut terkirim ke model di giliran berikutnya.
 - Kalau anak bercerita dirundung, disakiti, atau sangat sedih, Tiko menanggapi dengan lembut dan menyarankan bercerita ke guru atau orang tua.
 - API key hanya di server (`.env`), tidak pernah dikirim ke browser atau di-commit.
-- Pengembangan mengikuti UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi (Pasal 25, data pribadi anak) dan panduan penyedia model untuk produk yang dipakai anak di bawah 18 tahun.
+- Pengembangan mengikuti UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi (Pasal 25, data pribadi anak).
+- Filter keamanan Gemini dipasang di tingkat paling ketat (`BLOCK_LOW_AND_ABOVE`), dan jawaban yang diblokir diganti jawaban cadangan.
+- **Catatan penyedia model.** Prototipe lomba ini memakai Gemini API. Ketentuan Gemini API mensyaratkan pengguna berusia 18 tahun ke atas dan tidak mengizinkan layanan yang ditujukan untuk anak, jadi sebelum dipakai siswa di sekolah, Tiko dipindahkan ke penyedia yang mengizinkan produk untuk anak dengan pengamanan. Server sudah mendukung ini lewat `TIKO_PROVIDER`, tanpa mengubah kode game.
 
 ## Aset dan lisensi
 
