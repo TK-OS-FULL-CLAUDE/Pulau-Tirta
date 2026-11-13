@@ -44,6 +44,7 @@ export class RohTiko {
   constructor(
     scene: Phaser.Scene,
     private pemain: () => Titik | undefined,
+    private diam: () => boolean = () => false,
   ) {
     pasangTekstur(scene);
     const awal = pemain() ?? { x: 0, y: 0 };
@@ -80,6 +81,8 @@ export class RohTiko {
     const p = this.pemain();
     if (!p) return;
     const dt = Math.min(dtMs, 50);
+    // Selama percakapan, Tiko diam di tempatnya supaya gelembung teksnya tidak ikut bergeser.
+    if (this.diam()) return;
     const lambat = this.tenang ? 3 : 1;
     let tujuan: Titik;
     let depan: boolean;

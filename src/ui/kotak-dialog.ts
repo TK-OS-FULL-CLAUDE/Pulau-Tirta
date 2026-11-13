@@ -12,7 +12,7 @@ export interface OpsiPercakapan {
 }
 
 type Titik = { x: number; y: number };
-/** Titik di atas kepala pembicara, relatif ke #game. Dipasang game (src/main.ts); tanpa ini gelembung di tengah bawah. */
+/** Titik di atas kepala pembicara, relatif ke #game. Dipasang game (src/main.ts); tanpa titik, pesan tampil di panel tengah atas. */
 let titikKepala: (siapa: string) => Titik | undefined = () => undefined;
 export function aturTitikKepala(f: (siapa: string) => Titik | undefined): void {
   titikKepala = f;
@@ -34,9 +34,11 @@ function kotak(): HTMLDialogElement {
 function letakkan(d: HTMLDialogElement, t: Titik | undefined): void {
   if (!t) {
     d.removeAttribute('data-melayang');
+    d.setAttribute('data-panggung', '');
     d.style.left = d.style.top = '';
     return;
   }
+  d.removeAttribute('data-panggung');
   const wadah = d.parentElement!;
   const lebar = d.offsetWidth;
   const tinggi = d.offsetHeight;
@@ -54,9 +56,11 @@ export function bukaPercakapan(baris: Baris[], o: OpsiPercakapan): void {
     o.tutup(baris.length === 0);
     return;
   }
+  // Papan nama hanya terlihat di panel tengah atas (pembicara tanpa sosok di peta, mis. Kepala Desa).
+  const nama = el('span', '', { class: 'kotak-nama', 'aria-hidden': 'true' });
   const teks = el('p', '', { class: 'kotak-teks', 'aria-live': 'polite' });
   const lanjut = el('button', '▶', { type: 'button', class: 'kotak-lanjut' });
-  d.replaceChildren(teks, lanjut);
+  d.replaceChildren(nama, teks, lanjut);
 
   let i = 0;
   let tamat = false;
@@ -67,6 +71,7 @@ export function bukaPercakapan(baris: Baris[], o: OpsiPercakapan): void {
     const b = baris[i];
     const p = o.pembicara[b.siapa] ?? { nama: b.siapa, ikon: '' };
     teks.textContent = b.teks;
+    nama.textContent = p.nama;
     // Nama pembicara tetap dibacakan pembaca layar walau tidak ditulis di gelembung.
     d.setAttribute('aria-label', `${p.nama} berkata`);
     lanjut.setAttribute('aria-label', i < baris.length - 1 ? 'Lanjut' : 'Selesai');

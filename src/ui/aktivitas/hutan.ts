@@ -37,6 +37,40 @@ function permukaanKiri(x: number): number {
 const permukaan = (cermin: boolean, x: number) => permukaanKiri(cermin ? LEBAR - x : x);
 const cx = (cermin: boolean, x: number) => (cermin ? LEBAR - x : x);
 
+/** Gradien linear vertikal dalam koordinat gambar. */
+function gradien(id: string, y1: number, y2: number, warna: [number, string][]): SVGLinearGradientElement {
+  const g = svg('linearGradient', { id, x1: 0, y1, x2: 0, y2, gradientUnits: 'userSpaceOnUse' });
+  for (const [o, c] of warna) g.append(svg('stop', { offset: o, 'stop-color': c }));
+  return g;
+}
+
+/** Pohon rindang berdiri di (x, y): batang dengan sisi teduh, tajuk bertumpuk, dan sorot cahaya. */
+function pohon(x: number, y: number, s = 1): SVGGElement {
+  const g = svg('g', { 'aria-hidden': 'true' });
+  g.append(
+    svg('ellipse', { cx: x + 4 * s, cy: y + 1, rx: 22 * s, ry: 4 * s, fill: '#1f3a1c', opacity: 0.25 }),
+    svg('rect', { x: x - 5 * s, y: y - 42 * s, width: 10 * s, height: 44 * s, fill: '#7a4f2a' }),
+    svg('rect', { x: x + 1 * s, y: y - 42 * s, width: 4 * s, height: 44 * s, fill: '#5e3b1f' }),
+    svg('circle', { cx: x - 16 * s, cy: y - 40 * s, r: 16 * s, fill: '#2f7a48' }),
+    svg('circle', { cx: x + 16 * s, cy: y - 42 * s, r: 16 * s, fill: '#276b3e' }),
+    svg('circle', { cx: x, cy: y - 56 * s, r: 24 * s, fill: '#3c9a5f' }),
+    svg('circle', { cx: x - 8 * s, cy: y - 64 * s, r: 12 * s, fill: '#5cb878' }),
+    svg('circle', { cx: x - 18 * s, cy: y - 44 * s, r: 7 * s, fill: '#4fae6e' }),
+  );
+  return g;
+}
+
+/** Tunggul pohon yang sudah ditebang. */
+function tunggul(x: number, y: number, s = 1): SVGGElement {
+  const g = svg('g', { 'aria-hidden': 'true' });
+  g.append(
+    svg('rect', { x: x - 7 * s, y: y - 11 * s, width: 14 * s, height: 13 * s, fill: '#8a5f36', stroke: '#5e3b1f', 'stroke-width': 1.5 }),
+    svg('ellipse', { cx: x, cy: y - 11 * s, rx: 7 * s, ry: 3 * s, fill: '#e2c08f', stroke: '#5e3b1f', 'stroke-width': 1.5 }),
+    svg('ellipse', { cx: x, cy: y - 11 * s, rx: 3 * s, ry: 1.2 * s, fill: 'none', stroke: '#b08655', 'stroke-width': 1 }),
+  );
+  return g;
+}
+
 interface Butir {
   x: number;
   y: number;
@@ -55,7 +89,20 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
     'aria-label': `${label('gundul', 'Lereng gundul')} dan ${label('pohon', 'Lereng berpohon')}, dengan penampang tanah dan mata air di kakinya.`,
   });
   const defs = svg('defs');
-  gambar.append(defs, svg('rect', { x: -LEBAR, y: -TINGGI, width: LEBAR * 3, height: TINGGI * 3, fill: '#bfe6f5' }));
+  defs.append(
+    gradien('ht-langit', -TINGGI, 270, [[0, '#4fa8d8'], [0.6, '#9fd6f0'], [1, '#e2f3f7']]),
+    gradien('ht-jauh', 40, 270, [[0, '#9fc2d6'], [1, '#c9e0ea']]),
+  );
+  gambar.append(defs, svg('rect', { x: -LEBAR, y: -TINGGI, width: LEBAR * 3, height: TINGGI * 3, fill: 'url(#ht-langit)' }));
+  // Punggung bukit jauh berhutan di belakang kedua lereng.
+  gambar.append(svg('polygon', { points: '-800,270 -800,96 -420,70 -200,92 0,80 200,104 400,84 600,102 800,78 1000,96 1250,72 1600,90 1600,270', fill: 'url(#ht-jauh)' }));
+  // Tajuk hutan jauh: deretan gumpalan dengan ukuran berbeda-beda, pudar karena jauh.
+  const hutanJauh = svg('g', { fill: '#8fb5c8', 'aria-hidden': 'true' });
+  for (let k = 0; k < 70; k++) {
+    const x = -420 + k * 24 + ((k * 7) % 5) * 2;
+    hutanJauh.append(svg('circle', { cx: x, cy: 104 - ((k * 5) % 7), r: 11 + ((k * 3) % 5) }));
+  }
+  gambar.append(hutanJauh);
 
   // Alur air di tengah, menuju sungai.
   const airAlur = svg('rect', { x: ALUR.x0, width: ALUR.x1 - ALUR.x0, fill: '#3d8fc4' });
@@ -77,6 +124,24 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
 
     const g = svg('g', { class: `lereng lereng-${s.kunci}` });
     g.append(svg('polygon', { points: titik, fill: s.tanah }));
+    // Penampang tanah berlapis: lapisan atas lebih gelap (berpohon) atau lebih kering (gundul), batu di dasar,
+    // dan kerikil di dalam tanah. Semua terpotong bentuk lereng.
+    const lapis = svg('g', { 'clip-path': `url(#lereng-${s.kunci})`, 'aria-hidden': 'true' });
+    const garisAtas = titik.split(' ').slice(0, 4).join(' ');
+    lapis.append(
+      svg('polyline', { points: garisAtas, fill: 'none', stroke: s.cermin ? '#4a3524' : '#d0a877', 'stroke-width': 30, 'stroke-linejoin': 'round' }),
+      svg('rect', { x: -LEBAR, y: 342, width: LEBAR * 3, height: TINGGI, fill: s.cermin ? '#5d5248' : '#8d7a66' }),
+      svg('path', { d: `M-800,342 ${Array.from({ length: 50 }, (_, k) => `L${-800 + k * 50},${340 + ((k * 37) % 9)}`).join(' ')}`, fill: 'none', stroke: s.cermin ? '#463d35' : '#6f5f4f', 'stroke-width': 3 }),
+    );
+    for (let j = 0; j < 9; j++) {
+      const x = cx(s.cermin, 30 + ((j * 97) % 330));
+      lapis.append(svg('ellipse', { cx: x, cy: 352 + ((j * 13) % 22), rx: 9 + (j % 3) * 3, ry: 5, fill: s.cermin ? '#6f645a' : '#a39079', stroke: s.cermin ? '#463d35' : '#6f5f4f', 'stroke-width': 1.5 }));
+    }
+    for (let j = 0; j < 14; j++) {
+      const x = cx(s.cermin, 20 + ((j * 71) % 340));
+      lapis.append(svg('ellipse', { cx: x, cy: permukaan(s.cermin, x) + 30 + ((j * 41) % 60), rx: 3.5, ry: 2.5, fill: s.cermin ? '#8a7560' : '#9c7a52', opacity: 0.8 }));
+    }
+    g.append(lapis);
     // Air tanah: lapisan biru yang naik dari bawah, terpotong bentuk lereng.
     const airTanah = svg('rect', { class: 'air-tanah', x: -LEBAR, width: LEBAR * 3, y: TINGGI, height: TINGGI, 'clip-path': `url(#lereng-${s.kunci})` });
     g.append(airTanah);
@@ -95,18 +160,24 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
         for (const [dx, dy] of [[-26, 34], [-8, 52], [12, 46], [28, 30], [0, 66]]) {
           bawahPohon.append(svg('path', { class: 'akar', d: `M${x},${y} q ${dx / 2},${dy / 3} ${dx},${dy}` }));
         }
-        g.append(
-          svg('rect', { x: x - 5, y: y - 42, width: 10, height: 44, fill: '#7a4f2a' }),
-          svg('circle', { cx: x, cy: y - 54, r: 24, fill: '#3c9a5f' }),
-          svg('circle', { cx: x - 16, cy: y - 42, r: 16, fill: '#4fae6e' }),
-          svg('circle', { cx: x + 16, cy: y - 44, r: 16, fill: '#4fae6e' }),
-        );
+        g.append(pohon(x, y));
+      }
+      // Pohon di puncak lereng dan rumput di sepanjang permukaan.
+      for (const [x, sk] of [[760, 0.8], [830, 0.9], [905, 0.75], [990, 0.85]] as const) g.append(pohon(x, permukaan(true, x), sk));
+      for (const x of [452, 480, 530, 590, 650, 690, 720, 745, 800, 870, 950]) {
+        const y = permukaan(true, x);
+        g.append(svg('path', { d: `M${x - 4},${y} l 2,-7 M${x},${y} l 0,-9 M${x + 4},${y} l -2,-7`, stroke: '#3f7f3a', 'stroke-width': 1.8, 'stroke-linecap': 'round' }));
       }
       g.append(bawahPohon, svg('text', { class: 'label-sorot', x: 560, y: permukaan(true, 560) + 92, 'text-anchor': 'middle' }, label('bawahPohon', 'bagian bawah pohon')));
     } else {
       for (const x of [110, 170, 230, 290]) {
         const y = permukaan(false, x);
         g.append(svg('path', { d: `M${x},${y + 1} l6,7 l-3,6 l7,5`, stroke: '#7a5b3a', 'stroke-width': 2, fill: 'none' }));
+      }
+      // Tunggul pohon yang sudah ditebang: tanda lereng ini dulu juga berpohon.
+      for (const [x, sk] of [[140, 1], [262, 0.85], [-60, 0.9], [-200, 1]] as const) g.append(tunggul(x, permukaan(false, x), sk));
+      for (const [x, r] of [[80, 3], [200, 2.5], [318, 3], [-120, 3]] as const) {
+        g.append(svg('ellipse', { cx: x, cy: permukaan(false, x) - 1, rx: r + 1, ry: r - 0.5, fill: '#a39079', stroke: '#6f5f4f', 'stroke-width': 1 }));
       }
     }
 
@@ -128,15 +199,17 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
       svg('circle', { cx: cx(s.cermin, 348), cy: 292, r: 7, fill: '#5f6f78' }),
       svg('text', { x: cx(s.cermin, 340), y: 318, 'text-anchor': s.cermin ? 'start' : 'end', class: 'label-tanah' }, label('mataAir', 'mata air')),
       svg('text', { x: cx(s.cermin, 185), y: 368, 'text-anchor': 'middle', class: 'label-tanah' }, label('airTanah', 'air tanah')),
-      svg('text', { x: cx(s.cermin, 120), y: 96, 'text-anchor': 'middle', class: 'label-kolam' }, label(s.kunci, s.cermin ? 'Lereng berpohon' : 'Lereng gundul')),
+      svg('text', { x: cx(s.cermin, 90), y: 104, 'text-anchor': 'middle', class: 'label-kolam label-lereng' }, label(s.kunci, s.cermin ? 'Lereng berpohon' : 'Lereng gundul')),
     );
 
     // Awan dan hujan di atas lereng ini (tampil saat disiram).
     const awan = svg('g', { class: 'awan-siram', opacity: 0 });
     const tengah = cx(s.cermin, 200);
-    for (const [dx, dy, r] of [[-60, 10, 26], [-25, -6, 34], [20, -4, 32], [58, 10, 24], [0, 14, 30]]) {
-      awan.append(svg('circle', { cx: tengah + dx, cy: 42 + dy, r, fill: '#9fb3bf' }));
-    }
+    // Awan hujan: bagian bawah gelap, atas lebih terang.
+    const gumpal = [[-60, 10, 26], [-25, -6, 34], [20, -4, 32], [58, 10, 24], [0, 14, 30]] as const;
+    for (const [dx, dy, r] of gumpal) awan.append(svg('circle', { cx: tengah + dx, cy: 46 + dy, r, fill: '#7d909c' }));
+    for (const [dx, dy, r] of gumpal) awan.append(svg('circle', { cx: tengah + dx, cy: 40 + dy, r: r - 3, fill: '#a9bac4' }));
+    for (const [dx, dy, r] of [[-25, -12, 20], [20, -10, 18]] as const) awan.append(svg('circle', { cx: tengah + dx, cy: 40 + dy, r, fill: '#c6d3da' }));
     for (let j = 0; j < 12; j++) {
       const x = tengah - 80 + j * 15;
       const garis = svg('line', { class: 'garis-hujan', x1: x, y1: 70, x2: x - 4, y2: 84 });
