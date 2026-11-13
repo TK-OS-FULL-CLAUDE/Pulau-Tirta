@@ -64,6 +64,129 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 
 /* Aktivitas misi */
 .aktivitas { display: flex; flex-direction: column; gap: 8px; }
+
+/*
+ * Poles layar misi: bingkai kayu dan garis emas (senada dengan panel Kepala Desa), gambar berbingkai,
+ * slider dan pilihan jawaban yang lebih jelas. Hanya tampilan; struktur dan logika misi tidak berubah.
+ */
+.dialog-misi {
+  padding: 22px 26px; border: 3px solid #7a5426; border-radius: 20px;
+  background: radial-gradient(140% 120% at 50% 0%, #fffdf6 0%, #fff7e6 60%, #f8ecd0 100%);
+  box-shadow: inset 0 0 0 3px #fffaf0, inset 0 0 0 5px #e2b55a, 0 14px 36px rgb(28 42 51 / 40%), 0 4px 0 #5a3c18;
+}
+.dialog-misi .dialog-kepala h2 { font-size: 30px; letter-spacing: -0.01em; color: #2b2116; }
+/* Nama tempat sebagai lencana kecil di bawah judul. */
+.dialog-misi .dialog-kepala p {
+  display: inline-block; margin-top: 6px; padding: 2px 12px; border-radius: 999px;
+  background: #1f6f8b; color: #ffffff; font-size: 14px; font-weight: 700; letter-spacing: 0.04em;
+}
+.dialog-misi .dialog-kepala .tombol-kecil {
+  border: 2px solid #c9a46a; background: #fffaf0; color: #5a3c18; font-weight: 700; box-shadow: 0 2px 0 #c9a46a;
+}
+.dialog-misi .dialog-kepala .tombol-kecil::before { content: '← '; }
+.dialog-misi .dialog-kepala .tombol-kecil:hover { background: #fff1d6; }
+.dialog-misi .arahan { font-size: 18px; line-height: 1.45; color: #3a2f22; }
+/* Gambar aktivitas seperti lukisan berbingkai. */
+.dialog-misi .aktivitas svg {
+  border: 4px solid #ffffff; border-radius: 16px; box-shadow: 0 0 0 2px #d9bf8c, 0 6px 16px rgb(58 42 23 / 18%);
+}
+/* Kendali sebagai baris yang rapi, bukan elemen lepas. */
+.dialog-misi .kendali {
+  padding: 8px 16px; border: 2px solid #ead7b0; border-radius: 999px; background: rgb(255 255 255 / 70%);
+}
+/* Slider: lintasan bergradasi dan tombol geser bulat; tidak ada lagi kotak fokus tebal di sekelilingnya. */
+.kendali input[type='range'] { appearance: none; -webkit-appearance: none; height: 48px; background: transparent; }
+.kendali input[type='range']:focus-visible { outline: none; }
+.kendali input[type='range']::-webkit-slider-runnable-track {
+  height: 10px; border-radius: 999px; background: linear-gradient(90deg, #bfe6f5, #2f9bd6 60%, #1f6f8b); box-shadow: inset 0 1px 2px rgb(0 0 0 / 25%);
+}
+.kendali input[type='range']::-moz-range-track {
+  height: 10px; border-radius: 999px; background: linear-gradient(90deg, #bfe6f5, #2f9bd6 60%, #1f6f8b); box-shadow: inset 0 1px 2px rgb(0 0 0 / 25%);
+}
+.kendali input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 30px; height: 30px; margin-top: -10px; border: 4px solid #ffffff; border-radius: 50%;
+  background: var(--aksen); box-shadow: 0 0 0 2px #b8641c, 0 3px 6px rgb(0 0 0 / 30%); transition: transform 0.15s;
+}
+.kendali input[type='range']::-moz-range-thumb {
+  width: 22px; height: 22px; border: 4px solid #ffffff; border-radius: 50%;
+  background: var(--aksen); box-shadow: 0 0 0 2px #b8641c, 0 3px 6px rgb(0 0 0 / 30%);
+}
+.kendali input[type='range']:hover::-webkit-slider-thumb { transform: scale(1.1); }
+/* Fokus keyboard tetap terlihat, tapi di tombol gesernya saja. */
+.kendali input[type='range']:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 2px #b8641c, 0 0 0 6px rgb(240 140 50 / 35%); }
+.kendali input[type='range']:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 2px #b8641c, 0 0 0 6px rgb(240 140 50 / 35%); }
+/* Kabar (mis. "Lihat! Hujan mulai turun…") sebagai pita hijau lembut saat ada isinya. */
+.dialog-misi .kabar:not(:empty) {
+  align-self: flex-start; padding: 8px 14px; border-radius: 12px; background: #e6f4ea; border-left: 5px solid #3c9a5f;
+}
+.dialog-misi .aktivitas.sorot .kabar:not(:empty) { background: #fff1e0; border-left-color: #e08a2c; }
+/* Pertanyaan alasan: judul dengan garis aksen, pilihan sebagai kartu berhuruf A–D. */
+.dialog-misi .tanya h3 { padding-left: 12px; border-left: 5px solid #e2b55a; font-size: 22px; color: #2b2116; }
+.dialog-misi .pilihan-alasan { counter-reset: pilihan; }
+.dialog-misi .pilihan-alasan button {
+  counter-increment: pilihan; display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 10px 16px;
+  border: 2px solid #e3d3b2; border-radius: 14px; background: #ffffff; font-size: 18px; box-shadow: 0 3px 0 #e3d3b2;
+  transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+}
+.dialog-misi .pilihan-alasan button::before {
+  content: counter(pilihan, upper-alpha); flex: none; display: grid; place-items: center; width: 32px; height: 32px;
+  border-radius: 50%; background: #1f6f8b; color: #ffffff; font-weight: 800; font-size: 16px;
+}
+.dialog-misi .pilihan-alasan button:not(:disabled):hover { transform: translateY(-2px); border-color: #2f9bd6; box-shadow: 0 5px 0 #2f9bd6; }
+.dialog-misi .pilihan-alasan button:not(:disabled):active { transform: translateY(1px); box-shadow: 0 1px 0 #2f9bd6; }
+.dialog-misi .pilihan-alasan button[data-salah] { border-color: #d9534f; background: #fdecea; box-shadow: 0 3px 0 #e8a3a1; }
+.dialog-misi .pilihan-alasan button[data-salah]::before { background: #d9534f; }
+/*
+ * Tanpa scroll: gambar aktivitas mengisi sisa tinggi dialog, bukan tinggi tetap mengikuti lebarnya. Di layar
+ * pendek gambarnya mengecil (isi SVG tetap utuh karena viewBox), di layar tinggi tetap besar.
+ */
+.dialog-misi[open]:has(> .aktivitas) { overflow: hidden; }
+.dialog-misi > .aktivitas { flex: 1 1 auto; min-height: 0; }
+.dialog-misi > .aktivitas > svg { flex: 1 1 0; min-height: 110px; width: 100%; height: auto; }
+.dialog-misi > .aktivitas > :not(svg) { flex: none; }
+@media (min-width: 1000px) {
+  .dialog-misi[open]:has(> .tanya:not([hidden])) { grid-template-rows: auto minmax(0, 1fr); }
+  .dialog-misi:has(> .tanya:not([hidden])) > .aktivitas { align-self: stretch; height: 100%; }
+  .dialog-misi:has(> .tanya:not([hidden])) .aktivitas svg { max-height: none; }
+  .dialog-misi:has(> .tanya:not([hidden])) > .tanya { align-self: stretch; min-height: 0; overflow-y: auto; }
+}
+/* Layar pendek: jarak dan huruf sedikit lebih rapat supaya semuanya muat. */
+@media (max-height: 800px) {
+  .dialog-misi { padding: 14px 20px; gap: 6px; }
+  .dialog-misi[open] { gap: 6px; }
+  .dialog-misi .dialog-kepala h2 { font-size: 24px; }
+  .dialog-misi .dialog-kepala p { margin-top: 3px; font-size: 13px; }
+  .dialog-misi .arahan { font-size: 16px; }
+  .dialog-misi .kendali { padding: 2px 14px; }
+  .dialog-misi .kendali input[type='range'] { height: 40px; }
+  .dialog-misi .kabar:not(:empty) { padding: 5px 12px; }
+  .dialog-misi .tanya h3 { font-size: 19px; }
+  .dialog-misi .pilihan-alasan button { min-height: 48px; padding: 6px 14px; font-size: 17px; }
+  .dialog-misi .pilihan-alasan button::before { width: 28px; height: 28px; font-size: 14px; }
+}
+
+/* Layar sangat pendek (mis. laptop 768px dengan bilah browser): kolom pertanyaan dirapatkan lagi supaya
+   pilihan jawaban dan petunjuk Tiko muat bersama tanpa scroll. */
+@media (max-height: 700px) {
+  .dialog-misi .dialog-kepala h2 { font-size: 21px; }
+  .dialog-misi .tanya h3 { margin: 0; font-size: 17px; }
+  .dialog-misi:has(> .tanya:not([hidden])) > .tanya { gap: 5px; }
+  .dialog-misi .pilihan-alasan { gap: 5px; }
+  .dialog-misi .pilihan-alasan button { min-height: 40px; padding: 4px 12px; font-size: 16px; box-shadow: 0 2px 0 #e3d3b2; }
+  .dialog-misi .pilihan-alasan button::before { width: 24px; height: 24px; font-size: 13px; }
+  .dialog-misi .umpan { font-size: 15px; }
+  .dialog-misi .petunjuk-tiko { padding: 6px 10px; font-size: 15px; line-height: 1.35; }
+}
+
+/* Tombol langkah di kendali (mis. "Siram lereng gundul"): tombol bulat biru, fokus berupa cincin lembut. */
+.dialog-misi .kendali .tombol-tahap {
+  border-radius: 999px; background: #1f6f8b; color: #ffffff; font-weight: 700; box-shadow: 0 3px 0 #15536a;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.dialog-misi .kendali .tombol-tahap:not(:disabled):hover { transform: translateY(-1px); box-shadow: 0 4px 0 #15536a; }
+.dialog-misi .kendali .tombol-tahap:disabled { background: #9db8c3; box-shadow: none; }
+.dialog-misi button:focus-visible { outline: 3px solid rgb(47 155 214 / 55%); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .dialog-misi .pilihan-alasan button, .dialog-misi .kendali .tombol-tahap { transition: none; } }
 .arahan { margin: 0; }
 .aktivitas svg { width: 100%; max-height: 40vh; display: block; border-radius: 12px; background: #bfe6f5; touch-action: none; cursor: pointer; user-select: none; }
 .kendali { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -445,6 +568,9 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 
 /* Layar lebar: Tiko melayang di atas area game. Layar sempit: Tiko di bawah game. */
 @media (min-width: 901px) {
+  /* Game memenuhi jendela tanpa bingkai gelap di sekelilingnya. */
+  .tata { padding: 0; gap: 0; }
+  #game { border-radius: 0; }
   .tata > .tiko { position: absolute; inset: 12px; z-index: 4; display: block; pointer-events: none; }
   .tiko-bar { position: absolute; left: 12px; bottom: 12px; pointer-events: auto; }
   /* Tengah bawah, di atas kotak chat dan label "E · ..." di bawah layar game. */
