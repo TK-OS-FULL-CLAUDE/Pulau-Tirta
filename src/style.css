@@ -118,6 +118,8 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 @keyframes garis-hujan { from { transform: translateY(0); opacity: 1; } to { transform: translateY(46px); opacity: 0.2; } }
 .aktivitas.sorot .akar { stroke: var(--aksen); stroke-width: 4; animation: kedip 0.9s ease-in-out infinite alternate; }
 .aktivitas.sorot .air-tanah { opacity: 0.85; }
+/* Nama lereng tetap terbaca di atas pohon dan awan hujan. */
+.label-lereng { paint-order: stroke; stroke: rgb(255 255 255 / 85%); stroke-width: 6px; stroke-linejoin: round; }
 .hutan .label-sorot { fill: #ffffff; paint-order: stroke; stroke: #b85c00; stroke-width: 4px; }
 .tempat-bibit { fill: rgb(255 255 255 / 35%); stroke: #ffffff; stroke-width: 3; stroke-dasharray: 5 4; }
 .bibit { transform-box: fill-box; transform-origin: 50% 100%; animation: tumbuh 0.6s ease-out; }
@@ -237,7 +239,7 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .panel-demo .catatan { margin: 0 0 4px; }
 
 /* Kotak dialog warga */
-/* Gelembung percakapan di atas kepala pembicara (src/ui/kotak-dialog.ts). Tanpa titik kepala: tengah bawah. */
+/* Gelembung percakapan di atas kepala pembicara (src/ui/kotak-dialog.ts). Tanpa titik kepala: panel tengah atas. */
 .kotak-dialog {
   --ekor: 50%; --tepi-gelembung: #1c2a33;
   position: absolute; left: 50%; right: auto; top: auto; bottom: 24px; transform: translateX(-50%); z-index: 2; margin: 0;
@@ -266,6 +268,34 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 /* Tanpa cincin fokus: gelembungnya sendiri sudah menandai percakapan yang aktif. */
 .kotak-lanjut:focus, .kotak-lanjut:focus-visible { outline: none; box-shadow: none; }
 @keyframes gelembung-lanjut { to { translate: 2px 0; } }
+.kotak-nama { display: none; }
+
+/* Panel tengah atas untuk pembicara tanpa sosok di peta (Kepala Desa): bingkai kayu, garis emas, dan papan nama. */
+.kotak-dialog[data-panggung] {
+  top: 48px; bottom: auto; left: 50%; transform: translateX(-50%);
+  width: min(560px, calc(100% - 32px)); max-width: none; padding: 22px 30px 16px;
+  border: 3px solid #7a5426; border-radius: 16px;
+  background: radial-gradient(120% 140% at 50% 0%, #fffdf6 0%, #fff6e0 70%, #f8e9c6 100%);
+  box-shadow: inset 0 0 0 3px #fffaf0, inset 0 0 0 5px #e2b55a, 0 10px 26px rgb(28 42 51 / 35%), 0 3px 0 #5a3c18;
+}
+.kotak-dialog[data-panggung][open] { align-items: flex-end; gap: 12px; }
+.kotak-dialog[data-panggung] .kotak-nama {
+  display: block; position: absolute; top: -17px; left: 50%; translate: -50% 0; padding: 3px 20px;
+  border: 3px solid #fffaf0; border-radius: 999px; background: linear-gradient(#c98a3a, #8a5a24);
+  color: #ffffff; font-size: 15px; font-weight: 800; letter-spacing: 0.06em; white-space: nowrap;
+  box-shadow: 0 0 0 2px #7a5426, 0 3px 8px rgb(28 42 51 / 30%);
+}
+/* Ekor gelembung diganti hiasan permata emas di kiri dan kanan bingkai. */
+.kotak-dialog[data-panggung]::before, .kotak-dialog[data-panggung]::after {
+  top: 50%; width: 12px; height: 12px; border: 2px solid #7a5426; background: #f1c86a; translate: 0 -50%; rotate: 45deg;
+}
+.kotak-dialog[data-panggung]::before { left: -9px; }
+.kotak-dialog[data-panggung]::after { left: auto; right: -9px; }
+.kotak-dialog[data-panggung] .kotak-teks { flex: 1; font-size: 18px; line-height: 1.45; text-align: center; text-wrap: balance; color: #3a2a17; }
+.kotak-dialog[data-panggung] .kotak-lanjut { color: #b07a2c; }
+.kotak-dialog[data-panggung].baru { animation: panggung-muncul 0.36s cubic-bezier(0.2, 0.9, 0.3, 1.15); }
+@keyframes panggung-muncul { from { opacity: 0; translate: 0 -18px; } }
+
 @media (prefers-reduced-motion: reduce) { .kotak-dialog.baru, .kotak-dialog.ganti .kotak-teks, .kotak-lanjut { animation: none; } }
 
 /* Jurnal Petualangan */
