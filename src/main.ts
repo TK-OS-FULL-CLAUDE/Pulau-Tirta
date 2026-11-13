@@ -17,6 +17,7 @@ import {
 import { DuniaScene, LEBAR, LOKASI, TINGGI, type Lokasi } from './game/world';
 import { DUNIA, PETA_RUNTIME } from './game/world-map';
 import { SuasanaPuncak } from './efek/puncak-kabut';
+import { HujanPulau } from './efek/hujan';
 import { PanelTiko } from './tiko/panel';
 import { RohTiko } from './tiko/roh';
 import { isiJurnal } from '../shared/jurnal';
@@ -248,7 +249,61 @@ class SharpWorld extends DuniaScene {
     sprite.setPosition(state.pemain.x, state.pemain.y).setFlipX(false).setScale(1);
     if (!paused) sprite.setFrame(explorerFrame(state.facing, sprite.getData('motion') === 'walking', state.walkDistance, time));
     this.groundExplorerShadow();
+    this.lompatVisual(time, paused);
     this.minimap?.update(time,state.pemain,state.facing);
+  }
+
+  /** Waktu mulai lompatan (−1 = di tanah) dan waktu mendarat, untuk efek mendarat. */
+  private lompatMulai = -1;
+  private mendaratPada = -1;
+
+  /**
+   * Lompatan dengan Spasi: hanya gambar pemain yang naik-turun (±9 pixel dunia, setengah tinggi badan), posisi
+   * kaki dan collision tetap di tanah, jadi pemain tidak bisa melompati pagar atau tebing. Bayangan mengecil saat
+   * di udara; badan sedikit memanjang saat melompat dan memipih saat mendarat.
+   */
+  private lompatVisual(time: number, paused: boolean): void {
+    const DURASI = 440;
+    const TINGGI_LOMPAT = 9;
+    const state = this.explorerState();
+    const sprite = state.visualPemain;
+    let tinggi = 0;
+    if (this.lompatMulai >= 0) {
+      const t = (time - this.lompatMulai) / DURASI;
+      if (t >= 1 || paused) {
+        this.lompatMulai = -1;
+        if (!paused) this.mendaratPada = time;
+      } else {
+        tinggi = 4 * TINGGI_LOMPAT * t * (1 - t);
+        if (t < 0.18) sprite.setScale(0.92, 1.08);
+      }
+    }
+    if (tinggi > 0) {
+      sprite.setY(state.pemain.y - Math.round(tinggi));
+      const kecil = 1 - (tinggi / TINGGI_LOMPAT) * 0.35;
+      state.bayangan.setDisplaySize(state.bayangan.displayWidth * kecil, state.bayangan.displayHeight * kecil).setFillStyle(0x130f16, 0.2 * kecil);
+    } else if (this.mendaratPada >= 0 && time - this.mendaratPada < 90) {
+      sprite.setScale(1.12, 0.88);
+    }
+  }
+
+  private pasangLompat(): void {
+    const kb = this.input.keyboard;
+    if (!kb) return;
+    const K = Phaser.Input.Keyboard.KeyCodes;
+    const dunia = this as unknown as { aksi: Phaser.Input.Keyboard.Key[]; inputTerhalang(): boolean };
+    // Spasi sekarang untuk lompat; interaksi tetap dengan E atau Enter (petunjuk di layar memang menyebut E).
+    dunia.aksi = dunia.aksi.filter((k) => k.keyCode !== K.SPACE);
+    kb.removeKey(K.SPACE, true);
+    // addKey(..., false): Spasi tetap bisa diketik di kotak chat Tiko.
+    kb.addKey(K.SPACE, false).on('down', () => {
+      if (this.lompatMulai < 0 && !dunia.inputTerhalang()) this.lompatMulai = this.time.now;
+    });
+    const tahanGulir = (e: KeyboardEvent) => {
+      if (e.code === 'Space' && !dunia.inputTerhalang()) e.preventDefault();
+    };
+    window.addEventListener('keydown', tahanGulir);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => window.removeEventListener('keydown', tahanGulir));
   }
   override create(): void {
     super.create();
@@ -274,6 +329,9 @@ class SharpWorld extends DuniaScene {
     panel.pantau((s) => roh.atur(s));
     const wilayahPuncak = DUNIA.wilayah.find((w) => w.lokasi.misiId === 'misi-2')?.batas;
     if (wilayahPuncak) suasanaPuncak = new SuasanaPuncak(this, wilayahPuncak, () => pemain(), puncakPulih(), PETA_RUNTIME);
+    // Setelah Festival Hujan, hujan ringan datang dan pergi di pulau: siklus airnya berjalan lagi.
+    new HujanPulau(this, () => progres.festivalSelesai);
+    this.pasangLompat();
   }
 }
 
