@@ -3,7 +3,7 @@ import express from 'express';
 import { existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { MODE, jawabTiko, type Mode, type PermintaanChat } from './tiko';
+import { MODE, infoModel, jawabTiko, type Mode, type PermintaanChat } from './tiko';
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 3000);
@@ -19,11 +19,14 @@ function terlaluSering(ip: string): boolean {
   const daftar = (jejak.get(ip) ?? []).filter((t) => kini - t < 60_000);
   daftar.push(kini);
   jejak.set(ip, daftar);
+  // Bersihkan IP yang sudah lebih dari semenit diam, supaya Map tidak terus membesar.
+  if (jejak.size > 500) for (const [k, v] of jejak) if (kini - v[v.length - 1] >= 60_000) jejak.delete(k);
   return daftar.length > 20;
 }
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, model: Boolean(process.env.ANTHROPIC_API_KEY) && process.env.TIKO_MOCK !== '1' });
+  const { pakaiModel, penyedia, model } = infoModel();
+  res.json({ ok: true, model: pakaiModel, ...(pakaiModel ? { penyedia, nama: model } : {}) });
 });
 
 app.post('/api/chat', async (req, res) => {
@@ -37,8 +40,13 @@ app.post('/api/chat', async (req, res) => {
     return;
   }
   // Riwayat chat tidak disimpan di server; hanya dipakai untuk satu permintaan ini.
-  const jawaban = await jawabTiko(body as PermintaanChat);
-  res.json(jawaban);
+  try {
+    res.json(await jawabTiko(body as PermintaanChat));
+  } catch (e) {
+    // Express 4 tidak menangkap error dari fungsi async; tanpa ini permintaan menggantung sampai browser menyerah.
+    console.error('Tiko gagal menjawab:', e instanceof Error ? e.message : e);
+    res.status(500).json({ error: 'Tiko sedang bermasalah.' });
+  }
 });
 
 if (existsSync(dist)) {

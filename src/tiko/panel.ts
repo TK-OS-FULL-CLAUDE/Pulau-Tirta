@@ -1,9 +1,11 @@
-import { cariMisi, type Tingkat } from '../../shared/content';
+import { cariMisi, kartuUntuk, type Tingkat } from '../../shared/content';
 import {
   BATAS_PANJANG_PESAN,
   FUN_FACT_TUNDA,
   faktaCadangan,
   kartuFunFact,
+  kartuPalingCocok,
+  periksaMasuk,
   petunjukCadangan,
   pilihKartuFunFact,
 } from '../../shared/guardrail';
@@ -14,6 +16,7 @@ const TIDAK_TERHUBUNG = 'Aku sedang tidak bisa terhubung. Coba lihat lagi apa ya
 
 interface IsiPermintaan {
   mode?: unknown;
+  pesan?: unknown;
   misiId?: unknown;
   statusMisi?: unknown;
   tingkat?: unknown;
@@ -37,7 +40,22 @@ export function jawabanCadangan(isi: IsiPermintaan): string {
   const misi = isi.mode === 'petunjuk' && typeof isi.misiId === 'string' ? cariMisi(isi.misiId) : undefined;
   const t = isi.tingkat;
   if (misi && (t === 1 || t === 2 || t === 3)) return petunjukCadangan(misi, t);
+  if (isi.mode === 'tanya' && typeof isi.pesan === 'string' && isi.pesan.trim()) return jawabTanyaTanpaServer(isi, isi.pesan);
   return TIDAK_TERHUBUNG;
+}
+
+/**
+ * Pertanyaan ketikan saat server tidak bisa dihubungi: aturan yang sama dengan cadangan di server.
+ * Filter masuk tetap berlaku; di misi yang belum selesai Tiko memberi pertanyaan balik (kartu materinya memuat jawaban);
+ * selain itu Tiko menjawab dari kartu materi yang paling cocok.
+ */
+function jawabTanyaTanpaServer(isi: IsiPermintaan, pesan: string): string {
+  const masuk = periksaMasuk(pesan);
+  if (!masuk.lolos) return masuk.balasan;
+  const misi = typeof isi.misiId === 'string' ? cariMisi(isi.misiId) : undefined;
+  if (misi && isi.statusMisi !== 'selesai') return petunjukCadangan(misi, 1);
+  const cocok = kartuPalingCocok(masuk.pesan, kartuUntuk(misi));
+  return cocok ? `Ini yang aku tahu: ${cocok.fakta}` : TIDAK_TERHUBUNG;
 }
 
 export interface KonteksGame {
@@ -212,7 +230,15 @@ export class PanelTiko {
       jawaban = { ...cadangan, sumber: 'cadangan' };
     }
     if (typeof jawaban.kartu === 'number') this.kartuFakta = [...this.kartuFakta, jawaban.kartu].slice(-6);
-    if (simpanRiwayat) this.riwayat.push({ dari: 'tiko', teks: jawaban.teks });
+    if (simpanRiwayat && jawaban.sumber === 'template' && pertanyaan) {
+      // Pesan yang ditahan filter (data pribadi, kata kasar, dll.) tidak disimpan sebagai konteks percakapan.
+      for (let i = this.riwayat.length - 1; i >= 0; i--) {
+        if (this.riwayat[i].dari === 'anak' && this.riwayat[i].teks === pertanyaan) {
+          this.riwayat.splice(i, 1);
+          break;
+        }
+      }
+    } else if (simpanRiwayat) this.riwayat.push({ dari: 'tiko', teks: jawaban.teks });
     // Anak sudah bertanya lagi sebelum jawaban ini tiba: jawaban baru yang ditampilkan.
     if (nomor !== this.nomor) return;
     this.tampilJawaban(jawaban.teks, pertanyaan, jawaban.sumber);

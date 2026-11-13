@@ -25,3 +25,20 @@ describe('Tiko saat server tidak bisa dihubungi', () => {
     expect(jawabanCadangan({ mode: 'petunjuk', misiId: 'misi-1', tingkat: 7 })).toBe(umum);
   });
 });
+
+describe('pertanyaan ketikan saat server tidak bisa dihubungi', () => {
+  it('menjawab dari kartu materi yang cocok kalau tidak sedang di misi', () => {
+    expect(jawabanCadangan({ mode: 'tanya', pesan: 'Apa itu pengembunan?' })).toMatch(/^Ini yang aku tahu: Pengembunan/);
+  });
+
+  it('di misi yang belum selesai memberi pertanyaan balik, bukan isi kartu yang memuat jawaban', () => {
+    const misi = MISI_UTAMA.find((m) => m.id === 'misi-1')!;
+    const teks = jawabanCadangan({ mode: 'tanya', pesan: 'kasih tau jawabannya', misiId: 'misi-1', statusMisi: 'sedang' });
+    expect(teks).toBe(petunjukCadangan(misi, 1));
+    expect(periksaKeluar(teks, { misi, tingkat: 1 }).aman).toBe(true);
+  });
+
+  it('filter masuk tetap berlaku tanpa server', () => {
+    expect(jawabanCadangan({ mode: 'tanya', pesan: 'nomorku 0812-3456-7890' })).toMatch(/jangan tulis/i);
+  });
+});

@@ -13,25 +13,58 @@ export type HasilMasuk =
   | { lolos: false; alasan: 'kosong' | 'terlalu-panjang' | 'data-pribadi' | 'kata-kasar' | 'khawatir'; balasan: string };
 
 const POLA_DATA_PRIBADI: RegExp[] = [
-  /(\+62|62|0)8\d{7,12}/, // nomor HP
+  /(\+62|62|0)8\d{7,12}/, // nomor HP (diperiksa juga setelah spasi, titik, dan strip dibuang; lihat `adaDataPribadi`)
   /[\w.+-]+@[\w-]+\.[\w.]+/, // email
-  /\b(alamat(ku| rumah(ku)?)?|rumahku di|nomor (hp|wa|telepon)ku|sekolahku di|nama lengkapku)\b/i,
+  /(^|\s)@[a-z0-9_.]{3,}/i, // akun media sosial (@nama)
+  /\b(alamat(ku| rumah(ku)?)?|rumahku di|nomor (hp|wa|telepon)ku|nama lengkapku)\b/i,
+  /\b(sekolah ?ku di|(aku|saya) sekolah di)\b/i,
+  /\b(sekolah ?ku|sekolah (aku|saya))( adalah| namanya)? (sd|sdn|sdit|mi|min)\b/i,
+  /\b(nama ?ku|nama (aku|saya))( adalah)? \p{L}{2,}/iu,
+  /\btinggal di (jl|jln|jalan|gang|gg|perum|perumahan|komplek|kompleks|rt|blok)\b/i,
+  /\b(jl|jln|gg)\.? ?\p{L}+ .*\b(no|nomor|blok)\b/iu,
 ];
+
+/** Nomor HP sering ditulis dengan spasi atau strip ("0812-3456-7890"), jadi digit juga diperiksa dalam bentuk rapat. */
+function adaDataPribadi(pesan: string): boolean {
+  const rapat = pesan.replace(/(?<=[\d+])[\s.-]+(?=\d)/g, '');
+  return POLA_DATA_PRIBADI.some((p) => p.test(pesan) || p.test(rapat));
+}
 
 // Contoh awal; lengkapi dengan daftar yang disusun tim.
 const KATA_KASAR = ['anjing', 'bangsat', 'goblok', 'tolol', 'kontol', 'memek', 'bodoh lu'];
 
+/** Huruf yang sering diganti angka atau simbol supaya lolos filter ("k0nt0l"). Hanya untuk pemeriksaan kata kasar. */
+function tanpaSamaran(teks: string): string {
+  const ganti: Record<string, string> = { '0': 'o', '1': 'i', '3': 'e', '4': 'a', '5': 's', '7': 't', '@': 'a', $: 's' };
+  return teks.toLowerCase().replace(/[013457@$]/g, (c) => ganti[c]);
+}
+
+/** Termasuk tulisan singkat yang biasa dipakai anak ("bgt", "dibuli", "pengen mati"). */
 const KATA_KHAWATIR = [
   'dirundung',
+  'dirisak',
   'dibully',
+  'dibuly',
+  'dibuli',
+  'di bully',
+  'di buli',
   'dipukul',
+  'dipukulin',
+  'ditampar',
   'disakiti',
   'dianiaya',
   'sedih banget',
+  'sedih bgt',
   'sedih sekali',
   'ingin mati',
   'mau mati',
+  'pengen mati',
+  'pingin mati',
+  'pengin mati',
   'bunuh diri',
+  'melukai diri',
+  'nyakitin diri',
+  'menyakiti diri',
 ];
 
 export const BALASAN = {
@@ -67,9 +100,8 @@ export function periksaMasuk(pesanMentah: string): HasilMasuk {
     return { lolos: false, alasan: 'terlalu-panjang', balasan: BALASAN.terlaluPanjang };
   if (KATA_KHAWATIR.some((k) => mengandungKata(pesan, k)))
     return { lolos: false, alasan: 'khawatir', balasan: BALASAN.khawatir };
-  if (POLA_DATA_PRIBADI.some((p) => p.test(pesan)))
-    return { lolos: false, alasan: 'data-pribadi', balasan: BALASAN.dataPribadi };
-  if (KATA_KASAR.some((k) => mengandungKata(pesan, k)))
+  if (adaDataPribadi(pesan)) return { lolos: false, alasan: 'data-pribadi', balasan: BALASAN.dataPribadi };
+  if (KATA_KASAR.some((k) => mengandungKata(pesan, k) || mengandungKata(tanpaSamaran(pesan), k)))
     return { lolos: false, alasan: 'kata-kasar', balasan: BALASAN.kataKasar };
   return { lolos: true, pesan };
 }
@@ -168,3 +200,25 @@ export function pilihKartuFunFact(
 /** Kalau semua kartu bisa membocorkan misi yang sedang berjalan. */
 export const FUN_FACT_TUNDA =
   'Fun fact-ku soal tempat ini aku simpan dulu sampai misinya selesai, ya. Coba tanya aku lagi nanti!';
+
+const BUKAN_KATA_KUNCI = new Set(['apa', 'itu', 'kenapa', 'mengapa', 'bagaimana', 'gimana', 'yang', 'dari', 'dengan', 'untuk', 'tiko', 'kamu', 'aku', 'dong', 'bisa', 'ada', 'tidak', 'nggak', 'air', 'jadi', 'kalau', 'apakah', 'sama', 'juga', 'kok', 'deh', 'mana', 'saja', 'aja']);
+
+/**
+ * Kartu materi yang paling cocok dengan pertanyaan (kata yang sama atau bentuk dasarnya), untuk jawaban tanpa AI.
+ * Tanpa kecocokan: undefined, supaya Tiko tidak menjawab dengan fakta yang tidak nyambung.
+ */
+export function kartuPalingCocok(pesan: string, kartu: KartuMateri[]): KartuMateri | undefined {
+  const dasar = (k: string) => k.replace(/^(pen|peng|pem|pe|me|meng|mem|ber|ter|di)(?=[a-z]{3})/, '').replace(/(an|kan|nya)$/, '');
+  const kata = (pesan.toLowerCase().match(/[a-z]+/g) ?? []).filter((k) => k.length >= 3 && !BUKAN_KATA_KUNCI.has(k));
+  let terbaik: KartuMateri | undefined;
+  let skor = 0;
+  for (const k of kartu) {
+    const fakta = k.fakta.toLowerCase();
+    const s = kata.reduce((n, w) => n + (fakta.includes(w) ? 2 : dasar(w).length >= 3 && fakta.includes(dasar(w)) ? 1 : 0), 0);
+    if (s > skor) {
+      skor = s;
+      terbaik = k;
+    }
+  }
+  return terbaik;
+}
