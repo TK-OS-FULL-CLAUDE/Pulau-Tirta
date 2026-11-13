@@ -27,6 +27,8 @@ export interface PengaitDunia {
   namaWarga?: (wargaId: string) => string | undefined;
   /** Pemain menekan E di dekat warga (PRD F-03). Isi percakapan diatur sistem dialog. */
   bicara?: (wargaId: string) => void;
+  /** Nama di label E untuk titik interaksi (misalnya desa: Kepala Desa atau Festival Hujan). undefined = nama bawaan. */
+  namaTempat?: (lokasiId: string) => string | undefined;
 }
 
 type Warga = LivingWorld['npcs'][number];
@@ -131,19 +133,22 @@ export class DuniaScene extends Phaser.Scene {
     camera.setBounds(0, 0, DUNIA.lebar, DUNIA.tinggi).setZoom(3);
     camera.roundPixels = true;
     camera.startFollow(this.pemain, true, 0.14, 0.14);
-    // scrollFactor(0) tetap terkena zoom; letakkan HUD pada sudut viewport.
-    this.judulWilayah.setPosition((LEBAR - LEBAR / camera.zoom) / 2 + 8, (TINGGI - TINGGI / camera.zoom) / 2 + 8);
-    this.label.setPosition(LEBAR / 2, (TINGGI + TINGGI / camera.zoom) / 2 - 8);
+    // scrollFactor(0) tetap terkena zoom; letakkan HUD pada sudut viewport. Ukuran canvas mengikuti bentuk layar
+    // (lihat main.ts), jadi posisinya dihitung ulang setiap kali ukuran game berubah.
     const resizePrompt = () => {
+      const lebar = this.scale.width, tinggi = this.scale.height;
+      this.judulWilayah.setPosition((lebar - lebar / camera.zoom) / 2 + 8, (tinggi - tinggi / camera.zoom) / 2 + 8);
+      this.label.setPosition(lebar / 2, (tinggi + tinggi / camera.zoom) / 2 - 8);
       const rect = this.game.canvas.getBoundingClientRect();
-      const cssScale = Math.max(0.05, Math.min(rect.width / LEBAR, rect.height / TINGGI));
+      const cssScale = Math.max(0.05, Math.min(rect.width / lebar, rect.height / tinggi));
       // Keep at least 13 CSS pixels after canvas FIT scaling on narrow screens.
       this.label.setFontSize(Math.max(7, Math.ceil(13 / (camera.zoom * cssScale))));
-      this.label.setWordWrapWidth(LEBAR / camera.zoom - 24);
+      this.label.setWordWrapWidth(Math.min(LEBAR, lebar) / camera.zoom - 24);
     };
     const promptObserver = new ResizeObserver(resizePrompt);
     promptObserver.observe(this.game.canvas); resizePrompt();
-    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => promptObserver.disconnect());
+    this.scale.on(Phaser.Scale.Events.RESIZE, resizePrompt);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => { promptObserver.disconnect(); this.scale.off(Phaser.Scale.Events.RESIZE, resizePrompt); });
     this.living = new LivingWorld(this, DUNIA, map, id => this.pulihTampak(id), () => this.festivalTampak());
     this.sorakWarga = new SorakWarga(this);
     this.perbaruiWilayah();
@@ -273,7 +278,7 @@ export class DuniaScene extends Phaser.Scene {
     this.lawanBicara = warga?.plan.id;
     this.label.setVisible(Boolean(this.prompt || warga || penanda));
     if (this.prompt) {
-      this.label.setText(`${dekat?.id === this.prompt.id ? 'E' : 'Dekati'} · ${NAMA_OBJEK[this.prompt.id]}`);
+      this.label.setText(`${dekat?.id === this.prompt.id ? 'E' : 'Dekati'} · ${this.kait.namaTempat?.(this.prompt.id) ?? NAMA_OBJEK[this.prompt.id]}`);
     } else if (warga) {
       // Warga menunggu selama pemain berdiri di dekatnya, supaya tidak berjalan pergi saat anak membaca labelnya.
       warga.state.waitMs = Math.max(warga.state.waitMs, 500);

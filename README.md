@@ -95,8 +95,12 @@ Tiap warga di `penduduk` dikunci dengan id NPC di peta (`village_npc_1` … `4`)
 Dunia Phaser (`src/game/world.ts`) dan sistem misi (`src/main.ts`) hanya terhubung lewat `PengaitDunia`:
 
 - dari dunia ke misi: `interaksi(lokasi)`, `bicara(wargaId)` dan `namaWarga(wargaId)`, `bergerak()`, `pindahWilayah(lokasi)`;
-- dari misi ke dunia (dibaca dunia): `statusMisi(id)`, `persenPulih()`, `festivalSelesai()`;
+- dari misi ke dunia (dibaca dunia): `statusMisi(id)`, `persenPulih()`, `festivalSelesai()`, `namaTempat(lokasiId)` (nama di label E; titik desa bernama Kepala Desa sampai Festival Hujan terbuka);
 - perintah ke dunia: `segarkan()` setelah progres berubah, `tundaPemulihan(id)` / `rayakanPemulihan(id)`, dan `tundaFestival()` / `rayakanFestival()` supaya perubahan tempat terjadi di depan anak, bukan di balik dialog. Efeknya ada di `src/game/perayaan.ts` dan dilewati kalau perangkat memilih "kurangi gerakan".
+
+### Ukuran layar
+
+Canvas mengikuti bentuk area game (`src/ui/ukuran-game.ts`), jadi peta memenuhi layar tanpa pita kosong. Besar pixel art sama seperti di layar 16:9; di layar yang lebih lebar, peta yang terlihat ikut lebih luas. Untuk demo, tekan F11 supaya bilah browser ikut hilang.
 
 ### Keterbacaan
 
