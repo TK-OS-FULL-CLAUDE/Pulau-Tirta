@@ -122,9 +122,36 @@ KARTU MATERI
 ${kartu}`;
 }
 
-function cadanganTanya(misi: Misi | undefined): string {
-  const fakta = kartuUntuk(misi)[0]?.fakta;
-  return fakta ? `Ini yang aku tahu: ${fakta}` : BALASAN.cadanganTanya;
+const BUKAN_KATA_KUNCI = new Set(['apa', 'itu', 'kenapa', 'mengapa', 'bagaimana', 'gimana', 'yang', 'dari', 'dengan', 'untuk', 'tiko', 'kamu', 'aku', 'dong', 'bisa', 'ada', 'tidak', 'nggak', 'air', 'jadi', 'kalau', 'apakah', 'sama', 'juga', 'kok', 'deh', 'mana', 'saja', 'aja']);
+
+/**
+ * Kartu materi yang paling cocok dengan pertanyaan (kata yang sama atau bentuk dasarnya), untuk jawaban tanpa AI.
+ * Tanpa kecocokan: undefined, supaya Tiko tidak menjawab dengan fakta yang tidak nyambung.
+ */
+export function kartuPalingCocok(pesan: string, kartu: KartuMateri[]): KartuMateri | undefined {
+  const dasar = (k: string) => k.replace(/^(pen|peng|pem|pe|me|meng|mem|ber|ter|di)(?=[a-z]{3})/, '').replace(/(an|kan|nya)$/, '');
+  const kata = (pesan.toLowerCase().match(/[a-z]+/g) ?? []).filter((k) => k.length >= 3 && !BUKAN_KATA_KUNCI.has(k));
+  let terbaik: KartuMateri | undefined;
+  let skor = 0;
+  for (const k of kartu) {
+    const fakta = k.fakta.toLowerCase();
+    const s = kata.reduce((n, w) => n + (fakta.includes(w) ? 2 : dasar(w).length >= 3 && fakta.includes(dasar(w)) ? 1 : 0), 0);
+    if (s > skor) {
+      skor = s;
+      terbaik = k;
+    }
+  }
+  return terbaik;
+}
+
+function cadanganTanya(misi: Misi | undefined, pesan = ''): string {
+  const cocok = kartuPalingCocok(pesan, kartuUntuk(misi));
+  if (cocok) return `Ini yang aku tahu: ${cocok.fakta}`;
+  if (!pesan) {
+    const fakta = kartuUntuk(misi)[0]?.fakta;
+    if (fakta) return `Ini yang aku tahu: ${fakta}`;
+  }
+  return BALASAN.cadanganTanya;
 }
 
 async function panggilModel(
@@ -170,7 +197,7 @@ export async function jawabTiko(req: PermintaanChat, catat?: (c: CatatanTiko) =>
     if (misi && tingkat) return { teks: petunjukCadangan(misi, tingkat), sumber: 'cadangan', tingkat };
     // Kartu materi misi aktif memuat jawabannya, jadi cadangan ketikan bebas berupa pertanyaan balik.
     if (misi && misiAktif) return { teks: petunjukCadangan(misi, 1), sumber: 'cadangan' };
-    return { teks: cadanganTanya(misi), sumber: 'cadangan' };
+    return { teks: cadanganTanya(misi, masuk.pesan), sumber: 'cadangan' };
   };
 
   if (req.mode === 'fakta') return jawabFakta({ ...req, pesan: masuk.pesan }, misi, misiAktif, catat);

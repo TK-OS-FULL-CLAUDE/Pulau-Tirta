@@ -3,6 +3,7 @@
  * Lanjut dengan E, Spasi, Enter, atau klik; Esc menutup. Panel Tiko tetap bisa dipakai di sampingnya.
  */
 import type { Baris, Pembicara } from '../../shared/warga';
+import { potretTiko } from '../tiko/gambar';
 import { el } from './dom';
 
 export interface OpsiPercakapan {
@@ -41,7 +42,9 @@ export function bukaPercakapan(baris: Baris[], o: OpsiPercakapan): void {
   const tampil = () => {
     const b = baris[i];
     const p = o.pembicara[b.siapa] ?? { nama: b.siapa, ikon: '' };
-    ikon.textContent = p.ikon;
+    // Tiko memakai gambar pixel art yang sama dengan rohnya di peta; pembicara lain memakai ikon dari naskah.
+    if (b.siapa === 'tiko') ikon.replaceChildren(el('img', undefined, { src: potretTiko(), alt: '', class: 'kotak-ikon-tiko' }));
+    else ikon.textContent = p.ikon;
     nama.textContent = p.nama;
     teks.textContent = b.teks;
     lanjut.textContent = i < baris.length - 1 ? 'Lanjut ▶' : 'Selesai';

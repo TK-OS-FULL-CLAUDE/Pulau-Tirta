@@ -3,6 +3,7 @@
  * Semuanya dialog modal yang dibuat dari kode (tidak perlu mengubah index.html).
  * Panel "Tentang Tiko" bisa dibuka dari layar judul dan menu jeda (PRD F-17).
  */
+import { potretTiko } from '../tiko/gambar';
 import { svg, el } from './dom';
 
 function layar(id: string, kelas: string): HTMLDialogElement {
@@ -71,7 +72,7 @@ export function bukaJudul(o: OpsiJudul): void {
     o.mulai(!o.adaProgres);
   });
   d.append(
-    el('div', '💧', { class: 'judul-tiko', 'aria-hidden': 'true' }),
+    el('img', undefined, { class: 'judul-tiko', src: potretTiko(), alt: '', width: '88', height: '104' }),
     el('h1', 'Petualangan Pulau Tirta'),
     el('p', 'Hujan sudah lama tidak turun. Bantu Tiko memperbaiki siklus air di pulau ini!', { class: 'judul-sub' }),
     utama,
