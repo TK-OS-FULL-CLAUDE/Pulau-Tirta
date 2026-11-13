@@ -19,6 +19,8 @@ export interface TeksAktivitas {
   /** Langkah tambahan sebelum pertanyaan (dipakai Hutan & Sungai): menanam bibit, lalu membuka sungai yang tersumbat. */
   tanam?: string;
   sumbat?: string;
+  /** Puncak Kabut: angin sudah ke arah gunung tapi terlalu lemah. */
+  lemah?: string;
   siap: string;
   sorot?: string;
   catatanSesudah?: string;

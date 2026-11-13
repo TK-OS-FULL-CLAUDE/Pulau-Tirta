@@ -43,6 +43,8 @@ const UMUR_MAKS = 14;
 /** Udara yang sampai setinggi ini di sekitar puncak berubah menjadi titik-titik air. */
 const ZONA_AWAN = { x0: 560, x1: 720, yMaks: 142 };
 const AWAN_SIAP = 5;
+/** Di bawah kekuatan ini udara lembap jarang sampai ke puncak sebelum hilang (lihat UMUR_MAKS). */
+const AMBANG_ANGIN_CUKUP = 55;
 const AWAN_MAKS = 14;
 const TETES_PER_UDARA = 6;
 /** Ukuran awan (setengah lebar dan tinggi) untuk massa tertentu. */
@@ -267,7 +269,7 @@ export function buatPuncak(misi: Misi, siap: () => void): Aktivitas {
 
   // Kendali.
   const kendali = el('div', undefined, { class: 'kendali' });
-  const slider = el('input', undefined, { id: 'arah-angin', type: 'range', min: '-100', max: '100', step: '1', value: '0' });
+  const slider = el('input', undefined, { id: 'arah-angin', type: 'range', min: '-100', max: '100', step: '5', value: '0' });
   const ulangi = el('button', 'Ulangi', { type: 'button', class: 'tombol-kecil' });
   kendali.append(
     el('label', 'Arah angin', { for: 'arah-angin' }),
@@ -283,6 +285,9 @@ export function buatPuncak(misi: Misi, siap: () => void): Aktivitas {
   let angin = 0;
   let massaAwan = 0;
   let sudahSiap = false;
+  /** Detik angin sudah ke arah gunung tapi belum cukup kuat membawa udara lembap ke puncak. */
+  let sejakLemah = 0;
+  let kabarLemah = false;
   let raf = 0;
   let lalu = performance.now();
 
@@ -296,6 +301,10 @@ export function buatPuncak(misi: Misi, siap: () => void): Aktivitas {
   function tambahAwan(): void {
     if (massaAwan >= AWAN_MAKS) return;
     massaAwan++;
+    if (kabarLemah) {
+      kabarLemah = false;
+      kabar.textContent = '';
+    }
     const { rx, ry } = ukuranAwan(massaAwan);
     for (let i = 0; i < TETES_PER_UDARA; i++) {
       const t = Math.random() * Math.PI * 2;
@@ -337,6 +346,12 @@ export function buatPuncak(misi: Misi, siap: () => void): Aktivitas {
       const muncul = Math.min(1, u.umur / 0.8) * Math.min(1, (UMUR_MAKS - u.umur) / 0.8);
       u.g.setAttribute('transform', `translate(${u.x.toFixed(1)} ${u.y.toFixed(1)}) rotate(${(angin * 0.3).toFixed(1)})`);
       u.g.setAttribute('opacity', Math.max(0, muncul).toFixed(2));
+    }
+    // Angin sudah ke gunung tapi terlalu lemah: beri tahu anak, jangan biarkan ia menunggu tanpa petunjuk.
+    sejakLemah = !sudahSiap && massaAwan === 0 && angin > 10 && angin < AMBANG_ANGIN_CUKUP ? sejakLemah + dt : 0;
+    if (sejakLemah > 5 && !kabarLemah && teks?.lemah) {
+      kabarLemah = true;
+      kabar.textContent = teks.lemah;
     }
     raf = requestAnimationFrame(langkah);
   }
