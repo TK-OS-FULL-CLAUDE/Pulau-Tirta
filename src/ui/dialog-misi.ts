@@ -1,6 +1,7 @@
 import { FESTIVAL, KARTU_MATERI, kartuUntuk, type Misi, type Tingkat } from '../../shared/content';
 import { acak } from '../../shared/missions';
 import { buatAktivitas, type Aktivitas } from './aktivitas';
+import { potretTiko } from '../tiko/gambar';
 import { el, tunggu } from './dom';
 
 const dialog = () => document.getElementById('dialog-misi') as HTMLDialogElement;
@@ -296,7 +297,7 @@ export function bukaFestival(opsi: OpsiFestival): void {
       r.style.animationDuration = `${0.7 + ((i * 13) % 50) / 100}s`;
       langit.append(r);
     }
-    langit.append(el('span', '☁️', { class: 'awan-rumah' }), el('span', '💧', { class: 'tiko-pulang' }));
+    langit.append(el('span', '☁️', { class: 'awan-rumah' }), el('img', undefined, { class: 'tiko-pulang', src: potretTiko(), alt: '' }));
     s.append(
       langit,
       el('p', 'Semua cocok! Hujan turun di Pulau Tirta.', { class: 'pulih-judul' }),

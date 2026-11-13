@@ -154,7 +154,7 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .rintik { position: absolute; top: -20px; width: 3px; height: 16px; border-radius: 2px; background: #2f8fb5; opacity: 0.8; animation: rintik 1s linear infinite; }
 @keyframes rintik { to { transform: translateY(190px); } }
 .awan-rumah { position: absolute; top: 2px; left: 50%; transform: translateX(-50%); font-size: 56px; }
-.tiko-pulang { position: absolute; left: 50%; bottom: 8px; font-size: 34px; transform: translateX(-50%); animation: tiko-pulang 3s ease-in-out 0.4s forwards; }
+.tiko-pulang { position: absolute; left: 50%; bottom: 8px; width: 33px; height: 39px; image-rendering: pixelated; transform: translateX(-50%); animation: tiko-pulang 3s ease-in-out 0.4s forwards; }
 @keyframes tiko-pulang {
   80% { opacity: 1; }
   100% { transform: translate(-50%, -88px) scale(0.5); opacity: 0; }
@@ -202,8 +202,8 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .layar::backdrop { background: rgb(13 43 56 / 72%); }
 .layar h1 { margin: 0; font-size: 34px; color: var(--laut); }
 .layar h2 { margin: 0; }
-.layar-judul::backdrop { background: linear-gradient(#7fc4dd, #1f6f8b 70%, #e8d29a 70%); }
-.judul-tiko { font-size: 72px; line-height: 1; animation: melayang 2.4s ease-in-out infinite alternate; }
+.layar-judul::backdrop { background: linear-gradient(rgb(127 196 221 / 30%), rgb(15 42 54 / 72%)); backdrop-filter: blur(2px); }
+.judul-tiko { display: block; width: 88px; height: 104px; image-rendering: pixelated; filter: drop-shadow(0 6px 10px rgb(31 111 139 / 35%)); animation: melayang 2.4s ease-in-out infinite alternate; }
 @keyframes melayang { to { transform: translateY(-8px); } }
 .judul-sub { margin: 0; max-width: 480px; }
 .judul-kecil { margin: 0; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #2c7a4b; }
@@ -233,6 +233,7 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .kotak-dialog[open] { display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 14px; }
 .kotak-dialog[data-tiko] { border-color: #4fb3e0; }
 .kotak-ikon { font-size: 42px; line-height: 1; text-align: center; }
+.kotak-ikon-tiko { display: block; width: 44px; height: 52px; margin: 0 auto; image-rendering: pixelated; }
 .kotak-nama { margin: 0; font-weight: 800; color: var(--laut); }
 .kotak-teks { margin: 4px 0 0; font-size: 20px; line-height: 1.4; }
 .kotak-lanjut { min-width: 120px; font-weight: 700; }

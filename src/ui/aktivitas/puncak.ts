@@ -97,6 +97,109 @@ function termometer(x: number, c: number, warna: string, labelKiri: boolean): SV
   return g;
 }
 
+/** Gradien linear vertikal dalam koordinat gambar. */
+function gradien(id: string, y1: number, y2: number, warna: [number, string][]): SVGLinearGradientElement {
+  const g = svg('linearGradient', { id, x1: 0, y1, x2: 0, y2, gradientUnits: 'userSpaceOnUse' });
+  for (const [o, c] of warna) g.append(svg('stop', { offset: o, 'stop-color': c }));
+  return g;
+}
+
+/** Pohon pinus kecil berdiri di permukaan tanah. */
+function pinus(x: number, skala = 1): SVGGElement {
+  const y = tanahY(x);
+  const s = skala;
+  const g = svg('g', { 'aria-hidden': 'true' });
+  g.append(
+    svg('rect', { x: x - 2 * s, y: y - 6 * s, width: 4 * s, height: 7 * s, fill: '#6b4a2f' }),
+    svg('polygon', { points: `${x - 11 * s},${y - 5 * s} ${x},${y - 22 * s} ${x + 11 * s},${y - 5 * s}`, fill: '#2f6b46' }),
+    svg('polygon', { points: `${x - 8 * s},${y - 14 * s} ${x},${y - 30 * s} ${x + 8 * s},${y - 14 * s}`, fill: '#3b8156' }),
+    svg('polygon', { points: `${x},${y - 30 * s} ${x + 8 * s},${y - 14 * s} ${x + 11 * s},${y - 5 * s} ${x},${y - 5 * s}`, fill: '#1f4f36', opacity: 0.35 }),
+  );
+  return g;
+}
+
+/**
+ * Latar: langit bergradasi, matahari bercahaya, pegunungan jauh, laut berombak dengan buih di tepi pantai,
+ * dan gunung dengan sisi teduh, pinus, serta puncak berbatu. Hanya hiasan; bentuk tanah (TANAH) tetap sama,
+ * jadi gerak udara dan zona awan tidak berubah. Sengaja tanpa awan di langit, supaya satu-satunya awan
+ * adalah yang terbentuk di puncak.
+ */
+function latar(): SVGGElement {
+  const g = svg('g', { 'aria-hidden': 'true' });
+  const defs = svg('defs');
+  const cahaya = svg('radialGradient', { id: 'pk-surya' });
+  cahaya.append(
+    svg('stop', { offset: 0, 'stop-color': '#fff6c2', 'stop-opacity': 0.95 }),
+    svg('stop', { offset: 1, 'stop-color': '#fff6c2', 'stop-opacity': 0 }),
+  );
+  defs.append(
+    gradien('pk-langit', -TINGGI, LAUT_Y, [[0, '#4fa8d8'], [0.55, '#8fd0f0'], [1, '#e4f5fc']]),
+    gradien('pk-laut', LAUT_Y, TINGGI, [[0, '#3aa3cc'], [0.35, '#2380ad'], [1, '#165f86']]),
+    gradien('pk-pasir', LAUT_Y, TINGGI, [[0, '#f6e8bd'], [1, '#e2cc8e']]),
+    gradien('pk-gunung', 80, 320, [[0, '#6c9f5d'], [0.5, '#82b86c'], [1, '#9ccc7f']]),
+    gradien('pk-jauh', 100, 300, [[0, '#9cc2d8'], [1, '#c9e2ef']]),
+    cahaya,
+  );
+  g.append(defs);
+
+  // Langit dan matahari. Latar dibuat lebih lebar dari viewBox supaya penuh di layar lebar.
+  g.append(
+    svg('rect', { x: -LEBAR, y: -TINGGI, width: LEBAR * 3, height: TINGGI + LAUT_Y, fill: 'url(#pk-langit)' }),
+    svg('circle', { cx: 60, cy: 55, r: 70, fill: 'url(#pk-surya)' }),
+  );
+  const sinar = svg('g', { stroke: '#ffd23f', 'stroke-width': 4, 'stroke-linecap': 'round' });
+  for (let i = 0; i < 12; i++) {
+    const a = (i * Math.PI) / 6;
+    sinar.append(svg('line', { x1: 60 + Math.cos(a) * 38, y1: 55 + Math.sin(a) * 38, x2: 60 + Math.cos(a) * 48, y2: 55 + Math.sin(a) * 48 }));
+  }
+  g.append(
+    sinar,
+    svg('circle', { cx: 60, cy: 55, r: 30, fill: '#ffd23f', stroke: '#f5b301', 'stroke-width': 4 }),
+    svg('circle', { cx: 50, cy: 46, r: 9, fill: '#fff2a8', opacity: 0.8 }),
+  );
+
+  // Pegunungan jauh, biru pudar, di belakang gunung utama.
+  g.append(
+    svg('polygon', { points: '700,300 760,170 820,205 880,120 950,180 1010,140 1600,140 1600,300', fill: 'url(#pk-jauh)' }),
+    svg('polygon', { points: '860,140 880,120 900,138 890,134 880,128 870,138', fill: '#eef7fb', opacity: 0.8 }),
+  );
+
+  // Laut dengan ombak dan buih di tepi pantai; pasir dengan sedikit butiran.
+  g.append(
+    svg('rect', { x: -LEBAR, y: LAUT_Y, width: LEBAR + PANTAI.x0, height: TINGGI * 2, fill: 'url(#pk-laut)' }),
+    svg('rect', { x: -LEBAR, y: LAUT_Y, width: LEBAR + PANTAI.x0, height: 3, fill: '#bfe9f7', opacity: 0.9 }),
+    svg('rect', { x: PANTAI.x0, y: LAUT_Y, width: LEBAR * 2, height: TINGGI * 2, fill: 'url(#pk-pasir)' }),
+  );
+  for (const [x, y] of [[30, 318], [140, 336], [80, 358], [195, 322], [10, 372], [170, 368]]) {
+    g.append(svg('path', { d: `M${x},${y} q 10,-6 20,0 t 20,0`, fill: 'none', stroke: '#d8f1fb', 'stroke-width': 2.5, 'stroke-linecap': 'round', opacity: 0.85 }));
+  }
+  g.append(svg('path', { d: `M${PANTAI.x0},${LAUT_Y} q -6,10 0,20 q -6,10 0,20 q -6,10 0,20 q -6,10 0,20`, fill: 'none', stroke: '#ffffff', 'stroke-width': 4, 'stroke-linecap': 'round', opacity: 0.9 }));
+  for (const [x, y] of [[275, 330], [300, 365], [352, 340], [372, 368], [262, 356]]) {
+    g.append(svg('circle', { cx: x, cy: y, r: 1.8, fill: '#c9ad6a' }));
+  }
+
+  // Gunung utama: badan bergradasi, sisi teduh di balik puncak, garis lapisan batuan, pinus, dan puncak berbatu.
+  const titikGunung = TANAH.filter(([x]) => x >= 380).map(([x, y]) => `${x},${y}`).join(' ');
+  g.append(
+    svg('polygon', { points: `380,${TINGGI * 2} ${titikGunung} 1600,${TINGGI * 2}`, fill: 'url(#pk-gunung)', stroke: '#4f7f41', 'stroke-width': 3, 'stroke-linejoin': 'round' }),
+    svg('polygon', { points: `640,92 700,110 800,175 1600,175 1600,${TINGGI * 2} 690,${TINGGI * 2}`, fill: '#2f5a2a', opacity: 0.18 }),
+  );
+  for (const [x1, y1, x2, y2] of [[420, 292, 470, 280], [480, 262, 520, 255], [575, 190, 610, 184], [610, 140, 630, 136], [735, 150, 770, 160]]) {
+    g.append(svg('line', { x1, y1, x2, y2, stroke: '#5f8f4f', 'stroke-width': 2, 'stroke-linecap': 'round', opacity: 0.6 }));
+  }
+  g.append(
+    svg('polygon', { points: '588,140 640,92 700,110 728,128 690,134 650,124 615,142', fill: '#b7b2a6', stroke: '#8d887d', 'stroke-width': 2, 'stroke-linejoin': 'round' }),
+    svg('polygon', { points: '610,124 640,92 652,104 628,118', fill: '#d8d4ca' }),
+    svg('polygon', { points: '640,92 700,110 728,128 690,134 668,116', fill: '#8f8a7f', opacity: 0.5 }),
+  );
+  for (const [x, s] of [[418, 0.9], [440, 1], [458, 0.85], [792, 0.9]] as const) g.append(pinus(x, s));
+  for (const x of [395, 480, 492, 600, 785]) {
+    const y = tanahY(x);
+    g.append(svg('path', { d: `M${x - 4},${y} l 2,-6 M${x},${y} l 0,-8 M${x + 4},${y} l -2,-6`, stroke: '#5f9a4f', 'stroke-width': 1.6, 'stroke-linecap': 'round' }));
+  }
+  return g;
+}
+
 export function buatPuncak(misi: Misi, siap: () => void): Aktivitas {
   const teks = misi.aktivitas;
   const akar = el('div', undefined, { class: 'aktivitas puncak' });
@@ -107,21 +210,7 @@ export function buatPuncak(misi: Misi, siap: () => void): Aktivitas {
     'aria-label': 'Laut, pantai, dan gunung dengan tiga termometer. Angin bisa diarahkan ke laut atau ke gunung.',
   });
 
-  // Langit, matahari, laut, pantai, gunung. Latar dibuat lebih lebar dari viewBox supaya penuh di layar lebar.
-  gambar.append(svg('rect', { x: -LEBAR, y: -TINGGI, width: LEBAR * 3, height: TINGGI * 3, fill: '#bfe6f5' }));
-  gambar.append(
-    svg('circle', { cx: 60, cy: 55, r: 30, fill: '#ffd23f', stroke: '#f5b301', 'stroke-width': 4 }),
-    svg('rect', { x: -LEBAR, y: LAUT_Y, width: LEBAR + PANTAI.x0, height: TINGGI * 2, fill: '#2f8fb5' }),
-    svg('rect', { x: PANTAI.x0, y: LAUT_Y, width: LEBAR * 2, height: TINGGI * 2, fill: '#f2e3b3' }),
-  );
-  for (const [x, y] of [[40, 322], [140, 340], [90, 362], [190, 318]]) {
-    gambar.append(svg('path', { d: `M${x},${y} q 10,-6 20,0 t 20,0`, fill: 'none', stroke: '#d8f1fb', 'stroke-width': 2.5, 'stroke-linecap': 'round' }));
-  }
-  const titikGunung = TANAH.filter(([x]) => x >= 380).map(([x, y]) => `${x},${y}`).join(' ');
-  gambar.append(
-    svg('polygon', { points: `380,${TINGGI * 2} ${titikGunung} 1600,${TINGGI * 2}`, fill: '#8fbf7a', stroke: '#5e8f4c', 'stroke-width': 3 }),
-    svg('polygon', { points: '588,140 640,92 700,110 728,128 690,134 650,124 615,142', fill: '#b7b2a6' }),
-  );
+  gambar.append(latar());
 
   for (const t of TERMOMETER) gambar.append(termometer(t.x, t.c, t.warna, t.labelKiri));
 
@@ -168,10 +257,12 @@ export function buatPuncak(misi: Misi, siap: () => void): Aktivitas {
   );
   gambar.append(awan);
 
+  // Label dengan tepi terang supaya tetap terbaca di atas gambar yang berwarna.
+  const halo = 'paint-order:stroke;stroke:#ffffff;stroke-width:5px;stroke-linejoin:round';
   gambar.append(
-    svg('text', { x: 120, y: 350, 'text-anchor': 'middle', class: 'label-kolam', fill: '#ffffff', style: 'fill:#ffffff' }, 'Laut'),
-    svg('text', { x: 330, y: 352, 'text-anchor': 'middle', class: 'label-kolam' }, 'Pantai'),
-    svg('text', { x: 652, y: 148, 'text-anchor': 'middle', class: 'label-kolam' }, 'Puncak'),
+    svg('text', { x: 120, y: 350, 'text-anchor': 'middle', class: 'label-kolam', style: 'fill:#ffffff;paint-order:stroke;stroke:#0f4f72;stroke-width:5px;stroke-linejoin:round' }, 'Laut'),
+    svg('text', { x: 330, y: 352, 'text-anchor': 'middle', class: 'label-kolam', style: halo }, 'Pantai'),
+    svg('text', { x: 652, y: 148, 'text-anchor': 'middle', class: 'label-kolam', style: halo }, 'Puncak'),
   );
 
   // Kendali.
