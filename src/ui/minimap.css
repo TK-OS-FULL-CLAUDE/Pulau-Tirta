@@ -1,20 +1,20 @@
 .world-minimap { position: absolute; z-index: 3; width: 210px; padding: 3px; border: 3px solid #735037; border-radius: 5px; background: #eddbb4; box-shadow: 2px 3px 0 #382c2940; pointer-events: none; }
-.world-minimap-toggle { pointer-events: auto; display: block; width: 100%; min-height: 34px; padding: 3px; border: 0; border-radius: 2px; color: #493525; background: #eddbb4; font: bold 15px monospace; cursor: pointer; }
+.world-minimap-toggle { pointer-events: auto; display: block; width: 100%; min-height: 48px; padding: 3px; border: 0; border-radius: 2px; color: #493525; background: #eddbb4; font: bold 18px monospace; cursor: pointer; }
 .world-minimap-toggle:focus-visible { outline: 3px solid #a65d24; outline-offset: 1px; }
 .world-minimap canvas { width: 100%; height: auto; display: block; image-rendering: pixelated; border-top: 2px solid #a47d50; }
 #game .world-minimap canvas[hidden] { display: none; }
-@media (max-width: 640px) { .world-minimap { width: 128px; } .world-minimap-toggle { min-height: 44px; } }
+@media (max-width: 640px) { .world-minimap { width: 128px; } .world-minimap-toggle { min-height: 48px; } }
 .world-minimap canvas { pointer-events: auto; cursor: zoom-in; }
 .world-minimap canvas:focus-visible { outline: 3px solid #a65d24; }
 .world-map-dialog { width: min(74vw, 1000px); max-width: 96vw; max-height: 85dvh; padding: 12px; margin: auto; border: 4px solid #735037; border-radius: 7px; background: #eddbb4; color: #493525; box-shadow: 5px 7px 0 #382c2960; overflow: auto; overscroll-behavior: contain; }
 .world-map-dialog::backdrop { background: #171a20b0; }
 .world-map-dialog header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
 .world-map-dialog h2 { margin: 0; font-size: 22px; }
-.world-map-dialog button { min-width: 44px; min-height: 44px; padding: 5px 10px; border: 2px solid #735037; border-radius: 3px; background: #fff1ce; color: #493525; font: bold 15px monospace; cursor: pointer; }
+.world-map-dialog button { min-width: 48px; min-height: 48px; padding: 5px 10px; border: 2px solid #735037; border-radius: 3px; background: #fff1ce; color: #493525; font: bold 18px monospace; cursor: pointer; }
 .world-map-dialog button:focus-visible { outline: 3px solid #a65d24; outline-offset: 1px; }
 .world-map-surface { display: block; width: min(100%, calc(58dvh * 4 / 3)); height: auto; aspect-ratio: 4 / 3; margin: auto; border: 2px solid #a47d50; image-rendering: pixelated; touch-action: none; cursor: grab; }
 .world-map-surface:active { cursor: grabbing; }
 .world-map-dialog footer { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px; }
-.world-map-hint { margin: 8px 0 0; font-size: 13px; text-align: center; }
-@media (max-width: 640px) { .world-map-dialog { width: 96vw; max-height: 94dvh; padding: 8px; } .world-map-dialog h2 { font-size: 18px; } .world-minimap-toggle { font-size: 13px; } }
-@media (max-height: 520px) { .world-minimap { width: 128px; } #game .world-minimap canvas { display: none; } .world-minimap-toggle { min-height: 44px; font-size: 13px; } .world-map-dialog { width: 96vw; max-height: 94dvh; padding: 8px; } }
+.world-map-hint { margin: 8px 0 0; font-size: 16px; text-align: center; }
+@media (max-width: 640px) { .world-map-dialog { width: 96vw; max-height: 94dvh; padding: 8px; } .world-map-dialog h2 { font-size: 18px; } .world-minimap-toggle { font-size: 16px; } }
+@media (max-height: 520px) { .world-minimap { width: 128px; } #game .world-minimap canvas { display: none; } .world-minimap-toggle { min-height: 48px; font-size: 16px; } .world-map-dialog { width: 96vw; max-height: 94dvh; padding: 8px; } }
