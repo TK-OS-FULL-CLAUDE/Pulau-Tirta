@@ -1,10 +1,13 @@
 /**
- * Misi 4 · Hutan & Sungai (peresapan dan aliran). Versi sederhana: satu mekanik.
- * Anak menyiram lereng gundul dan lereng berpohon dengan hujan yang sama banyak. Gambar penampang tanah
- * menunjukkan ke mana airnya pergi:
- * - lereng gundul: sebagian besar air mengalir di permukaan ke sungai; sedikit yang masuk ke tanah, cepat habis;
- * - lereng berpohon: sebagian besar air masuk ke tanah lewat bagian bawah pohon, air tanah naik, dan mata
- *   airnya tetap mengalir lama setelah hujan berhenti.
+ * Misi 4 · Hutan & Sungai (peresapan dan aliran), tiga langkah seperti di PRD:
+ * 1. Bandingkan: anak menyiram lereng gundul dan lereng berpohon dengan hujan yang sama banyak. Gambar penampang
+ *    tanah menunjukkan ke mana airnya pergi:
+ *    - lereng gundul: sebagian besar air mengalir di permukaan ke sungai; sedikit yang masuk ke tanah, cepat habis;
+ *    - lereng berpohon: sebagian besar air masuk ke tanah lewat bagian bawah pohon, air tanah naik, dan mata
+ *      airnya tetap mengalir lama setelah hujan berhenti.
+ * 2. Tanam: tiga bibit di lereng gundul. Sesudahnya lereng itu menahan lebih banyak air kalau disiram lagi.
+ * 3. Buka sungai: angkat tiga sampah yang menyumbat alur, lalu airnya mengalir lagi ke sungai.
+ * Pertanyaan alasan muncul setelah sungai mengalir; mata air lereng berpohon masih mengalir saat itu.
  *
  * Semua teks dan label yang tampil diambil dari `misi.aktivitas` di content/misi.json, supaya mudah diubah.
  * Kata "meresap", "akar", "gembur" dilarang di petunjuk tingkat 1, jadi akar digambar tanpa label.
@@ -21,11 +24,18 @@ const LAMA_HUJAN = 4;
 const LAJU_HUJAN = 0.25;
 const TINGGI_AIR_TANAH = 130;
 const JEDA_SIAP = 3;
+/** Tempat bibit di lereng gundul dan sampah di alur sungai. */
+const BIBIT_X = [150, 215, 280];
+const SAMPAH = [
+  { x: 383, y: 282, jenis: 'botol' },
+  { x: 402, y: 276, jenis: 'kantong' },
+  { x: 418, y: 288, jenis: 'ranting' },
+] as const;
 
 /** Lereng kiri: gundul. Lereng kanan: cermin lereng kiri, berpohon. */
 const SISI = [
   { kunci: 'gundul', masukTanah: 0.15, keluarMataAir: 0.5, tanah: '#b98d5e', cermin: false },
-  { kunci: 'pohon', masukTanah: 0.8, keluarMataAir: 0.06, tanah: '#7a5b3f', cermin: true },
+  { kunci: 'pohon', masukTanah: 0.8, keluarMataAir: 0.04, tanah: '#7a5b3f', cermin: true },
 ] as const;
 
 /** Tinggi permukaan lereng kiri di x; lereng kanan memakai cerminnya. */
@@ -110,8 +120,10 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
     svg('rect', { x: ALUR.x0 - 2, y: 268, width: ALUR.x1 - ALUR.x0 + 4, height: TINGGI * 2, fill: '#5f6f78' }),
     svg('rect', { x: ALUR.x0, y: 268, width: ALUR.x1 - ALUR.x0, height: ALUR.dasar - 268, fill: '#cfe3ea' }),
     airAlur,
-    svg('text', { x: 400, y: 258, 'text-anchor': 'middle', class: 'label-kecil', fill: '#1c2a33' }, `${label('sungai', 'ke sungai')} ↓`),
   );
+  const labelSungai = svg('text', { x: 400, y: 258, 'text-anchor': 'middle', class: 'label-kecil', fill: '#1c2a33' }, `${label('sungai', 'ke sungai')} ↓`);
+  // Arus di alur, tampil setelah sampahnya diangkat.
+  const arusAlur = svg('path', { class: 'arus-alur', d: `M400,272 L400,${ALUR.dasar}`, opacity: 0 });
 
   const lapisButir = svg('g', { 'aria-hidden': 'true' });
   const bagian = SISI.map((s, i) => {
@@ -145,7 +157,8 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
     // Air tanah: lapisan biru yang naik dari bawah, terpotong bentuk lereng.
     const airTanah = svg('rect', { class: 'air-tanah', x: -LEBAR, width: LEBAR * 3, y: TINGGI, height: TINGGI, 'clip-path': `url(#lereng-${s.kunci})` });
     g.append(airTanah);
-    g.append(svg('polyline', { points: titik.split(' ').slice(0, 4).join(' '), fill: 'none', stroke: s.cermin ? '#4f8f3a' : '#8a6a45', 'stroke-width': s.cermin ? 6 : 4 }));
+    const garisPermukaan = svg('polyline', { points: titik.split(' ').slice(0, 4).join(' '), fill: 'none', stroke: s.cermin ? '#4f8f3a' : '#8a6a45', 'stroke-width': s.cermin ? 6 : 4 });
+    g.append(garisPermukaan);
 
     if (s.cermin) {
       // Tanah berbutir dan pohon dengan bagian bawahnya.
@@ -174,8 +187,8 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
         const y = permukaan(false, x);
         g.append(svg('path', { d: `M${x},${y + 1} l6,7 l-3,6 l7,5`, stroke: '#7a5b3a', 'stroke-width': 2, fill: 'none' }));
       }
-      // Tunggul pohon yang sudah ditebang: tanda lereng ini dulu juga berpohon.
-      for (const [x, sk] of [[140, 1], [262, 0.85], [-60, 0.9], [-200, 1]] as const) g.append(tunggul(x, permukaan(false, x), sk));
+      // Tunggul pohon yang sudah ditebang: tanda lereng ini dulu juga berpohon. Tidak di tempat bibit (BIBIT_X).
+      for (const [x, sk] of [[100, 1], [-60, 0.9], [-200, 1]] as const) g.append(tunggul(x, permukaan(false, x), sk));
       for (const [x, r] of [[80, 3], [200, 2.5], [318, 3], [-120, 3]] as const) {
         g.append(svg('ellipse', { cx: x, cy: permukaan(false, x) - 1, rx: r + 1, ry: r - 0.5, fill: '#a39079', stroke: '#6f5f4f', 'stroke-width': 1 }));
       }
@@ -193,13 +206,14 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
       d: `M${cx(s.cermin, 348)},${292} q ${s.cermin ? -14 : 14},2 ${s.cermin ? -26 : 26},${ALUR.dasar - 296}`,
       opacity: 0,
     });
+    const labelLereng = svg('text', { x: cx(s.cermin, 90), y: 104, 'text-anchor': 'middle', class: 'label-kolam label-lereng' }, label(s.kunci, s.cermin ? 'Lereng berpohon' : 'Lereng gundul'));
     g.append(
       aliran,
       mataAir,
       svg('circle', { cx: cx(s.cermin, 348), cy: 292, r: 7, fill: '#5f6f78' }),
       svg('text', { x: cx(s.cermin, 340), y: 318, 'text-anchor': s.cermin ? 'start' : 'end', class: 'label-tanah' }, label('mataAir', 'mata air')),
       svg('text', { x: cx(s.cermin, 185), y: 368, 'text-anchor': 'middle', class: 'label-tanah' }, label('airTanah', 'air tanah')),
-      svg('text', { x: cx(s.cermin, 90), y: 104, 'text-anchor': 'middle', class: 'label-kolam label-lereng' }, label(s.kunci, s.cermin ? 'Lereng berpohon' : 'Lereng gundul')),
+      labelLereng,
     );
 
     // Awan dan hujan di atas lereng ini (tampil saat disiram).
@@ -217,9 +231,44 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
       awan.append(garis);
     }
     gambar.append(g);
-    return { ...s, i, g, airTanah, aliran, mataAir, awan };
+    return { ...s, i, g, airTanah, aliran, mataAir, awan, garisPermukaan, labelLereng };
   });
-  gambar.append(lapisButir, ...bagian.map((b) => b.awan));
+
+  // Langkah 2: tempat bibit di lereng gundul (lingkaran putus-putus sampai bibitnya ditanam).
+  const lapisBibit = svg('g', { class: 'lapis-bibit', 'aria-hidden': 'true' });
+  const tempatBibit = BIBIT_X.map((x) => {
+    const t = svg('circle', { class: 'tempat-bibit', cx: x, cy: permukaan(false, x) - 10, r: 12 });
+    t.style.display = 'none';
+    lapisBibit.append(t);
+    return t;
+  });
+  function bibit(x: number): SVGGElement {
+    const y = permukaan(false, x);
+    // Pohon muda: gaya sama dengan pohon di lereng berpohon, tapi kecil.
+    const b = svg('g', { class: 'bibit' });
+    b.append(pohon(x, y, 0.5));
+    return b;
+  }
+
+  // Langkah 3: sampah yang menyumbat alur.
+  const lapisSampah = svg('g', { class: 'lapis-sampah', 'aria-hidden': 'true' });
+  lapisSampah.style.display = 'none';
+  const sampah = SAMPAH.map((s) => {
+    const g = svg('g', { class: 'sampah' });
+    if (s.jenis === 'botol') {
+      g.append(svg('rect', { x: s.x - 5, y: s.y - 12, width: 10, height: 22, rx: 3, fill: '#8fc7e0', stroke: '#2f5d73', 'stroke-width': 2, transform: `rotate(-28 ${s.x} ${s.y})` }));
+    } else if (s.jenis === 'kantong') {
+      g.append(svg('path', { d: `M${s.x - 12},${s.y + 8} q -2,-18 12,-20 q 14,2 12,20 z`, fill: '#ece7df', stroke: '#6b6258', 'stroke-width': 2 }));
+    } else {
+      g.append(svg('path', { d: `M${s.x - 14},${s.y + 6} L${s.x + 12},${s.y - 8} M${s.x},${s.y} l6,8`, fill: 'none', stroke: '#6b4a2b', 'stroke-width': 4, 'stroke-linecap': 'round' }));
+    }
+    lapisSampah.append(g);
+    return g;
+  });
+  const labelSumbat = svg('text', { x: 400, y: 232, 'text-anchor': 'middle', class: 'label-tanah label-sumbat' }, label('tersumbat', 'tersumbat'));
+  labelSumbat.style.display = 'none';
+
+  gambar.append(lapisButir, lapisBibit, lapisSampah, arusAlur, labelSungai, labelSumbat, ...bagian.map((b) => b.awan));
 
   // Kendali.
   const kendali = el('div', undefined, { class: 'kendali' });
@@ -228,11 +277,19 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
     t.addEventListener('click', () => siram(b.i));
     return t;
   });
-  kendali.append(...tombol);
+  const tombolTanam = el('button', '', { type: 'button', class: 'tombol-tahap', hidden: '' });
+  const tombolSampah = el('button', '', { type: 'button', class: 'tombol-tahap', hidden: '' });
+  kendali.append(...tombol, tombolTanam, tombolSampah);
   const kabar = el('p', '', { class: 'kabar', 'aria-live': 'polite' });
   akar.append(el('p', teks?.arahan ?? '', { class: 'arahan' }), gambar, kendali, kabar);
 
   // Keadaan.
+  let tahap: 'banding' | 'tanam' | 'sumbat' | 'mengalir' = 'banding';
+  let ditanam = 0;
+  let diangkat = 0;
+  let sejakMengalir = 0;
+  const masukTanah: number[] = SISI.map((s) => s.masukTanah);
+  const keluarMataAir: number[] = SISI.map((s) => s.keluarMataAir);
   const hujan = [0, 0];
   const airTanah = [0, 0];
   const aliranPermukaan = [0, 0];
@@ -252,6 +309,58 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
     tombol[i].disabled = true;
   }
 
+  const hitung = (teksTombol: string, n: number) => `${teksTombol} (${n}/3)`;
+
+  function mulaiTanam(): void {
+    tahap = 'tanam';
+    if (teks?.tanam) kabar.textContent = teks.tanam;
+    for (const t of tempatBibit) t.style.display = '';
+    tombolTanam.textContent = hitung(label('tanamBibit', 'Tanam bibit'), 0);
+    tombolTanam.hidden = false;
+    tombolTanam.focus();
+  }
+
+  tombolTanam.addEventListener('click', () => {
+    if (tahap !== 'tanam' || ditanam >= BIBIT_X.length) return;
+    tempatBibit[ditanam].style.display = 'none';
+    lapisBibit.append(bibit(BIBIT_X[ditanam]));
+    ditanam++;
+    tombolTanam.textContent = hitung(label('tanamBibit', 'Tanam bibit'), ditanam);
+    if (ditanam < BIBIT_X.length) return;
+    // Lereng yang baru ditanami menahan lebih banyak air kalau disiram lagi (belum sebanyak hutan yang sudah lama).
+    masukTanah[0] = 0.55;
+    keluarMataAir[0] = 0.12;
+    bagian[0].garisPermukaan.setAttribute('stroke', '#6f9a3e');
+    bagian[0].labelLereng.textContent = label('ditanami', 'Lereng baru ditanami');
+    tombolTanam.hidden = true;
+    mulaiSumbat();
+  });
+
+  function mulaiSumbat(): void {
+    tahap = 'sumbat';
+    if (teks?.sumbat) kabar.textContent = teks.sumbat;
+    lapisSampah.style.display = '';
+    labelSumbat.style.display = '';
+    tombolSampah.textContent = hitung(label('angkatSampah', 'Angkat sampah'), 0);
+    tombolSampah.hidden = false;
+    tombolSampah.focus();
+  }
+
+  tombolSampah.addEventListener('click', () => {
+    if (tahap !== 'sumbat' || diangkat >= sampah.length) return;
+    const s = sampah[diangkat];
+    s.classList.add('diangkat');
+    setTimeout(() => s.remove(), 450);
+    diangkat++;
+    tombolSampah.textContent = hitung(label('angkatSampah', 'Angkat sampah'), diangkat);
+    if (diangkat < sampah.length) return;
+    tahap = 'mengalir';
+    tombolSampah.hidden = true;
+    labelSumbat.style.display = 'none';
+    arusAlur.setAttribute('opacity', '1');
+    airDiAlur = 1;
+  });
+
   function langkah(kini: number): void {
     const dt = Math.min(0.05, (kini - lalu) / 1000);
     lalu = kini;
@@ -260,11 +369,11 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
       const sedangHujan = hujan[i] > 0;
       if (sedangHujan) {
         hujan[i] = Math.max(0, hujan[i] - dt);
-        airTanah[i] = Math.min(1, airTanah[i] + LAJU_HUJAN * b.masukTanah * dt);
-        aliranPermukaan[i] = LAJU_HUJAN * (1 - b.masukTanah) * 4;
-        airDiAlur += LAJU_HUJAN * (1 - b.masukTanah) * dt * 3;
+        airTanah[i] = Math.min(1, airTanah[i] + LAJU_HUJAN * masukTanah[i] * dt);
+        aliranPermukaan[i] = LAJU_HUJAN * (1 - masukTanah[i]) * 4;
+        airDiAlur += LAJU_HUJAN * (1 - masukTanah[i]) * dt * 3;
         // Butir air yang masuk ke tanah, sebanyak bagian yang masuk.
-        tampung[i] += dt * 14 * b.masukTanah;
+        tampung[i] += dt * 14 * masukTanah[i];
         while (tampung[i] >= 1) {
           tampung[i]--;
           const x = cx(b.cermin, 70 + Math.random() * 270);
@@ -277,7 +386,7 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
         aliranPermukaan[i] = Math.max(0, aliranPermukaan[i] - dt * 1.5);
       }
       // Air tanah keluar pelan-pelan lewat mata air (lereng gundul jauh lebih cepat habis).
-      const keluar = airTanah[i] * b.keluarMataAir * dt;
+      const keluar = airTanah[i] * keluarMataAir[i] * dt;
       airTanah[i] -= keluar;
       airDiAlur += keluar * 2;
 
@@ -298,14 +407,17 @@ export function buatHutan(misi: Misi, siap: () => void): Aktivitas {
         t.el.setAttribute('cy', t.y.toFixed(1));
       }
     }
-    airDiAlur = Math.max(0, Math.min(1, airDiAlur - dt * 0.35));
+    // Selama alur tersumbat, air tertahan di belakang sampah; sesudah dibuka, air mengalir pergi ke sungai.
+    airDiAlur = tahap === 'sumbat' ? Math.max(0.55, Math.min(1, airDiAlur)) : Math.max(0, Math.min(1, airDiAlur - dt * 0.35));
     const yAlur = ALUR.dasar - airDiAlur * 40;
     airAlur.setAttribute('y', yAlur.toFixed(1));
     airAlur.setAttribute('height', (ALUR.dasar - yAlur).toFixed(1));
 
     const semuaBerhenti = hujan.every((h) => h === 0);
     sejakBerhenti = semuaBerhenti ? sejakBerhenti + dt : 0;
-    if (!sudahSiap && pernahDisiram.every(Boolean) && semuaBerhenti && sejakBerhenti >= JEDA_SIAP) {
+    if (tahap === 'banding' && pernahDisiram.every(Boolean) && semuaBerhenti && sejakBerhenti >= JEDA_SIAP) mulaiTanam();
+    if (tahap === 'mengalir') sejakMengalir += dt;
+    if (!sudahSiap && tahap === 'mengalir' && sejakMengalir >= 1.5) {
       sudahSiap = true;
       kabar.textContent = teks?.siap ?? '';
       siap();

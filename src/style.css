@@ -121,8 +121,16 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 /* Nama lereng tetap terbaca di atas pohon dan awan hujan. */
 .label-lereng { paint-order: stroke; stroke: rgb(255 255 255 / 85%); stroke-width: 6px; stroke-linejoin: round; }
 .hutan .label-sorot { fill: #ffffff; paint-order: stroke; stroke: #b85c00; stroke-width: 4px; }
+.tempat-bibit { fill: rgb(255 255 255 / 35%); stroke: #ffffff; stroke-width: 3; stroke-dasharray: 5 4; }
+.bibit { transform-box: fill-box; transform-origin: 50% 100%; animation: tumbuh 0.6s ease-out; }
+@keyframes tumbuh { from { transform: scale(0.1); } to { transform: scale(1); } }
+.sampah { transform-box: fill-box; transform-origin: center; transition: transform 0.45s ease, opacity 0.45s ease; }
+.sampah.diangkat { transform: translateY(-40px) rotate(20deg); opacity: 0; }
+.arus-alur { fill: none; stroke: #e8f6ff; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 10 8; animation: alir 0.5s linear infinite; }
+.hutan .label-sumbat { stroke: rgb(143 47 31 / 85%); }
 @media (prefers-reduced-motion: reduce) {
-  .aliran, .mata-air, .garis-hujan, .aktivitas.sorot .akar { animation: none; }
+  .aliran, .mata-air, .garis-hujan, .aktivitas.sorot .akar, .arus-alur, .bibit { animation: none; }
+  .sampah { transition: none; }
 }
 
 /* Festival Hujan */
@@ -235,7 +243,7 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .kotak-dialog {
   --ekor: 50%; --tepi-gelembung: #1c2a33;
   position: absolute; left: 50%; right: auto; top: auto; bottom: 24px; transform: translateX(-50%); z-index: 2; margin: 0;
-  width: max-content; max-width: min(300px, calc(100% - 16px)); padding: 8px 12px; border: 2px solid var(--tepi-gelembung); border-radius: 12px;
+  width: max-content; max-width: min(460px, calc(100% - 16px)); padding: 8px 12px; border: 2px solid var(--tepi-gelembung); border-radius: 12px;
   background: #ffffff; color: var(--tinta); box-shadow: 0 3px 0 rgb(28 42 51 / 25%); cursor: pointer; overflow: visible;
 }
 .kotak-dialog[data-melayang] { bottom: auto; transform: none; }
@@ -250,10 +258,12 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .kotak-dialog::before, .kotak-dialog::after { content: ''; position: absolute; left: var(--ekor); width: 0; height: 0; border-style: solid; translate: -50% 0; }
 .kotak-dialog::before { top: 100%; border-width: 9px 7px 0; border-color: var(--tepi-gelembung) transparent transparent; }
 .kotak-dialog::after { top: calc(100% - 1px); border-width: 7px 5px 0; border-color: #ffffff transparent transparent; }
-.kotak-teks { margin: 0; font-size: 16px; line-height: 1.35; }
+/* PRD: teks dialog minimal 18px. Lebar gelembung 460px supaya kalimat biasa (sekitar 100 huruf) muat 2 baris. */
+.kotak-teks { margin: 0; font-size: 18px; line-height: 1.35; }
 .kotak-lanjut {
-  flex: none; min-width: 0; min-height: 0; width: 22px; height: 22px; padding: 0; border-radius: 50%; background: transparent;
-  color: var(--laut); font-size: 12px; line-height: 1; animation: gelembung-lanjut 0.9s ease-in-out infinite alternate;
+  /* Area tekan 48px (PRD), tapi margin negatif menjaga gelembung tetap ramping; segitiganya tetap kecil. */
+  flex: none; min-width: 48px; min-height: 48px; width: 48px; height: 48px; margin: -13px -14px -13px -10px; padding: 0; border-radius: 50%;
+  background: transparent; color: var(--laut); font-size: 14px; line-height: 1; animation: gelembung-lanjut 0.9s ease-in-out infinite alternate;
 }
 /* Tanpa cincin fokus: gelembungnya sendiri sudah menandai percakapan yang aktif. */
 .kotak-lanjut:focus, .kotak-lanjut:focus-visible { outline: none; box-shadow: none; }
