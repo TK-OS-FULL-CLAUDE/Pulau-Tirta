@@ -204,13 +204,16 @@ export class PanelTiko {
     await this.kirim({ pesan: teks, mode: 'tanya' }, teks);
   }
 
-  /** Dipanggil game saat anak memilih alasan keliru. */
-  async petunjuk(misiId: string, tingkat: Tingkat, pesan = 'Aku memilih alasan itu.', alasanId?: string): Promise<void> {
-    await this.kirim({ pesan, mode: 'petunjuk', misiId, tingkat, alasanId }, pesan || undefined);
+  /**
+   * Dipanggil game saat anak memilih alasan keliru. Mengembalikan teks petunjuknya, supaya dialog misi bisa
+   * menuliskannya di samping pertanyaan: kotak jawaban Tiko hilang sendiri, petunjuknya tidak boleh ikut hilang.
+   */
+  async petunjuk(misiId: string, tingkat: Tingkat, pesan = 'Aku memilih alasan itu.', alasanId?: string): Promise<string | undefined> {
+    return this.kirim({ pesan, mode: 'petunjuk', misiId, tingkat, alasanId }, pesan || undefined);
   }
 
   /** `simpanRiwayat` false untuk fun fact: tidak perlu jadi konteks percakapan berikutnya. */
-  private async kirim(isi: Record<string, unknown>, pertanyaan?: string, simpanRiwayat = true): Promise<void> {
+  private async kirim(isi: Record<string, unknown>, pertanyaan?: string, simpanRiwayat = true): Promise<string | undefined> {
     const k = this.konteks();
     const nomor = ++this.nomor;
     const riwayat = this.riwayat.slice(-6);
@@ -242,8 +245,9 @@ export class PanelTiko {
       }
     } else if (simpanRiwayat) this.riwayat.push({ dari: 'tiko', teks: jawaban.teks });
     // Anak sudah bertanya lagi sebelum jawaban ini tiba: jawaban baru yang ditampilkan.
-    if (nomor !== this.nomor) return;
+    if (nomor !== this.nomor) return jawaban.teks;
     this.tampilJawaban(jawaban.teks, pertanyaan, jawaban.sumber);
+    return jawaban.teks;
   }
 
   private mulaiBerpikir(pertanyaan?: string): void {

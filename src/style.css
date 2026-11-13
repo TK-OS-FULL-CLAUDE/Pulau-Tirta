@@ -49,6 +49,18 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .dialog-kepala p { margin: 2px 0 0; }
 .dialog-kepala .tombol-kecil { margin-left: auto; }
 .umpan { margin: 0; min-height: 1.4em; font-weight: 600; }
+.petunjuk-tiko { margin: 0; padding: 10px 14px; border-radius: 12px; background: #e3f2fb; border-left: 5px solid #2f9bd6; }
+/* Layar lebar: setelah pertanyaan muncul, gambar bukti di kiri dan pertanyaan di kanan, supaya keduanya terlihat
+   bersama tanpa menggulir (PRD: bukti yang membantah alasan keliru ada di layar). */
+@media (min-width: 1000px) {
+  .dialog-misi[open]:has(> .tanya:not([hidden])) {
+    display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr); grid-template-rows: auto 1fr; column-gap: 20px; row-gap: 8px; align-items: start;
+  }
+  .dialog-misi:has(> .tanya:not([hidden])) > .dialog-kepala { grid-column: 1 / -1; }
+  .dialog-misi:has(> .tanya:not([hidden])) > .tanya { display: flex; flex-direction: column; gap: 8px; }
+  .dialog-misi:has(> .tanya:not([hidden])) .pilihan-alasan { grid-template-columns: 1fr; margin: 4px 0; }
+  .dialog-misi:has(> .tanya:not([hidden])) .aktivitas svg { max-height: 36vh; }
+}
 
 /* Aktivitas misi */
 .aktivitas { display: flex; flex-direction: column; gap: 8px; }

@@ -20,8 +20,11 @@ const BATAS_TAHAN_MS = 10_000;
 export interface HasilPilih {
   benar: boolean;
   tingkatPetunjuk?: Tingkat;
-  /** Selesai saat petunjuk Tiko sudah tampil. Pilihan ditahan sampai saat itu supaya anak membacanya dulu. */
-  petunjukTiba?: Promise<unknown>;
+  /**
+   * Selesai saat petunjuk Tiko sudah tampil, berisi teks petunjuknya. Pilihan ditahan sampai saat itu supaya anak
+   * membacanya dulu, dan teksnya ditulis lagi di bawah pertanyaan karena kotak jawaban Tiko hilang sendiri.
+   */
+  petunjukTiba?: Promise<string | undefined | void>;
 }
 
 export interface OpsiMisi {
@@ -111,6 +114,8 @@ export function bukaMisi(misi: Misi, opsi: OpsiMisi): void {
     if (pertanyaanTampil) return;
     pertanyaanTampil = true;
     const umpan = el('p', '', { class: 'umpan', 'aria-live': 'polite' });
+    // Petunjuk Tiko terakhir tetap terbaca di sini selama anak melihat gambar dan memilih lagi.
+    const petunjukTiko = el('p', '', { class: 'petunjuk-tiko', hidden: '' });
     const kotak = el('div', undefined, { class: 'pilihan pilihan-alasan' });
     const tombol: HTMLButtonElement[] = [];
     const tahan = (ya: boolean) => tombol.forEach((b) => (b.disabled = ya || b.hasAttribute('data-salah')));
@@ -134,14 +139,22 @@ export function bukaMisi(misi: Misi, opsi: OpsiMisi): void {
         if (hasil.tingkatPetunjuk) aktivitas.sorot(hasil.tingkatPetunjuk);
         umpan.textContent = 'Belum tepat. Baca petunjuk Tiko, lalu lihat lagi gambarnya.';
         tahan(true);
-        await Promise.race([Promise.resolve(hasil.petunjukTiba).catch(() => undefined), tunggu(BATAS_TAHAN_MS)]);
+        const tiba = Promise.resolve(hasil.petunjukTiba)
+          .then((teks) => {
+            if (typeof teks === 'string' && teks.trim()) {
+              petunjukTiko.replaceChildren(el('strong', 'Petunjuk Tiko: '), teks);
+              petunjukTiko.hidden = false;
+            }
+          })
+          .catch(() => undefined);
+        await Promise.race([tiba, tunggu(BATAS_TAHAN_MS)]);
         tahan(false);
         tombol.find((x) => !x.disabled)?.focus();
       });
       tombol.push(b);
       kotak.append(b);
     }
-    tanya.append(el('h3', misi.pertanyaan ?? ''), kotak, umpan);
+    tanya.append(el('h3', misi.pertanyaan ?? ''), kotak, umpan, petunjukTiko);
     tanya.hidden = false;
     tanya.scrollIntoView({ block: 'nearest' });
   }

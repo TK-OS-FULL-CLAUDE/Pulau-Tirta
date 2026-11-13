@@ -122,6 +122,7 @@
       ],
       "aktivitas": {
         "arahan": "Geser arah angin supaya udara lembap dari laut tertiup ke gunung. Perhatikan termometer dan langit di atas puncak.",
+        "lemah": "Anginnya masih lemah, udaranya belum sampai ke puncak. Geser lebih jauh ke arah gunung.",
         "siap": "Lihat! Awan muncul di atas puncak. Di atas pantai juga ada udara lembap, tapi tidak jadi awan.",
         "sorot": "Bandingkan angka termometer di pantai, di lereng, dan di puncak.",
         "catatanSesudah": "Garis-garis tipis tadi cuma gambaran udara lembap. Uap air sebenarnya tidak kelihatan. Yang terlihat sebagai awan adalah titik-titik air yang sangat kecil."
