@@ -229,14 +229,34 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .panel-demo .catatan { margin: 0 0 4px; }
 
 /* Kotak dialog warga */
-.kotak-dialog { position: absolute; inset: auto 12px 12px 12px; z-index: 2; margin: 0; width: auto; max-width: none; padding: 14px 18px; border: 3px solid var(--laut); border-radius: 16px; background: var(--kertas); color: var(--tinta); box-shadow: 0 8px 24px rgb(0 0 0 / 35%); cursor: pointer; }
-.kotak-dialog[open] { display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 14px; }
-.kotak-dialog[data-tiko] { border-color: #4fb3e0; }
-.kotak-ikon { font-size: 42px; line-height: 1; text-align: center; }
-.kotak-ikon-tiko { display: block; width: 44px; height: 52px; margin: 0 auto; image-rendering: pixelated; }
-.kotak-nama { margin: 0; font-weight: 800; color: var(--laut); }
-.kotak-teks { margin: 4px 0 0; font-size: 20px; line-height: 1.4; }
-.kotak-lanjut { min-width: 120px; font-weight: 700; }
+/* Gelembung percakapan di atas kepala pembicara (src/ui/kotak-dialog.ts). Tanpa titik kepala: tengah bawah. */
+.kotak-dialog {
+  --ekor: 50%; --tepi-gelembung: #1c2a33;
+  position: absolute; left: 50%; right: auto; top: auto; bottom: 24px; transform: translateX(-50%); z-index: 2; margin: 0;
+  width: max-content; max-width: min(300px, calc(100% - 16px)); padding: 8px 12px; border: 2px solid var(--tepi-gelembung); border-radius: 12px;
+  background: #ffffff; color: var(--tinta); box-shadow: 0 3px 0 rgb(28 42 51 / 25%); cursor: pointer; overflow: visible;
+}
+.kotak-dialog[data-melayang] { bottom: auto; transform: none; }
+.kotak-dialog[data-tiko] { --tepi-gelembung: #2f9bd6; }
+.kotak-dialog[open] { display: flex; align-items: flex-end; gap: 6px; }
+/* Gelembung meluncur naik dari kepala pembicara; baris berikutnya meluncur masuk di dalam gelembung. */
+.kotak-dialog.baru { animation: gelembung-muncul 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.2); }
+@keyframes gelembung-muncul { from { opacity: 0; translate: 0 16px; } }
+.kotak-dialog.ganti .kotak-teks { animation: gelembung-ganti 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1); }
+@keyframes gelembung-ganti { from { opacity: 0; translate: 0 10px; } }
+/* Ekor gelembung menunjuk ke kepala pembicara. */
+.kotak-dialog::before, .kotak-dialog::after { content: ''; position: absolute; left: var(--ekor); width: 0; height: 0; border-style: solid; translate: -50% 0; }
+.kotak-dialog::before { top: 100%; border-width: 9px 7px 0; border-color: var(--tepi-gelembung) transparent transparent; }
+.kotak-dialog::after { top: calc(100% - 1px); border-width: 7px 5px 0; border-color: #ffffff transparent transparent; }
+.kotak-teks { margin: 0; font-size: 16px; line-height: 1.35; }
+.kotak-lanjut {
+  flex: none; min-width: 0; min-height: 0; width: 22px; height: 22px; padding: 0; border-radius: 50%; background: transparent;
+  color: var(--laut); font-size: 12px; line-height: 1; animation: gelembung-lanjut 0.9s ease-in-out infinite alternate;
+}
+/* Tanpa cincin fokus: gelembungnya sendiri sudah menandai percakapan yang aktif. */
+.kotak-lanjut:focus, .kotak-lanjut:focus-visible { outline: none; box-shadow: none; }
+@keyframes gelembung-lanjut { to { translate: 2px 0; } }
+@media (prefers-reduced-motion: reduce) { .kotak-dialog.baru, .kotak-dialog.ganti .kotak-teks, .kotak-lanjut { animation: none; } }
 
 /* Jurnal Petualangan */
 .layar-jurnal { width: min(94vw, 780px); text-align: left; }
@@ -381,9 +401,6 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
   .tata:has(.dialog-misi[open]) .tiko-jawaban { left: calc(var(--lebar-bar-tiko) + 36px); right: 24px; bottom: 12px; }
   .tata:has(.dialog-misi[open]) .tiko-teks { max-height: calc(var(--ruang-bawah-tiko) - 72px); }
   .dialog-misi { bottom: calc(var(--ruang-bawah-tiko) + 24px); }
-  /* Kotak dialog warga di samping kotak chat; jawaban Tiko naik di atasnya. */
-  .kotak-dialog { left: calc(var(--lebar-bar-tiko) + 24px); }
-  .tata:has(.kotak-dialog[open]) .tiko-jawaban { bottom: 150px; }
   .tombol-demo, .panel-demo { left: auto; right: 12px; }
 }
 /* Layar sempit: potret dan ruang kiri kotak jawaban lebih kecil supaya teks tetap lega. */

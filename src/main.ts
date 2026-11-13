@@ -25,7 +25,7 @@ import { WARGA, naskahDesa, naskahPenduduk, semuaPembicara } from '../shared/war
 import { pasangDemo, tujuanDariUrl } from './ui/demo';
 import { bukaFestival, bukaMisi } from './ui/dialog-misi';
 import { ID_JURNAL, bukaJurnal } from './ui/jurnal';
-import { bukaPercakapan } from './ui/kotak-dialog';
+import { aturTitikKepala, bukaPercakapan } from './ui/kotak-dialog';
 import { bukaJeda, bukaJudul, bukaTamat } from './ui/layar';
 import { pasangPlaytest } from './ui/playtest';
 import { Suara } from './ui/suara';
@@ -232,6 +232,32 @@ class SharpWorld extends DuniaScene {
     super.preload();
     this.load.spritesheet('tirta-explorer', '/assets/player/tirta-explorer.png', { frameWidth: 20, frameHeight: 20 });
   }
+  private roh?: RohTiko;
+  /**
+   * Titik di atas kepala pembicara, dalam pixel relatif ke #game, untuk gelembung percakapan (src/ui/kotak-dialog.ts).
+   * Warga memakai sprite-nya, Tiko memakai rohnya, Kepala Desa memakai titik Desa Tirta. Kalau titiknya di luar layar,
+   * gelembung muncul di atas kepala pemain.
+   */
+  titikKepala(siapa: string): { x: number; y: number } | undefined {
+    const state = this.explorerState();
+    if (!state.pemain) return undefined;
+    const npc = state.living?.npcs.find((n) => n.plan.id === siapa && n.image.visible);
+    const desa = LOKASI.find((l) => l.id === 'desa');
+    const kepalaPemain = { x: state.visualPemain.x, y: state.visualPemain.getTopCenter().y };
+    const dunia =
+      siapa === 'tiko' && this.roh ? this.roh.puncak()
+      : npc ? { x: npc.image.x, y: npc.image.getTopCenter().y }
+      : siapa === 'kades' && desa ? { x: desa.x, y: desa.y - 6 }
+      : kepalaPemain;
+    const kam = this.cameras.main;
+    const layar = (t: { x: number; y: number }) => ({ x: (t.x - kam.worldView.x) * kam.zoom, y: (t.y - kam.worldView.y) * kam.zoom });
+    let p = layar(dunia);
+    if (p.x < 0 || p.y < 0 || p.x > kam.width || p.y > kam.height) p = layar(kepalaPemain);
+    const kanvas = this.game.canvas.getBoundingClientRect();
+    const wadah = (this.game.canvas.parentElement ?? document.body).getBoundingClientRect();
+    const skala = kanvas.width / kam.width;
+    return { x: kanvas.left - wadah.left + p.x * skala, y: kanvas.top - wadah.top + p.y * skala };
+  }
   private explorerState() {
     return this as unknown as { visualPemain: Phaser.GameObjects.Sprite; pemain: Phaser.GameObjects.Sprite; bayangan: Phaser.GameObjects.Ellipse; judulWilayah: Phaser.GameObjects.Text; living: import('./game/living-world').LivingWorld; facing: import('./game/living-model').Facing; walkDistance: number };
   }
@@ -326,6 +352,7 @@ class SharpWorld extends DuniaScene {
     // Sprite pemain adalah field privat DuniaScene, dan world.ts dikunci tes preservasi World, jadi dibaca dari sini.
     const pemain = () => (this as unknown as { pemain?: Phaser.GameObjects.Sprite }).pemain;
     const roh = new RohTiko(this, () => pemain());
+    this.roh = roh;
     panel.pantau((s) => roh.atur(s));
     const wilayahPuncak = DUNIA.wilayah.find((w) => w.lokasi.misiId === 'misi-2')?.batas;
     if (wilayahPuncak) suasanaPuncak = new SuasanaPuncak(this, wilayahPuncak, () => pemain(), puncakPulih(), PETA_RUNTIME);
@@ -345,6 +372,7 @@ const dunia = new SharpWorld({
   namaWarga: (id) => WARGA.penduduk[id]?.nama,
   bicara: ajakBicara,
 });
+aturTitikKepala((siapa) => dunia.titikKepala(siapa));
 
 new Phaser.Game({
   type: Phaser.AUTO,
