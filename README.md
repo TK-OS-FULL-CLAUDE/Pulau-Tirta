@@ -17,7 +17,8 @@ npm start                 # build + server di http://localhost:3000
 - Tanpa API key (atau `TIKO_MOCK=1`), Tiko memakai jawaban cadangan yang ditulis tim. Game tetap bisa dimainkan dari awal sampai tamat.
 - Untuk memakai model AI, isi `ANTHROPIC_API_KEY` di `.env` dan ubah `TIKO_MOCK=0`.
 - Setelah dibuka di Chrome atau Edge, game bisa diinstal sebagai aplikasi (ikon instal di address bar) dan dibuka tanpa internet.
-- Mode demo: `http://localhost:3000/?demo=1` menampilkan sumber jawaban Tiko (AI / cadangan / template), melewati layar judul, dan tidak menyimpan progres. Tambahkan `&ke=misi-1` … `misi-4`, `festival`, atau `tamat` untuk langsung lompat; tombol **Demo** di pojok kiri bawah (atau Ctrl+Shift+D) membuka panel lompat saat presentasi.
+- Mode demo: `http://localhost:3000/?demo=1` menampilkan sumber jawaban Tiko (AI / cadangan / template), melewati layar judul, dan tidak menyimpan progres. Tambahkan `&ke=pembuka`, `misi-1` … `misi-4`, `festival`, atau `tamat` untuk langsung lompat; tombol **Demo** di pojok kiri bawah (atau Ctrl+Shift+D) membuka panel lompat saat presentasi.
+- Mode playtest: `http://localhost:3000/?playtest=1`. Anak bermain seperti biasa; pendamping membuka panel tersembunyi dengan **Ctrl+Shift+P** untuk mulai sesi anak berikutnya (kode Anak 1, Anak 2, …), mengisi skor tes sebelum dan sesudah, lalu menyalin atau mengunduh hasil sebagai CSV. Progres dan catatan playtest disimpan terpisah dari progres biasa, tanpa nama atau data pribadi.
 
 ### Pengembangan
 
@@ -29,6 +30,18 @@ npm run uji:tiko   # uji kualitas Tiko: 30 soal materi, 50 prompt nakal, kebocor
 ```
 
 `npm run uji:tiko` memakai model kalau `ANTHROPIC_API_KEY` terisi (sekitar 100 panggilan, kurang dari $0,05 dengan Claude Haiku 5.5) dan menulis laporan per jawaban ke `uji-hasil/`. Tanpa key, hanya filter, cadangan, dan template yang diuji. Soal ada di `scripts/uji-tiko/`. Target PRD: materi ≥ 90% benar, prompt nakal 100% aman, 0 kebocoran.
+
+## Cara bermain
+
+| Tombol | Fungsi |
+| --- | --- |
+| WASD / panah | Berjalan |
+| E, Spasi, atau Enter | Bicara dengan warga, membuka misi, melanjutkan dialog |
+| T | Tanya Tiko (atau klik ikon Tiko di kiri bawah) |
+| J | Jurnal Petualangan: status keempat tempat, satu kalimat petunjuk, Kartu Ilmu |
+| Esc | Menu jeda: lanjutkan, suara nyala/mati, Tentang Tiko, mulai dari awal |
+
+Tiko melayang di dekat pemain; jawabannya muncul di kotak bawah tengah tanpa menutup game. Progres tersimpan otomatis per misi di browser; "Mulai dari awal" (layar judul atau menu jeda) menghapusnya. Semua suara dibuat dengan Web Audio API (tanpa file audio) dan bisa dimatikan dari menu jeda.
 
 ## Struktur
 
@@ -47,6 +60,41 @@ tests/          Tes Vitest
 ```
 
 Konten dipisah dari kode: mengubah soal, pilihan alasan, atau petunjuk cukup lewat `content/*.json`, dan tes memastikan setiap petunjuk cadangan tetap lolos aturan kebocoran.
+
+## Misi, aktivitas, dan warga
+
+Satu misi berjalan seperti ini (PRD: jelajah → aktivitas → lihat akibat → pilih alasan → petunjuk → pulih):
+
+1. Pemain menekan E di titik misi. Dunia memanggil `kait.interaksi(lokasi)`, lalu `src/ui/dialog-misi.ts` membuka aktivitas di atas peta. Tiko tetap bisa ditanya selama aktivitas berjalan.
+2. Aktivitas (`src/ui/aktivitas/`, satu file per tempat: `pantai.ts`, `puncak.ts`, `lembah.ts`, `hutan.ts`) adalah gambar SVG yang bisa digeser atau ditekan. Bukti yang membantah alasan keliru selalu terlihat di layar.
+3. Setelah aktivitas selesai, muncul pertanyaan alasan dengan pilihan yang diacak. Pilihan keliru tidak menghukum: Tiko memberi petunjuk tingkat 1, lalu tingkat 2 sambil menyorot bukti di gambar, lalu tingkat 3.
+4. Jawaban benar memberi Kartu Ilmu. Tempatnya baru berubah saat anak menekan "Kembali ke pulau": lapisan pemulihan muncul pelan-pelan, ada kilau di titik misi, dan warga yang terlihat bersorak. Setelah keempat tempat pulih, Festival Hujan di Desa Tirta terbuka; sesudah Festival hujan turun dan layar tamat muncul.
+
+Logika tanpa UI ada di `shared/missions.ts` (status, jawaban, petunjuk, Festival, simpan/muat progres), `shared/jurnal.ts`, dan `shared/warga.ts`, semuanya diuji di `tests/`.
+
+### Mengubah teks (untuk tim konten)
+
+| File | Isi | Dijaga tes |
+| --- | --- | --- |
+| `content/misi.json` → `misi[].aktivitas` | Arahan aktivitas, teks saat siap menjawab, teks sorot petunjuk tingkat 2, label di gambar | Tidak boleh memakai kata terlarang misi itu |
+| `content/misi.json` → `misi[].pertanyaan`, `pilihan`, `petunjukCadangan` | Pertanyaan alasan, pilihan (yang keliru diambil dari miskonsepsi), petunjuk cadangan per tingkat | Aturan kebocoran per tingkat |
+| `content/misi.json` → `festival` | Peristiwa sehari-hari dan petunjuk Festival Hujan | Logika pencocokan dan petunjuk bertingkat |
+| `content/warga.json` | Kepala Desa (pembuka, arahan per misi, ajakan Festival) dan `penduduk`: empat warga yang berjalan di desa | Maks. 140 karakter per baris (muat 2 baris), tanpa kata terlarang |
+| `content/kartu-materi.json` | Kartu Ilmu: satu-satunya sumber fakta Tiko | Tes Tiko |
+
+Tiap warga di `penduduk` dikunci dengan id NPC di peta (`village_npc_1` … `4`), peduli pada satu tempat (`misi`), dan punya naskah untuk empat keadaan: `sebelum` tempat itu pulih, `sesudah` pulih, `festival` (keempat tempat pulih), dan `tamat`. Baris berupa teks biasa diucapkan warga itu sendiri; untuk pembicara lain tulis `{ "siapa": "tiko", "teks": "..." }`. Setelah mengubah teks, jalankan `npm test`.
+
+### Kontrak dengan dunia
+
+Dunia Phaser (`src/game/world.ts`) dan sistem misi (`src/main.ts`) hanya terhubung lewat `PengaitDunia`:
+
+- dari dunia ke misi: `interaksi(lokasi)`, `bicara(wargaId)` dan `namaWarga(wargaId)`, `bergerak()`, `pindahWilayah(lokasi)`;
+- dari misi ke dunia (dibaca dunia): `statusMisi(id)`, `persenPulih()`, `festivalSelesai()`;
+- perintah ke dunia: `segarkan()` setelah progres berubah, `tundaPemulihan(id)` / `rayakanPemulihan(id)`, dan `tundaFestival()` / `rayakanFestival()` supaya perubahan tempat terjadi di depan anak, bukan di balik dialog. Efeknya ada di `src/game/perayaan.ts` dan dilewati kalau perangkat memilih "kurangi gerakan".
+
+### Keterbacaan
+
+Aturannya ditulis di bagian atas `src/style.css` dan diperiksa di browser pada layar 1366×768: teks yang dibaca anak dan teks tombol minimal 18 px, keterangan pendukung minimal 16 px, tombol minimal 48 px, kontras teks minimal 4,5:1. Teks di dalam gambar SVG ukurannya dipilih supaya tetap memenuhi aturan setelah gambarnya mengecil.
 
 ## Arsitektur
 
@@ -99,4 +147,4 @@ Sumber dan lisensi semua aset ada di [CREDITS.md](CREDITS.md). Lisensi kode: [di
 
 ## Tim
 
-Sabri (product lead: konten dan pitch) · Aufa (gameplay dan dunia) · Evan (misi dan UI) · Faza (AI dan backend)
+Sabri (konten, QA, dan pitch) · Aufa (visual dunia) · Evan (gameplay dan interaksi: misi, aktivitas, dialog, UI) · Faza (teknis dunia dan integrasi, AI dan backend Tiko, PWA, CI)
