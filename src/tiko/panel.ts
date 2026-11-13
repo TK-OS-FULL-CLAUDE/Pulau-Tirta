@@ -4,7 +4,8 @@ import {
   FUN_FACT_TUNDA,
   faktaCadangan,
   kartuFunFact,
-  kartuPalingCocok,
+  jawabanMateriCadangan,
+  jawabanTentangTiko,
   periksaMasuk,
   petunjukCadangan,
   pilihKartuFunFact,
@@ -52,10 +53,11 @@ export function jawabanCadangan(isi: IsiPermintaan): string {
 function jawabTanyaTanpaServer(isi: IsiPermintaan, pesan: string): string {
   const masuk = periksaMasuk(pesan);
   if (!masuk.lolos) return masuk.balasan;
+  const tentang = jawabanTentangTiko(masuk.pesan);
+  if (tentang) return tentang;
   const misi = typeof isi.misiId === 'string' ? cariMisi(isi.misiId) : undefined;
   if (misi && isi.statusMisi !== 'selesai') return petunjukCadangan(misi, 1);
-  const cocok = kartuPalingCocok(masuk.pesan, kartuUntuk(misi));
-  return cocok ? `Ini yang aku tahu: ${cocok.fakta}` : TIDAK_TERHUBUNG;
+  return jawabanMateriCadangan(masuk.pesan, kartuUntuk(misi)) ?? TIDAK_TERHUBUNG;
 }
 
 export interface KonteksGame {
