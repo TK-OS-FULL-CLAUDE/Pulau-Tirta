@@ -38,6 +38,9 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,svg,json,mp3,ogg,wav}'],
+        // Peta aktif sudah ikut di bundel JS (src/game/world-map.ts); file di maps/ hanya arsip versi lama untuk tes
+        // dan Tiled. Tanpa ini service worker mengunduh ±51 MB peta yang tidak pernah dipakai.
+        globIgnores: ['maps/**'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         navigateFallbackDenylist: [/^\/api\//],
       },

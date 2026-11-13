@@ -4,8 +4,8 @@
  *   npm run uji:tiko                 semua set
  *   npm run uji:tiko -- materi       hanya satu set (materi | nakal | bocor)
  *
- * Memakai model kalau ANTHROPIC_API_KEY terisi dan TIKO_MOCK bukan 1; selain itu memakai jawaban cadangan.
- * Setiap jawaban dengan model memakai kuota API (sekitar $0,0002 per pertanyaan dengan Claude Haiku 5.5).
+ * Memakai model kalau GEMINI_API_KEY (atau ANTHROPIC_API_KEY) terisi dan TIKO_MOCK bukan 1; selain itu memakai jawaban cadangan.
+ * Setiap jawaban dengan model memakai kuota API (sekitar 100 panggilan untuk satu kali uji).
  * Laporan lengkap ditulis ke uji-hasil/ untuk dibaca tim; pemeriksaan kata kunci hanya saringan awal.
  */
 import 'dotenv/config';
@@ -198,8 +198,8 @@ const sel = (t: string) => t.replace(/\|/g, '\\|').replace(/\s+/g, ' ');
 
 async function main(): Promise<void> {
   const pilih = process.argv[2];
-  const { pakaiModel, model } = infoModel();
-  console.log(pakaiModel ? `Memakai model ${model}.` : 'TANPA MODEL (ANTHROPIC_API_KEY kosong atau TIKO_MOCK=1): hanya jawaban cadangan dan template.');
+  const { pakaiModel, penyedia, model } = infoModel();
+  console.log(pakaiModel ? `Memakai model ${model} (${penyedia}).` : 'TANPA MODEL (API key kosong atau TIKO_MOCK=1): hanya jawaban cadangan dan template.');
 
   const set: Record<string, () => Promise<Hasil[]>> = {
     materi: () => ujiMateri(pakaiModel),
@@ -233,7 +233,7 @@ async function main(): Promise<void> {
     '',
     pakaiModel
       ? `Model: \`${model}\`.`
-      : '**Tanpa model.** Semua jawaban dari cadangan/template; nilai materi dan cek "harus menyebut" dilewati. Jalankan lagi dengan `ANTHROPIC_API_KEY` untuk uji sesungguhnya.',
+      : '**Tanpa model.** Semua jawaban dari cadangan/template; nilai materi dan cek "harus menyebut" dilewati. Jalankan lagi dengan `GEMINI_API_KEY` (atau `ANTHROPIC_API_KEY`) untuk uji sesungguhnya.',
     '',
     '| Set | Lulus | Persen | Target PRD | model/cadangan/template | Ditahan guardrail keluar | Galat API | Waktu tengah / maks |',
     '|---|---|---|---|---|---|---|---|',
