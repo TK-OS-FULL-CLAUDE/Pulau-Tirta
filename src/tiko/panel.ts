@@ -81,6 +81,8 @@ export class PanelTiko {
   private ketik?: number;
   /** Setelah selesai bicara, roh Tiko kembali berputar walau kotak jawaban masih terbuka. */
   private balik?: number;
+  /** Kotak jawaban hilang sendiri setelah anak sempat membacanya. */
+  private hilang?: number;
   /** Nomor permintaan terakhir; jawaban yang datang terlambat untuk permintaan lama diabaikan. */
   private nomor = 0;
   private suasana: (s: Suasana) => void = () => undefined;
@@ -100,9 +102,13 @@ export class PanelTiko {
     document.getElementById('tentang-tiko')!.addEventListener('click', () =>
       (document.getElementById('dialog-tentang') as HTMLDialogElement).showModal(),
     );
-    document.getElementById('tiko-tutup')!.addEventListener('click', () => this.tutup());
     // Klik pada teks yang sedang muncul langsung menampilkan semuanya.
     this.teks.addEventListener('click', () => this.selesaikanKetik());
+    // Selama kursor di atas kotak, kotak tidak hilang dulu, supaya anak sempat membaca.
+    this.kotak.addEventListener('pointerenter', () => window.clearTimeout(this.hilang));
+    this.kotak.addEventListener('pointerleave', () => {
+      if (this.ketik === undefined && !this.kotak.hidden && this.mengetik.hidden) this.jadwalHilang(2000);
+    });
     this.pasangBukaTutupBar();
   }
 
@@ -260,12 +266,21 @@ export class PanelTiko {
   private kembaliBerputar(): void {
     window.clearTimeout(this.balik);
     this.balik = window.setTimeout(() => this.suasana('putar'), 2500);
+    // Waktu baca: 3 detik ditambah sedikit per huruf, paling lama 10 detik.
+    const panjang = (this.teks.dataset.utuh ?? this.teks.textContent ?? '').length;
+    this.jadwalHilang(Math.min(10_000, 3000 + panjang * 45));
+  }
+
+  private jadwalHilang(ms: number): void {
+    window.clearTimeout(this.hilang);
+    this.hilang = window.setTimeout(() => this.tutup(), ms);
   }
 
   private selesaikanKetik(): void {
     if (this.ketik === undefined) return;
     this.teks.textContent = this.teks.dataset.utuh ?? this.teks.textContent;
     this.hentikanKetik();
+    this.kembaliBerputar();
   }
 
   private hentikanKetik(): void {
@@ -279,15 +294,24 @@ export class PanelTiko {
   }
 
   private bukaKotak(): void {
+    window.clearTimeout(this.hilang);
+    this.kotak.classList.remove('pergi');
     this.kotak.hidden = false;
   }
 
+  /** Kotak meluncur turun dan memudar, lalu disembunyikan. */
   private tutup(): void {
-    this.selesaikanKetik();
-    this.kotak.hidden = true;
-    this.nomor++; // jawaban yang masih ditunggu tidak membuka kotak lagi
-    this.mengetik.hidden = true;
-    window.clearTimeout(this.balik);
+    window.clearTimeout(this.hilang);
     this.suasana('putar');
+    if (this.tenang) {
+      this.kotak.hidden = true;
+      return;
+    }
+    this.kotak.classList.remove('baru');
+    this.kotak.classList.add('pergi');
+    this.hilang = window.setTimeout(() => {
+      this.kotak.classList.remove('pergi');
+      this.kotak.hidden = true;
+    }, 420);
   }
 }

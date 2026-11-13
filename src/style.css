@@ -307,10 +307,13 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 }
 
 /* Kotak jawaban */
-.tiko-jawaban { --isi-tiko: #ffffff; position: relative; min-height: 104px; padding: 16px 58px 16px 104px; border-radius: 24px; }
+.tiko-jawaban { --isi-tiko: #ffffff; position: relative; min-height: 104px; padding: 16px 40px 16px 104px; border-radius: 24px; }
 .tiko-jawaban[hidden] { display: none; }
-.tiko-jawaban.baru { animation: tiko-muncul 0.28s ease-out; }
-@keyframes tiko-muncul { from { opacity: 0; transform: translateY(12px) scale(0.98); } }
+/* Masuk: meluncur naik dari bawah layar. Keluar: meluncur turun sambil memudar (src/tiko/panel.ts). */
+.tiko-jawaban.baru { animation: tiko-muncul 0.42s cubic-bezier(0.2, 0.9, 0.3, 1.15); }
+@keyframes tiko-muncul { from { opacity: 0; transform: translateY(40px); } }
+.tiko-jawaban.pergi { animation: tiko-pergi 0.42s ease-in forwards; pointer-events: none; }
+@keyframes tiko-pergi { to { opacity: 0; transform: translateY(40px); } }
 .tiko-jawaban::after { content: '✦'; position: absolute; right: 20px; bottom: 10px; color: #f5b83d; font-size: 18px; animation: tiko-kilau 2.4s ease-in-out infinite; }
 @keyframes tiko-kilau { 50% { opacity: 0.25; transform: scale(0.7) rotate(20deg); } }
 .tiko-potret {
@@ -324,8 +327,6 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
   background: linear-gradient(#2f9bd6, #1f6f8b); color: #ffffff; font-size: 16px; font-weight: 800; letter-spacing: 0.06em;
   box-shadow: 0 3px 8px rgb(6 32 46 / 25%);
 }
-.tiko-tutup { position: absolute; top: 6px; right: 6px; width: 48px; padding: 0; border-radius: 50%; background: transparent; color: var(--pucat); font-size: 30px; line-height: 1; }
-.tiko-tutup:hover { background: #eef7fb; color: var(--tinta); }
 .tiko-tanya { margin: 2px 0 4px; color: var(--pucat); font-size: 16px; font-style: italic; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tiko-tanya[hidden] { display: none; }
 .tiko-teks { max-height: 8.7em; margin: 0; overflow-y: auto; font-size: 20px; line-height: 1.45; }
@@ -387,7 +388,7 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 }
 /* Layar sempit: potret dan ruang kiri kotak jawaban lebih kecil supaya teks tetap lega. */
 @media (max-width: 900px) {
-  .tiko-jawaban { padding: 14px 52px 14px 84px; }
+  .tiko-jawaban { padding: 14px 36px 14px 84px; }
   .tiko-potret { left: 12px; width: 58px; height: 58px; padding: 7px; }
   .tiko-papan { left: 80px; }
 }
