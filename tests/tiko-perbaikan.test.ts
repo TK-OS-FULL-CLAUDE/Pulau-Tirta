@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { KARTU_MATERI, MISI_UTAMA } from '../shared/content';
-import { kartuUntukPertanyaan, periksaKeluar, rapikanJawaban } from '../shared/guardrail';
+import { KARTU_MATERI, MISI_UTAMA, cariMisi } from '../shared/content';
+import { BALASAN, jawabanTanyaCadangan, kartuUntukPertanyaan, periksaKeluar, petunjukCadangan, rapikanJawaban } from '../shared/guardrail';
 import { jawabTiko, systemPrompt } from '../server/tiko';
 import { jawabanCadangan } from '../src/tiko/panel';
 import { adaKata, nilaiMateri, type SoalMateri } from '../scripts/uji-tiko/penilaian';
@@ -61,5 +61,37 @@ describe('regresi kualitas jawaban Tiko', () => {
     expect(rapikanJawaban('Hai, air menguap karena panas. Uap naik.')).toBe('Hai, air menguap karena panas. Uap naik.');
     expect(rapikanJawaban('Halo! Aku Tiko, tetes air kecil. Wah, itu pertanyaan bagus sekali! Air tidak harus mendidih untuk menguap.'))
       .toBe('Air tidak harus mendidih untuk menguap.');
+  });
+});
+
+describe('perbaikan dari rekaman video 14 November', () => {
+  it('petunjuk model yang membantah alasan dengan jawaban yang benar ditahan', () => {
+    const misi = cariMisi('misi-1')!;
+    // Dua kalimat ini lolos pemeriksa lama dan muncul di rekaman.
+    expect(periksaKeluar('Coba lihat lagi, airnya malah masuk ke dalam tanah, bukan hilang ke udara!', { misi, tingkat: 1 }).aman).toBe(false);
+    expect(periksaKeluar('Perhatikan kolamnya. Panas matahari membuat air naik ke udara.', { misi, tingkat: 2 }).aman).toBe(false);
+    // Petunjuk acuan tim tetap lolos.
+    expect(periksaKeluar(petunjukCadangan(misi, 1), { misi, tingkat: 1 }).aman).toBe(true);
+    expect(periksaKeluar(petunjukCadangan(misi, 2), { misi, tingkat: 2 }).aman).toBe(true);
+  });
+
+  it('jawaban tanpa AI mencari dari semua kartu dan mencocokkan kata utuh', () => {
+    const misi = cariMisi('misi-1')!;
+    // Dulu "hari" cocok dengan "matahari" sehingga dijawab dengan kartu penguapan.
+    expect(jawabanTanyaCadangan('Kenapa ada embun di rumput pagi hari?', misi, 'selesai')).toMatch(/Pengembunan/);
+    // Pertanyaan soal air tanpa kartu yang cocok: ceritakan kartu tempat ini, bukan "tidak bisa terhubung".
+    expect(jawabanTanyaCadangan('Air di kolam tadi pergi ke mana?', misi, 'selesai')).toMatch(/uap air/);
+    expect(jawabanTanyaCadangan('Kenapa air laut bisa jadi awan?', misi, 'selesai')).toMatch(/^Ini yang aku tahu/);
+  });
+
+  it('di luar topik tanpa AI, Tiko mengajak kembali ke petualangan', async () => {
+    expect(jawabanTanyaCadangan('Kamu tahu game Minecraft?')).toBe(BALASAN.diLuarTopik);
+    const j = await jawabTiko({ pesan: 'Kamu tahu game Minecraft?', mode: 'tanya', kartuDidapat: [] });
+    expect(j.teks).toBe(BALASAN.diLuarTopik);
+  });
+
+  it('misi yang belum selesai tetap dijawab dengan pertanyaan balik', () => {
+    const misi = cariMisi('misi-1')!;
+    expect(jawabanTanyaCadangan('Air di kolam tadi pergi ke mana?', misi, 'sedang')).toBe(petunjukCadangan(misi, 1));
   });
 });

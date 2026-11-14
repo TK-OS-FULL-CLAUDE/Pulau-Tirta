@@ -715,11 +715,21 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
   #game { border-radius: 0; }
   .tata > .tiko { position: absolute; inset: 12px; z-index: 4; display: block; pointer-events: none; }
   .tiko-bar { position: absolute; left: 12px; bottom: 12px; pointer-events: auto; }
-  /* Tengah bawah, di atas kotak chat dan label "E · ..." di bawah layar game. */
-  .tiko-jawaban { position: absolute; left: 0; right: 0; bottom: 92px; max-width: 640px; margin-inline: auto; pointer-events: auto; }
+  /* Tengah bawah, di atas kotak chat dan label "E · ..." di bawah layar game (dulu 92px, menempel pada label itu). */
+  .tiko-jawaban { position: absolute; left: 0; right: 0; bottom: 124px; max-width: 640px; margin-inline: auto; pointer-events: auto; }
   /* Selama misi, kotak jawaban turun ke baris bawah di samping kotak chat; dialog misi berhenti di atasnya. */
   .tata:has(.dialog-misi[open]) .tiko-jawaban { left: calc(var(--lebar-bar-tiko) + 36px); right: 24px; bottom: 12px; }
-  .tata:has(.dialog-misi[open]) .tiko-teks { max-height: calc(var(--ruang-bawah-tiko) - 72px); }
+  /* Kotak jawaban dibatasi setinggi baris bawah; teksnya mengisi sisa ruang dan bisa digulir. Dulu tinggi teks dihitung
+     tanpa baris "Kamu: ...", sehingga baris ke-4 jawaban terpotong. */
+  .tata:has(.dialog-misi[open]) .tiko-jawaban {
+    display: flex; flex-direction: column; max-height: calc(var(--ruang-bawah-tiko) - 12px);
+    min-height: 0; padding-block: 13px 3px;
+  }
+  .tata:has(.dialog-misi[open]) .tiko-jawaban[hidden] { display: none; }
+  .tata:has(.dialog-misi[open]) .tiko-tanya { flex: none; margin: 0 0 2px; font-size: 14px; line-height: 1.25; }
+  .tata:has(.dialog-misi[open]) .tiko-teks {
+    flex: 1 1 auto; min-height: 0; max-height: none; font-size: 18px; line-height: 1.35; overscroll-behavior: contain;
+  }
   .dialog-misi { bottom: calc(var(--ruang-bawah-tiko) + 24px); }
   .tombol-demo, .panel-demo { left: auto; right: 12px; }
   /* Tombol cepat di atas kolom ketik; kotak jawaban naik supaya tidak menutupinya. */

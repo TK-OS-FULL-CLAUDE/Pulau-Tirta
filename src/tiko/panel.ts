@@ -1,10 +1,10 @@
-import { cariMisi, kartuUntuk, type Tingkat } from '../../shared/content';
+import { cariMisi, type Tingkat } from '../../shared/content';
 import {
   BATAS_PANJANG_PESAN,
   FUN_FACT_TUNDA,
   faktaCadangan,
   kartuFunFact,
-  jawabanMateriCadangan,
+  jawabanTanyaCadangan,
   jawabanTentangTiko,
   periksaMasuk,
   petunjukCadangan,
@@ -56,8 +56,7 @@ function jawabTanyaTanpaServer(isi: IsiPermintaan, pesan: string): string {
   const tentang = jawabanTentangTiko(masuk.pesan);
   if (tentang) return tentang;
   const misi = typeof isi.misiId === 'string' ? cariMisi(isi.misiId) : undefined;
-  if (misi && isi.statusMisi !== 'selesai') return petunjukCadangan(misi, 1);
-  return jawabanMateriCadangan(masuk.pesan, kartuUntuk(misi)) ?? TIDAK_TERHUBUNG;
+  return jawabanTanyaCadangan(masuk.pesan, misi, typeof isi.statusMisi === 'string' ? isi.statusMisi : undefined) ?? TIDAK_TERHUBUNG;
 }
 
 export interface KonteksGame {
@@ -133,7 +132,7 @@ export class PanelTiko {
       void this.tanya(teks);
     });
     document.querySelectorAll<HTMLButtonElement>('[data-cepat]').forEach((b) =>
-      b.addEventListener('click', () => this.cepat(b.dataset.cepat ?? '')),
+      b.addEventListener('click', () => void this.cepat(b.dataset.cepat ?? '')),
     );
     document.getElementById('tentang-tiko')!.addEventListener('click', () =>
       (document.getElementById('dialog-tentang') as HTMLDialogElement).showModal(),
@@ -216,21 +215,29 @@ export class PanelTiko {
     if (b) b.textContent = `Apa itu ${this.konsepCepat()}?`;
   }
 
-  /** Tombol pertanyaan cepat (PRD F-06): "Aku bingung", "Aku harus ke mana?", "Apa itu …?". */
-  cepat(jenis: string): void {
-    if (jenis === 'ke-mana') return this.jawabTemplate('Aku harus ke mana?', this.arah());
+  /**
+   * Tombol pertanyaan cepat (PRD F-06): "Aku bingung", "Aku harus ke mana?", "Apa itu …?".
+   * "Aku bingung" di misi yang belum selesai mengembalikan teks petunjuknya, supaya dialog misi bisa menuliskannya
+   * di panel "Petunjuk Tiko" (dulu panel itu tetap menampilkan petunjuk tingkat sebelumnya).
+   */
+  cepat(jenis: string): Promise<string | undefined> | undefined {
+    if (jenis === 'ke-mana') {
+      this.jawabTemplate('Aku harus ke mana?', this.arah());
+      return undefined;
+    }
     if (jenis === 'bingung') {
-      if (this.bantuan.bingungKhusus?.()) return;
+      if (this.bantuan.bingungKhusus?.()) return undefined;
       const k = this.konteks();
       // Di misi yang belum selesai: petunjuk bertingkat untuk misi itu, sama seperti saat memilih alasan keliru.
       if (k.misiId && k.statusMisi !== 'selesai' && this.bantuan.tingkatBingung) {
-        void this.petunjuk(k.misiId, this.bantuan.tingkatBingung(k.misiId), 'Aku bingung');
-        return;
+        return this.petunjuk(k.misiId, this.bantuan.tingkatBingung(k.misiId), 'Aku bingung');
       }
       // Di luar misi: tunjukkan tempat berikutnya.
-      return this.jawabTemplate('Aku bingung', this.arah());
+      this.jawabTemplate('Aku bingung', this.arah());
+      return undefined;
     }
     if (jenis === 'apa-itu') void this.tanya(`Apa itu ${this.konsepCepat()}?`);
+    return undefined;
   }
 
   private arah(): string {
@@ -347,6 +354,8 @@ export class PanelTiko {
     this.ketik = window.setInterval(() => {
       i = Math.min(teks.length, i + 1);
       this.teks.textContent = teks.slice(0, i);
+      // Baris terbaru selalu terlihat; kalau jawabannya lebih panjang dari kotak, anak tetap bisa menggulir ke atas.
+      this.teks.scrollTop = this.teks.scrollHeight;
       if (i >= teks.length) {
         this.hentikanKetik();
         this.kembaliBerputar();

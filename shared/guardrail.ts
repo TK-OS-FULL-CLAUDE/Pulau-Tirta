@@ -3,7 +3,7 @@
  * Daftar kata di sini adalah titik awal; tim konten melengkapinya.
  */
 import type { KartuMateri, Misi, Tingkat } from './content';
-import { KARTU_MATERI, pilihanBenar } from './content';
+import { KARTU_MATERI, kartuUntuk, pilihanBenar } from './content';
 
 export const BATAS_PANJANG_PESAN = 200;
 export const MAKS_KALIMAT_JAWABAN = 3;
@@ -208,7 +208,7 @@ export function pilihKartuFunFact(
 export const FUN_FACT_TUNDA =
   'Fun fact-ku soal tempat ini aku simpan dulu sampai misinya selesai, ya. Coba tanya aku lagi nanti!';
 
-const BUKAN_KATA_KUNCI = new Set(['apa', 'itu', 'kenapa', 'mengapa', 'bagaimana', 'gimana', 'yang', 'dari', 'dengan', 'untuk', 'tiko', 'kamu', 'aku', 'kita', 'dong', 'bisa', 'ada', 'tidak', 'nggak', 'air', 'jadi', 'kalau', 'apakah', 'sama', 'juga', 'kok', 'deh', 'mana', 'saja', 'aja']);
+const BUKAN_KATA_KUNCI = new Set(['apa', 'itu', 'kenapa', 'mengapa', 'bagaimana', 'gimana', 'yang', 'dari', 'dengan', 'untuk', 'tiko', 'kamu', 'aku', 'kita', 'dong', 'bisa', 'ada', 'tidak', 'nggak', 'air', 'jadi', 'kalau', 'apakah', 'sama', 'juga', 'kok', 'deh', 'mana', 'saja', 'aja', 'pergi', 'tadi', 'datang', 'terjadi', 'begitu', 'lagi', 'sekarang']);
 
 /**
  * Kartu materi yang paling cocok dengan pertanyaan (kata yang sama atau bentuk dasarnya), untuk jawaban tanpa AI.
@@ -220,14 +220,44 @@ export function kartuPalingCocok(pesan: string, kartu: KartuMateri[]): KartuMate
   let terbaik: KartuMateri | undefined;
   let skor = 0;
   for (const k of kartu) {
-    const fakta = k.fakta.toLowerCase();
-    const s = kata.reduce((n, w) => n + (fakta.includes(w) ? 2 : dasar(w).length >= 3 && fakta.includes(dasar(w)) ? 1 : 0), 0);
+    // Dicocokkan per kata utuh, bukan potongan huruf: dulu "hari" cocok dengan "matahari", sehingga pertanyaan
+    // soal embun pagi hari dijawab dengan kartu penguapan.
+    const token: string[] = k.fakta.toLowerCase().match(/[a-z]+/g) ?? [];
+    const akar = new Set(token.map(dasar));
+    const s = kata.reduce((n, w) => n + (token.includes(w) ? 2 : dasar(w).length >= 3 && akar.has(dasar(w)) ? 1 : 0), 0);
     if (s > skor) {
       skor = s;
       terbaik = k;
     }
   }
   return terbaik;
+}
+
+/** Kata yang menandakan pertanyaan masih soal air, cuaca, atau alam (untuk jawaban tanpa AI). */
+const KATA_ALAM = /\b(air|uap|embun|awan|kabut|hujan|gerimis|mendung|laut|pantai|kolam|danau|sungai|sumur|mata air|tanah|pohon|daun|hutan|banjir|kemarau|kering|basah|salju|matahari|panas|dingin|udara|angin|gunung|puncak|lembah|siklus|tetes|genangan|menguap|meresap|mengalir|cuaca|alam|sampah)\w*/i;
+
+/** True kalau pertanyaan tampaknya soal air atau alam, walau tidak ada kartu yang cocok. */
+export function bertopikAlam(pesan: string): boolean {
+  return KATA_ALAM.test(pesan);
+}
+
+/**
+ * Jawaban pertanyaan ketikan tanpa AI (server tanpa key, atau browser offline). Satu aturan untuk keduanya:
+ * - misi di tempat ini belum selesai: petunjuk tingkat 1 (kartu materinya memuat jawaban misi);
+ * - ada kartu materi yang cocok (dari semua kartu, bukan hanya kartu tempat ini): jawab dari kartu itu;
+ * - soal air tapi tidak ada yang cocok, dan misi tempat ini sudah selesai: ceritakan kartu tempat ini;
+ * - di luar topik: ajak kembali ke petualangan.
+ * Mengembalikan undefined kalau tidak ada jawaban yang pas (pemanggil memakai pesan umumnya sendiri).
+ */
+export function jawabanTanyaCadangan(pesan: string, misi?: Misi, statusMisi?: string): string | undefined {
+  if (misi && statusMisi !== 'selesai') return petunjukCadangan(misi, 1);
+  // Kartu tempat ini lebih dulu (anak biasanya bertanya soal yang baru dilihatnya), lalu semua kartu.
+  const materi = (misi && jawabanMateriCadangan(pesan, kartuUntuk(misi))) || jawabanMateriCadangan(pesan, KARTU_MATERI);
+  if (materi) return materi;
+  if (!bertopikAlam(pesan)) return BALASAN.diLuarTopik;
+  const tempat = misi ? kartuUntuk(misi) : [];
+  if (tempat.length) return rapikanJawaban(`Ini yang aku tahu soal tempat ini: ${tempat.map((k) => k.fakta).join(' ')}`);
+  return undefined;
 }
 
 /** Identitas dan privasi harus tetap benar ketika API mati, termasuk di browser offline. */
