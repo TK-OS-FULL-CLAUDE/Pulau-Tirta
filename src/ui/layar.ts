@@ -3,6 +3,7 @@
  * Semuanya dialog modal yang dibuat dari kode (tidak perlu mengubah index.html).
  * Panel "Tentang Tiko" bisa dibuka dari layar judul dan menu jeda (PRD F-17).
  */
+import { MISI_UTAMA } from '../../shared/content';
 import { potretTiko } from '../tiko/gambar';
 import { svg, el } from './dom';
 
@@ -71,21 +72,38 @@ export function bukaJudul(o: OpsiJudul): void {
     d.close();
     o.mulai(!o.adaProgres);
   });
-  d.append(
+  // Tiko di atas lingkaran bercahaya dengan kilau kecil di sekitarnya.
+  const lencana = el('div', undefined, { class: 'judul-lencana', 'aria-hidden': 'true' });
+  lencana.append(
     el('img', undefined, { class: 'judul-tiko', src: potretTiko(), alt: '', width: '88', height: '104' }),
-    el('h1', 'Petualangan Pulau Tirta'),
+    el('span', '✦', { class: 'kilau kilau-1' }),
+    el('span', '✦', { class: 'kilau kilau-2' }),
+    el('span', '✦', { class: 'kilau kilau-3' }),
+  );
+  d.append(
+    lencana,
+    el('p', 'Petualangan', { class: 'judul-pita' }),
+    el('h1', 'Pulau Tirta'),
     el('p', 'Hujan sudah lama tidak turun. Bantu Tiko memperbaiki siklus air di pulau ini!', { class: 'judul-sub' }),
-    utama,
   );
   if (o.adaProgres) {
-    d.append(
-      el('p', o.sisaTempat ? `Masih ada ${o.sisaTempat} tempat yang perlu dipulihkan.` : 'Semua tempat sudah pulih.', { class: 'catatan' }),
-      tombolYakin('Mulai dari awal', 'Semua progres akan hilang.', o.ulang),
+    // Progres sebagai tetes air: satu tetes per tempat, terisi kalau tempatnya sudah pulih.
+    const total = MISI_UTAMA.length;
+    const pulih = Math.max(0, total - o.sisaTempat);
+    const progres = el('div', undefined, { class: 'judul-progres' });
+    const tetes = el('div', undefined, { class: 'judul-tetes', 'aria-hidden': 'true' });
+    for (let i = 0; i < total; i++) tetes.append(el('span', undefined, { class: i < pulih ? 'tetes terisi' : 'tetes' }));
+    progres.append(
+      tetes,
+      el('p', o.sisaTempat ? `${pulih} dari ${total} tempat pulih. Masih ada ${o.sisaTempat} lagi!` : 'Semua tempat sudah pulih.', { class: 'catatan' }),
     );
+    d.append(progres);
   }
+  d.append(utama);
   const bawah = el('div', undefined, { class: 'judul-bawah' });
-  bawah.append(tombolTentang(), el('span', 'Tiko adalah AI di dalam game ini.', { class: 'catatan' }));
-  d.append(bawah);
+  if (o.adaProgres) bawah.append(tombolYakin('Mulai dari awal', 'Semua progres akan hilang.', o.ulang));
+  bawah.append(tombolTentang());
+  d.append(bawah, el('p', 'Tiko adalah AI di dalam game ini.', { class: 'catatan judul-ai' }));
   buka(d, undefined, false);
 }
 

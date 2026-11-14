@@ -393,6 +393,74 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
 .siklus-tempat { font-size: 17px; fill: var(--pucat); }
 @media (prefers-reduced-motion: reduce) { .judul-tiko { animation: none; } }
 
+/*
+ * Layar judul: bingkai kayu dan garis emas (senada dengan layar misi dan panel Kepala Desa), Tiko di atas
+ * lingkaran bercahaya, judul tegas, tombol utama 3D, progres berupa tetes air.
+ */
+.layar-judul {
+  width: min(92vw, 560px); padding: 30px 36px 22px; gap: 12px; border: 3px solid #7a5426; border-radius: 24px;
+  background: radial-gradient(130% 90% at 50% 0%, #ffffff 0%, #fff7e6 55%, #f8ecd0 100%);
+  box-shadow: inset 0 0 0 3px #fffaf0, inset 0 0 0 5px #e2b55a, 0 24px 60px rgb(8 30 40 / 55%), 0 5px 0 #5a3c18;
+}
+.layar-judul[open] { gap: 12px; animation: judul-masuk 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.15); }
+@keyframes judul-masuk { from { opacity: 0; transform: translateY(24px) scale(0.97); } }
+.layar-judul::backdrop { background: radial-gradient(ellipse at 50% 40%, rgb(127 196 221 / 18%), rgb(8 30 40 / 78%)); backdrop-filter: blur(3px); }
+.judul-lencana {
+  position: relative; display: grid; place-items: center; width: 132px; height: 132px; margin-top: -4px; border-radius: 50%;
+  background: radial-gradient(circle at 50% 42%, #ffffff 0%, #d9f3fc 45%, #a9def2 100%);
+  box-shadow: 0 0 0 4px #ffffff, 0 0 0 7px #7fd3f0, 0 0 36px 6px rgb(127 211 240 / 55%);
+}
+.judul-lencana .judul-tiko { width: 70px; height: 83px; filter: drop-shadow(0 5px 6px rgb(31 111 139 / 35%)); }
+.kilau { position: absolute; color: #f5b83d; font-size: 18px; line-height: 1; animation: tiko-kilau 2.4s ease-in-out infinite; }
+.kilau-1 { top: 2px; right: -6px; }
+.kilau-2 { bottom: 14px; left: -12px; font-size: 14px; animation-delay: 0.8s; }
+.kilau-3 { top: 26px; left: -2px; font-size: 11px; animation-delay: 1.6s; }
+.judul-pita {
+  margin: 4px 0 -6px; padding: 3px 16px; border-radius: 999px; background: linear-gradient(#c98a3a, #8a5a24);
+  color: #ffffff; font-size: 14px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+  box-shadow: 0 0 0 2px #7a5426, 0 2px 0 #5a3c18;
+}
+.layar-judul h1 {
+  font-size: 50px; font-weight: 900; letter-spacing: -0.01em; line-height: 1.05;
+  background: linear-gradient(#2f9bd6, #1f6f8b 70%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 3px 0 #0f4f66) drop-shadow(0 6px 8px rgb(15 79 102 / 25%));
+}
+.layar-judul .judul-sub { font-size: 18px; line-height: 1.5; color: #3a2f22; text-wrap: balance; }
+.judul-progres { display: grid; justify-items: center; gap: 6px; }
+.judul-progres .catatan { margin: 0; color: #5a4a36; font-weight: 600; }
+.judul-tetes { display: flex; gap: 10px; }
+.judul-tetes .tetes {
+  width: 22px; height: 22px; border-radius: 50% 0 50% 50%; rotate: -45deg;
+  background: #ffffff; border: 2.5px solid #a9c7d3;
+}
+.judul-tetes .tetes.terisi { background: linear-gradient(135deg, #7fd3f0, #2f9bd6); border-color: #1f6f8b; box-shadow: 0 0 10px rgb(47 155 214 / 45%); }
+/* Tombol utama: hijau 3D dengan ikon main, tanpa kotak fokus oranye. */
+.layar-judul .tombol-besar {
+  min-width: 300px; min-height: 60px; margin-top: 4px; border-radius: 999px; font-size: 21px;
+  background: linear-gradient(#4fb874, #3c9a5f); box-shadow: 0 5px 0 #276b40, 0 10px 18px rgb(39 107 64 / 35%);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.layar-judul .tombol-besar::before { content: '▶'; margin-right: 10px; font-size: 16px; }
+.layar-judul .tombol-besar:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #276b40, 0 14px 22px rgb(39 107 64 / 35%); }
+.layar-judul .tombol-besar:active { transform: translateY(3px); box-shadow: 0 2px 0 #276b40; }
+.layar-judul button:focus-visible { outline: 3px solid rgb(47 155 214 / 55%); outline-offset: 4px; }
+/* Tombol kecil di bawah: ringan, seperti tautan berbingkai. */
+.layar-judul .judul-bawah { gap: 10px; margin-top: 2px; }
+.layar-judul .judul-bawah .tombol-kecil {
+  min-height: 44px; padding: 0 16px; border: 2px solid #e3d3b2; border-radius: 999px; background: #fffaf0; color: #5a3c18; font-size: 16px; font-weight: 700;
+}
+.layar-judul .judul-bawah .tombol-kecil:hover { background: #fff1d6; }
+.layar-judul .judul-ai { margin: 0; font-size: 14px; color: #8a7a64; }
+@media (max-height: 700px) {
+  .layar-judul { padding: 20px 28px 16px; }
+  .judul-lencana { width: 104px; height: 104px; }
+  .judul-lencana .judul-tiko { width: 56px; height: 66px; }
+  .layar-judul h1 { font-size: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .layar-judul[open], .kilau, .layar-judul .tombol-besar { animation: none; transition: none; }
+}
+
 /* Tombol jeda dan panel demo di atas area game */
 .tombol-atas { position: absolute; top: 12px; right: 12px; z-index: 1; display: flex; gap: 8px; }
 .tombol-atas button { min-height: 48px; background: rgb(255 255 255 / 92%); color: var(--tinta); font-weight: 700; box-shadow: 0 2px 8px rgb(0 0 0 / 25%); }
@@ -669,4 +737,54 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--aksen); out
   .tiko-jawaban { padding: 14px 36px 14px 84px; }
   .tiko-potret { left: 12px; width: 58px; height: 58px; padding: 7px; }
   .tiko-papan { left: 80px; }
+}
+
+/*
+ * Rapikan detail kecil: semua menu (Jeda, Misi, tamat) memakai bingkai kayu-emas yang sama dengan layar judul
+ * dan layar misi; cincin fokus biru lembut menggantikan kotak oranye tebal; tombol HUD, tombol Festival, dan
+ * tombol Demo dibuat senada. Hanya tampilan.
+ */
+button:focus-visible, input:focus-visible { outline: 3px solid rgb(47 155 214 / 60%); outline-offset: 3px; }
+.layar {
+  border: 3px solid #7a5426; border-radius: 24px;
+  background: radial-gradient(130% 90% at 50% 0%, #ffffff 0%, #fff7e6 55%, #f8ecd0 100%);
+  box-shadow: inset 0 0 0 3px #fffaf0, inset 0 0 0 5px #e2b55a, 0 24px 60px rgb(8 30 40 / 55%), 0 5px 0 #5a3c18;
+}
+.layar[open] { animation: judul-masuk 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.15); }
+.layar::backdrop { background: radial-gradient(ellipse at 50% 40%, rgb(13 43 56 / 45%), rgb(8 30 40 / 78%)); backdrop-filter: blur(2px); }
+.layar h2 { font-size: 30px; font-weight: 900; color: #1f6f8b; }
+/* Tombol utama di semua menu: kapsul hijau 3D, sama dengan layar judul. */
+.tombol-besar {
+  border-radius: 999px; background: linear-gradient(#4fb874, #3c9a5f); box-shadow: 0 5px 0 #276b40, 0 10px 18px rgb(39 107 64 / 30%);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.tombol-besar:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #276b40, 0 14px 22px rgb(39 107 64 / 30%); }
+.tombol-besar:active { transform: translateY(3px); box-shadow: 0 2px 0 #276b40; }
+/* Tombol kecil di dalam menu: kapsul krem berbingkai, seperti di layar judul. */
+.layar .tombol-kecil, .layar .tombol-suara {
+  border: 2px solid #e3d3b2; border-radius: 999px; background: #fffaf0; color: #5a3c18; font-weight: 700;
+}
+.layar .tombol-kecil:hover, .layar .tombol-suara:hover { background: #fff1d6; }
+.layar .tombol-suara[aria-pressed='false'] { color: #8a7a64; background: #f3ece0; }
+.layar .tombol-bahaya { border-radius: 999px; box-shadow: 0 3px 0 #8e2a1f; }
+/* Tombol HUD (Misi, Jeda): kapsul krem dengan garis emas, senada dengan bingkai menu. */
+.tombol-atas button {
+  border: 2px solid #c9a46a; border-radius: 999px; background: rgb(255 250 240 / 95%); color: #5a3c18;
+  box-shadow: 0 3px 0 #a07c43, 0 6px 14px rgb(0 0 0 / 22%);
+}
+.tombol-atas button:hover { background: #fff1d6; }
+/* Tombol Demo hanya untuk presentasi: dibuat samar supaya tidak mencuri perhatian. */
+.tombol-demo { background: rgb(28 42 51 / 55%); border-radius: 999px; opacity: 0.75; }
+.tombol-demo:hover { opacity: 1; }
+/* Festival: tombol tahap siklus air sebagai kapsul biru, tombol Periksa sebagai tombol hijau 3D. */
+.festival-tahap > button:not(.tombol-periksa) {
+  border: 2px solid #b9dcea; border-radius: 999px; background: #eaf6fb; color: #1f4f66; font-weight: 800;
+  box-shadow: 0 3px 0 #b9dcea; transition: transform 0.12s, box-shadow 0.12s;
+}
+.festival-tahap > button:not(.tombol-periksa):not(:disabled):hover { transform: translateY(-2px); border-color: #2f9bd6; box-shadow: 0 5px 0 #2f9bd6; }
+.festival-tahap .tombol-periksa { border-radius: 999px; background: linear-gradient(#4fb874, #3c9a5f); box-shadow: 0 4px 0 #276b40; font-weight: 800; }
+.festival-tahap .tombol-periksa:disabled { background: #b9d8c3; box-shadow: none; color: #ffffff; }
+.kartu-peristiwa { border-color: #e3d3b2; box-shadow: 0 3px 0 #e3d3b2; }
+@media (prefers-reduced-motion: reduce) {
+  .layar[open], .tombol-besar, .festival-tahap > button { animation: none; transition: none; }
 }
