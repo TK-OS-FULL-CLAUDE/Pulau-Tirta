@@ -43,7 +43,7 @@ Laporan memisahkan sumber model/cadangan/template. Saat API gagal, dijeda, tidak
 | E atau Enter | Bicara dengan warga, membuka misi |
 | E, Enter, atau Spasi | Melanjutkan dialog |
 | Spasi | Lompat |
-| T | Tanya Tiko (atau klik ikon Tiko di kiri bawah) |
+| T | Tanya Tiko (atau klik ikon Tiko di kiri bawah): ketik, atau pilih "Aku bingung", "Aku harus ke mana?", "Apa itu …?" |
 | J | Jurnal Petualangan: status keempat tempat, satu kalimat petunjuk, Kartu Ilmu |
 | Esc | Menu jeda: lanjutkan, suara nyala/mati, Tentang Tiko, mulai dari awal |
 
@@ -71,7 +71,7 @@ Konten dipisah dari kode: mengubah soal, pilihan alasan, atau petunjuk cukup lew
 
 Satu misi berjalan seperti ini (PRD: jelajah → aktivitas → lihat akibat → pilih alasan → petunjuk → pulih):
 
-1. Pemain menekan E di titik misi. Dunia memanggil `kait.interaksi(lokasi)`, lalu `src/ui/dialog-misi.ts` membuka aktivitas di atas peta. Tiko tetap bisa ditanya selama aktivitas berjalan.
+1. Pemain menekan E di titik misi. Dunia memanggil `kait.interaksi(lokasi)`, lalu `src/ui/dialog-misi.ts` membuka aktivitas di atas peta. Tiko tetap bisa ditanya selama aktivitas berjalan; tombol "Aku bingung" di kepala dialog menaikkan tingkat petunjuk (1 → 2 → 3) tanpa harus salah menjawab dulu, dan tingkat 2 menyorot bukti di gambar.
 2. Aktivitas (`src/ui/aktivitas/`, satu file per tempat: `pantai.ts`, `puncak.ts`, `lembah.ts`, `hutan.ts`) adalah gambar SVG yang bisa digeser atau ditekan. Bukti yang membantah alasan keliru selalu terlihat di layar.
 3. Setelah aktivitas selesai, muncul pertanyaan alasan dengan pilihan yang diacak. Pilihan keliru tidak menghukum: Tiko memberi petunjuk tingkat 1, lalu tingkat 2 sambil menyorot bukti di gambar, lalu tingkat 3.
 4. Jawaban benar memberi Kartu Ilmu. Tempatnya baru berubah saat anak menekan "Kembali ke pulau": lapisan pemulihan muncul pelan-pelan, ada kilau di titik misi, dan warga yang terlihat bersorak. Setelah keempat tempat pulih, Festival Hujan di Desa Tirta terbuka; sesudah Festival hujan turun dan layar tamat muncul.

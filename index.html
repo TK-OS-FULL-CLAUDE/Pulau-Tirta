@@ -34,6 +34,12 @@
         <!-- Awalnya hanya logo Tiko; klik logo atau tekan T untuk membuka kolom ketik. -->
         <div class="tiko-bar" data-tertutup>
           <form id="tiko-form" class="tiko-form">
+            <!-- Tombol pertanyaan cepat (PRD F-06) untuk anak yang lambat mengetik; tampil saat kolom ketik terbuka. -->
+            <div id="tiko-cepat" class="tiko-cepat" role="group" aria-label="Pertanyaan cepat">
+              <button type="button" data-cepat="bingung">Aku bingung</button>
+              <button type="button" data-cepat="ke-mana">Aku harus ke mana?</button>
+              <button type="button" data-cepat="apa-itu">Apa itu siklus air?</button>
+            </div>
             <button id="tiko-buka" class="tiko-buka" type="button" aria-expanded="false" aria-controls="tiko-isi-form" aria-label="Tanya Tiko (tombol T)">
               <img class="tiko-potret-kecil" alt="" width="40" height="40" />
               <kbd class="tiko-kunci" aria-hidden="true">T</kbd>

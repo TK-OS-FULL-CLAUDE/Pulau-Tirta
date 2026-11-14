@@ -69,6 +69,16 @@ export interface KonteksGame {
   konsep?: string;
 }
 
+/** Jawaban tombol pertanyaan cepat yang butuh keadaan game (src/main.ts). */
+export interface BantuanCepat {
+  /** "Aku harus ke mana?": dijawab dari template, tanpa memanggil model. */
+  keMana?: () => string;
+  /** "Aku bingung" di lokasi misi yang belum selesai: naikkan tingkat petunjuk (1 → 2 → 3) dan kembalikan tingkatnya. */
+  tingkatBingung?: (misiId: string) => Tingkat;
+  /** Penanganan khusus "Aku bingung" (mis. di Festival Hujan). Kembalikan true kalau sudah ditangani. */
+  bingungKhusus?: () => boolean;
+}
+
 type Pesan = { dari: 'anak' | 'tiko'; teks: string };
 
 interface Jawaban {
@@ -108,7 +118,10 @@ export class PanelTiko {
   private suasana: (s: Suasana) => void = () => undefined;
   private readonly tenang = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
-  constructor(private konteks: () => KonteksGame) {
+  constructor(
+    private konteks: () => KonteksGame,
+    private bantuan: BantuanCepat = {},
+  ) {
     const potret = potretTiko();
     document.querySelectorAll<HTMLImageElement>('.tiko-potret, .tiko-potret-kecil').forEach((img) => (img.src = potret));
 
@@ -119,6 +132,9 @@ export class PanelTiko {
       this.input.value = '';
       void this.tanya(teks);
     });
+    document.querySelectorAll<HTMLButtonElement>('[data-cepat]').forEach((b) =>
+      b.addEventListener('click', () => this.cepat(b.dataset.cepat ?? '')),
+    );
     document.getElementById('tentang-tiko')!.addEventListener('click', () =>
       (document.getElementById('dialog-tentang') as HTMLDialogElement).showModal(),
     );
@@ -144,6 +160,7 @@ export class PanelTiko {
     const atur = (buka: boolean) => {
       bar.toggleAttribute('data-tertutup', !buka);
       tombol.setAttribute('aria-expanded', String(buka));
+      if (buka) this.segarkanCepat();
     };
     const buka = () => {
       atur(true);
@@ -183,6 +200,48 @@ export class PanelTiko {
       e.preventDefault();
       buka();
     });
+  }
+
+  /**
+   * "Apa itu …?" menyebut konsep tempat ini hanya kalau misinya sudah selesai. Sebelum itu nama konsepnya
+   * (mis. penguapan) adalah jawaban misi, jadi tombolnya bertanya soal siklus air saja.
+   */
+  private konsepCepat(): string {
+    const k = this.konteks();
+    return k.konsep && k.statusMisi === 'selesai' ? k.konsep.toLowerCase() : 'siklus air';
+  }
+
+  private segarkanCepat(): void {
+    const b = document.querySelector<HTMLButtonElement>('[data-cepat="apa-itu"]');
+    if (b) b.textContent = `Apa itu ${this.konsepCepat()}?`;
+  }
+
+  /** Tombol pertanyaan cepat (PRD F-06): "Aku bingung", "Aku harus ke mana?", "Apa itu …?". */
+  cepat(jenis: string): void {
+    if (jenis === 'ke-mana') return this.jawabTemplate('Aku harus ke mana?', this.arah());
+    if (jenis === 'bingung') {
+      if (this.bantuan.bingungKhusus?.()) return;
+      const k = this.konteks();
+      // Di misi yang belum selesai: petunjuk bertingkat untuk misi itu, sama seperti saat memilih alasan keliru.
+      if (k.misiId && k.statusMisi !== 'selesai' && this.bantuan.tingkatBingung) {
+        void this.petunjuk(k.misiId, this.bantuan.tingkatBingung(k.misiId), 'Aku bingung');
+        return;
+      }
+      // Di luar misi: tunjukkan tempat berikutnya.
+      return this.jawabTemplate('Aku bingung', this.arah());
+    }
+    if (jenis === 'apa-itu') void this.tanya(`Apa itu ${this.konsepCepat()}?`);
+  }
+
+  private arah(): string {
+    return this.bantuan.keMana?.() ?? 'Coba jelajahi pulau dan cari tempat yang terlihat rusak.';
+  }
+
+  /** Jawaban dari template tim: langsung tampil tanpa memanggil server. */
+  private jawabTemplate(pertanyaan: string, teks: string): void {
+    this.nomor++; // jawaban lama yang masih ditunggu tidak menimpa jawaban ini
+    this.riwayat.push({ dari: 'anak', teks: pertanyaan }, { dari: 'tiko', teks });
+    this.tampilJawaban(teks, pertanyaan, 'template');
   }
 
   /** Roh Tiko di peta mengikuti keadaan panel: berpikir saat menunggu, berbicara saat kotak jawaban terbuka. */
