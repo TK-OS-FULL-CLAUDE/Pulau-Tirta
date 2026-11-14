@@ -396,7 +396,9 @@ const dunia = new SharpWorld({
   persenPulih,
   festivalSelesai: () => progres.festivalSelesai,
   bergerak: () => undefined,
-  pindahWilayah: (lokasi) => { lokasiSekarang = lokasi; },
+  // Selama dialog misi terbuka, Tiko tetap memakai tempat misi itu. Di mode demo pemain masih berdiri di desa saat
+  // misi dibuka, sehingga "Aku bingung" dulu menjawab "Coba ke Pantai Biru" dari dalam misi Pantai Biru.
+  pindahWilayah: (lokasi) => { if (!document.querySelector('#dialog-misi[open]')) lokasiSekarang = lokasi; },
   interaksi,
   namaWarga: (id) => WARGA.penduduk[id]?.nama,
   // Titik desa baru menjadi Festival Hujan setelah keempat tempat pulih; sebelum dan sesudahnya, yang menjawab Kepala Desa.

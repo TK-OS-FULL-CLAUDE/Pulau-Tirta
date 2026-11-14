@@ -10,7 +10,7 @@ import {
   petunjukCadangan,
   kartuPalingCocok,
   kartuUntukPertanyaan,
-  jawabanMateriCadangan,
+  jawabanTanyaCadangan,
   jawabanTentangTiko,
   pilihKartuFunFact,
   type HasilKeluar,
@@ -212,9 +212,23 @@ export function systemPrompt(
   const tersedia = kartuUntuk(misi);
   const relevan = req.mode === 'tanya' && (!misi || req.statusMisi === 'selesai')
     ? kartuUntukPertanyaan(req.pesan, tersedia) : [];
-  const kartu = (kartuFakta ? [kartuFakta] : relevan.length ? relevan : tersedia)
-    .map((k) => `${k.no}. ${k.fakta}`)
-    .join('\n');
+  // Selama aturan kebocoran tingkat 1–2 berlaku, kartu materi misi ini memuat jawabannya. Model tidak perlu fakta itu
+  // untuk menunjuk bukti di layar, dan dulu justru mengutipnya ("...bukan hilang ke udara"), jadi kartunya tidak dikirim.
+  const sembunyikan = !kartuFakta && Boolean(misi) && (tingkatLarangan === 1 || tingkatLarangan === 2);
+  const kartu = sembunyikan
+    ? '(Disembunyikan sampai misi selesai. Bantu anak lewat bukti di layar, bukan lewat fakta.)'
+    : (kartuFakta ? [kartuFakta] : relevan.length ? relevan : tersedia)
+        .map((k) => `${k.no}. ${k.fakta}`)
+        .join('\n');
+  const akt = misi?.aktivitas;
+  const layar = akt
+    ? `
+AKTIVITAS DI LAYAR (yang sedang dilihat anak; tunjuk hal-hal ini, jangan mengarang benda lain)
+- Arahan: ${akt.arahan}
+- Yang terjadi: ${akt.siap}${akt.sorot ? `\n- Bukti yang bisa ditunjuk: ${akt.sorot}` : ''}
+`
+    : '';
+  const acuan = misi && tingkat ? petunjukCadangan(misi, tingkat) : '';
   const tugasFakta = kartuFakta
     ? `
 FUN FACT
@@ -245,13 +259,19 @@ MEMBANTU MISI
 - Ini petunjuk tingkat ${tingkat ?? '-'}: 1 = pertanyaan balik, 2 = arahkan ke bukti di layar, 3 = jelaskan langkahnya.
 - Kata yang DILARANG di tingkat ini: ${terlarang}.
 - Alasan yang baru dipilih anak: ${alasan}.
+- Di tingkat 1 dan 2, jangan menyebut, menyiratkan, atau membandingkan dengan alasan yang benar. Jangan membantah
+  alasan anak dengan "bukan X, tapi Y", dan jangan bilang ke mana air pergi atau apa yang terjadi padanya.
+  Cukup ajak anak melihat bukti di layar.${acuan ? `
+- PETUNJUK ACUAN TIM untuk tingkat ini: "${acuan}"
+  Pakai petunjuk acuan ini sebagai dasar. Boleh disesuaikan dengan alasan yang dipilih anak, tapi jangan menambah
+  informasi baru di luar petunjuk acuan dan AKTIVITAS DI LAYAR.` : ''}
 
 BATASAN
 - Hanya bahas game, sains, dan alam. Topik lain: tanggapi ramah satu kalimat, lalu ajak kembali ke petualangan.
 - Jangan pernah menanyakan atau mengulang data pribadi (nama lengkap, alamat, sekolah, nomor HP).
 - Kalau anak bercerita dirundung, disakiti, atau sangat sedih: tanggapi dengan lembut dan sarankan bercerita ke guru atau orang tua.
 - Tidak ada kekerasan, hal menakutkan, atau konten dewasa.
-${tugasFakta}
+${tugasFakta}${layar}
 KEADAAN GAME
 Lokasi: ${req.lokasi ?? '-'}
 Misi aktif: ${misi?.judul ?? '-'} (${req.statusMisi ?? '-'})
@@ -261,14 +281,13 @@ KARTU MATERI
 ${kartu}`;
 }
 
-function cadanganTanya(misi: Misi | undefined, pesan = ''): string {
-  const jawaban = jawabanMateriCadangan(pesan, kartuUntuk(misi));
-  if (jawaban) return jawaban;
+function cadanganTanya(misi: Misi | undefined, pesan = '', statusMisi?: string): string {
   if (!pesan) {
     const fakta = kartuUntuk(misi)[0]?.fakta;
     if (fakta) return `Ini yang aku tahu: ${fakta}`;
+    return BALASAN.cadanganTanya;
   }
-  return BALASAN.cadanganTanya;
+  return jawabanTanyaCadangan(pesan, misi, statusMisi) ?? BALASAN.cadanganTanya;
 }
 
 /**
@@ -342,7 +361,7 @@ export async function jawabTiko(req: PermintaanChat, catat?: (c: CatatanTiko) =>
     if (misi && tingkat) return { teks: petunjukCadangan(misi, tingkat), sumber: 'cadangan', tingkat };
     // Kartu materi misi aktif memuat jawabannya, jadi cadangan ketikan bebas berupa pertanyaan balik.
     if (misi && misiAktif) return { teks: petunjukCadangan(misi, 1), sumber: 'cadangan' };
-    return { teks: cadanganTanya(misi, masuk.pesan), sumber: 'cadangan' };
+    return { teks: cadanganTanya(misi, masuk.pesan, req.statusMisi), sumber: 'cadangan' };
   };
 
   if (req.mode === 'fakta') return jawabFakta({ ...req, pesan: masuk.pesan }, misi, misiAktif, catat);

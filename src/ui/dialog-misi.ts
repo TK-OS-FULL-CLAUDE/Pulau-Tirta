@@ -33,8 +33,11 @@ export interface OpsiMisi {
   sudahSelesai: boolean;
   pilih: (pilihanId: string) => HasilPilih;
   tutup: () => void;
-  /** "Aku bingung" di kepala dialog: petunjuk Tiko bertingkat untuk misi ini (PRD F-06). */
-  bingung?: () => void;
+  /**
+   * "Aku bingung" di kepala dialog: petunjuk Tiko bertingkat untuk misi ini (PRD F-06). Mengembalikan teks petunjuk
+   * (kalau ada), yang juga ditulis di panel "Petunjuk Tiko" di bawah pertanyaan.
+   */
+  bingung?: () => Promise<string | undefined> | undefined | void;
 }
 
 function kepala(judul: string, sub: string): HTMLElement {
@@ -108,12 +111,21 @@ export function bukaMisi(misi: Misi, opsi: OpsiMisi): void {
   if (opsi.bingung) {
     // Kolom ketik Tiko tertutup selama misi, jadi tombol "Aku bingung" ada di sini; hilang di layar pulih (CSS).
     const bingung = el('button', 'Aku bingung', { type: 'button', class: 'tombol-kecil tombol-bingung' });
-    bingung.addEventListener('click', opsi.bingung);
+    bingung.addEventListener('click', () => {
+      void Promise.resolve(opsi.bingung?.())
+        .then((teks) => {
+          if (typeof teks === 'string' && teks.trim()) tulisPetunjuk?.(teks);
+        })
+        .catch(() => undefined);
+    });
     d.querySelector('.dialog-kepala .tombol-kecil')!.before(bingung);
   }
 
   const tanya = el('section', undefined, { class: 'tanya', hidden: '' });
   let pertanyaanTampil = false;
+  /** Petunjuk Tiko terakhir untuk misi ini, dari pilihan keliru maupun "Aku bingung". */
+  let petunjukTerakhir = '';
+  let tulisPetunjuk: ((teks: string) => void) | undefined = (teks) => (petunjukTerakhir = teks);
   const aktivitas = buatAktivitas(misi, () => tampilkanPertanyaan());
   aktivitasAktif = aktivitas;
   d.append(aktivitas.el, tanya);
@@ -124,6 +136,13 @@ export function bukaMisi(misi: Misi, opsi: OpsiMisi): void {
     const umpan = el('p', '', { class: 'umpan', 'aria-live': 'polite' });
     // Petunjuk Tiko terakhir tetap terbaca di sini selama anak melihat gambar dan memilih lagi.
     const petunjukTiko = el('p', '', { class: 'petunjuk-tiko', hidden: '' });
+    tulisPetunjuk = (teks) => {
+      petunjukTerakhir = teks;
+      petunjukTiko.replaceChildren(el('strong', 'Petunjuk Tiko: '), teks);
+      petunjukTiko.hidden = false;
+    };
+    // "Aku bingung" yang ditekan sebelum pertanyaan muncul tetap terbaca di sini.
+    if (petunjukTerakhir) tulisPetunjuk(petunjukTerakhir);
     const kotak = el('div', undefined, { class: 'pilihan pilihan-alasan' });
     const tombol: HTMLButtonElement[] = [];
     const tahan = (ya: boolean) => tombol.forEach((b) => (b.disabled = ya || b.hasAttribute('data-salah')));
@@ -136,6 +155,7 @@ export function bukaMisi(misi: Misi, opsi: OpsiMisi): void {
           aktivitas.hentikan();
           aktivitasAktif = null;
           aktivitas.el.remove();
+          tulisPetunjuk = undefined;
           const pulih = layarPulih(misi, opsi.namaLokasi, false);
           tanya.replaceWith(pulih);
           d.scrollTop = 0;
@@ -149,10 +169,7 @@ export function bukaMisi(misi: Misi, opsi: OpsiMisi): void {
         tahan(true);
         const tiba = Promise.resolve(hasil.petunjukTiba)
           .then((teks) => {
-            if (typeof teks === 'string' && teks.trim()) {
-              petunjukTiko.replaceChildren(el('strong', 'Petunjuk Tiko: '), teks);
-              petunjukTiko.hidden = false;
-            }
+            if (typeof teks === 'string' && teks.trim()) tulisPetunjuk?.(teks);
           })
           .catch(() => undefined);
         await Promise.race([tiba, tunggu(BATAS_TAHAN_MS)]);

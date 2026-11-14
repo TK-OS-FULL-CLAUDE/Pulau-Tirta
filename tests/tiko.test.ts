@@ -34,7 +34,18 @@ describe('system prompt', () => {
     expect(p).toContain('Jangan pernah memberi jawaban pertanyaan misi secara langsung');
     expect(p).toContain('uap, menguap, penguapan');
     expect(p).toContain('Airnya meresap ke pasir');
-    expect(p).toContain('Penguapan: panas matahari');
     expect(p).not.toContain('Pengembunan:');
+  });
+
+  it('petunjuk tingkat 1–2 tidak membawa kartu jawaban, tapi membawa isi aktivitas dan petunjuk acuan tim', () => {
+    const misi = cariMisi('misi-1')!;
+    for (const t of [1, 2] as const) {
+      const p = systemPrompt({ pesan: '', mode: 'petunjuk', misiId: 'misi-1', alasanId: 'b' }, misi, t);
+      expect(p).not.toContain('Penguapan: panas matahari');
+      expect(p).toContain(misi.aktivitas!.arahan);
+      expect(p).toContain(misi.petunjukCadangan![String(t)]);
+    }
+    const p3 = systemPrompt({ pesan: '', mode: 'petunjuk', misiId: 'misi-1', alasanId: 'b' }, misi, 3);
+    expect(p3).toContain('Penguapan: panas matahari');
   });
 });

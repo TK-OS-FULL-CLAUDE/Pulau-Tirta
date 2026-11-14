@@ -47,13 +47,23 @@
           "uap",
           "menguap",
           "penguapan",
-          "berubah wujud"
+          "berubah wujud",
+          "udara",
+          "panas matahari",
+          "memanaskan",
+          "dipanaskan",
+          "hilang ke"
         ],
         "2": [
           "uap",
           "menguap",
           "penguapan",
-          "berubah wujud"
+          "berubah wujud",
+          "udara",
+          "panas matahari",
+          "memanaskan",
+          "dipanaskan",
+          "hilang ke"
         ],
         "3": []
       },
@@ -167,10 +177,15 @@
       "kataTerlarang": {
         "1": [
           "bergabung",
-          "berat"
+          "berat",
+          "menyatu",
+          "makin besar",
+          "jadi besar",
+          "lebih besar"
         ],
         "2": [
-          "berat"
+          "berat",
+          "menyatu"
         ],
         "3": []
       },
@@ -226,10 +241,18 @@
         "1": [
           "meresap",
           "akar",
-          "gembur"
+          "gembur",
+          "masuk ke tanah",
+          "masuk ke dalam tanah",
+          "ke dalam tanah",
+          "diserap"
         ],
         "2": [
-          "meresap"
+          "meresap",
+          "masuk ke tanah",
+          "masuk ke dalam tanah",
+          "ke dalam tanah",
+          "diserap"
         ],
         "3": []
       },
