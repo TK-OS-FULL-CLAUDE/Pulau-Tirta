@@ -7,6 +7,7 @@ import { FESTIVAL, MISI_UTAMA, cariMisi } from '../shared/content';
 import {
   festivalTerbuka,
   jawab,
+  mintaPetunjuk,
   mulaiMisi,
   muat,
   periksaFestival,
@@ -24,7 +25,7 @@ import { RohTiko } from './tiko/roh';
 import { isiJurnal } from '../shared/jurnal';
 import { WARGA, naskahDesa, naskahPenduduk, semuaPembicara } from '../shared/warga';
 import { pasangDemo, tujuanDariUrl } from './ui/demo';
-import { bukaFestival, bukaMisi } from './ui/dialog-misi';
+import { bukaFestival, bukaMisi, peristiwaFestivalAktif, sorotMisiAktif, tandaiPetunjukFestival } from './ui/dialog-misi';
 import { ID_JURNAL, bukaJurnal } from './ui/jurnal';
 import { aturTitikKepala, bukaPercakapan } from './ui/kotak-dialog';
 import { bukaJeda, bukaJudul, bukaTamat } from './ui/layar';
@@ -93,6 +94,31 @@ const panel = new PanelTiko(
       konsep: misi?.konsep,
     };
   },
+  {
+    keMana: () => {
+      const sisa = LOKASI.find((l) => l.misiId && progres.status[l.misiId] !== 'selesai');
+      if (sisa) return `Coba ke ${sisa.nama}. Kayaknya ada yang aneh di sana.`;
+      return festivalTerbuka(progres) && !progres.festivalSelesai
+        ? 'Keempat tempat sudah pulih! Ayo ke Kepala Desa di Desa Tirta untuk Festival Hujan.'
+        : 'Kamu sudah menyelesaikan semuanya. Hebat! Jelajahi saja pulaunya sesukamu.';
+    },
+    // "Aku bingung" di misi yang sedang berjalan menaikkan tingkat petunjuk; tingkat 2 juga menyorot bukti di aktivitas.
+    tingkatBingung: (misiId) => {
+      playtest?.catatBingung(progres, misiId);
+      const h = mintaPetunjuk(progres, misiId);
+      if (h.progres !== progres) perbarui(h.progres);
+      sorotMisiAktif(h.tingkat);
+      return h.tingkat;
+    },
+    // Di Festival Hujan, "Aku bingung" membantu peristiwa yang sedang dipilih anak.
+    bingungKhusus: () => {
+      const id = peristiwaFestivalAktif();
+      if (!id) return false;
+      const dibantu = beriPetunjukFestival([id]);
+      if (dibantu) tandaiPetunjukFestival(dibantu);
+      return true;
+    },
+  },
 );
 
 /**
@@ -139,6 +165,7 @@ function interaksi(lokasi: Lokasi): void {
       bukaMisi(misi, {
         namaLokasi: lokasi.nama,
         sudahSelesai,
+        bingung: () => panel.cepat('bingung'),
         pilih: (pilihanId) => {
           const hasil = jawab(progres, misi.id, pilihanId);
           // Tempatnya baru berubah saat anak kembali ke pulau, supaya perubahannya terlihat (lihat tutup di bawah).
@@ -569,13 +596,15 @@ if (DEMO) {
           pembicara: WARGA.pembicara,
           tutup: () => {
             lepasKunci();
-            panel.sapa('Aku di sini kalau kamu bingung. Ketik pertanyaanmu soal air di kotak chat, ya.');
+            panel.sapa('Aku di sini kalau kamu bingung. Tekan T, lalu pilih "Aku harus ke mana?" atau tanya aku soal air, ya.');
           },
         });
         return;
       }
       lepasKunci();
       if (sisaTempat) panel.sapa(`Selamat datang kembali! Masih ada ${sisaTempat} tempat yang perlu dipulihkan.`);
+      else if (festivalTerbuka(progres) && !progres.festivalSelesai)
+        panel.sapa('Selamat datang kembali! Keempat tempat sudah pulih. Ayo ke Kepala Desa untuk Festival Hujan.');
       else panel.sapa('Selamat datang kembali! Pulau Tirta sudah pulih. Jelajahi saja sesukamu.');
     },
   });

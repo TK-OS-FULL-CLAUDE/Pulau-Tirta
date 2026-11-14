@@ -33,6 +33,8 @@ export interface OpsiMisi {
   sudahSelesai: boolean;
   pilih: (pilihanId: string) => HasilPilih;
   tutup: () => void;
+  /** "Aku bingung" di kepala dialog: petunjuk Tiko bertingkat untuk misi ini (PRD F-06). */
+  bingung?: () => void;
 }
 
 function kepala(judul: string, sub: string): HTMLElement {
@@ -102,6 +104,12 @@ export function bukaMisi(misi: Misi, opsi: OpsiMisi): void {
     d.append(layarPulih(misi, opsi.namaLokasi, true));
     buka(d, opsi.tutup);
     return;
+  }
+  if (opsi.bingung) {
+    // Kolom ketik Tiko tertutup selama misi, jadi tombol "Aku bingung" ada di sini; hilang di layar pulih (CSS).
+    const bingung = el('button', 'Aku bingung', { type: 'button', class: 'tombol-kecil tombol-bingung' });
+    bingung.addEventListener('click', opsi.bingung);
+    d.querySelector('.dialog-kepala .tombol-kecil')!.before(bingung);
   }
 
   const tanya = el('section', undefined, { class: 'tanya', hidden: '' });
