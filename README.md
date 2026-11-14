@@ -47,7 +47,7 @@ Laporan memisahkan sumber model/cadangan/template. Saat API gagal, dijeda, tidak
 | J | Jurnal Petualangan: status keempat tempat, satu kalimat petunjuk, Kartu Ilmu |
 | Esc | Menu jeda: lanjutkan, suara nyala/mati, Tentang Tiko, mulai dari awal |
 
-Tiko melayang di dekat pemain; jawabannya muncul di kotak bawah tengah tanpa menutup game. Progres tersimpan otomatis per misi di browser; "Mulai dari awal" (layar judul atau menu jeda) menghapusnya. Semua suara dibuat dengan Web Audio API (tanpa file audio) dan bisa dimatikan dari menu jeda.
+Tiko melayang di dekat pemain; jawabannya muncul di kotak bawah tengah tanpa menutup game. Progres tersimpan otomatis per misi di browser; "Mulai dari awal" (layar judul atau menu jeda) menghapusnya. Semua suara dibuat dengan Web Audio API (tanpa file audio) dan bisa dimatikan dari menu jeda. Musik latarnya, "Pagi di Desa Tirta" (`src/ui/musik-desa.ts`), adalah lagu asli tim: 32 birama di G mayor dengan seruling, petikan, dan bass, jadi tidak ada lisensi musik pihak lain.
 
 ## Struktur
 

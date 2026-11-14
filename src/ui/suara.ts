@@ -8,6 +8,8 @@
  * - Suara keliru dibuat lembut (dua tetes air), bukan bunyi "salah" yang terdengar seperti hukuman.
  */
 
+import { DETIK_PER_LANGKAH, JUMLAH_LANGKAH, jadwalkanLangkah } from './musik-desa';
+
 export type JenisSuara = 'klik' | 'benar' | 'keliru' | 'pulih' | 'hujan';
 
 export const KUNCI_SUARA = 'pulau-tirta:suara:v1';
@@ -39,9 +41,6 @@ function penyimpananBrowser(): Simpanan | undefined {
   }
 }
 
-/** Tangga nada pentatonik C (C4–C5): selalu terdengar akur, cocok untuk musik latar acak yang pelan. */
-const PENTATONIK = [261.63, 293.66, 329.63, 392.0, 440.0, 523.25];
-
 interface OpsiNada {
   tipe?: OscillatorType;
   vol?: number;
@@ -59,7 +58,6 @@ export class Suara {
   private musikTimer: ReturnType<typeof setInterval> | undefined;
   private musikBerikut = 0;
   private musikLangkah = 0;
-  private musikIndeks = 2;
   private _nyala: boolean;
 
   constructor(
@@ -153,7 +151,7 @@ export class Suara {
       // Musik lewat lowpass supaya lembut dan tidak menutupi suara lain.
       const lembut = this.ctx.createBiquadFilter();
       lembut.type = 'lowpass';
-      lembut.frequency.value = 1600;
+      lembut.frequency.value = 2800;
       lembut.connect(utama);
       this.musikBus = this.ctx.createGain();
       this.musikBus.gain.value = 1;
@@ -179,16 +177,22 @@ export class Suara {
     osc.stop(t + lama + 0.05);
   }
 
-  /** Hujan di Festival: desis derau yang disaring, naik lalu reda sekitar 6 detik, ditambah tetes-tetes kecil. */
-  private hujan(t: number): void {
+  /** Derau putih 2 detik, dipakai bersama oleh hujan dan kocokan musik. */
+  private ambilDerau(): AudioBuffer {
     const ctx = this.ctx!;
     if (!this.derau) {
       this.derau = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
       const d = this.derau.getChannelData(0);
       for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
     }
+    return this.derau;
+  }
+
+  /** Hujan di Festival: desis derau yang disaring, naik lalu reda sekitar 6 detik, ditambah tetes-tetes kecil. */
+  private hujan(t: number): void {
+    const ctx = this.ctx!;
     const sumber = ctx.createBufferSource();
-    sumber.buffer = this.derau;
+    sumber.buffer = this.ambilDerau();
     sumber.loop = true;
     const saring = ctx.createBiquadFilter();
     saring.type = 'bandpass';
@@ -208,9 +212,15 @@ export class Suara {
     }
   }
 
+  /** Lagu dimulai dari awal dan muncul pelan selama 2 detik. */
   private mulaiMusik(): void {
-    if (!this.denganMusik || this.musikTimer !== undefined || !this.ctx) return;
-    this.musikBerikut = this.ctx.currentTime + 0.5;
+    if (!this.denganMusik || this.musikTimer !== undefined || !this.ctx || !this.musikBus) return;
+    const t = this.ctx.currentTime;
+    this.musikBus.gain.cancelScheduledValues(t);
+    this.musikBus.gain.setValueAtTime(0.0001, t);
+    this.musikBus.gain.exponentialRampToValueAtTime(1, t + 2);
+    this.musikLangkah = 0;
+    this.musikBerikut = t + 0.3;
     this.musikTimer = setInterval(() => this.jadwalkanMusik(), 250);
   }
 
@@ -219,20 +229,15 @@ export class Suara {
     this.musikTimer = undefined;
   }
 
-  /** Melodi acak pelan di tangga nada pentatonik, satu nada tiap 0,8 detik, dengan jeda sesekali. */
+  /** Lagu "Pagi di Desa Tirta" (src/ui/musik-desa.ts), dijadwalkan per seperdelapan sekitar 0,6 detik ke depan. */
   private jadwalkanMusik(): void {
     const ctx = this.ctx;
     if (!ctx || ctx.state !== 'running' || !this.musikBus) return;
     if (this.musikBerikut < ctx.currentTime) this.musikBerikut = ctx.currentTime + 0.1;
     while (this.musikBerikut < ctx.currentTime + 0.6) {
-      const t = this.musikBerikut;
-      if (this.musikLangkah % 8 === 0) this.nada(130.81, t, 3.2, { vol: 0.02, serang: 0.4, tujuan: this.musikBus });
-      if (Math.random() > 0.25) {
-        this.musikIndeks = Math.max(0, Math.min(PENTATONIK.length - 1, this.musikIndeks + Math.floor(Math.random() * 5) - 2));
-        this.nada(PENTATONIK[this.musikIndeks], t, 1.6, { vol: 0.03, serang: 0.08, tujuan: this.musikBus });
-      }
-      this.musikLangkah++;
-      this.musikBerikut += 0.8;
+      jadwalkanLangkah(ctx, this.musikBus, this.musikLangkah, this.musikBerikut, this.ambilDerau());
+      this.musikLangkah = (this.musikLangkah + 1) % JUMLAH_LANGKAH;
+      this.musikBerikut += DETIK_PER_LANGKAH;
     }
   }
 }
