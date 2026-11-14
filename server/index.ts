@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { MODE, infoModel, jawabTiko, type Mode, type PermintaanChat } from './tiko';
 
 const app = express();
+app.set('trust proxy', 1);
 const PORT = Number(process.env.PORT ?? 3000);
 const akar = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = resolve(akar, 'dist');
