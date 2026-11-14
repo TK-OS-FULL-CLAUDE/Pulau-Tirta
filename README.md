@@ -35,6 +35,16 @@ npm run uji:tiko -- --offline  # uji cadangan/template, tanpa kuota API
 
 Laporan memisahkan sumber model/cadangan/template. Saat API gagal, dijeda, tidak menghasilkan jawaban model, atau melewati batas waktu, uji online berstatus **BELUM TERVERIFIKASI** dan keluar dengan kode gagal meskipun semua jawaban cadangan benar. Jangan memakai skor offline sebagai bukti kualitas model langsung. Pemeriksaan kata kunci tetap perlu ditinjau manual.
 
+### Deploy online (Vercel)
+
+Tidak wajib untuk lomba (Grand Final memakai localhost), tetapi berguna kalau juri ingin mencoba lewat link. `vercel.json` sudah mengatur semuanya: `npm run build:vercel` membangun game ke `dist/`, lalu `scripts/build-vercel.mjs` menyusun `.vercel/output` (game dan PWA dilayani CDN; `server/app.ts` dibundel menjadi fungsi `/api/chat` dan `/api/health`).
+
+1. Masuk ke vercel.com dengan akun GitHub (paket Hobby gratis), pilih **Add New → Project**, impor repo ini. Biarkan Framework Preset, Build Command, dan Output Directory seperti yang terbaca dari `vercel.json`.
+2. Di **Environment Variables**, isi sama seperti `.env`: `TIKO_PROVIDER` dan `GEMINI_API_KEY` atau `ANTHROPIC_API_KEY` (opsional `TIKO_TIMEOUT_MS`). API key hanya disimpan di Vercel, tidak di repo.
+3. Deploy. Cek `https://<nama-proyek>.vercel.app/api/health`: `"model": true` berarti Tiko memakai model; `false` berarti hanya jawaban cadangan.
+
+Link publik berarti siapa pun bisa membuat Tiko memanggil model. Batas laju per IP tetap jalan, tetapi pasang juga batas pengeluaran di dasbor penyedia model.
+
 ## Cara bermain
 
 | Tombol | Fungsi |
