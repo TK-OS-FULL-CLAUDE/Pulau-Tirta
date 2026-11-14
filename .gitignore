@@ -12,3 +12,4 @@ coverage/
 !.vscode/extensions.json
 world/previews/
 uji-hasil/
+.vercel/
