@@ -76,7 +76,7 @@ export const BALASAN = {
   khawatir:
     'Terima kasih sudah cerita. Itu pasti berat. Ceritakan juga ke guru atau orang tuamu sekarang, ya. Mereka bisa membantumu.',
   diLuarTopik: 'Hmm, aku cuma tahu soal air dan alam. Yuk kembali ke petualangan! Mau ke mana kita?',
-  cadanganTanya: 'Aku belum bisa menjawab itu sekarang. Coba buka Jurnal Petualangan, atau tanyakan ke gurumu.',
+  cadanganTanya: 'Aku belum bisa menjawab itu sekarang. Coba buka layar Misi, atau tanyakan ke gurumu.',
 };
 
 function normal(teks: string): string {

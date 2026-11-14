@@ -176,7 +176,7 @@ function interaksi(lokasi: Lokasi): void {
           perbarui(hasil.progres);
           suara.main(hasil.benar ? 'benar' : 'keliru');
           if (hasil.benar) {
-            panel.sapa(`Kamu berhasil! ${lokasi.nama} pulih. Kartu Ilmu baru masuk ke Jurnal.`);
+            panel.sapa(`Kamu berhasil! ${lokasi.nama} pulih. Kartu Ilmu baru tersimpan di Misi.`);
             return { benar: true };
           }
           const teks = misi.pilihan?.find((x) => x.id === pilihanId)?.teks ?? '';
@@ -480,10 +480,10 @@ tombolJeda.className = 'tombol-jeda';
 tombolJeda.textContent = 'Jeda';
 tombolJeda.addEventListener('click', bukaMenuJeda);
 
-// ---- Jurnal Petualangan ----
+// ---- Layar Misi (dulu Jurnal Petualangan) ----
 
 const NAMA_TEMPAT = Object.fromEntries(LOKASI.map((l) => [l.id, l.nama]));
-/** Kartu yang sudah dilihat di Jurnal; kartu yang didapat sesudahnya ditandai angka di tombol Jurnal. */
+/** Kartu yang sudah dilihat di layar Misi; kartu yang didapat sesudahnya ditandai angka di tombol Misi. */
 let kartuTerlihat = progres.kartuDidapat.length;
 const lencana = document.createElement('span');
 lencana.className = 'lencana';
@@ -491,21 +491,22 @@ lencana.hidden = true;
 const tombolJurnal = document.createElement('button');
 tombolJurnal.type = 'button';
 tombolJurnal.className = 'tombol-jurnal';
-tombolJurnal.append('Jurnal', lencana);
+tombolJurnal.append('Misi', lencana);
 
 function perbaruiLencana(): void {
   const baru = progres.kartuDidapat.length - kartuTerlihat;
   lencana.hidden = baru <= 0;
   lencana.textContent = String(baru);
-  tombolJurnal.setAttribute('aria-label', baru > 0 ? `Jurnal, ${baru} Kartu Ilmu baru` : 'Jurnal');
+  tombolJurnal.setAttribute('aria-label', baru > 0 ? `Misi, ${baru} Kartu Ilmu baru` : 'Misi');
 }
 
 function bukaJurnalDunia(): void {
   if (document.querySelector('dialog[open]')) return;
   kunci();
+  const kartuBaru = progres.kartuDidapat.length - kartuTerlihat;
   kartuTerlihat = progres.kartuDidapat.length;
   perbaruiLencana();
-  bukaJurnal(isiJurnal(progres, NAMA_TEMPAT), lepasKunci);
+  bukaJurnal(isiJurnal(progres, NAMA_TEMPAT), lepasKunci, { kartuBaru });
 }
 tombolJurnal.addEventListener('click', bukaJurnalDunia);
 
@@ -514,7 +515,7 @@ tombolAtas.className = 'tombol-atas';
 tombolAtas.append(tombolJurnal, tombolJeda);
 document.getElementById('game')!.append(tombolAtas);
 
-// J membuka atau menutup Jurnal (kecuali sedang mengetik atau ada dialog lain).
+// J membuka atau menutup layar Misi (kecuali sedang mengetik atau ada dialog lain).
 document.addEventListener('keydown', (e) => {
   if ((e.key !== 'j' && e.key !== 'J') || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
   const a = document.activeElement;
